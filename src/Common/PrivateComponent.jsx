@@ -4,10 +4,10 @@ import { Navigate, Outlet } from "react-router-dom";
 const PrivateComponent = () => {
   return (
     <>
-      {localStorage.getItem("UserRole") ? (
+      {localStorage.getItem("indent-expressId") ? (
         <Outlet />
       ) : (
-        <Navigate to="/Bottom_Up" />
+        <Navigate to="/Indent-express/login" />
       )}
     </>
   );

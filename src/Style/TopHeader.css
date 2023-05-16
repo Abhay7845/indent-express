@@ -1,0 +1,13 @@
+ .Logo {
+     height: 30px;
+ }
+
+ .HeaderStyle {
+     justify-content: space-between;
+ }
+
+ @media screen and (max-width:500px) {
+     .removeIndentExpress {
+         display: none;
+     }
+ }

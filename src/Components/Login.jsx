@@ -8,7 +8,7 @@ import ShowError from "../Schema/ShowError";
 import image from "../Asset/Img/Tanishq_Logo1.png";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 
-export default function Login(props) {
+const Login = (props) => {
   const { showAlert } = props;
   const [passwordShown, setPasswordShown] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -22,8 +22,6 @@ export default function Login(props) {
       validInvalid: "",
     };
     const inputData = { ...payload, ...LoginData };
-    console.log("inputData==>", inputData);
-
     axios
       .post(
         "https://tanishqdigitalnpim.titan.in:8443/PNPIM/NPIM/npim/user/login",
@@ -32,6 +30,7 @@ export default function Login(props) {
       .then((response) => {
         console.log("response==>", response);
         if (response.data.value.role === "L1") {
+          localStorage.setItem("indent-expressId", response.data.value.userID);
           navigate("/Indent-express/feedback/L1/L2");
           showAlert("Logged in Successfully", "success");
         }
@@ -138,4 +137,6 @@ export default function Login(props) {
       </div>
     </>
   );
-}
+};
+
+export default Login;
