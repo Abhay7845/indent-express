@@ -2,13 +2,13 @@
 import * as yup from "yup";
 
 export const LoginInitialValue = {
-  userName: "",
+  userID: "",
   password: "",
-  rsoName: "",
+  region: "",
 };
 
 export const LoginSchema = yup.object({
-  userName: yup.string().required("Username is required"),
+  userID: yup.string().required("Username is required"),
   password: yup.string().required("Password is required"),
-  rsoName: yup.string().required("RSO Name Is required"),
+  region: yup.string().required("RSO Name Is required"),
 });

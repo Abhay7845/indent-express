@@ -16,27 +16,27 @@ export default function Login(props) {
 
   const onLogin = (payload) => {
     setLoading(true);
-    const { userName, password, rsoName } = payload;
-    localStorage.setItem("rsoName", rsoName);
-    const inputData = {
-      userName,
-      password,
+    const LoginData = {
+      role: "",
+      status: "",
+      validInvalid: "",
     };
+    const inputData = { ...payload, ...LoginData };
+    console.log("inputData==>", inputData);
+
     axios
       .post(
-        "https://tanishqdigitalnpim.titan.in:8443/bottomUp/BottomUp/user/login",
+        "https://tanishqdigitalnpim.titan.in:8443/PNPIM/NPIM/npim/user/login",
         inputData
       )
       .then((response) => {
-        localStorage.setItem("btqId", response.data.value.userName);
-        localStorage.setItem("region", response.data.value.region);
-        localStorage.setItem("UserRole", response.data.value.role);
-        if (response.data.value.role === "RSO") {
-          navigate("/bottom/up/feedback/form");
+        console.log("response==>", response);
+        if (response.data.value.role === "L1") {
+          navigate("/Indent-express/feedback/L1/L2");
           showAlert("Logged in Successfully", "success");
         }
-        if (response.data.value.role === "Admin") {
-          navigate("/bottom/up/admin");
+        if (response.data.value.role === "L3") {
+          navigate("/Indent-express/L3");
           showAlert("Logged in Successfully", "success");
         }
         if (response.data.code === "1001") {
@@ -72,10 +72,10 @@ export default function Login(props) {
                 </b>
                 <Field
                   placeholder="Username"
-                  name="userName"
+                  name="userID"
                   className="GInput"
                 />
-                <ShowError name="userName" />
+                <ShowError name="userID" />
               </div>
               <div className="my-2">
                 <b>
@@ -115,9 +115,9 @@ export default function Login(props) {
                 <Field
                   placeholder="RSO Name"
                   className="GInput"
-                  name="rsoName"
+                  name="region"
                 />
-                <ShowError name="rsoName" />
+                <ShowError name="region" />
               </div>
               <div className="d-flex justify-content-end">
                 <button type="submit" className="CButton">
