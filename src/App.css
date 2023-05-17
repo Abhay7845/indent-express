@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+.GInput {
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c1c4c5;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.GInput:hover {
+  border-bottom: 1px solid #1899e4;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.SSelect {
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c1c4c5;
+  background: transparent;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.SSelect:hover {
+  border-bottom: 1px solid #1899e4;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.CButton {
+  padding: 7.5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: large;
+  border: none;
+  background-color: #f5df12;
+  color: #000000;
+  border-radius: 3px;
+  font-size: 14px;
+  width: 100%;
+  margin-top: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.CButton:hover {
+  background-color: #f9e215;
+}
+
+.DropDownFormStyle {
+  background: transparent;
+  background-color: #f0f3f6;
+  padding: 10px;
+}
+
+/* AlertStyle CSS */
+.alertStyle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 }
