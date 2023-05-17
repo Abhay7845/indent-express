@@ -249,8 +249,7 @@ export const FeedBackFormL1L2 = (props) => {
           </div>
         </div>
       </div>
-      <br />
-      <div className="row row-cols-1 row-cols-md-2 g-4 mx-0">
+      <div className="row row-cols-1 row-cols-md-2 g-4 mx-0 my-3">
         <div className="col">
           <div className="card">
             <div className="card-body">
@@ -346,7 +345,7 @@ export const FeedBackFormL1L2 = (props) => {
                     </label>
                   </div>
                   {!switchData === false ? (
-                    <div className="my-2">
+                    <div className="my-3">
                       <label>Choose Reason For NO</label>
                       <select
                         className="SSelect"
@@ -367,6 +366,11 @@ export const FeedBackFormL1L2 = (props) => {
                     ""
                   )}
                 </div>
+              </div>
+              <div className="d-flex justify-content-center my-2 mx-2">
+                <button className="CButton">PREVIOUS</button>
+                <button className="mx-2 CButton">SUBMIT</button>
+                <button className="CButton">NEXT</button>
               </div>
             </div>
           </div>
