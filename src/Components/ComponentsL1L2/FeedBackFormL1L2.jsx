@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import axios from "axios";
 import { HostManager } from "../../APIList/HotMaster";
+import Loader from "../../Common/Loader";
+import { BsSearch } from "react-icons/bs";
 
 export const FeedBackFormL1L2 = () => {
+  const [loading, setLoading] = useState(false);
   const [colLection, setCollection] = useState([]);
   const [collectionValue, setCollectionValue] = useState("");
   const [needSate, setNeedSate] = useState([]);
@@ -17,6 +20,7 @@ export const FeedBackFormL1L2 = () => {
 
   //COLLECTION  DROPDOWN
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${HostManager.mainHost}/npim/dropdown/ALL/ALL/ALL/ALL`)
       .then((res) => res)
@@ -26,8 +30,12 @@ export const FeedBackFormL1L2 = () => {
         } else if (response.data.code === "1001") {
           console.log("DATA NOT FOUND");
         }
+        setLoading(false);
       })
-      .catch((error) => console.log(""));
+      .catch((error) => {
+        setLoading(false);
+        console.log("");
+      });
   }, [collectionValue]);
   const collectionDropdown = colLection.map((element) => {
     return {
@@ -38,6 +46,8 @@ export const FeedBackFormL1L2 = () => {
 
   //NEED STATE  DROPDOWN
   useEffect(() => {
+    setLoading(true);
+
     axios
       .get(
         `${HostManager.mainHost}/npim/dropdown/${collectionValue}/ALL/ALL/ALL`
@@ -49,8 +59,12 @@ export const FeedBackFormL1L2 = () => {
         } else if (response.data.code === "1001") {
           console.log("DATA NOT FOUND");
         }
+        setLoading(false);
       })
-      .catch((error) => console.log(""));
+      .catch((error) => {
+        setLoading(false);
+        console.log("");
+      });
   }, [collectionValue]);
 
   const needSateDropdown = needSate.map((element) => {
@@ -62,6 +76,8 @@ export const FeedBackFormL1L2 = () => {
 
   //GROUP  DROPDOWN
   useEffect(() => {
+    setLoading(true);
+
     axios
       .get(
         `${HostManager.mainHost}/npim/dropdown/${collectionValue}/${needStateValue}/ALL/ALL`
@@ -73,8 +89,12 @@ export const FeedBackFormL1L2 = () => {
         } else if (response.data.code === "1001") {
           console.log("DATA NOT FOUND");
         }
+        setLoading(false);
       })
-      .catch((error) => console.log(""));
+      .catch((error) => {
+        setLoading(false);
+        console.log("");
+      });
   }, [collectionValue, needStateValue]);
 
   const GroupDropdown = group.map((element) => {
@@ -86,6 +106,8 @@ export const FeedBackFormL1L2 = () => {
 
   //CATEGORY  DROPDOWN
   useEffect(() => {
+    setLoading(true);
+
     axios
       .get(
         `${HostManager.mainHost}/npim/dropdown/${collectionValue}/${needStateValue}/${groupValue}/ALL`
@@ -97,8 +119,12 @@ export const FeedBackFormL1L2 = () => {
         } else if (response.data.code === "1001") {
           console.log("DATA NOT FOUND");
         }
+        setLoading(false);
       })
-      .catch((error) => console.log(""));
+      .catch((error) => {
+        setLoading(false);
+        console.log("");
+      });
   }, [collectionValue, needStateValue, groupValue]);
 
   const CategoryDropdown = category.map((element) => {
@@ -111,6 +137,7 @@ export const FeedBackFormL1L2 = () => {
   return (
     <>
       <TopHeader />
+      {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
         <div className="row mx-0">
           <div className="col-md-3">
@@ -129,7 +156,7 @@ export const FeedBackFormL1L2 = () => {
               })}
             </select>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-2">
             <select
               className="SSelect"
               onChange={(e) => setNeedStateValue(e.target.value)}
@@ -176,6 +203,9 @@ export const FeedBackFormL1L2 = () => {
                 );
               })}
             </select>
+          </div>
+          <div className="col-md-1 justify-content-end">
+            <BsSearch size={35} className="searchStyle" />
           </div>
         </div>
       </div>

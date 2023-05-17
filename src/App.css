@@ -52,6 +52,25 @@
   background: transparent;
   background-color: #f0f3f6;
   padding: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.searchStyle {
+  margin-top: 9px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+}
+
+.searchStyle:hover {
+  background-color: #ffff;
+}
+
+@media screen and (max-width:767px) {
+  .searchStyle {
+    float: right;
+  }
 }
 
 /* AlertStyle CSS */
