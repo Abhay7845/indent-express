@@ -22,7 +22,11 @@ const App = () => {
       <BrowserRouter>
         <Alert alert={alert} />
         <Routes>
-          <Route index path="/Indent-express/login" element={<Login />} />
+          <Route
+            index
+            path="/Indent_Express"
+            element={<Login showAlert={showAlert} />}
+          />
           <Route element={<PrivateComponent />}>
             <Route
               path="/Indent-express/feedback/L1/L2"

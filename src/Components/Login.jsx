@@ -36,7 +36,6 @@ const Login = (props) => {
         }
         if (response.data.value.role === "L3") {
           navigate("/Indent-express/L3");
-          showAlert("Logged in Successfully", "success");
         }
         if (response.data.code === "1001") {
           showAlert("Please enter valid Username and Password!", "danger");
