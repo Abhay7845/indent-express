@@ -6,7 +6,9 @@ import Loader from "../../Common/Loader";
 import { BsSearch } from "react-icons/bs";
 import SideBar from "../../Common/SideBar";
 
-export const FeedBackFormL1L2 = () => {
+export const FeedBackFormL1L2 = (props) => {
+  const { showAlert } = props;
+  console.log(props);
   const [loading, setLoading] = useState(false);
   const [colLection, setCollection] = useState([]);
   const [collectionValue, setCollectionValue] = useState("");
@@ -16,8 +18,6 @@ export const FeedBackFormL1L2 = () => {
   const [groupValue, setGroupValue] = useState("");
   const [category, setCategory] = useState([]);
   const [categoryValue, setCategoryValue] = useState("");
-
-  console.log("categoryValue==>", categoryValue);
 
   //COLLECTION  DROPDOWN
   useEffect(() => {
@@ -29,7 +29,7 @@ export const FeedBackFormL1L2 = () => {
         if (response.data.code === "1000") {
           setCollection(response.data.value);
         } else if (response.data.code === "1001") {
-          console.log("DATA NOT FOUND");
+          showAlert(`${response.data.value}`, "danger");
         }
         setLoading(false);
       })
@@ -37,7 +37,7 @@ export const FeedBackFormL1L2 = () => {
         setLoading(false);
         console.log("");
       });
-  }, [collectionValue]);
+  }, [collectionValue, showAlert]);
   const collectionDropdown = colLection.map((element) => {
     return {
       value: element,
@@ -108,7 +108,6 @@ export const FeedBackFormL1L2 = () => {
   //CATEGORY  DROPDOWN
   useEffect(() => {
     setLoading(true);
-
     axios
       .get(
         `${HostManager.mainHost}/npim/dropdown/${collectionValue}/${needStateValue}/${groupValue}/ALL`
@@ -134,7 +133,26 @@ export const FeedBackFormL1L2 = () => {
       label: element,
     };
   });
-
+  const GetProductsDetails = () => {
+    setLoading(true);
+    axios
+      .get(
+        `${HostManager.mainHost}/npim/dropdown/${collectionValue}/${needStateValue}/${groupValue}/${categoryValue}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          console.log("response==>", response.data);
+        } else if (response.data.code === "1001") {
+          console.log(response.data.value);
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log("");
+      });
+  };
   return (
     <>
       <TopHeader />
@@ -207,7 +225,11 @@ export const FeedBackFormL1L2 = () => {
             </select>
           </div>
           <div className="col-md-1 justify-content-end">
-            <BsSearch size={35} className="searchStyle" />
+            <BsSearch
+              size={35}
+              className="searchStyle"
+              onClick={GetProductsDetails}
+            />
           </div>
         </div>
       </div>
