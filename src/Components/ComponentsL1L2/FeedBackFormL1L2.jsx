@@ -4,11 +4,11 @@ import axios from "axios";
 import { HostManager } from "../../APIList/HotMaster";
 import Loader from "../../Common/Loader";
 import { BsSearch } from "react-icons/bs";
-import SideBar from "../../Common/SideBar";
+import { ChooseReasonForNo } from "../../Data/DataList";
+// import SideBar from "../../Common/SideBar";
 
 export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
-  console.log(props);
   const [loading, setLoading] = useState(false);
   const [colLection, setCollection] = useState([]);
   const [collectionValue, setCollectionValue] = useState("");
@@ -18,6 +18,7 @@ export const FeedBackFormL1L2 = (props) => {
   const [groupValue, setGroupValue] = useState("");
   const [category, setCategory] = useState([]);
   const [categoryValue, setCategoryValue] = useState("");
+  const [switchData, setSwitchData] = useState(false);
 
   //COLLECTION  DROPDOWN
   useEffect(() => {
@@ -153,12 +154,27 @@ export const FeedBackFormL1L2 = (props) => {
         console.log("");
       });
   };
+
+  const getTrueFalse = () => {
+    if (!switchData) {
+      setSwitchData(true);
+    } else {
+      setSwitchData(false);
+    }
+  };
+  const NoReasonOption = ChooseReasonForNo.map((element) => {
+    return {
+      value: element,
+      label: element,
+    };
+  });
+  console.log("switchData==>", switchData);
   return (
     <>
       <TopHeader />
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="row mx-0">
           <div className="col-md-3">
             <select
@@ -230,6 +246,129 @@ export const FeedBackFormL1L2 = (props) => {
               className="searchStyle"
               onClick={GetProductsDetails}
             />
+          </div>
+        </div>
+      </div>
+      <br />
+      <div className="row row-cols-1 row-cols-md-2 g-4 mx-0">
+        <div className="col">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Card title</h5>
+              <p className="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="col">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="bg-info text-center p-1">ITEM CODE</h5>
+              <div className="row my-3">
+                <div className="col-md-6">
+                  <div>
+                    <h6 className="text-center my-2">
+                      <b>PRODUCT DETAILS</b>
+                    </h6>
+                    <br />
+                    <table className="w-100">
+                      <tbody>
+                        <tr>
+                          <th>COLLECTION</th>
+                          <td>- &nbsp;&nbsp;</td>
+                          <td>HELLO1</td>
+                        </tr>
+                        <tr>
+                          <th>NEED STATE</th>
+                          <td>-</td>
+                          <td>HELLO2</td>
+                        </tr>
+                        <tr>
+                          <th>GROUP</th>
+                          <td>-</td>
+                          <td>HELLO3</td>
+                        </tr>
+                        <tr>
+                          <th>CATEGORY</th>
+                          <td>-</td>
+                          <td>HELLO4</td>
+                        </tr>
+                        <tr>
+                          <th>GENDER</th>
+                          <td>-</td>
+                          <td>HELLO5</td>
+                        </tr>
+                        <tr>
+                          <th>COMPLEXITY</th>
+                          <td>-</td>
+                          <td>HELLO6</td>
+                        </tr>
+                        <tr>
+                          <th>STD WT</th>
+                          <td>-</td>
+                          <td>HELLO7</td>
+                        </tr>
+                        <tr>
+                          <th>STD UCP</th>
+                          <td>-</td>
+                          <td>HELLO8</td>
+                        </tr>
+                        <tr>
+                          <th>METAL COLOR</th>
+                          <td>-</td>
+                          <td>HELLO9</td>
+                        </tr>
+                        <tr>
+                          <th>FINDING</th>
+                          <td>-</td>
+                          <td>HELLO10</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <h6 className="text-center my-2">
+                    <b>FEEDBACK</b>
+                  </h6>
+                  <br />
+                  <div className="form-check form-switch d-flex justify-content-center">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      onChange={getTrueFalse}
+                      checked={!switchData}
+                    />
+                    <label className="mx-2">
+                      {switchData === true ? "NO" : "YES"}
+                    </label>
+                  </div>
+                  {!switchData === false ? (
+                    <div className="my-2">
+                      <label>Choose Reason For NO</label>
+                      <select
+                        className="SSelect"
+                        onChange={(e) => setCollectionValue(e.target.value)}
+                      >
+                        <option>Select</option>
+                        {NoReasonOption.map((item, i) => {
+                          return (
+                            <option key={i} value={item.value}>
+                              {item.name}
+                              {item.label}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -46,6 +46,10 @@ const SideBar = () => {
           </ul>
         </div>
       </div>
+      <div
+        className={`sidebar-overlay ${isOpen === true ? "active" : ""}`}
+        onClick={ToggleSidebar}
+      />
     </>
   );
 };
