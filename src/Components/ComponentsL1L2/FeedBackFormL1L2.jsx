@@ -4,6 +4,7 @@ import axios from "axios";
 import { HostManager } from "../../APIList/HotMaster";
 import Loader from "../../Common/Loader";
 import { BsSearch } from "react-icons/bs";
+import SideBar from "../../Common/SideBar";
 
 export const FeedBackFormL1L2 = () => {
   const [loading, setLoading] = useState(false);
@@ -139,6 +140,7 @@ export const FeedBackFormL1L2 = () => {
       <TopHeader />
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
+        <SideBar />
         <div className="row mx-0">
           <div className="col-md-3">
             <select

@@ -51,9 +51,8 @@
 .DropDownFormStyle {
   background: transparent;
   background-color: #f0f3f6;
-  padding: 12px;
+  padding: 10px;
   display: flex;
-  justify-content: center;
 }
 
 .searchStyle {
