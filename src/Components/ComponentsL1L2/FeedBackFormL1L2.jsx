@@ -168,7 +168,6 @@ export const FeedBackFormL1L2 = (props) => {
       label: element,
     };
   });
-  console.log("switchData==>", switchData);
   return (
     <>
       <TopHeader />
@@ -249,129 +248,125 @@ export const FeedBackFormL1L2 = (props) => {
           </div>
         </div>
       </div>
-      <div className="row row-cols-1 row-cols-md-2 g-4 mx-0 my-3">
+      <div className="row row-cols-1 row-cols-md-2 mx-0 my-3">
         <div className="col">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content.
-              </p>
-            </div>
+          <div className="card-body">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKMK7ZskPypvRb4Ewsyw6U1NEI8sahKwM0g2AsAiv0qA&s"
+              className="w-100"
+              alt="No_Image"
+            />
           </div>
         </div>
         <div className="col">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="bg-info text-center p-1">ITEM CODE</h5>
-              <div className="row my-3">
-                <div className="col-md-6">
-                  <div>
-                    <h6 className="text-center my-2">
-                      <b>PRODUCT DETAILS</b>
-                    </h6>
-                    <br />
-                    <table className="w-100">
-                      <tbody>
-                        <tr>
-                          <th>COLLECTION</th>
-                          <td>- &nbsp;&nbsp;</td>
-                          <td>HELLO1</td>
-                        </tr>
-                        <tr>
-                          <th>NEED STATE</th>
-                          <td>-</td>
-                          <td>HELLO2</td>
-                        </tr>
-                        <tr>
-                          <th>GROUP</th>
-                          <td>-</td>
-                          <td>HELLO3</td>
-                        </tr>
-                        <tr>
-                          <th>CATEGORY</th>
-                          <td>-</td>
-                          <td>HELLO4</td>
-                        </tr>
-                        <tr>
-                          <th>GENDER</th>
-                          <td>-</td>
-                          <td>HELLO5</td>
-                        </tr>
-                        <tr>
-                          <th>COMPLEXITY</th>
-                          <td>-</td>
-                          <td>HELLO6</td>
-                        </tr>
-                        <tr>
-                          <th>STD WT</th>
-                          <td>-</td>
-                          <td>HELLO7</td>
-                        </tr>
-                        <tr>
-                          <th>STD UCP</th>
-                          <td>-</td>
-                          <td>HELLO8</td>
-                        </tr>
-                        <tr>
-                          <th>METAL COLOR</th>
-                          <td>-</td>
-                          <td>HELLO9</td>
-                        </tr>
-                        <tr>
-                          <th>FINDING</th>
-                          <td>-</td>
-                          <td>HELLO10</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div className="col-md-6">
+          <div className="card-body">
+            <h5 className="bg-info text-center p-1">ITEM CODE</h5>
+            <div className="row my-3">
+              <div className="col-md-6">
+                <div>
                   <h6 className="text-center my-2">
-                    <b>FEEDBACK</b>
+                    <b>PRODUCT DETAILS</b>
                   </h6>
                   <br />
-                  <div className="form-check form-switch d-flex justify-content-center">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      onChange={getTrueFalse}
-                      checked={!switchData}
-                    />
-                    <label className="mx-2">
-                      {switchData === true ? "NO" : "YES"}
-                    </label>
-                  </div>
-                  {!switchData === false ? (
-                    <div className="my-3">
-                      <label>Choose Reason For NO</label>
-                      <select
-                        className="SSelect"
-                        onChange={(e) => setCollectionValue(e.target.value)}
-                      >
-                        <option>Select</option>
-                        {NoReasonOption.map((item, i) => {
-                          return (
-                            <option key={i} value={item.value}>
-                              {item.name}
-                              {item.label}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </div>
-                  ) : (
-                    ""
-                  )}
+                  <table className="w-100">
+                    <tbody>
+                      <tr>
+                        <th>COLLECTION</th>
+                        <td>- &nbsp;&nbsp;</td>
+                        <td>HELLO1</td>
+                      </tr>
+                      <tr>
+                        <th>NEED STATE</th>
+                        <td>-</td>
+                        <td>HELLO2</td>
+                      </tr>
+                      <tr>
+                        <th>GROUP</th>
+                        <td>-</td>
+                        <td>HELLO3</td>
+                      </tr>
+                      <tr>
+                        <th>CATEGORY</th>
+                        <td>-</td>
+                        <td>HELLO4</td>
+                      </tr>
+                      <tr>
+                        <th>GENDER</th>
+                        <td>-</td>
+                        <td>HELLO5</td>
+                      </tr>
+                      <tr>
+                        <th>COMPLEXITY</th>
+                        <td>-</td>
+                        <td>HELLO6</td>
+                      </tr>
+                      <tr>
+                        <th>STD WT</th>
+                        <td>-</td>
+                        <td>HELLO7</td>
+                      </tr>
+                      <tr>
+                        <th>STD UCP</th>
+                        <td>-</td>
+                        <td>HELLO8</td>
+                      </tr>
+                      <tr>
+                        <th>METAL COLOR</th>
+                        <td>-</td>
+                        <td>HELLO9</td>
+                      </tr>
+                      <tr>
+                        <th>FINDING</th>
+                        <td>-</td>
+                        <td>HELLO10</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              <div className="d-flex justify-content-center my-2 mx-2">
-                <button className="CButton">PREVIOUS</button>
-                <button className="mx-2 CButton">SUBMIT</button>
-                <button className="CButton">NEXT</button>
+              <div className="col-md-6">
+                <h6 className="text-center my-2">
+                  <b>FEEDBACK</b>
+                </h6>
+                <br />
+                <div className="form-check form-switch d-flex justify-content-center">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    onChange={getTrueFalse}
+                    checked={!switchData}
+                  />
+                  <label className="mx-2">
+                    {switchData === true ? "NO" : "YES"}
+                  </label>
+                </div>
+                {!switchData === false ? (
+                  <div className="my-3">
+                    <label>Choose Reason For NO</label>
+                    <select
+                      className="SSelect"
+                      onChange={(e) => setCollectionValue(e.target.value)}
+                    >
+                      <option>Select</option>
+                      {NoReasonOption.map((item, i) => {
+                        return (
+                          <option key={i} value={item.value}>
+                            {item.name}
+                            {item.label}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
+            </div>
+            <div className="d-flex justify-content-center my-2 mx-2">
+              <button className="CButton">PREVIOUS</button>
+              <button className="mx-2 CButton">SUBMIT</button>
+              <button className="CButton">NEXT</button>
             </div>
           </div>
         </div>
