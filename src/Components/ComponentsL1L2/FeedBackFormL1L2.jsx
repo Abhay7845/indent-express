@@ -59,7 +59,7 @@ export const FeedBackFormL1L2 = (props) => {
         if (response.data.code === "1000") {
           setNeedSate(response.data.value);
         } else if (response.data.code === "1001") {
-          console.log("DATA NOT FOUND");
+          showAlert("Data Not Found", "danger");
         }
         setLoading(false);
       })
@@ -67,7 +67,7 @@ export const FeedBackFormL1L2 = (props) => {
         setLoading(false);
         console.log("");
       });
-  }, [collectionValue]);
+  }, [collectionValue, showAlert]);
 
   const needSateDropdown = needSate.map((element) => {
     return {
@@ -89,7 +89,7 @@ export const FeedBackFormL1L2 = (props) => {
         if (response.data.code === "1000") {
           setGroup(response.data.value);
         } else if (response.data.code === "1001") {
-          console.log("DATA NOT FOUND");
+          showAlert("Data Not Found", "danger");
         }
         setLoading(false);
       })
@@ -97,7 +97,7 @@ export const FeedBackFormL1L2 = (props) => {
         setLoading(false);
         console.log("");
       });
-  }, [collectionValue, needStateValue]);
+  }, [collectionValue, needStateValue, showAlert]);
 
   const GroupDropdown = group.map((element) => {
     return {
@@ -118,7 +118,7 @@ export const FeedBackFormL1L2 = (props) => {
         if (response.data.code === "1000") {
           setCategory(response.data.value);
         } else if (response.data.code === "1001") {
-          console.log("DATA NOT FOUND");
+          showAlert("Data Not Found", "danger");
         }
         setLoading(false);
       })
@@ -126,7 +126,7 @@ export const FeedBackFormL1L2 = (props) => {
         setLoading(false);
         console.log("");
       });
-  }, [collectionValue, needStateValue, groupValue]);
+  }, [collectionValue, needStateValue, groupValue, showAlert]);
 
   const CategoryDropdown = category.map((element) => {
     return {
@@ -145,7 +145,7 @@ export const FeedBackFormL1L2 = (props) => {
         if (response.data.code === "1000") {
           console.log("response==>", response.data);
         } else if (response.data.code === "1001") {
-          console.log(response.data.value);
+          showAlert("Data Not Found", "danger");
         }
         setLoading(false);
       })
