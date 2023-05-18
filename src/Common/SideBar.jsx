@@ -3,7 +3,11 @@ import * as Icon from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import logo from "../Asset/Img/tanishq.svg";
 import "../Style/SideBar.css";
-import { BsFillBarChartFill, BsFillFileEarmarkPostFill } from "react-icons/bs";
+import {
+  BsFillBarChartFill,
+  BsFillFileEarmarkPostFill,
+  BsXLg,
+} from "react-icons/bs";
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,16 +24,15 @@ const SideBar = () => {
         cursor="pointer"
       />
       <div
-        className={`sidebar light-theme bg-warning ${
-          isOpen === true ? "active" : ""
-        }`}
+        className={`sidebar light-theme  ${isOpen === true ? "active" : ""}`}
+        style={{ background: "#f5ea84" }}
       >
         <div className="d-flex justify-content-between">
           <img src={logo} alt="logo" className="Logo my-2 mx-2" />
-          <Icon.ArrowLeft
+          <BsXLg
             onClick={ToggleSidebar}
-            size={30}
-            className="text-light mt-1 mx-2"
+            size={20}
+            className="text-dark mt-3 mx-2"
             cursor="pointer"
           />
         </div>

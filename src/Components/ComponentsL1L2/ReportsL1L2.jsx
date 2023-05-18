@@ -81,7 +81,10 @@ const ReportsL1L2 = () => {
           </div>
           <div className="col">
             <div className="card-body">
-              <h5 className="bg-info text-center p-1 itemCodeText">
+              <h5
+                className="text-center p-1 itemCodeText"
+                style={{ backgroundColor: "#f5ea84" }}
+              >
                 ITEM CODE
               </h5>
               <div className="row my-3">
@@ -184,7 +187,7 @@ const ReportsL1L2 = () => {
                 </div>
               </div>
               <div className="my-2">
-                <button className="mx-2 CButton">SUBMIT</button>
+                <button className="CButton">SUBMIT</button>
               </div>
             </div>
           </div>

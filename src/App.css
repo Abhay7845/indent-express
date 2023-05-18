@@ -1,3 +1,7 @@
+.navbarStyle {
+  background-color: #f5ea84;
+}
+
 .GInput {
   width: 100%;
   border-top: none;
@@ -34,12 +38,11 @@
   padding: 7.5px;
   padding-left: 20px;
   padding-right: 20px;
-  font-size: large;
+  font-weight: bolder;
   border: none;
-  background-color: #f5df12;
+  background-color: #f9e63f;
   color: #000000;
   border-radius: 3px;
-  font-size: 14px;
   width: 100%;
   margin-top: 10px;
 }

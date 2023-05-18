@@ -7,6 +7,7 @@ import { BsSearch } from "react-icons/bs";
 import { NoReasonOption } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
 import SideBar from "../../Common/SideBar";
+import * as Icon from "react-bootstrap-icons";
 
 export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
@@ -253,7 +254,12 @@ export const FeedBackFormL1L2 = (props) => {
         </div>
         <div className="col">
           <div className="card-body">
-            <h5 className="bg-info text-center p-1 itemCodeText">ITEM CODE</h5>
+            <h5
+              className="text-center p-1 itemCodeText"
+              style={{ backgroundColor: "#f5ea84" }}
+            >
+              ITEM CODE
+            </h5>
             <div className="row my-3">
               <div className="col-md-6">
                 <div>
@@ -354,9 +360,15 @@ export const FeedBackFormL1L2 = (props) => {
               </div>
             </div>
             <div className="d-flex justify-content-center my-2 mx-2">
-              <button className="CButton">PREVIOUS</button>
+              <button className="CButton">
+                <Icon.ArrowLeft size={20} className="mx-2" />
+                PREVIOUS
+              </button>
               <button className="mx-2 CButton">SUBMIT</button>
-              <button className="CButton">NEXT</button>
+              <button className="CButton">
+                NEXT
+                <Icon.ArrowRight size={20} className="mx-2" />
+              </button>
             </div>
           </div>
         </div>

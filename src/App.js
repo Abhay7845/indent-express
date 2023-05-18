@@ -18,7 +18,7 @@ const App = () => {
     });
     setTimeout(() => {
       setAlert(null);
-    }, 4000);
+    }, 3000);
   };
   return (
     <>
