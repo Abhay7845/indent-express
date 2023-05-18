@@ -359,7 +359,7 @@ export const FeedBackFormL1L2 = (props) => {
                 )}
               </div>
             </div>
-            <div className="d-flex justify-content-center my-2 mx-2">
+            <div className="d-flex justify-content-center my-2 mx-0">
               <button className="CButton">
                 <Icon.ArrowLeft size={20} className="mx-2" />
                 PREVIOUS
