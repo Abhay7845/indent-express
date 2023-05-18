@@ -6,7 +6,7 @@ import PrivateComponent from "./Common/PrivateComponent";
 import { FeedBackFormL1L2 } from "./Components/ComponentsL1L2/FeedBackFormL1L2";
 import Alert from "./Common/Alert";
 import ReportsL1L2 from "./Components/ComponentsL1L2/ReportsL1L2";
-import Admin from "./Components/ComponentsL1L2/Admin";
+import Admin from "./Components/Admin/Admin";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
