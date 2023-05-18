@@ -6,7 +6,7 @@ import Loader from "../../Common/Loader";
 import { BsSearch } from "react-icons/bs";
 import { ChooseReasonForNo } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
-// import SideBar from "../../Common/SideBar";
+import SideBar from "../../Common/SideBar";
 
 export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
@@ -174,7 +174,7 @@ export const FeedBackFormL1L2 = (props) => {
       <TopHeader />
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
-        {/* <SideBar /> */}
+        <SideBar />
         <div className="row mx-0">
           <div className="col-md-3">
             <select
@@ -251,13 +251,11 @@ export const FeedBackFormL1L2 = (props) => {
       </div>
       <div className="row row-cols-1 row-cols-md-2 mx-0 my-3">
         <div className="col">
-          <div className="card-body">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKMK7ZskPypvRb4Ewsyw6U1NEI8sahKwM0g2AsAiv0qA&s"
-              className="w-100"
-              alt="No_Image"
-            />
-          </div>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKMK7ZskPypvRb4Ewsyw6U1NEI8sahKwM0g2AsAiv0qA&s"
+            className="w-100"
+            alt="No_Image"
+          />
         </div>
         <div className="col">
           <div className="card-body">
