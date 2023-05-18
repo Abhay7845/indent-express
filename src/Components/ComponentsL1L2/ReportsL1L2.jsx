@@ -104,7 +104,7 @@ const ReportsL1L2 = () => {
                   <td>{item.qualityRating}</td>
                   <td>{item.qualityReason}</td>
                   <td className="text-center">
-                    <Icon.PencilSquare size={18} />
+                    <Icon.PencilSquare size={18} cursor="pointer" />
                   </td>
                 </tr>
               );

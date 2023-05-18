@@ -36,6 +36,10 @@ const Login = (props) => {
         if (response.data.value.role === "L3") {
           navigate("/Indent-express/L3");
         }
+        if (response.data.value.role === "Admin") {
+          localStorage.setItem("indent-expressId", response.data.value.role);
+          navigate("/Indent-express/admin");
+        }
         if (response.data.code === "1001") {
           showAlert("Please enter valid Username and Password!", "danger");
         }
