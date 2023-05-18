@@ -4,7 +4,7 @@ import axios from "axios";
 import { HostManager } from "../../APIList/HotMaster";
 import Loader from "../../Common/Loader";
 import { BsSearch } from "react-icons/bs";
-import { ChooseReasonForNo } from "../../Data/DataList";
+import { NoReasonOption } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
 import SideBar from "../../Common/SideBar";
 
@@ -161,12 +161,7 @@ export const FeedBackFormL1L2 = (props) => {
       setSwitchData(false);
     }
   };
-  const NoReasonOption = ChooseReasonForNo.map((element) => {
-    return {
-      value: element,
-      label: element,
-    };
-  });
+
   return (
     <>
       <TopHeader />
@@ -341,10 +336,7 @@ export const FeedBackFormL1L2 = (props) => {
                 {!switchData === false ? (
                   <div className="my-3">
                     <label>Choose Reason For NO</label>
-                    <select
-                      className="SSelect"
-                      onChange={(e) => setCollectionValue(e.target.value)}
-                    >
+                    <select className="SSelect">
                       <option>Select</option>
                       {NoReasonOption.map((item, i) => {
                         return (

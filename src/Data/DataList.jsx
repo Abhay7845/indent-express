@@ -1,10 +1,17 @@
-export const ChooseReasonForNo = [
+const ChooseReasonForNo = [
   " Not Relevant To Market",
   "Price is High",
   "Wearibility Issue",
   "Similar design Exists",
   "Design Not Applicable",
 ];
+
+export const NoReasonOption = ChooseReasonForNo.map((element) => {
+  return {
+    value: element,
+    label: element,
+  };
+});
 
 export const SubmittedOption = ["yet to submit", "submitted"];
 
@@ -33,6 +40,7 @@ export const L1L2HeadingData = ReportsHeadingL1L2.map((element) => {
 
 export const tableData = [
   {
+    id: 1,
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKMK7ZskPypvRb4Ewsyw6U1NEI8sahKwM0g2AsAiv0qA&s",
     itemCode: "ACFGFFDOGGRTGR",

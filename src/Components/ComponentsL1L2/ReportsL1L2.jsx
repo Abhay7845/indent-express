@@ -5,6 +5,7 @@ import "../../Style/FeedbackFormL1L2.css";
 import SideBar from "../../Common/SideBar";
 import {
   L1L2HeadingData,
+  NoReasonOption,
   SubmittedOption,
   tableData,
 } from "../../Data/DataList";
@@ -13,7 +14,7 @@ import * as Icon from "react-bootstrap-icons";
 const ReportsL1L2 = () => {
   const [switchData, setSwitchData] = useState(false);
   const [submitted, setSubmitted] = useState("submitted");
-  //   const [tableData, setTableData] = useState([]);
+  const [reports, setReports] = useState({});
 
   const ChooseOption = SubmittedOption.map((element) => {
     return {
@@ -28,8 +29,9 @@ const ReportsL1L2 = () => {
       setSwitchData(false);
     }
   };
-
-  console.log("tableData==>", tableData);
+  const EditReport = (reportData) => {
+    setReports(reportData);
+  };
   return (
     <>
       <TopHeader />
@@ -64,6 +66,130 @@ const ReportsL1L2 = () => {
           </div>
         </div>
       </div>
+      {/* REPORTS FORM */}
+
+      {reports.id === undefined ? (
+        ""
+      ) : (
+        <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
+          <div className="col">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKMK7ZskPypvRb4Ewsyw6U1NEI8sahKwM0g2AsAiv0qA&s"
+              className="w-100"
+              alt="No_Image"
+            />
+          </div>
+          <div className="col">
+            <div className="card-body">
+              <h5 className="bg-info text-center p-1 itemCodeText">
+                ITEM CODE
+              </h5>
+              <div className="row my-3">
+                <div className="col-md-6">
+                  <div>
+                    <h6 className="text-center my-2">
+                      <b>PRODUCT DETAILS</b>
+                    </h6>
+                    <br />
+                    <table className="w-100">
+                      <tbody>
+                        <tr>
+                          <th>COLLECTION</th>
+                          <td>- &nbsp;&nbsp;</td>
+                          <td>HELLO1</td>
+                        </tr>
+                        <tr>
+                          <th>NEED STATE</th>
+                          <td>-</td>
+                          <td>HELLO2</td>
+                        </tr>
+                        <tr>
+                          <th>GROUP</th>
+                          <td>-</td>
+                          <td>HELLO3</td>
+                        </tr>
+                        <tr>
+                          <th>CATEGORY</th>
+                          <td>-</td>
+                          <td>HELLO4</td>
+                        </tr>
+                        <tr>
+                          <th>GENDER</th>
+                          <td>-</td>
+                          <td>HELLO5</td>
+                        </tr>
+                        <tr>
+                          <th>COMPLEXITY</th>
+                          <td>-</td>
+                          <td>HELLO6</td>
+                        </tr>
+                        <tr>
+                          <th>STD WT</th>
+                          <td>-</td>
+                          <td>HELLO7</td>
+                        </tr>
+                        <tr>
+                          <th>STD UCP</th>
+                          <td>-</td>
+                          <td>HELLO8</td>
+                        </tr>
+                        <tr>
+                          <th>METAL COLOR</th>
+                          <td>-</td>
+                          <td>HELLO9</td>
+                        </tr>
+                        <tr>
+                          <th>FINDING</th>
+                          <td>-</td>
+                          <td>HELLO10</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <h6 className="text-center my-2 feedBackText">
+                    <b>FEEDBACK</b>
+                  </h6>
+                  <br />
+                  <div className="form-switch d-flex justify-content-center">
+                    <input
+                      className="form-check-input switchStyle"
+                      type="checkbox"
+                      onChange={getTrueFalse}
+                      checked={!switchData}
+                    />
+                    <label className="mx-2">
+                      {switchData === true ? "NO" : "YES"}
+                    </label>
+                  </div>
+                  {!switchData === false ? (
+                    <div className="my-3">
+                      <label>Choose Reason For NO</label>
+                      <select className="SSelect">
+                        <option>Select</option>
+                        {NoReasonOption.map((item, i) => {
+                          return (
+                            <option key={i} value={item.value}>
+                              {item.name}
+                              {item.label}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+              <div className="my-2">
+                <button className="mx-2 CButton">SUBMIT</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <br />
       <div className="table-responsive mx-1">
         <b className="mx-1 my-3 text-secondary">{submitted.toUpperCase()}</b>
@@ -104,7 +230,11 @@ const ReportsL1L2 = () => {
                   <td>{item.qualityRating}</td>
                   <td>{item.qualityReason}</td>
                   <td className="text-center">
-                    <Icon.PencilSquare size={18} cursor="pointer" />
+                    <Icon.PencilSquare
+                      size={18}
+                      cursor="pointer"
+                      onClick={() => EditReport(item)}
+                    />
                   </td>
                 </tr>
               );
