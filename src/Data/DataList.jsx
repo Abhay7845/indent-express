@@ -5,3 +5,5 @@ export const ChooseReasonForNo = [
   "Similar design Exists",
   "Design Not Applicable",
 ];
+
+export const SubmittedOption = ["yet to submit", "submitted"];
