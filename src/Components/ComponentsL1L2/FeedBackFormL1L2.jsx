@@ -329,9 +329,9 @@ export const FeedBackFormL1L2 = (props) => {
                   <b>FEEDBACK</b>
                 </h6>
                 <br />
-                <div className="form-check form-switch d-flex justify-content-center">
+                <div className="form-switch d-flex justify-content-center">
                   <input
-                    className="form-check-input"
+                    className="form-check-input switchStyle"
                     type="checkbox"
                     onChange={getTrueFalse}
                     checked={!switchData}

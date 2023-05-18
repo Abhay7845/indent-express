@@ -45,6 +45,7 @@ const Login = (props) => {
       .catch((error) => {
         setLoading(false);
         console.log("error=>", error);
+        showAlert("Please Enter valid Username and Password!", "danger");
       });
   };
 
