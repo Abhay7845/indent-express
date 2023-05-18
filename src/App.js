@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./Components/Login";
+import Login from "./Components/User/Login";
 import "./App.css";
 import PrivateComponent from "./Common/PrivateComponent";
 import { FeedBackFormL1L2 } from "./Components/ComponentsL1L2/FeedBackFormL1L2";
 import Alert from "./Common/Alert";
 import ReportsL1L2 from "./Components/ComponentsL1L2/ReportsL1L2";
 import Admin from "./Components/Admin/Admin";
+import ComponentL3 from "./Components/ComponentsL3/ComponentL3";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -37,6 +38,10 @@ const App = () => {
             <Route
               path="/Indent-express/L1/L2/products/reports"
               element={<ReportsL1L2 showAlert={showAlert} />}
+            />
+            <Route
+              path="/Indent-express/L3"
+              element={<ComponentL3 showAlert={showAlert} />}
             />
             <Route
               path="/Indent-express/admin"
