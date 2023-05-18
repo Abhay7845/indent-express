@@ -1,0 +1,11 @@
+@media screen and (max-width:767px) {
+    .feedBackText {
+        padding-top: 30px;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .itemCodeText {
+        margin-top: 15px;
+    }
+}

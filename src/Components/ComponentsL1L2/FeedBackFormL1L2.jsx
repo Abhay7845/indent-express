@@ -5,6 +5,7 @@ import { HostManager } from "../../APIList/HotMaster";
 import Loader from "../../Common/Loader";
 import { BsSearch } from "react-icons/bs";
 import { ChooseReasonForNo } from "../../Data/DataList";
+import "../../Style/FeedbackFormL1L2.css";
 // import SideBar from "../../Common/SideBar";
 
 export const FeedBackFormL1L2 = (props) => {
@@ -260,7 +261,7 @@ export const FeedBackFormL1L2 = (props) => {
         </div>
         <div className="col">
           <div className="card-body">
-            <h5 className="bg-info text-center p-1">ITEM CODE</h5>
+            <h5 className="bg-info text-center p-1 itemCodeText">ITEM CODE</h5>
             <div className="row my-3">
               <div className="col-md-6">
                 <div>
@@ -325,7 +326,7 @@ export const FeedBackFormL1L2 = (props) => {
                 </div>
               </div>
               <div className="col-md-6">
-                <h6 className="text-center my-2">
+                <h6 className="text-center my-2 feedBackText">
                   <b>FEEDBACK</b>
                 </h6>
                 <br />
