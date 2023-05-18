@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const TopHeader = () => {
   let navigate = useNavigate();
-  const UserRole = localStorage.getItem("indent-expressId");
+  const UserRole = localStorage.getItem("indent-expressId").toUpperCase();
   const removeUserRole = () => {
     localStorage.removeItem("indent-expressId");
     navigate("/Indent_Express");
@@ -19,7 +19,9 @@ const TopHeader = () => {
           <span className="navbar-brand mb-0 h1">
             <img src={logo} alt="Logo" className="Logo" />
           </span>
-          <b className="removeIndentExpress">INDENT-EXPRESS</b>
+          <b className="removeIndentExpress">
+            {UserRole === "ADMIN" ? "ADMIN" : "INDENT-EXPRESS"}
+          </b>
           <b
             style={{ color: "#832729", cursor: "pointer" }}
             onClick={removeUserRole}
