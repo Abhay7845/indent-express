@@ -56,3 +56,12 @@
     font-weight: bold;
     color: #fff;
 }
+
+.NavigationStyle {
+    text-decoration: none;
+    color: #fff;
+}
+
+.NavigationStyle:hover {
+    text-decoration: underline;
+}

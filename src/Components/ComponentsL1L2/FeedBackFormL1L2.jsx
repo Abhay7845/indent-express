@@ -31,7 +31,7 @@ export const FeedBackFormL1L2 = (props) => {
         if (response.data.code === "1000") {
           setCollection(response.data.value);
         } else if (response.data.code === "1001") {
-          showAlert(`${response.data.value}`, "danger");
+          showAlert("Data Not Found", "danger");
         }
         setLoading(false);
       })
@@ -50,7 +50,6 @@ export const FeedBackFormL1L2 = (props) => {
   //NEED STATE  DROPDOWN
   useEffect(() => {
     setLoading(true);
-
     axios
       .get(
         `${HostManager.mainHost}/npim/dropdown/${collectionValue}/ALL/ALL/ALL`
@@ -80,7 +79,6 @@ export const FeedBackFormL1L2 = (props) => {
   //GROUP  DROPDOWN
   useEffect(() => {
     setLoading(true);
-
     axios
       .get(
         `${HostManager.mainHost}/npim/dropdown/${collectionValue}/${needStateValue}/ALL/ALL`
