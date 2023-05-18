@@ -247,6 +247,7 @@ export const FeedBackFormL1L2 = (props) => {
           </div>
         </div>
       </div>
+      {/* FEED BACK FORM */}
       <div className="row row-cols-1 row-cols-md-2 mx-0 my-3">
         <div className="col">
           <img
