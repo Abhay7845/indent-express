@@ -39,6 +39,23 @@ export const L1L2HeadingData = ReportsHeadingL1L2.map((element) => {
   };
 });
 
+const L1L2StatusData = [
+  "ID",
+  "NEEDSTATE",
+  "TOTAL SKU",
+  "SALABLE",
+  "NOT SALABLE",
+  "REMAINING SKU COUNT",
+];
+
+export const L1L2StatusHeading = L1L2StatusData.map((element) => {
+  return {
+    value: element,
+    label: element,
+  };
+});
+
+// FAKE DATA
 export const tableData = [
   {
     id: 1,
@@ -79,5 +96,29 @@ export const tableData = [
     complexity: "N/A",
     metalColor: "green",
     finding: "Delhi",
+  },
+];
+
+export const remainingSKU = [
+  {
+    id: 1,
+    consumerBase: "DAILY WEAR",
+    totalSKU: "2689",
+    saleable: "5",
+    notSaleable: "10",
+  },
+  {
+    id: 2,
+    consumerBase: "ENGAGEMENT",
+    totalSKU: "219",
+    saleable: "10",
+    notSaleable: "20",
+  },
+  {
+    id: 3,
+    consumerBase: "FGK",
+    totalSKU: "409",
+    saleable: "15",
+    notSaleable: "25",
   },
 ];

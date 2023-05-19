@@ -8,6 +8,7 @@ import Alert from "./Common/Alert";
 import ReportsL1L2 from "./Components/ComponentsL1L2/ReportsL1L2";
 import Admin from "./Components/Admin/Admin";
 import ComponentL3 from "./Components/ComponentsL3/ComponentL3";
+import StatusReportsL1L2 from "./Components/ComponentsL1L2/StatusReportsL1L2";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -31,6 +32,7 @@ const App = () => {
             element={<Login showAlert={showAlert} />}
           />
           <Route element={<PrivateComponent />}>
+            {/* L1L2 COMPONENTS */}
             <Route
               path="/Indent-express/feedback/L1/L2"
               element={<FeedBackFormL1L2 showAlert={showAlert} />}
@@ -40,9 +42,15 @@ const App = () => {
               element={<ReportsL1L2 showAlert={showAlert} />}
             />
             <Route
+              path="/Indent-express/L1/L2/status/reports"
+              element={<StatusReportsL1L2 showAlert={showAlert} />}
+            />
+            {/* L3 COMPONENTS */}
+            <Route
               path="/Indent-express/L3"
               element={<ComponentL3 showAlert={showAlert} />}
             />
+            {/* ADMIN COMPONENTS */}
             <Route
               path="/Indent-express/admin"
               element={<Admin showAlert={showAlert} />}
