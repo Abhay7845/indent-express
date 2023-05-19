@@ -343,7 +343,6 @@ export const FeedBackFormL1L2 = (props) => {
                       {NoReasonOption.map((item, i) => {
                         return (
                           <option key={i} value={item.value}>
-                            {item.name}
                             {item.label}
                           </option>
                         );

@@ -4,11 +4,7 @@ import TopHeader from "../../Common/TopHeader";
 import Loader from "../../Common/Loader";
 import "../../Style/FeedbackFormL1L2.css";
 import SideBar from "../../Common/SideBar";
-import {
-  L1L2HeadingData,
-  NoReasonOption,
-  SubmittedOption,
-} from "../../Data/DataList";
+import { L1L2HeadingData, NoReasonOption } from "../../Data/DataList";
 import * as Icon from "react-bootstrap-icons";
 import TablePagination from "@mui/material/TablePagination";
 import axios from "axios";
@@ -78,13 +74,8 @@ const ReportsL1L2 = (props) => {
               className="SSelect"
               onChange={(e) => setSubmitted(e.target.value)}
             >
-              {SubmittedOption.map((item, i) => {
-                return (
-                  <option key={i} value={item.value}>
-                    {item.value}
-                  </option>
-                );
-              })}
+              <option value="scanned">SUBMITTED</option>
+              <option value="unscanned">YET TO SUBMITTED</option>
             </select>
           </div>
           <div className="col-md-3">
@@ -115,7 +106,7 @@ const ReportsL1L2 = (props) => {
                 className="text-center p-1 itemCodeText"
                 style={{ backgroundColor: "#f5ea84" }}
               >
-                ITEM CODE
+                {reports.itemCode}
               </h5>
               <div className="row my-3">
                 <div className="col-md-6">
@@ -225,7 +216,9 @@ const ReportsL1L2 = (props) => {
       <br />
       {reportsTable.length > 0 && (
         <div className="table-responsive mx-1">
-          <b className="mx-1 my-3 text-secondary">{submitted.toUpperCase()}</b>
+          <b className="mx-1 my-3 text-secondary">
+            {submitted === "scanned" ? "SUBMITTED" : "YET TO SUBMITTED"}
+          </b>
           <table className="table table-hover table-bordered">
             <thead>
               <tr>

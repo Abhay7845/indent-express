@@ -13,8 +13,6 @@ export const NoReasonOption = ChooseReasonForNo.map((element) => {
   };
 });
 
-export const SubmittedOption = [{ value: "scanned" }, { value: "unscanned" }];
-
 const ReportsHeadingL1L2 = [
   "ID",
   "VIEW",
