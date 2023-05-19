@@ -8,6 +8,7 @@ import { NoReasonOption } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
 import SideBar from "../../Common/SideBar";
 import * as Icon from "react-bootstrap-icons";
+import { Select } from "antd";
 
 export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
@@ -21,6 +22,9 @@ export const FeedBackFormL1L2 = (props) => {
   const [category, setCategory] = useState([]);
   const [categoryValue, setCategoryValue] = useState("");
   const [switchData, setSwitchData] = useState(false);
+  const [noReasonValue, setNoReasonValue] = useState([]);
+
+  console.log("noReasonValue==>", noReasonValue);
 
   //COLLECTION  DROPDOWN
   useEffect(() => {
@@ -338,16 +342,17 @@ export const FeedBackFormL1L2 = (props) => {
                 {!switchData === false ? (
                   <div className="my-3">
                     <label>Choose Reason For NO</label>
-                    <select className="SSelect">
-                      <option>Select</option>
-                      {NoReasonOption.map((item, i) => {
-                        return (
-                          <option key={i} value={item.value}>
-                            {item.label}
-                          </option>
-                        );
-                      })}
-                    </select>
+                    <Select
+                      className="NoReasonSelect"
+                      mode="multiple"
+                      placeholder="Please select"
+                      options={NoReasonOption}
+                      onChange={() =>
+                        setNoReasonValue(
+                          NoReasonOption.map((value) => value.value)
+                        )
+                      }
+                    />
                   </div>
                 ) : (
                   ""

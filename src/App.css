@@ -34,6 +34,10 @@
   cursor: pointer;
 }
 
+.NoReasonSelect {
+  width: 100%;
+}
+
 .CButton {
   padding: 7.5px;
   padding-left: 20px;
