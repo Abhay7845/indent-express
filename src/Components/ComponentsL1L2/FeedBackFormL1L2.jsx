@@ -38,7 +38,6 @@ export const FeedBackFormL1L2 = (props) => {
       })
       .catch((error) => {
         console.log("");
-        setLoading(false);
       });
   }, [collectionValue, showAlert]);
 
@@ -66,7 +65,6 @@ export const FeedBackFormL1L2 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        setLoading(false);
         console.log("");
       });
   }, [collectionValue, showAlert]);
@@ -95,7 +93,6 @@ export const FeedBackFormL1L2 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        setLoading(false);
         console.log("");
       });
   }, [collectionValue, needStateValue, showAlert]);
@@ -124,7 +121,6 @@ export const FeedBackFormL1L2 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        setLoading(false);
         console.log("");
       });
   }, [collectionValue, needStateValue, groupValue, showAlert]);
@@ -151,7 +147,6 @@ export const FeedBackFormL1L2 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        setLoading(false);
         console.log("");
       });
   };

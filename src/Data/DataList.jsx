@@ -13,9 +13,10 @@ export const NoReasonOption = ChooseReasonForNo.map((element) => {
   };
 });
 
-export const SubmittedOption = ["yet to submit", "submitted"];
+export const SubmittedOption = [{ value: "scanned" }, { value: "unscanned" }];
 
 const ReportsHeadingL1L2 = [
+  "ID",
   "VIEW",
   "ITEMCODE",
   "COLLECTION",
@@ -54,5 +55,29 @@ export const tableData = [
     reason: "N/A",
     qualityRating: "N/A",
     qualityReason: "N/A",
+    gender: "MALE",
+    complexity: "N/A",
+    metalColor: "red",
+    finding: "Bombay",
+  },
+  {
+    id: 2,
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxDaaMPxQTqQmJ8k436XYtwf-HrqdKimahIea5YIxg&s",
+    itemCode: "ACFGFFDOGGRTGR",
+    collection: "REASON-NPIM",
+    needSate: "DAILY WEAR",
+    itGroup: "DT-GOLD",
+    category: "MANGALSUTRA",
+    StdWt: "5",
+    StdUCP: "3456",
+    saleable: "N/A",
+    reason: "N/A",
+    qualityRating: "N/A",
+    qualityReason: "N/A",
+    gender: "FEMALE",
+    complexity: "N/A",
+    metalColor: "green",
+    finding: "Delhi",
   },
 ];
