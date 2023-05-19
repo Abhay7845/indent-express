@@ -37,10 +37,11 @@ export const FeedBackFormL1L2 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        setLoading(false);
         console.log("");
+        setLoading(false);
       });
   }, [collectionValue, showAlert]);
+
   const collectionDropdown = colLection.map((element) => {
     return {
       value: element,
@@ -268,7 +269,7 @@ export const FeedBackFormL1L2 = (props) => {
                   </h6>
                   <br />
                   <table className="w-100">
-                    <tbody>
+                    <tbody className="productsDetailsStyle">
                       <tr>
                         <th>COLLECTION</th>
                         <td>- &nbsp;&nbsp;</td>
@@ -359,15 +360,16 @@ export const FeedBackFormL1L2 = (props) => {
                 )}
               </div>
             </div>
-            <div className="d-flex justify-content-center my-2 mx-0">
+            <br />
+            <div className="d-flex justify-content-center mx-0">
               <button className="CButton">
-                <Icon.ArrowLeft size={20} className="mx-2" />
+                <Icon.ArrowLeft size={20} className="mx-2 hideArrowStyle" />
                 PREVIOUS
               </button>
               <button className="mx-2 CButton">SUBMIT</button>
               <button className="CButton">
                 NEXT
-                <Icon.ArrowRight size={20} className="mx-2" />
+                <Icon.ArrowRight size={20} className="mx-2 hideArrowStyle" />
               </button>
             </div>
           </div>

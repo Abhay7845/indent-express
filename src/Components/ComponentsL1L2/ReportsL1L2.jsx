@@ -95,7 +95,7 @@ const ReportsL1L2 = () => {
                     </h6>
                     <br />
                     <table className="w-100">
-                      <tbody>
+                      <tbody className="productsDetailsStyle">
                         <tr>
                           <th>COLLECTION</th>
                           <td>- &nbsp;&nbsp;</td>
@@ -186,7 +186,7 @@ const ReportsL1L2 = () => {
                   )}
                 </div>
               </div>
-              <div className="my-2">
+              <div className="mt-4">
                 <button className="CButton">SUBMIT</button>
               </div>
             </div>
