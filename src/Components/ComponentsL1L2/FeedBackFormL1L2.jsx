@@ -14,6 +14,7 @@ export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
   const storeCode = localStorage.getItem("indent-expressId");
   const [loading, setLoading] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [loadingNext, setLoadingNext] = useState(false);
   const [loadingPre, setLoadingPre] = useState(false);
   const [colLection, setCollection] = useState([]);
@@ -26,87 +27,15 @@ export const FeedBackFormL1L2 = (props) => {
   const [categoryValue, setCategoryValue] = useState("");
   const [switchData, setSwitchData] = useState(false);
   const [quality_Reasons, setQuality_Reasons] = useState("");
-  const [productsDetails, setProductsDetails] = useState({});
+  const [productsDetails, setProductsDetails] = useState([]);
 
   const GetProductsValues = {
     category: !categoryValue ? "ALL" : categoryValue,
     collection: !collectionValue ? "ALL" : collectionValue,
     consumerBase: !needStateValue ? "ALL" : needStateValue,
     group: !groupValue ? "ALL" : groupValue,
-    itemCode: productsDetails.itemCode,
+    itemCode: !productsDetails.itemCode ? "" : productsDetails.itemCode,
     storeCode: storeCode,
-  };
-  const getProductInputData = {
-    id: productsDetails.id,
-    strCode: storeCode,
-    consumerBase: productsDetails.consumerBase,
-    collection: productsDetails.collection,
-    itGroup: productsDetails.itGroup,
-    category: productsDetails.category,
-    itemCode: productsDetails.itemCode,
-    catPB: productsDetails.catPB,
-    stdWt: productsDetails.stdWt,
-    stdUCP: productsDetails.stdUCP,
-    activity: productsDetails.activity,
-    complexity: productsDetails.complexity,
-    si2Gh: productsDetails.si2Gh,
-    vsGh: productsDetails.vsGh,
-    vvs1: productsDetails.vvs1,
-    i2Gh: productsDetails.i2Gh,
-    si2Ij: productsDetails.si2Ij,
-    shape: productsDetails.shape,
-    gender: productsDetails.gender,
-    videoLink: productsDetails.videoLink,
-    childNodesN: productsDetails.childNodesN,
-    childNodesE: productsDetails.childNodesE,
-    region: productsDetails.region,
-    diamondWt: productsDetails.diamondWt,
-    colourWt: productsDetails.colourWt,
-    metalWt: productsDetails.metalWt,
-    findings: productsDetails.findings,
-    metalColor: productsDetails.metalColor,
-    parentItemCode: productsDetails.parentItemCode,
-    itemLevelType: productsDetails.itemLevelType,
-    childNodeV: productsDetails.childNodeV,
-    childNodeK: productsDetails.childNodeK,
-    childNodeH: productsDetails.childNodeH,
-    karatageRange: productsDetails.karatageRange,
-    childNodeF: productsDetails.childNodeF,
-    childNodeO: productsDetails.childNodeO,
-    npimEventNo: productsDetails.npimEventNo,
-    rsoName: productsDetails.rsoName,
-    doe: productsDetails.doe,
-    saleable: productsDetails.saleable,
-    size: productsDetails.size,
-    uom: productsDetails.uom,
-    reasons: productsDetails.reasons,
-    indQty: productsDetails.indQty,
-    indCategory: productsDetails.indCategory,
-    submitStatus: productsDetails.submitStatus,
-    set2Type: productsDetails.set2Type,
-    stoneQuality: productsDetails.stoneQuality,
-    stoneQualityVal: productsDetails.stoneQualityVal,
-    scannedCount: productsDetails.scannedCount,
-    unscannedCount: productsDetails.unscannedCount,
-    adVariant: productsDetails.adVariant,
-    stdWtN: productsDetails.stdWtN,
-    stdUcpN: productsDetails.stdUcpN,
-    stdWtE: productsDetails.stdWtE,
-    stdUcpE: productsDetails.stdUcpE,
-    stdWtV: productsDetails.stdWtV,
-    stdUcpV: productsDetails.stdUcpV,
-    stdWtK: productsDetails.stdWtK,
-    stdUcpK: productsDetails.stdUcpK,
-    stdWtH: productsDetails.stdWtH,
-    stdUcpH: productsDetails.stdUcpH,
-    stdWtO: productsDetails.stdWtO,
-    stdUcpO: productsDetails.stdUcpO,
-    stdWtF: productsDetails.stdWtF,
-    stdUcpF: productsDetails.stdUcpF,
-    btqCount: productsDetails.btqCount,
-    quality_Rating: productsDetails.quality_Rating,
-    quality_Reasons: quality_Reasons,
-    indentLevelType: productsDetails.indentLevelType,
   };
 
   //COLLECTION  DROPDOWN
@@ -228,6 +157,7 @@ export const FeedBackFormL1L2 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response.data.value);
         if (response.data.code === "1000") {
           setProductsDetails(response.data.value);
         } else if (response.data.code === "1001") {
@@ -255,7 +185,79 @@ export const FeedBackFormL1L2 = (props) => {
 
   // SUBMIT PRODUCT DETAILS API
   const SubmitProductDetails = () => {
-    setLoading(true);
+    setLoadingSubmit(true);
+    const getProductInputData = {
+      id: productsDetails.id,
+      strCode: storeCode,
+      consumerBase: productsDetails.consumerBase,
+      collection: productsDetails.collection,
+      itGroup: productsDetails.itGroup,
+      category: productsDetails.category,
+      itemCode: productsDetails.itemCode,
+      catPB: productsDetails.catPB,
+      stdWt: productsDetails.stdWt,
+      stdUCP: productsDetails.stdUCP,
+      activity: productsDetails.activity,
+      complexity: productsDetails.complexity,
+      si2Gh: productsDetails.si2Gh,
+      vsGh: productsDetails.vsGh,
+      vvs1: productsDetails.vvs1,
+      i2Gh: productsDetails.i2Gh,
+      si2Ij: productsDetails.si2Ij,
+      shape: productsDetails.shape,
+      gender: productsDetails.gender,
+      videoLink: productsDetails.videoLink,
+      childNodesN: productsDetails.childNodesN,
+      childNodesE: productsDetails.childNodesE,
+      region: productsDetails.region,
+      diamondWt: productsDetails.diamondWt,
+      colourWt: productsDetails.colourWt,
+      metalWt: productsDetails.metalWt,
+      findings: productsDetails.findings,
+      metalColor: productsDetails.metalColor,
+      parentItemCode: productsDetails.parentItemCode,
+      itemLevelType: productsDetails.itemLevelType,
+      childNodeV: productsDetails.childNodeV,
+      childNodeK: productsDetails.childNodeK,
+      childNodeH: productsDetails.childNodeH,
+      karatageRange: productsDetails.karatageRange,
+      childNodeF: productsDetails.childNodeF,
+      childNodeO: productsDetails.childNodeO,
+      npimEventNo: productsDetails.npimEventNo,
+      rsoName: productsDetails.rsoName,
+      doe: productsDetails.doe,
+      saleable: productsDetails.saleable,
+      size: productsDetails.size,
+      uom: productsDetails.uom,
+      reasons: productsDetails.reasons,
+      indQty: productsDetails.indQty,
+      indCategory: productsDetails.indCategory,
+      submitStatus: productsDetails.submitStatus,
+      set2Type: productsDetails.set2Type,
+      stoneQuality: productsDetails.stoneQuality,
+      stoneQualityVal: productsDetails.stoneQualityVal,
+      scannedCount: productsDetails.scannedCount,
+      unscannedCount: productsDetails.unscannedCount,
+      adVariant: productsDetails.adVariant,
+      stdWtN: productsDetails.stdWtN,
+      stdUcpN: productsDetails.stdUcpN,
+      stdWtE: productsDetails.stdWtE,
+      stdUcpE: productsDetails.stdUcpE,
+      stdWtV: productsDetails.stdWtV,
+      stdUcpV: productsDetails.stdUcpV,
+      stdWtK: productsDetails.stdWtK,
+      stdUcpK: productsDetails.stdUcpK,
+      stdWtH: productsDetails.stdWtH,
+      stdUcpH: productsDetails.stdUcpH,
+      stdWtO: productsDetails.stdWtO,
+      stdUcpO: productsDetails.stdUcpO,
+      stdWtF: productsDetails.stdWtF,
+      stdUcpF: productsDetails.stdUcpF,
+      btqCount: productsDetails.btqCount,
+      quality_Rating: productsDetails.quality_Rating,
+      quality_Reasons: quality_Reasons,
+      indentLevelType: productsDetails.indentLevelType,
+    };
     axios
       .post(
         `${HostManager.reportsL1L2}/npim/insert/responses`,
@@ -269,11 +271,11 @@ export const FeedBackFormL1L2 = (props) => {
         if (response.data.code === "1001") {
           showAlert("Your Data is Not Submitted", "success");
         }
-        setLoading(false);
+        setLoadingSubmit(false);
       })
       .catch((error) => {
         console.log("error==>", error);
-        setLoading(false);
+        setLoadingSubmit(false);
       });
   };
 
@@ -546,7 +548,7 @@ export const FeedBackFormL1L2 = (props) => {
                 )}
               </button>
               <button className="mx-2 CButton" onClick={SubmitProductDetails}>
-                {loading ? (
+                {loadingSubmit ? (
                   <span
                     className="spinner-border spinner-border-sm"
                     role="status"
