@@ -14,6 +14,8 @@ export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
   const storeCode = localStorage.getItem("indent-expressId");
   const [loading, setLoading] = useState(false);
+  const [loadingNext, setLoadingNext] = useState(false);
+  const [loadingPre, setLoadingPre] = useState(false);
   const [colLection, setCollection] = useState([]);
   const [collectionValue, setCollectionValue] = useState("");
   const [needSate, setNeedSate] = useState([]);
@@ -23,18 +25,88 @@ export const FeedBackFormL1L2 = (props) => {
   const [category, setCategory] = useState([]);
   const [categoryValue, setCategoryValue] = useState("");
   const [switchData, setSwitchData] = useState(false);
-  const [noReasonValue, setNoReasonValue] = useState([]);
+  const [quality_Reasons, setQuality_Reasons] = useState("");
   const [productsDetails, setProductsDetails] = useState({});
-
-  console.log("noReasonValue==>", noReasonValue);
 
   const GetProductsValues = {
     category: !categoryValue ? "ALL" : categoryValue,
     collection: !collectionValue ? "ALL" : collectionValue,
     consumerBase: !needStateValue ? "ALL" : needStateValue,
     group: !groupValue ? "ALL" : groupValue,
-    itemCode: "",
+    itemCode: productsDetails.itemCode,
     storeCode: storeCode,
+  };
+  const getProductInputData = {
+    id: productsDetails.id,
+    strCode: storeCode,
+    consumerBase: productsDetails.consumerBase,
+    collection: productsDetails.collection,
+    itGroup: productsDetails.itGroup,
+    category: productsDetails.category,
+    itemCode: productsDetails.itemCode,
+    catPB: productsDetails.catPB,
+    stdWt: productsDetails.stdWt,
+    stdUCP: productsDetails.stdUCP,
+    activity: productsDetails.activity,
+    complexity: productsDetails.complexity,
+    si2Gh: productsDetails.si2Gh,
+    vsGh: productsDetails.vsGh,
+    vvs1: productsDetails.vvs1,
+    i2Gh: productsDetails.i2Gh,
+    si2Ij: productsDetails.si2Ij,
+    shape: productsDetails.shape,
+    gender: productsDetails.gender,
+    videoLink: productsDetails.videoLink,
+    childNodesN: productsDetails.childNodesN,
+    childNodesE: productsDetails.childNodesE,
+    region: productsDetails.region,
+    diamondWt: productsDetails.diamondWt,
+    colourWt: productsDetails.colourWt,
+    metalWt: productsDetails.metalWt,
+    findings: productsDetails.findings,
+    metalColor: productsDetails.metalColor,
+    parentItemCode: productsDetails.parentItemCode,
+    itemLevelType: productsDetails.itemLevelType,
+    childNodeV: productsDetails.childNodeV,
+    childNodeK: productsDetails.childNodeK,
+    childNodeH: productsDetails.childNodeH,
+    karatageRange: productsDetails.karatageRange,
+    childNodeF: productsDetails.childNodeF,
+    childNodeO: productsDetails.childNodeO,
+    npimEventNo: productsDetails.npimEventNo,
+    rsoName: productsDetails.rsoName,
+    doe: productsDetails.doe,
+    saleable: productsDetails.saleable,
+    size: productsDetails.size,
+    uom: productsDetails.uom,
+    reasons: productsDetails.reasons,
+    indQty: productsDetails.indQty,
+    indCategory: productsDetails.indCategory,
+    submitStatus: productsDetails.submitStatus,
+    set2Type: productsDetails.set2Type,
+    stoneQuality: productsDetails.stoneQuality,
+    stoneQualityVal: productsDetails.stoneQualityVal,
+    scannedCount: productsDetails.scannedCount,
+    unscannedCount: productsDetails.unscannedCount,
+    adVariant: productsDetails.adVariant,
+    stdWtN: productsDetails.stdWtN,
+    stdUcpN: productsDetails.stdUcpN,
+    stdWtE: productsDetails.stdWtE,
+    stdUcpE: productsDetails.stdUcpE,
+    stdWtV: productsDetails.stdWtV,
+    stdUcpV: productsDetails.stdUcpV,
+    stdWtK: productsDetails.stdWtK,
+    stdUcpK: productsDetails.stdUcpK,
+    stdWtH: productsDetails.stdWtH,
+    stdUcpH: productsDetails.stdUcpH,
+    stdWtO: productsDetails.stdWtO,
+    stdUcpO: productsDetails.stdUcpO,
+    stdWtF: productsDetails.stdWtF,
+    stdUcpF: productsDetails.stdUcpF,
+    btqCount: productsDetails.btqCount,
+    quality_Rating: productsDetails.quality_Rating,
+    quality_Reasons: quality_Reasons,
+    indentLevelType: productsDetails.indentLevelType,
   };
 
   //COLLECTION  DROPDOWN
@@ -156,7 +228,6 @@ export const FeedBackFormL1L2 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           setProductsDetails(response.data.value);
         } else if (response.data.code === "1001") {
@@ -178,22 +249,89 @@ export const FeedBackFormL1L2 = (props) => {
   };
 
   const SelectNoReasonValue = (value) => {
-    setNoReasonValue(value);
+    const SelectNoReason = `${value}`;
+    setQuality_Reasons(SelectNoReason);
   };
 
   // SUBMIT PRODUCT DETAILS API
   const SubmitProductDetails = () => {
-    if (switchData === true) {
-      showAlert("Please Select For No Reason", "danger");
-    }
+    setLoading(true);
+    axios
+      .post(
+        `${HostManager.reportsL1L2}/npim/insert/responses`,
+        getProductInputData
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          showAlert("Data has been Successfully Submitted", "success");
+        }
+        if (response.data.code === "1001") {
+          showAlert("Your Data is Not Submitted", "success");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("error==>", error);
+        setLoading(false);
+      });
   };
 
-  const GetNextProductDetails = () => {
+  const GetPreviousProductDetails = (direction) => {
+    setLoadingPre(true);
+    const getPreviousProductDetails = {
+      category: !categoryValue ? "ALL" : categoryValue,
+      collection: !collectionValue ? "ALL" : collectionValue,
+      consumerBase: !needStateValue ? "ALL" : needStateValue,
+      group: !groupValue ? "ALL" : groupValue,
+      itemCode: productsDetails.itemCode,
+      storeCode: storeCode,
+      direction: direction,
+    };
     axios
-      .post(`${HostManager.reportsL1L2}/npim/get/product/details/PreNex`)
+      .post(
+        `${HostManager.reportsL1L2}/npim/get/product/details/PreNex`,
+        getPreviousProductDetails
+      )
       .then((res) => res)
-      .then((response) => console.log("response==>", response))
-      .catch((error) => console.log("error==>", error));
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setProductsDetails(response.data.value);
+        }
+        setLoadingPre(false);
+      })
+      .catch((error) => {
+        console.log("error==>", error);
+        setLoadingPre(false);
+      });
+  };
+  const GetNextProductDetails = (direction) => {
+    setLoadingNext(true);
+    const getNextProductDetails = {
+      category: !categoryValue ? "ALL" : categoryValue,
+      collection: !collectionValue ? "ALL" : collectionValue,
+      consumerBase: !needStateValue ? "ALL" : needStateValue,
+      group: !groupValue ? "ALL" : groupValue,
+      itemCode: productsDetails.itemCode,
+      storeCode: storeCode,
+      direction: direction,
+    };
+    axios
+      .post(
+        `${HostManager.reportsL1L2}/npim/get/product/details/PreNex`,
+        getNextProductDetails
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setProductsDetails(response.data.value);
+        }
+        setLoadingNext(false);
+      })
+      .catch((error) => {
+        console.log("error==>", error);
+        setLoadingNext(false);
+      });
   };
 
   return (
@@ -244,7 +382,6 @@ export const FeedBackFormL1L2 = (props) => {
               {GroupDropdown.map((item, i) => {
                 return (
                   <option key={i} value={item.value}>
-                    {item.name}
                     {item.label}
                   </option>
                 );
@@ -260,7 +397,6 @@ export const FeedBackFormL1L2 = (props) => {
               {CategoryDropdown.map((item, i) => {
                 return (
                   <option key={i} value={item.value}>
-                    {item.name}
                     {item.label}
                   </option>
                 );
@@ -291,7 +427,7 @@ export const FeedBackFormL1L2 = (props) => {
               className="text-center p-1 itemCodeText"
               style={{ backgroundColor: "#f5ea84" }}
             >
-              ITEM CODE
+              {GetProductsValues.itemCode}
             </h5>
             <div className="row my-3">
               <div className="col-md-7">
@@ -390,20 +526,57 @@ export const FeedBackFormL1L2 = (props) => {
             </div>
             <br />
             <div className="d-flex justify-content-center mx-0">
-              <button className="CButton">
-                <Icon.ArrowLeft size={20} className="mx-2 hideArrowStyle" />
-                PREVIOUS
+              <button
+                className="CButton"
+                onClick={() => {
+                  GetPreviousProductDetails("pre");
+                }}
+              >
+                {loadingPre ? (
+                  <span
+                    className="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <span className="sr-only">
+                    <Icon.ArrowLeft size={20} className="mx-2 hideArrowStyle" />
+                    PREVIOUS
+                  </span>
+                )}
               </button>
               <button className="mx-2 CButton" onClick={SubmitProductDetails}>
-                SUBMIT
+                {loading ? (
+                  <span
+                    className="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <span className="sr-only">SUBMIT</span>
+                )}
               </button>
-              <button className="CButton">
-                NEXT
-                <Icon.ArrowRight
-                  size={20}
-                  className="mx-2 hideArrowStyle"
-                  onClick={GetNextProductDetails}
-                />
+              <button
+                className="CButton"
+                onClick={() => {
+                  GetNextProductDetails("next");
+                }}
+              >
+                {loadingNext ? (
+                  <span
+                    className="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <span className="sr-only">
+                    NEXT
+                    <Icon.ArrowRight
+                      size={20}
+                      className="mx-2 hideArrowStyle"
+                    />
+                  </span>
+                )}
               </button>
             </div>
           </div>
