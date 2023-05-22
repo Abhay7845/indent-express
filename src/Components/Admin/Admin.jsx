@@ -1,13 +1,15 @@
 import React from "react";
 import TopHeader from "../../Common/TopHeader";
-import SideBar from "../../Common/SideBar";
+import AdminSideBar from "./AdminSideBar";
 
 const Admin = () => {
   return (
     <>
       <TopHeader />
-      <div className="DropDownFormStyle">
-        <SideBar />
+      <div className="DropdownForAdmin">
+        <div className="AdminSideBarStyle">
+          <AdminSideBar />
+        </div>
       </div>
     </>
   );

@@ -12,6 +12,7 @@ import { Select } from "antd";
 
 export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
+  const storeCode = localStorage.getItem("indent-expressId");
   const [loading, setLoading] = useState(false);
   const [colLection, setCollection] = useState([]);
   const [collectionValue, setCollectionValue] = useState("");
@@ -23,8 +24,18 @@ export const FeedBackFormL1L2 = (props) => {
   const [categoryValue, setCategoryValue] = useState("");
   const [switchData, setSwitchData] = useState(false);
   const [noReasonValue, setNoReasonValue] = useState([]);
+  const [productsDetails, setProductsDetails] = useState({});
 
   console.log("noReasonValue==>", noReasonValue);
+
+  const GetProductsValues = {
+    category: !categoryValue ? "ALL" : categoryValue,
+    collection: !collectionValue ? "ALL" : collectionValue,
+    consumerBase: !needStateValue ? "ALL" : needStateValue,
+    group: !groupValue ? "ALL" : groupValue,
+    itemCode: "",
+    storeCode: storeCode,
+  };
 
   //COLLECTION  DROPDOWN
   useEffect(() => {
@@ -135,16 +146,19 @@ export const FeedBackFormL1L2 = (props) => {
       label: element,
     };
   });
+
   const GetProductsDetails = () => {
     setLoading(true);
     axios
-      .get(
-        `${HostManager.mainHost}/npim/dropdown/${collectionValue}/${needStateValue}/${groupValue}/${categoryValue}`
+      .post(
+        `${HostManager.reportsL1L2}/npim/get/product/details/`,
+        GetProductsValues
       )
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response.data);
         if (response.data.code === "1000") {
-          console.log("response==>", response.data);
+          setProductsDetails(response.data.value);
         } else if (response.data.code === "1001") {
           showAlert("Data Not Found", "danger");
         }
@@ -161,6 +175,25 @@ export const FeedBackFormL1L2 = (props) => {
     } else {
       setSwitchData(false);
     }
+  };
+
+  const SelectNoReasonValue = (value) => {
+    setNoReasonValue(value);
+  };
+
+  // SUBMIT PRODUCT DETAILS API
+  const SubmitProductDetails = () => {
+    if (switchData === true) {
+      showAlert("Please Select For No Reason", "danger");
+    }
+  };
+
+  const GetNextProductDetails = () => {
+    axios
+      .post(`${HostManager.reportsL1L2}/npim/get/product/details/PreNex`)
+      .then((res) => res)
+      .then((response) => console.log("response==>", response))
+      .catch((error) => console.log("error==>", error));
   };
 
   return (
@@ -261,7 +294,7 @@ export const FeedBackFormL1L2 = (props) => {
               ITEM CODE
             </h5>
             <div className="row my-3">
-              <div className="col-md-6">
+              <div className="col-md-7">
                 <div>
                   <h6 className="text-center my-2">
                     <b>PRODUCT DETAILS</b>
@@ -272,58 +305,58 @@ export const FeedBackFormL1L2 = (props) => {
                       <tr>
                         <th>COLLECTION</th>
                         <td>- &nbsp;&nbsp;</td>
-                        <td>HELLO1</td>
+                        <td>{productsDetails.collection}</td>
                       </tr>
                       <tr>
                         <th>NEED STATE</th>
                         <td>-</td>
-                        <td>HELLO2</td>
+                        <td>{productsDetails.consumerBase}</td>
                       </tr>
                       <tr>
                         <th>GROUP</th>
                         <td>-</td>
-                        <td>HELLO3</td>
+                        <td>{productsDetails.itGroup}</td>
                       </tr>
                       <tr>
                         <th>CATEGORY</th>
                         <td>-</td>
-                        <td>HELLO4</td>
+                        <td>{productsDetails.category}</td>
                       </tr>
                       <tr>
                         <th>GENDER</th>
                         <td>-</td>
-                        <td>HELLO5</td>
+                        <td>{productsDetails.gender}</td>
                       </tr>
                       <tr>
                         <th>COMPLEXITY</th>
                         <td>-</td>
-                        <td>HELLO6</td>
+                        <td>{productsDetails.complexity}</td>
                       </tr>
                       <tr>
                         <th>STD WT</th>
                         <td>-</td>
-                        <td>HELLO7</td>
+                        <td>{productsDetails.stdWt}</td>
                       </tr>
                       <tr>
                         <th>STD UCP</th>
                         <td>-</td>
-                        <td>HELLO8</td>
+                        <td>{productsDetails.stdUCP}</td>
                       </tr>
                       <tr>
                         <th>METAL COLOR</th>
                         <td>-</td>
-                        <td>HELLO9</td>
+                        <td>{productsDetails.metalColor}</td>
                       </tr>
                       <tr>
                         <th>FINDING</th>
                         <td>-</td>
-                        <td>HELLO10</td>
+                        <td>{productsDetails.findings}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-5">
                 <h6 className="text-center my-2 feedBackText">
                   <b>FEEDBACK</b>
                 </h6>
@@ -347,11 +380,7 @@ export const FeedBackFormL1L2 = (props) => {
                       mode="multiple"
                       placeholder="Please select"
                       options={NoReasonOption}
-                      onChange={() =>
-                        setNoReasonValue(
-                          NoReasonOption.map((value) => value.value)
-                        )
-                      }
+                      onChange={SelectNoReasonValue}
                     />
                   </div>
                 ) : (
@@ -365,10 +394,16 @@ export const FeedBackFormL1L2 = (props) => {
                 <Icon.ArrowLeft size={20} className="mx-2 hideArrowStyle" />
                 PREVIOUS
               </button>
-              <button className="mx-2 CButton">SUBMIT</button>
+              <button className="mx-2 CButton" onClick={SubmitProductDetails}>
+                SUBMIT
+              </button>
               <button className="CButton">
                 NEXT
-                <Icon.ArrowRight size={20} className="mx-2 hideArrowStyle" />
+                <Icon.ArrowRight
+                  size={20}
+                  className="mx-2 hideArrowStyle"
+                  onClick={GetNextProductDetails}
+                />
               </button>
             </div>
           </div>
