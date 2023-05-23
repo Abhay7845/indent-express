@@ -151,7 +151,6 @@ const ReportsL1L2 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           showAlert("Data has been Updated Successfully", "success");
         }

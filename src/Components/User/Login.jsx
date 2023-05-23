@@ -26,7 +26,6 @@ const Login = (props) => {
     axios
       .post(`${HostManager.reportsL1L2}/INDENT/express/user/login`, inputData)
       .then((response) => {
-        console.log("response==>", response.data);
         if (response.data.value.role === "L1") {
           localStorage.setItem("indent-expressId", response.data.value.userID);
           navigate("/Indent-express/feedback/L1/L2");
