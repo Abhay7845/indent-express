@@ -8,15 +8,18 @@ import { L1L2HeadingData, NoReasonOption } from "../../Data/DataList";
 import * as Icon from "react-bootstrap-icons";
 import TablePagination from "@mui/material/TablePagination";
 import axios from "axios";
+import { Select } from "antd";
 import { HostManager } from "../../APIList/HotMaster";
 
 const ReportsL1L2 = (props) => {
   const { showAlert } = props;
   const [switchData, setSwitchData] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [submitted, setSubmitted] = useState("scanned");
   const [reports, setReports] = useState({});
   const [reportsTable, setReportsTable] = useState([]);
+  const [quality_Reasons, setQuality_Reasons] = useState("");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(50);
   const storeCode = localStorage.getItem("indent-expressId");
@@ -62,6 +65,107 @@ const ReportsL1L2 = (props) => {
   const ImageUrl =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKMK7ZskPypvRb4Ewsyw6U1NEI8sahKwM0g2AsAiv0qA&s";
 
+  const SelectNoReasonValue = (value) => {
+    const SelectNoReason = `${value}`;
+    setQuality_Reasons(SelectNoReason);
+  };
+
+  const UpdateGetProductsDetails = () => {
+    setLoadingSubmit(true);
+    const getProductInputData = {
+      id: reports.id,
+      strCode: storeCode,
+      consumerBase: reports.consumerBase,
+      collection: reports.collection,
+      itGroup: reports.itGroup,
+      category: reports.category,
+      itemCode: reports.itemCode,
+      catPB: reports.catPB,
+      stdWt: reports.stdWt,
+      stdUCP: reports.stdUCP,
+      activity: reports.activity,
+      complexity: reports.complexity,
+      si2Gh: reports.si2Gh,
+      vsGh: reports.vsGh,
+      vvs1: reports.vvs1,
+      i2Gh: reports.i2Gh,
+      si2Ij: reports.si2Ij,
+      shape: reports.shape,
+      gender: reports.gender,
+      videoLink: reports.videoLink,
+      childNodesN: reports.childNodesN,
+      childNodesE: reports.childNodesE,
+      region: reports.region,
+      diamondWt: reports.diamondWt,
+      colourWt: reports.colourWt,
+      metalWt: reports.metalWt,
+      findings: reports.findings,
+      metalColor: reports.metalColor,
+      parentItemCode: reports.parentItemCode,
+      itemLevelType: reports.itemLevelType,
+      childNodeV: reports.childNodeV,
+      childNodeK: reports.childNodeK,
+      childNodeH: reports.childNodeH,
+      karatageRange: reports.karatageRange,
+      childNodeF: reports.childNodeF,
+      childNodeO: reports.childNodeO,
+      npimEventNo: reports.npimEventNo,
+      rsoName: reports.rsoName,
+      doe: reports.doe,
+      saleable: reports.saleable,
+      size: reports.size,
+      uom: reports.uom,
+      reasons: reports.reasons,
+      indQty: reports.indQty,
+      indCategory: reports.indCategory,
+      submitStatus: reports.submitStatus,
+      set2Type: reports.set2Type,
+      stoneQuality: reports.stoneQuality,
+      stoneQualityVal: reports.stoneQualityVal,
+      scannedCount: reports.scannedCount,
+      unscannedCount: reports.unscannedCount,
+      adVariant: reports.adVariant,
+      stdWtN: reports.stdWtN,
+      stdUcpN: reports.stdUcpN,
+      stdWtE: reports.stdWtE,
+      stdUcpE: reports.stdUcpE,
+      stdWtV: reports.stdWtV,
+      stdUcpV: reports.stdUcpV,
+      stdWtK: reports.stdWtK,
+      stdUcpK: reports.stdUcpK,
+      stdWtH: reports.stdWtH,
+      stdUcpH: reports.stdUcpH,
+      stdWtO: reports.stdWtO,
+      stdUcpO: reports.stdUcpO,
+      stdWtF: reports.stdWtF,
+      stdUcpF: reports.stdUcpF,
+      btqCount: reports.btqCount,
+      quality_Rating: reports.quality_Rating,
+      quality_Reasons: quality_Reasons,
+      indentLevelType: reports.indentLevelType,
+    };
+    axios
+      .post(
+        `${HostManager.reportsL1L2}/npim/update/responses`,
+        getProductInputData
+      )
+      .then((res) => res)
+      .then((response) => {
+        console.log("response==>", response.data);
+        if (response.data.code === "1000") {
+          showAlert("Data has been Updated Successfully", "success");
+        }
+        if (response.data.code === "1001") {
+          showAlert("Your Data is Not Submitted", "success");
+        }
+        setLoadingSubmit(false);
+      })
+      .catch((error) => {
+        console.log("error==>", error);
+        setLoadingSubmit(false);
+      });
+  };
+
   return (
     <>
       <TopHeader />
@@ -78,7 +182,7 @@ const ReportsL1L2 = (props) => {
               <option value="unscanned">YET TO SUBMITTED</option>
             </select>
           </div>
-          <div className="col-md-3">
+          {/* <div className="col-md-3">
             <div className="form-switch my-2">
               <input
                 className="form-check-input switchStyle"
@@ -88,7 +192,7 @@ const ReportsL1L2 = (props) => {
               />
               <label className="mx-2">PRODUCT DESCRIPTION</label>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* REPORTS FORM */}
@@ -190,16 +294,13 @@ const ReportsL1L2 = (props) => {
                   {!switchData === false ? (
                     <div className="my-3">
                       <label>Choose Reason For NO</label>
-                      <select className="SSelect">
-                        <option>Select</option>
-                        {NoReasonOption.map((item, i) => {
-                          return (
-                            <option key={i} value={item.value}>
-                              {item.label}
-                            </option>
-                          );
-                        })}
-                      </select>
+                      <Select
+                        className="NoReasonSelect"
+                        mode="multiple"
+                        placeholder="Please select"
+                        options={NoReasonOption}
+                        onChange={SelectNoReasonValue}
+                      />
                     </div>
                   ) : (
                     ""
@@ -207,7 +308,17 @@ const ReportsL1L2 = (props) => {
                 </div>
               </div>
               <div className="mt-4">
-                <button className="CButton">SUBMIT</button>
+                <button className="CButton" onClick={UpdateGetProductsDetails}>
+                  {loadingSubmit ? (
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <span className="sr-only">SUBMIT</span>
+                  )}
+                </button>
               </div>
             </div>
           </div>

@@ -27,7 +27,10 @@ const StatusReportsL1L2 = (props) => {
         }
         setLoading(false);
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => {
+        console.log("error==>", error);
+        setLoading(false);
+      });
   }, [storeCode]);
 
   const TableData = statusData.map((item) => {

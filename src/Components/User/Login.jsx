@@ -7,6 +7,7 @@ import { LoginInitialValue, LoginSchema } from "../../Schema/LoginSchema";
 import ShowError from "../../Schema/ShowError";
 import image from "../../Asset/Img/Tanishq_Logo1.png";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
+import { HostManager } from "../../APIList/HotMaster";
 
 const Login = (props) => {
   const { showAlert } = props;
@@ -23,12 +24,9 @@ const Login = (props) => {
     };
     const inputData = { ...payload, ...LoginData };
     axios
-      .post(
-        "https://tanishqdigitalnpim.titan.in:8443/PNPIM/NPIM/npim/user/login",
-        inputData
-      )
+      .post(`${HostManager.reportsL1L2}/INDENT/express/user/login`, inputData)
       .then((response) => {
-        console.log("response==>", response);
+        console.log("response==>", response.data);
         if (response.data.value.role === "L1") {
           localStorage.setItem("indent-expressId", response.data.value.userID);
           navigate("/Indent-express/feedback/L1/L2");

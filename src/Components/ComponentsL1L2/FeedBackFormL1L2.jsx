@@ -4,7 +4,7 @@ import TopHeader from "../../Common/TopHeader";
 import axios from "axios";
 import { HostManager } from "../../APIList/HotMaster";
 import Loader from "../../Common/Loader";
-import { BsSearch } from "react-icons/bs";
+// import { BsSearch } from "react-icons/bs";
 import { NoReasonOption } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
 import SideBar from "../../Common/SideBar";
@@ -43,7 +43,7 @@ export const FeedBackFormL1L2 = (props) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${HostManager.mainHost}/npim/dropdown/ALL/ALL/ALL/ALL`)
+      .get(`${HostManager.reportsL1L2}/INDENT/express/dropdown/ALL/ALL/ALL/ALL`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -55,6 +55,7 @@ export const FeedBackFormL1L2 = (props) => {
       })
       .catch((error) => {
         console.log("");
+        setLoading(false);
       });
   }, [collectionValue, showAlert]);
 
@@ -70,7 +71,7 @@ export const FeedBackFormL1L2 = (props) => {
     setLoading(true);
     axios
       .get(
-        `${HostManager.mainHost}/npim/dropdown/${collectionValue}/ALL/ALL/ALL`
+        `${HostManager.reportsL1L2}/INDENT/express/dropdown/${collectionValue}/ALL/ALL/ALL`
       )
       .then((res) => res)
       .then((response) => {
@@ -98,7 +99,7 @@ export const FeedBackFormL1L2 = (props) => {
     setLoading(true);
     axios
       .get(
-        `${HostManager.mainHost}/npim/dropdown/${collectionValue}/${needStateValue}/ALL/ALL`
+        `${HostManager.reportsL1L2}/INDENT/express/dropdown/${collectionValue}/${needStateValue}/ALL/ALL`
       )
       .then((res) => res)
       .then((response) => {
@@ -126,7 +127,7 @@ export const FeedBackFormL1L2 = (props) => {
     setLoading(true);
     axios
       .get(
-        `${HostManager.mainHost}/npim/dropdown/${collectionValue}/${needStateValue}/${groupValue}/ALL`
+        `${HostManager.reportsL1L2}/INDENT/express/dropdown/${collectionValue}/${needStateValue}/${groupValue}/ALL`
       )
       .then((res) => res)
       .then((response) => {
@@ -153,7 +154,7 @@ export const FeedBackFormL1L2 = (props) => {
     setLoading(true);
     axios
       .post(
-        `${HostManager.reportsL1L2}/npim/get/product/details/`,
+        `${HostManager.reportsL1L2}/INDENT/express/get/product/details`,
         GetProductsValues
       )
       .then((res) => res)
@@ -177,26 +178,26 @@ export const FeedBackFormL1L2 = (props) => {
     GetProductsValues.itemCode,
   ]);
 
-  const GetProductsDetails = () => {
-    setLoading(true);
-    axios
-      .post(
-        `${HostManager.reportsL1L2}/npim/get/product/details/`,
-        GetProductsValues
-      )
-      .then((res) => res)
-      .then((response) => {
-        if (response.data.code === "1000") {
-          setProductsDetails(response.data.value);
-        } else if (response.data.code === "1001") {
-          showAlert("Data Not Found", "danger");
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log("");
-      });
-  };
+  // const GetProductsDetails = () => {
+  //   setLoading(true);
+  //   axios
+  //     .post(
+  //       `${HostManager.reportsL1L2}/INDENT/express/get/product/details`,
+  //       GetProductsValues
+  //     )
+  //     .then((res) => res)
+  //     .then((response) => {
+  //       if (response.data.code === "1000") {
+  //         setProductsDetails(response.data.value);
+  //       } else if (response.data.code === "1001") {
+  //         showAlert("Data Not Found", "danger");
+  //       }
+  //       setLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.log("");
+  //     });
+  // };
 
   const getTrueFalse = () => {
     if (!switchData) {
@@ -288,13 +289,13 @@ export const FeedBackFormL1L2 = (props) => {
     };
     axios
       .post(
-        `${HostManager.reportsL1L2}/npim/insert/responses`,
+        `${HostManager.reportsL1L2}/INDENT/express/insert/responses`,
         getProductInputData
       )
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
-          showAlert("Data has been Successfully Submitted", "success");
+          showAlert("Data has been Saved Successfully", "success");
         }
         if (response.data.code === "1001") {
           showAlert("Your Data is Not Submitted", "success");
@@ -320,7 +321,7 @@ export const FeedBackFormL1L2 = (props) => {
     };
     axios
       .post(
-        `${HostManager.reportsL1L2}/npim/get/product/details/PreNex`,
+        `${HostManager.reportsL1L2}/INDENT/express/get/product/details/PreNex`,
         getPreviousProductDetails
       )
       .then((res) => res)
@@ -348,11 +349,12 @@ export const FeedBackFormL1L2 = (props) => {
     };
     axios
       .post(
-        `${HostManager.reportsL1L2}/npim/get/product/details/PreNex`,
+        `${HostManager.reportsL1L2}/INDENT/express/get/product/details/PreNex`,
         getNextProductDetails
       )
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response);
         if (response.data.code === "1000") {
           setProductsDetails(response.data.value);
         }
@@ -433,13 +435,13 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          <div className="col-md-1 justify-content-end">
+          {/* <div className="col-md-1 justify-content-end">
             <BsSearch
               size={35}
               className="searchStyle"
               onClick={GetProductsDetails}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       {/* FEED BACK FORM */}
