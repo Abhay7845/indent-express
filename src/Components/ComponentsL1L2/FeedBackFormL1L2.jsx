@@ -218,98 +218,102 @@ export const FeedBackFormL1L2 = (props) => {
 
   // SUBMIT PRODUCT DETAILS API
   const SubmitProductDetails = () => {
-    setLoadingSubmit(true);
-    const getProductInputData = {
-      id: productsDetails.id,
-      strCode: storeCode,
-      consumerBase: productsDetails.consumerBase,
-      collection: productsDetails.collection,
-      itGroup: productsDetails.itGroup,
-      category: productsDetails.category,
-      itemCode: productsDetails.itemCode,
-      catPB: productsDetails.catPB,
-      stdWt: productsDetails.stdWt,
-      stdUCP: productsDetails.stdUCP,
-      activity: productsDetails.activity,
-      complexity: productsDetails.complexity,
-      si2Gh: productsDetails.si2Gh,
-      vsGh: productsDetails.vsGh,
-      vvs1: productsDetails.vvs1,
-      i2Gh: productsDetails.i2Gh,
-      si2Ij: productsDetails.si2Ij,
-      shape: productsDetails.shape,
-      gender: productsDetails.gender,
-      videoLink: productsDetails.videoLink,
-      childNodesN: productsDetails.childNodesN,
-      childNodesE: productsDetails.childNodesE,
-      region: productsDetails.region,
-      diamondWt: productsDetails.diamondWt,
-      colourWt: productsDetails.colourWt,
-      metalWt: productsDetails.metalWt,
-      findings: productsDetails.findings,
-      metalColor: productsDetails.metalColor,
-      parentItemCode: productsDetails.parentItemCode,
-      itemLevelType: productsDetails.itemLevelType,
-      childNodeV: productsDetails.childNodeV,
-      childNodeK: productsDetails.childNodeK,
-      childNodeH: productsDetails.childNodeH,
-      karatageRange: productsDetails.karatageRange,
-      childNodeF: productsDetails.childNodeF,
-      childNodeO: productsDetails.childNodeO,
-      npimEventNo: productsDetails.npimEventNo,
-      rsoName: productsDetails.rsoName,
-      doe: productsDetails.doe,
-      saleable: productsDetails.saleable,
-      size: productsDetails.size,
-      uom: productsDetails.uom,
-      reasons: productsDetails.reasons,
-      indQty: productsDetails.indQty,
-      indCategory: productsDetails.indCategory,
-      submitStatus: productsDetails.submitStatus,
-      set2Type: productsDetails.set2Type,
-      stoneQuality: productsDetails.stoneQuality,
-      stoneQualityVal: productsDetails.stoneQualityVal,
-      scannedCount: productsDetails.scannedCount,
-      unscannedCount: productsDetails.unscannedCount,
-      adVariant: productsDetails.adVariant,
-      stdWtN: productsDetails.stdWtN,
-      stdUcpN: productsDetails.stdUcpN,
-      stdWtE: productsDetails.stdWtE,
-      stdUcpE: productsDetails.stdUcpE,
-      stdWtV: productsDetails.stdWtV,
-      stdUcpV: productsDetails.stdUcpV,
-      stdWtK: productsDetails.stdWtK,
-      stdUcpK: productsDetails.stdUcpK,
-      stdWtH: productsDetails.stdWtH,
-      stdUcpH: productsDetails.stdUcpH,
-      stdWtO: productsDetails.stdWtO,
-      stdUcpO: productsDetails.stdUcpO,
-      stdWtF: productsDetails.stdWtF,
-      stdUcpF: productsDetails.stdUcpF,
-      btqCount: productsDetails.btqCount,
-      quality_Rating: productsDetails.quality_Rating,
-      quality_Reasons: quality_Reasons,
-      indentLevelType: productsDetails.indentLevelType,
-    };
-    axios
-      .post(
-        `${HostManager.reportsL1L2}/INDENT/express/insert/responses`,
-        getProductInputData
-      )
-      .then((res) => res)
-      .then((response) => {
-        if (response.data.code === "1000") {
-          showAlert("Data has been Saved Successfully", "success");
-        }
-        if (response.data.code === "1001") {
-          showAlert("Your Data is Not Submitted", "success");
-        }
-        setLoadingSubmit(false);
-      })
-      .catch((error) => {
-        console.log("error==>", error);
-        setLoadingSubmit(false);
-      });
+    if (switchData && quality_Reasons === "") {
+      showAlert("Please Select Reason For No", "danger");
+    } else {
+      setLoadingSubmit(true);
+      const getProductInputData = {
+        id: productsDetails.id,
+        strCode: storeCode,
+        consumerBase: productsDetails.consumerBase,
+        collection: productsDetails.collection,
+        itGroup: productsDetails.itGroup,
+        category: productsDetails.category,
+        itemCode: productsDetails.itemCode,
+        catPB: productsDetails.catPB,
+        stdWt: productsDetails.stdWt,
+        stdUCP: productsDetails.stdUCP,
+        activity: productsDetails.activity,
+        complexity: productsDetails.complexity,
+        si2Gh: productsDetails.si2Gh,
+        vsGh: productsDetails.vsGh,
+        vvs1: productsDetails.vvs1,
+        i2Gh: productsDetails.i2Gh,
+        si2Ij: productsDetails.si2Ij,
+        shape: productsDetails.shape,
+        gender: productsDetails.gender,
+        videoLink: productsDetails.videoLink,
+        childNodesN: productsDetails.childNodesN,
+        childNodesE: productsDetails.childNodesE,
+        region: productsDetails.region,
+        diamondWt: productsDetails.diamondWt,
+        colourWt: productsDetails.colourWt,
+        metalWt: productsDetails.metalWt,
+        findings: productsDetails.findings,
+        metalColor: productsDetails.metalColor,
+        parentItemCode: productsDetails.parentItemCode,
+        itemLevelType: productsDetails.itemLevelType,
+        childNodeV: productsDetails.childNodeV,
+        childNodeK: productsDetails.childNodeK,
+        childNodeH: productsDetails.childNodeH,
+        karatageRange: productsDetails.karatageRange,
+        childNodeF: productsDetails.childNodeF,
+        childNodeO: productsDetails.childNodeO,
+        npimEventNo: productsDetails.npimEventNo,
+        rsoName: productsDetails.rsoName,
+        doe: productsDetails.doe,
+        saleable: productsDetails.saleable,
+        size: productsDetails.size,
+        uom: productsDetails.uom,
+        reasons: productsDetails.reasons,
+        indQty: productsDetails.indQty,
+        indCategory: productsDetails.indCategory,
+        submitStatus: productsDetails.submitStatus,
+        set2Type: productsDetails.set2Type,
+        stoneQuality: productsDetails.stoneQuality,
+        stoneQualityVal: productsDetails.stoneQualityVal,
+        scannedCount: productsDetails.scannedCount,
+        unscannedCount: productsDetails.unscannedCount,
+        adVariant: productsDetails.adVariant,
+        stdWtN: productsDetails.stdWtN,
+        stdUcpN: productsDetails.stdUcpN,
+        stdWtE: productsDetails.stdWtE,
+        stdUcpE: productsDetails.stdUcpE,
+        stdWtV: productsDetails.stdWtV,
+        stdUcpV: productsDetails.stdUcpV,
+        stdWtK: productsDetails.stdWtK,
+        stdUcpK: productsDetails.stdUcpK,
+        stdWtH: productsDetails.stdWtH,
+        stdUcpH: productsDetails.stdUcpH,
+        stdWtO: productsDetails.stdWtO,
+        stdUcpO: productsDetails.stdUcpO,
+        stdWtF: productsDetails.stdWtF,
+        stdUcpF: productsDetails.stdUcpF,
+        btqCount: productsDetails.btqCount,
+        quality_Rating: productsDetails.quality_Rating,
+        quality_Reasons: quality_Reasons,
+        indentLevelType: productsDetails.indentLevelType,
+      };
+      axios
+        .post(
+          `${HostManager.reportsL1L2}/INDENT/express/insert/responses`,
+          getProductInputData
+        )
+        .then((res) => res)
+        .then((response) => {
+          if (response.data.code === "1000") {
+            showAlert("Data has been Saved Successfully", "success");
+          }
+          if (response.data.code === "1001") {
+            showAlert("Your Data is Not Submitted", "success");
+          }
+          setLoadingSubmit(false);
+        })
+        .catch((error) => {
+          console.log("error==>", error);
+          setLoadingSubmit(false);
+        });
+    }
   };
 
   const GetPreviousProductDetails = (direction) => {

@@ -71,99 +71,102 @@ const ReportsL1L2 = (props) => {
   };
 
   const UpdateGetProductsDetails = () => {
-    setLoadingSubmit(true);
-    const getProductInputData = {
-      id: reports.id,
-      strCode: storeCode,
-      consumerBase: reports.consumerBase,
-      collection: reports.collection,
-      itGroup: reports.itGroup,
-      category: reports.category,
-      itemCode: reports.itemCode,
-      catPB: reports.catPB,
-      stdWt: reports.stdWt,
-      stdUCP: reports.stdUCP,
-      activity: reports.activity,
-      complexity: reports.complexity,
-      si2Gh: reports.si2Gh,
-      vsGh: reports.vsGh,
-      vvs1: reports.vvs1,
-      i2Gh: reports.i2Gh,
-      si2Ij: reports.si2Ij,
-      shape: reports.shape,
-      gender: reports.gender,
-      videoLink: reports.videoLink,
-      childNodesN: reports.childNodesN,
-      childNodesE: reports.childNodesE,
-      region: reports.region,
-      diamondWt: reports.diamondWt,
-      colourWt: reports.colourWt,
-      metalWt: reports.metalWt,
-      findings: reports.findings,
-      metalColor: reports.metalColor,
-      parentItemCode: reports.parentItemCode,
-      itemLevelType: reports.itemLevelType,
-      childNodeV: reports.childNodeV,
-      childNodeK: reports.childNodeK,
-      childNodeH: reports.childNodeH,
-      karatageRange: reports.karatageRange,
-      childNodeF: reports.childNodeF,
-      childNodeO: reports.childNodeO,
-      npimEventNo: reports.npimEventNo,
-      rsoName: reports.rsoName,
-      doe: reports.doe,
-      saleable: reports.saleable,
-      size: reports.size,
-      uom: reports.uom,
-      reasons: reports.reasons,
-      indQty: reports.indQty,
-      indCategory: reports.indCategory,
-      submitStatus: reports.submitStatus,
-      set2Type: reports.set2Type,
-      stoneQuality: reports.stoneQuality,
-      stoneQualityVal: reports.stoneQualityVal,
-      scannedCount: reports.scannedCount,
-      unscannedCount: reports.unscannedCount,
-      adVariant: reports.adVariant,
-      stdWtN: reports.stdWtN,
-      stdUcpN: reports.stdUcpN,
-      stdWtE: reports.stdWtE,
-      stdUcpE: reports.stdUcpE,
-      stdWtV: reports.stdWtV,
-      stdUcpV: reports.stdUcpV,
-      stdWtK: reports.stdWtK,
-      stdUcpK: reports.stdUcpK,
-      stdWtH: reports.stdWtH,
-      stdUcpH: reports.stdUcpH,
-      stdWtO: reports.stdWtO,
-      stdUcpO: reports.stdUcpO,
-      stdWtF: reports.stdWtF,
-      stdUcpF: reports.stdUcpF,
-      btqCount: reports.btqCount,
-      quality_Rating: reports.quality_Rating,
-      quality_Reasons: quality_Reasons,
-      indentLevelType: reports.indentLevelType,
-    };
-    console.log("getProductInputData==>", getProductInputData);
-    axios
-      .post(
-        `${HostManager.reportsL1L2}/INDENTL3/express/update/responses`,
-        getProductInputData
-      )
-      .then((res) => res)
-      .then((response) => {
-        if (response.data.code === "1000") {
-          showAlert("Data has been Updated Successfully", "success");
-        }
-        if (response.data.code === "1001") {
-          showAlert("Your Data is Not Submitted", "success");
-        }
-        setLoadingSubmit(false);
-      })
-      .catch((error) => {
-        console.log("error==>", error);
-        setLoadingSubmit(false);
-      });
+    if (switchData && quality_Reasons === "") {
+      showAlert("Please Select Reason For No", "danger");
+    } else {
+      setLoadingSubmit(true);
+      const getProductInputData = {
+        id: reports.id,
+        strCode: storeCode,
+        consumerBase: reports.consumerBase,
+        collection: reports.collection,
+        itGroup: reports.itGroup,
+        category: reports.category,
+        itemCode: reports.itemCode,
+        catPB: reports.catPB,
+        stdWt: reports.stdWt,
+        stdUCP: reports.stdUCP,
+        activity: reports.activity,
+        complexity: reports.complexity,
+        si2Gh: reports.si2Gh,
+        vsGh: reports.vsGh,
+        vvs1: reports.vvs1,
+        i2Gh: reports.i2Gh,
+        si2Ij: reports.si2Ij,
+        shape: reports.shape,
+        gender: reports.gender,
+        videoLink: reports.videoLink,
+        childNodesN: reports.childNodesN,
+        childNodesE: reports.childNodesE,
+        region: reports.region,
+        diamondWt: reports.diamondWt,
+        colourWt: reports.colourWt,
+        metalWt: reports.metalWt,
+        findings: reports.findings,
+        metalColor: reports.metalColor,
+        parentItemCode: reports.parentItemCode,
+        itemLevelType: reports.itemLevelType,
+        childNodeV: reports.childNodeV,
+        childNodeK: reports.childNodeK,
+        childNodeH: reports.childNodeH,
+        karatageRange: reports.karatageRange,
+        childNodeF: reports.childNodeF,
+        childNodeO: reports.childNodeO,
+        npimEventNo: reports.npimEventNo,
+        rsoName: reports.rsoName,
+        doe: reports.doe,
+        saleable: reports.saleable,
+        size: reports.size,
+        uom: reports.uom,
+        reasons: reports.reasons,
+        indQty: reports.indQty,
+        indCategory: reports.indCategory,
+        submitStatus: reports.submitStatus,
+        set2Type: reports.set2Type,
+        stoneQuality: reports.stoneQuality,
+        stoneQualityVal: reports.stoneQualityVal,
+        scannedCount: reports.scannedCount,
+        unscannedCount: reports.unscannedCount,
+        adVariant: reports.adVariant,
+        stdWtN: reports.stdWtN,
+        stdUcpN: reports.stdUcpN,
+        stdWtE: reports.stdWtE,
+        stdUcpE: reports.stdUcpE,
+        stdWtV: reports.stdWtV,
+        stdUcpV: reports.stdUcpV,
+        stdWtK: reports.stdWtK,
+        stdUcpK: reports.stdUcpK,
+        stdWtH: reports.stdWtH,
+        stdUcpH: reports.stdUcpH,
+        stdWtO: reports.stdWtO,
+        stdUcpO: reports.stdUcpO,
+        stdWtF: reports.stdWtF,
+        stdUcpF: reports.stdUcpF,
+        btqCount: reports.btqCount,
+        quality_Rating: reports.quality_Rating,
+        quality_Reasons: quality_Reasons,
+        indentLevelType: reports.indentLevelType,
+      };
+      axios
+        .post(
+          `${HostManager.reportsL1L2}/INDENTL3/express/update/responses`,
+          getProductInputData
+        )
+        .then((res) => res)
+        .then((response) => {
+          if (response.data.code === "1000") {
+            showAlert("Data has been Updated Successfully", "success");
+          }
+          if (response.data.code === "1001") {
+            showAlert("Your Data is Not Submitted", "success");
+          }
+          setLoadingSubmit(false);
+        })
+        .catch((error) => {
+          console.log("error==>", error);
+          setLoadingSubmit(false);
+        });
+    }
   };
 
   return (
