@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import axios from "axios";
@@ -147,6 +148,34 @@ export const FeedBackFormL1L2 = (props) => {
       label: element,
     };
   });
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .post(
+        `${HostManager.reportsL1L2}/npim/get/product/details/`,
+        GetProductsValues
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setProductsDetails(response.data.value);
+        } else if (response.data.code === "1001") {
+          showAlert("Data Not Found", "danger");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("");
+      });
+  }, [
+    GetProductsValues.category,
+    GetProductsValues.collection,
+    GetProductsValues.consumerBase,
+    GetProductsValues.group,
+    GetProductsValues.itemCode,
+    GetProductsValues.itemCode,
+  ]);
 
   const GetProductsDetails = () => {
     setLoading(true);
