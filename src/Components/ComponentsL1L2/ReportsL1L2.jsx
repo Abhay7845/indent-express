@@ -144,6 +144,7 @@ const ReportsL1L2 = (props) => {
       quality_Reasons: quality_Reasons,
       indentLevelType: reports.indentLevelType,
     };
+    console.log("getProductInputData==>", getProductInputData);
     axios
       .post(
         `${HostManager.reportsL1L2}/INDENTL3/express/update/responses`,
@@ -195,7 +196,6 @@ const ReportsL1L2 = (props) => {
         </div>
       </div>
       {/* REPORTS FORM */}
-
       {reports.id === undefined ? (
         ""
       ) : (
