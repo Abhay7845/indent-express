@@ -28,7 +28,7 @@ const App = () => {
         <Routes>
           <Route
             index
-            path="/Indent_Express"
+            path="/PNpimPortal"
             element={<Login showAlert={showAlert} />}
           />
           <Route element={<PrivateComponent />}>

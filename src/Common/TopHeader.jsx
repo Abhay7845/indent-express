@@ -9,7 +9,7 @@ const TopHeader = () => {
   const UserRole = localStorage.getItem("indent-expressId").toUpperCase();
   const removeUserRole = () => {
     localStorage.removeItem("indent-expressId");
-    navigate("/Indent_Express");
+    navigate("/PNpimPortal");
   };
   useEffect(() => {}, [UserRole]);
   return (
