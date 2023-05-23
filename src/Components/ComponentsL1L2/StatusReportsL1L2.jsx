@@ -16,7 +16,7 @@ const StatusReportsL1L2 = (props) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${HostManager.reportsL1L2}/npim/status/L1/${storeCode}`)
+      .get(`${HostManager.reportsL1L2}/INDENT/express/status/L1/${storeCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {

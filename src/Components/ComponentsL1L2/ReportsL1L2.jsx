@@ -48,7 +48,7 @@ const ReportsL1L2 = (props) => {
     setLoading(true);
     axios
       .get(
-        `${HostManager.reportsL1L2}/npim/${submitted}/report/L1/${storeCode}`
+        `${HostManager.reportsL1L2}/INDENT/express/${submitted}/report/L1/${storeCode}`
       )
       .then((res) => res)
       .then((response) => {
@@ -146,7 +146,7 @@ const ReportsL1L2 = (props) => {
     };
     axios
       .post(
-        `${HostManager.reportsL1L2}/npim/update/responses`,
+        `${HostManager.reportsL1L2}/INDENTL3/express/update/responses`,
         getProductInputData
       )
       .then((res) => res)

@@ -354,7 +354,6 @@ export const FeedBackFormL1L2 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response);
         if (response.data.code === "1000") {
           setProductsDetails(response.data.value);
         }
