@@ -34,7 +34,7 @@ export const FeedBackFormL1L2 = (props) => {
     collection: !collectionValue ? "ALL" : collectionValue,
     consumerBase: !needStateValue ? "ALL" : needStateValue,
     group: !groupValue ? "ALL" : groupValue,
-    itemCode: !productsDetails.itemCode ? "" : productsDetails.itemCode,
+    itemCode: "",
     storeCode: storeCode,
   };
 
@@ -157,7 +157,6 @@ export const FeedBackFormL1L2 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response.data.value);
         if (response.data.code === "1000") {
           setProductsDetails(response.data.value);
         } else if (response.data.code === "1001") {
@@ -429,7 +428,7 @@ export const FeedBackFormL1L2 = (props) => {
               className="text-center p-1 itemCodeText"
               style={{ backgroundColor: "#f5ea84" }}
             >
-              {GetProductsValues.itemCode}
+              {productsDetails.itemCode}
             </h5>
             <div className="row my-3">
               <div className="col-md-7">
