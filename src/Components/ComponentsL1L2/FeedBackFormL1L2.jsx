@@ -84,6 +84,7 @@ export const FeedBackFormL1L2 = (props) => {
       })
       .catch((error) => {
         console.log("");
+        setLoading(false);
       });
   }, [collectionValue, showAlert]);
 
@@ -112,6 +113,7 @@ export const FeedBackFormL1L2 = (props) => {
       })
       .catch((error) => {
         console.log("");
+        setLoading(false);
       });
   }, [collectionValue, needStateValue, showAlert]);
 
@@ -140,6 +142,7 @@ export const FeedBackFormL1L2 = (props) => {
       })
       .catch((error) => {
         console.log("");
+        setLoading(false);
       });
   }, [collectionValue, needStateValue, groupValue, showAlert]);
 
@@ -168,6 +171,7 @@ export const FeedBackFormL1L2 = (props) => {
       })
       .catch((error) => {
         console.log("");
+        setLoading(false);
       });
   }, [
     GetProductsValues.category,
@@ -371,7 +375,7 @@ export const FeedBackFormL1L2 = (props) => {
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
         <SideBar />
-        <div className="row mx-0">
+        <div className="row mx-0 w-100">
           <div className="col-md-3">
             <select
               className="SSelect"
@@ -388,7 +392,7 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          <div className="col-md-2">
+          <div className="col-md-3">
             <select
               className="SSelect"
               onChange={(e) => setNeedStateValue(e.target.value)}
