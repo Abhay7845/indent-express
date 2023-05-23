@@ -7,7 +7,7 @@ const PrivateComponent = () => {
       {localStorage.getItem("indent-expressId") ? (
         <Outlet />
       ) : (
-        <Navigate to="/PNpimPortal" />
+        <Navigate to="/IndentExpress" />
       )}
     </>
   );
