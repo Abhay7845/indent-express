@@ -19,7 +19,7 @@ const ReportsL1L2 = (props) => {
   const [submitted, setSubmitted] = useState("scanned");
   const [reports, setReports] = useState({});
   const [reportsTable, setReportsTable] = useState([]);
-  const [quality_Reasons, setQuality_Reasons] = useState("");
+  const [quality_Reasons, setQuality_Reasons] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(50);
   const storeCode = localStorage.getItem("indent-expressId");
@@ -63,13 +63,8 @@ const ReportsL1L2 = (props) => {
       .catch((error) => console.log("error==>", error));
   }, [submitted, storeCode]);
 
-  const SelectNoReasonValue = (value) => {
-    const SelectNoReason = `${value}`;
-    setQuality_Reasons(SelectNoReason);
-  };
-
   const UpdateGetProductsDetails = () => {
-    if (switchData && quality_Reasons === "") {
+    if (switchData && quality_Reasons.length === 0) {
       showAlert("Please Select Reason For No", "danger");
     } else {
       setLoadingSubmit(true);
@@ -142,7 +137,7 @@ const ReportsL1L2 = (props) => {
         stdUcpF: reports.stdUcpF,
         btqCount: reports.btqCount,
         quality_Rating: reports.quality_Rating,
-        quality_Reasons: quality_Reasons,
+        quality_Reasons: quality_Reasons.toString(),
         indentLevelType: reports.indentLevelType,
       };
       axios
@@ -154,6 +149,7 @@ const ReportsL1L2 = (props) => {
         .then((response) => {
           if (response.data.code === "1000") {
             showAlert("Data has been Updated Successfully", "success");
+            setQuality_Reasons([]);
           }
           if (response.data.code === "1001") {
             showAlert("Your Data is Not Submitted", "success");
@@ -162,6 +158,7 @@ const ReportsL1L2 = (props) => {
         })
         .catch((error) => {
           console.log("error==>", error);
+          setQuality_Reasons([]);
           setLoadingSubmit(false);
         });
     }
@@ -291,9 +288,11 @@ const ReportsL1L2 = (props) => {
                       <Select
                         className="NoReasonSelect"
                         mode="multiple"
+                        value={quality_Reasons}
+                        allowClear
                         placeholder="Please select"
                         options={NoReasonOption}
-                        onChange={SelectNoReasonValue}
+                        onChange={setQuality_Reasons}
                       />
                     </div>
                   ) : (

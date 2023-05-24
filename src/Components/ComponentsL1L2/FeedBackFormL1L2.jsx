@@ -207,11 +207,6 @@ export const FeedBackFormL1L2 = (props) => {
     }
   };
 
-  // const SelectNoReasonValue = (value) => {
-  //   const SelectNoReason = `${value}`;
-  //   setQuality_Reasons(SelectNoReason);
-  // };
-
   // SUBMIT PRODUCT DETAILS API
   const SubmitProductDetails = () => {
     if (switchData && quality_Reasons.length === 0) {
