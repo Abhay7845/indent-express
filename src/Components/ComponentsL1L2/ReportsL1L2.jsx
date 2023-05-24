@@ -150,6 +150,7 @@ const ReportsL1L2 = (props) => {
           if (response.data.code === "1000") {
             showAlert("Data has been Updated Successfully", "success");
             setQuality_Reasons([]);
+            setReports({});
           }
           if (response.data.code === "1001") {
             showAlert("Your Data is Not Submitted", "success");
