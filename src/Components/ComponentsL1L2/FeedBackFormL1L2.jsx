@@ -4,7 +4,6 @@ import TopHeader from "../../Common/TopHeader";
 import axios from "axios";
 import { HostManager } from "../../APIList/HotMaster";
 import Loader from "../../Common/Loader";
-// import { BsSearch } from "react-icons/bs";
 import { NoReasonOption } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
@@ -28,9 +27,8 @@ export const FeedBackFormL1L2 = (props) => {
   const [category, setCategory] = useState([]);
   const [categoryValue, setCategoryValue] = useState("");
   const [switchData, setSwitchData] = useState(false);
-  const [quality_Reasons, setQuality_Reasons] = useState("");
+  const [quality_Reasons, setQuality_Reasons] = useState([]);
   const [productsDetails, setProductsDetails] = useState([]);
-
   const GetProductsValues = {
     category: !categoryValue ? "ALL" : categoryValue,
     collection: !collectionValue ? "ALL" : collectionValue,
@@ -114,7 +112,6 @@ export const FeedBackFormL1L2 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response);
         if (response.data.code === "1000") {
           setGroup(response.data.value);
         } else if (response.data.code === "1001") {
@@ -181,7 +178,6 @@ export const FeedBackFormL1L2 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("responseDetails==>", response);
         if (response.data.code === "1000") {
           setProductsDetails(response.data.value);
         } else if (response.data.code === "1001") {
@@ -211,14 +207,14 @@ export const FeedBackFormL1L2 = (props) => {
     }
   };
 
-  const SelectNoReasonValue = (value) => {
-    const SelectNoReason = `${value}`;
-    setQuality_Reasons(SelectNoReason);
-  };
+  // const SelectNoReasonValue = (value) => {
+  //   const SelectNoReason = `${value}`;
+  //   setQuality_Reasons(SelectNoReason);
+  // };
 
   // SUBMIT PRODUCT DETAILS API
   const SubmitProductDetails = () => {
-    if (switchData && quality_Reasons === "") {
+    if (switchData && quality_Reasons.length === 0) {
       showAlert("Please Select Reason For No", "danger");
     } else {
       setLoadingSubmit(true);
@@ -291,9 +287,10 @@ export const FeedBackFormL1L2 = (props) => {
         stdUcpF: productsDetails.stdUcpF,
         btqCount: productsDetails.btqCount,
         quality_Rating: productsDetails.quality_Rating,
-        quality_Reasons: quality_Reasons,
+        quality_Reasons: quality_Reasons.toString(),
         indentLevelType: productsDetails.indentLevelType,
       };
+      console.log("getProductInputData==>", getProductInputData);
       axios
         .post(
           `${HostManager.reportsL1L2}/INDENT/express/insert/responses`,
@@ -303,13 +300,15 @@ export const FeedBackFormL1L2 = (props) => {
         .then((response) => {
           if (response.data.code === "1000") {
             showAlert("Data has been Saved Successfully", "success");
+            setQuality_Reasons([]);
           }
           if (response.data.code === "1001") {
-            showAlert("Your Data is Not Submitted", "success");
+            showAlert("Your Data is Not Submitted", "danger");
           }
           setLoadingSubmit(false);
         })
         .catch((error) => {
+          setQuality_Reasons([]);
           console.log("error==>", error);
           setLoadingSubmit(false);
         });
@@ -557,9 +556,11 @@ export const FeedBackFormL1L2 = (props) => {
                     <Select
                       className="NoReasonSelect"
                       mode="multiple"
+                      value={quality_Reasons}
+                      allowClear
                       placeholder="Please select"
                       options={NoReasonOption}
-                      onChange={SelectNoReasonValue}
+                      onChange={setQuality_Reasons}
                     />
                   </div>
                 ) : (
