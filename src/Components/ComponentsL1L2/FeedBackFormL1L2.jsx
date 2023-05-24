@@ -285,7 +285,6 @@ export const FeedBackFormL1L2 = (props) => {
         quality_Reasons: quality_Reasons.toString(),
         indentLevelType: productsDetails.indentLevelType,
       };
-      console.log("getProductInputData==>", getProductInputData);
       axios
         .post(
           `${HostManager.reportsL1L2}/INDENT/express/insert/responses`,
@@ -296,6 +295,7 @@ export const FeedBackFormL1L2 = (props) => {
           if (response.data.code === "1000") {
             showAlert("Data has been Saved Successfully", "success");
             setQuality_Reasons([]);
+            GetNextProductDetails("next");
           }
           if (response.data.code === "1001") {
             showAlert("Your Data is Not Submitted", "danger");
