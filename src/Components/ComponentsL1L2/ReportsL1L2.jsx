@@ -62,8 +62,6 @@ const ReportsL1L2 = (props) => {
       })
       .catch((error) => console.log("error==>", error));
   }, [submitted, storeCode]);
-  const ImageUrl =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKMK7ZskPypvRb4Ewsyw6U1NEI8sahKwM0g2AsAiv0qA&s";
 
   const SelectNoReasonValue = (value) => {
     const SelectNoReason = `${value}`;
@@ -168,7 +166,8 @@ const ReportsL1L2 = (props) => {
         });
     }
   };
-
+  const imageCode = !reports.itemCode ? "" : reports.itemCode.substring(2, 9);
+  const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
   return (
     <>
       <TopHeader />
@@ -185,17 +184,6 @@ const ReportsL1L2 = (props) => {
               <option value="unscanned">YET TO SUBMITTED</option>
             </select>
           </div>
-          {/* <div className="col-md-3">
-            <div className="form-switch my-2">
-              <input
-                className="form-check-input switchStyle"
-                type="checkbox"
-                onChange={getTrueFalse}
-                disabled={!switchData}
-              />
-              <label className="mx-2">PRODUCT DESCRIPTION</label>
-            </div>
-          </div> */}
         </div>
       </div>
       {/* REPORTS FORM */}
@@ -204,7 +192,11 @@ const ReportsL1L2 = (props) => {
       ) : (
         <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
           <div className="col">
-            <img src={ImageUrl} className="w-100" alt="No_Image" />
+            <img
+              src={imageURL}
+              className="w-100 img-thumbnail"
+              alt="Image_Unavailable"
+            />
           </div>
           <div className="col">
             <div className="card-body">
@@ -348,14 +340,18 @@ const ReportsL1L2 = (props) => {
               {reportsTable
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((item, i) => {
+                  const { itemCode } = item;
+                  const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
+                  const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
                   return (
                     <tr key={i} className="tableRowData">
                       <td>{item.id}</td>
                       <td className="text-center">
                         <img
-                          src={item.image}
+                          src={imageURL}
                           width="70"
                           height="70"
+                          className="img-thumbnail"
                           alt="No_Image"
                         />
                       </td>

@@ -7,6 +7,7 @@ import Loader from "../../Common/Loader";
 // import { BsSearch } from "react-icons/bs";
 import { NoReasonOption } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
+import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import SideBar from "../../Common/SideBar";
 import * as Icon from "react-bootstrap-icons";
 import { Select } from "antd";
@@ -50,6 +51,11 @@ export const FeedBackFormL1L2 = (props) => {
           setCollection(response.data.value);
         } else if (response.data.code === "1001") {
           showAlert("Data Not Found", "danger");
+          setCollectionValue("");
+          setNeedStateValue("");
+          setGroupValue("");
+          setCategoryValue("");
+          setLoading(false);
         }
         setLoading(false);
       })
@@ -57,7 +63,7 @@ export const FeedBackFormL1L2 = (props) => {
         console.log("");
         setLoading(false);
       });
-  }, [collectionValue, showAlert]);
+  }, []);
 
   const collectionDropdown = colLection.map((element) => {
     return {
@@ -78,7 +84,11 @@ export const FeedBackFormL1L2 = (props) => {
         if (response.data.code === "1000") {
           setNeedSate(response.data.value);
         } else if (response.data.code === "1001") {
-          showAlert("Data Not Found", "danger");
+          setCollectionValue("");
+          setNeedStateValue("");
+          setGroupValue("");
+          setCategoryValue("");
+          setLoading(false);
         }
         setLoading(false);
       })
@@ -86,7 +96,7 @@ export const FeedBackFormL1L2 = (props) => {
         console.log("");
         setLoading(false);
       });
-  }, [collectionValue, showAlert]);
+  }, [collectionValue]);
 
   const needSateDropdown = needSate.map((element) => {
     return {
@@ -104,10 +114,15 @@ export const FeedBackFormL1L2 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response);
         if (response.data.code === "1000") {
           setGroup(response.data.value);
         } else if (response.data.code === "1001") {
-          showAlert("Data Not Found", "danger");
+          setCollectionValue("");
+          setNeedStateValue("");
+          setGroupValue("");
+          setCategoryValue("");
+          setLoading(false);
         }
         setLoading(false);
       })
@@ -115,7 +130,7 @@ export const FeedBackFormL1L2 = (props) => {
         console.log("");
         setLoading(false);
       });
-  }, [collectionValue, needStateValue, showAlert]);
+  }, [needStateValue]);
 
   const GroupDropdown = group.map((element) => {
     return {
@@ -136,7 +151,11 @@ export const FeedBackFormL1L2 = (props) => {
         if (response.data.code === "1000") {
           setCategory(response.data.value);
         } else if (response.data.code === "1001") {
-          showAlert("Data Not Found", "danger");
+          setCollectionValue("");
+          setNeedStateValue("");
+          setGroupValue("");
+          setCategoryValue("");
+          setLoading(false);
         }
         setLoading(false);
       })
@@ -144,7 +163,7 @@ export const FeedBackFormL1L2 = (props) => {
         console.log("");
         setLoading(false);
       });
-  }, [collectionValue, needStateValue, groupValue, showAlert]);
+  }, [groupValue]);
 
   const CategoryDropdown = category.map((element) => {
     return {
@@ -162,10 +181,12 @@ export const FeedBackFormL1L2 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
+        console.log("responseDetails==>", response);
         if (response.data.code === "1000") {
           setProductsDetails(response.data.value);
         } else if (response.data.code === "1001") {
           showAlert("Data Not Found", "danger");
+          setLoading(false);
         }
         setLoading(false);
       })
@@ -181,27 +202,6 @@ export const FeedBackFormL1L2 = (props) => {
     GetProductsValues.itemCode,
     GetProductsValues.itemCode,
   ]);
-
-  // const GetProductsDetails = () => {
-  //   setLoading(true);
-  //   axios
-  //     .post(
-  //       `${HostManager.reportsL1L2}/INDENT/express/get/product/details`,
-  //       GetProductsValues
-  //     )
-  //     .then((res) => res)
-  //     .then((response) => {
-  //       if (response.data.code === "1000") {
-  //         setProductsDetails(response.data.value);
-  //       } else if (response.data.code === "1001") {
-  //         showAlert("Data Not Found", "danger");
-  //       }
-  //       setLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.log("");
-  //     });
-  // };
 
   const getTrueFalse = () => {
     if (!switchData) {
@@ -373,6 +373,11 @@ export const FeedBackFormL1L2 = (props) => {
       });
   };
 
+  const imageCode = !productsDetails.itemCode
+    ? ""
+    : productsDetails.itemCode.substring(2, 9);
+  const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
+
   return (
     <>
       <TopHeader />
@@ -389,7 +394,6 @@ export const FeedBackFormL1L2 = (props) => {
               {collectionDropdown.map((item, i) => {
                 return (
                   <option key={i} value={item.value}>
-                    {item.name}
                     {item.label}
                   </option>
                 );
@@ -401,11 +405,10 @@ export const FeedBackFormL1L2 = (props) => {
               className="SSelect"
               onChange={(e) => setNeedStateValue(e.target.value)}
             >
-              <option>Select NeedSate</option>
+              <option>Select NeedState</option>
               {needSateDropdown.map((item, i) => {
                 return (
                   <option key={i} value={item.value}>
-                    {item.name}
                     {item.label}
                   </option>
                 );
@@ -442,23 +445,24 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          {/* <div className="col-md-1 justify-content-end">
-            <BsSearch
-              size={35}
-              className="searchStyle"
-              onClick={GetProductsDetails}
-            />
-          </div> */}
         </div>
       </div>
       {/* FEED BACK FORM */}
       <div className="row row-cols-1 row-cols-md-2 mx-0 my-3">
         <div className="col">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKMK7ZskPypvRb4Ewsyw6U1NEI8sahKwM0g2AsAiv0qA&s"
-            className="w-100"
-            alt="No_Image"
-          />
+          {imageCode === "" ? (
+            <img
+              src={LoadingGif}
+              className="w-100 img-thumbnail"
+              alt="No_Image"
+            />
+          ) : (
+            <img
+              src={imageURL}
+              className="w-100 img-thumbnail"
+              alt="No_Image"
+            />
+          )}
         </div>
         <div className="col">
           <div className="card-body">
@@ -563,6 +567,7 @@ export const FeedBackFormL1L2 = (props) => {
                 )}
               </div>
             </div>
+            <br />
             <br />
             <div className="d-flex justify-content-center mx-0">
               <button

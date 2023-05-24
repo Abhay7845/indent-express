@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import SideBar from "../../Common/SideBar";
+import "../../Style/TopHeader.css";
 import { HostManager } from "../../APIList/HotMaster";
 import axios from "axios";
 import { L1L2StatusHeading } from "../../Data/DataList";
@@ -63,7 +64,7 @@ const StatusReportsL1L2 = (props) => {
               <tr>
                 {L1L2StatusHeading.map((item, i) => {
                   return (
-                    <th key={i} className="tableHeading">
+                    <th key={i} className="StatusTableHeading">
                       {item.label}
                     </th>
                   );
@@ -73,7 +74,7 @@ const StatusReportsL1L2 = (props) => {
             <tbody>
               {TableData.map((item, i) => {
                 return (
-                  <tr key={i} className="tableRowData">
+                  <tr key={i} className="StatusTableRowData">
                     <td>{item.id}</td>
                     <td>{item.consumerBase}</td>
                     <td>{item.totalSKU}</td>
