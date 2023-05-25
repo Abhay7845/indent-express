@@ -555,7 +555,6 @@ export const FeedBackFormL1L2 = (props) => {
                       className="NoReasonSelect"
                       mode="multiple"
                       value={quality_Reasons}
-                      allowClear
                       placeholder="Please select"
                       options={NoReasonOption}
                       onChange={setQuality_Reasons}
