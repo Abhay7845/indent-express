@@ -10,6 +10,7 @@ import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import SideBar from "../../Common/SideBar";
 import * as Icon from "react-bootstrap-icons";
 import { Select } from "antd";
+import swal from "sweetalert";
 
 export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
@@ -296,12 +297,22 @@ export const FeedBackFormL1L2 = (props) => {
         .then((response) => {
           console.log("response==>", response);
           if (response.data.code === "1000") {
-            alert("Data Has been Saved Successfully");
             setQuality_Reasons([]);
             GetNextProductDetails("next");
+            swal({
+              title: "Success!",
+              text: "Your Data Has been Saved Successfully",
+              icon: "success",
+              buttons: "OK",
+            });
           }
           if (response.data.code === "1001") {
-            alert("Sorry! Data Not Submitted");
+            swal({
+              title: "Sorry!",
+              text: "Sorry! Not Saved",
+              icon: "danger",
+              buttons: "OK",
+            });
           }
           setLoadingSubmit(false);
         })

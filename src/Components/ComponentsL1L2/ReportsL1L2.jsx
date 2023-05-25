@@ -10,6 +10,7 @@ import TablePagination from "@mui/material/TablePagination";
 import axios from "axios";
 import { Select } from "antd";
 import { HostManager } from "../../APIList/HotMaster";
+import swal from "sweetalert";
 
 const ReportsL1L2 = (props) => {
   const { showAlert } = props;
@@ -148,12 +149,22 @@ const ReportsL1L2 = (props) => {
         .then((res) => res)
         .then((response) => {
           if (response.data.code === "1000") {
-            alert("Data Updated Successfully");
             setQuality_Reasons([]);
             setReports({});
+            swal({
+              title: "Success!",
+              text: "Your Data Has been Saved Successfully",
+              icon: "success",
+              buttons: "OK",
+            });
           }
           if (response.data.code === "1001") {
-            showAlert("Your Data is Not Submitted", "success");
+            swal({
+              title: "Sorry!",
+              text: "Sorry! Not Saved",
+              icon: "danger",
+              buttons: "OK",
+            });
           }
           setLoadingSubmit(false);
         })
