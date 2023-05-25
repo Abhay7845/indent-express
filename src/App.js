@@ -9,6 +9,7 @@ import ReportsL1L2 from "./Components/ComponentsL1L2/ReportsL1L2";
 import Admin from "./Components/Admin/Admin";
 import ComponentL3 from "./Components/ComponentsL3/ComponentL3";
 import StatusReportsL1L2 from "./Components/ComponentsL1L2/StatusReportsL1L2";
+import AlertModal from "./Common/AlertModal";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -25,6 +26,7 @@ const App = () => {
     <>
       <BrowserRouter>
         <Alert alert={alert} />
+        <AlertModal alert={alert} />
         <Routes>
           <Route
             index

@@ -23,6 +23,7 @@ const ReportsL1L2 = (props) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(50);
   const storeCode = localStorage.getItem("indent-expressId");
+  console.log("reportsTable==>", reportsTable);
 
   const getTrueFalse = () => {
     if (!switchData) {
@@ -54,7 +55,6 @@ const ReportsL1L2 = (props) => {
       .then((response) => {
         if (response.data.code === "1000") {
           setReportsTable(response.data.value);
-          showAlert("Data Fetched Successfully", "success");
         } else if (response.data.code === "1001") {
           showAlert("Data Not Found", "danger");
         }
@@ -65,7 +65,7 @@ const ReportsL1L2 = (props) => {
 
   const UpdateGetProductsDetails = () => {
     if (switchData && quality_Reasons.length === 0) {
-      showAlert("Please Select Reason For No", "danger");
+      alert("Please Select For No Reason");
     } else {
       setLoadingSubmit(true);
       const getProductInputData = {
@@ -108,7 +108,7 @@ const ReportsL1L2 = (props) => {
         npimEventNo: reports.npimEventNo,
         rsoName: reports.rsoName,
         doe: reports.doe,
-        saleable: reports.saleable,
+        saleable: !switchData ? "YES" : "NO",
         size: reports.size,
         uom: reports.uom,
         reasons: quality_Reasons.toString(),
@@ -141,7 +141,6 @@ const ReportsL1L2 = (props) => {
         indentLevelType: reports.indentLevelType,
       };
 
-      console.log("getProductInputData==>", getProductInputData);
       axios
         .post(
           `${HostManager.reportsL1L2}/INDENTL3/express/update/responses`,
@@ -150,7 +149,7 @@ const ReportsL1L2 = (props) => {
         .then((res) => res)
         .then((response) => {
           if (response.data.code === "1000") {
-            showAlert("Data has been Updated Successfully", "success");
+            alert("Data Updated Successfully");
             setQuality_Reasons([]);
             setReports({});
           }

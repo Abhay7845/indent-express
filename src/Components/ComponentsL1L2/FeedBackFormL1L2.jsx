@@ -210,7 +210,7 @@ export const FeedBackFormL1L2 = (props) => {
   // SUBMIT PRODUCT DETAILS API
   const SubmitProductDetails = () => {
     if (switchData && quality_Reasons.length === 0) {
-      showAlert("Please Select Reason For No", "danger");
+      alert("Please Select For No Reason");
     } else {
       setLoadingSubmit(true);
       const getProductInputData = {
@@ -253,10 +253,10 @@ export const FeedBackFormL1L2 = (props) => {
         npimEventNo: productsDetails.npimEventNo,
         rsoName: productsDetails.rsoName,
         doe: productsDetails.doe,
-        saleable: productsDetails.saleable,
+        saleable: !switchData ? "YES" : "NO",
         size: productsDetails.size,
         uom: productsDetails.uom,
-        reasons: productsDetails.reasons,
+        reasons: quality_Reasons.toString(),
         indQty: productsDetails.indQty,
         indCategory: productsDetails.indCategory,
         submitStatus: productsDetails.submitStatus,
@@ -282,9 +282,11 @@ export const FeedBackFormL1L2 = (props) => {
         stdUcpF: productsDetails.stdUcpF,
         btqCount: productsDetails.btqCount,
         quality_Rating: productsDetails.quality_Rating,
-        quality_Reasons: quality_Reasons.toString(),
+        quality_Reasons: productsDetails.quality_Reasons,
         indentLevelType: productsDetails.indentLevelType,
       };
+      console.log("getProductInputData==>", getProductInputData);
+
       axios
         .post(
           `${HostManager.reportsL1L2}/INDENT/express/insert/responses`,
@@ -292,13 +294,14 @@ export const FeedBackFormL1L2 = (props) => {
         )
         .then((res) => res)
         .then((response) => {
+          console.log("response==>", response);
           if (response.data.code === "1000") {
-            showAlert("Data has been Saved Successfully", "success");
+            alert("Data Has been Saved Successfully");
             setQuality_Reasons([]);
             GetNextProductDetails("next");
           }
           if (response.data.code === "1001") {
-            showAlert("Your Data is Not Submitted", "danger");
+            alert("Sorry! Data Not Submitted");
           }
           setLoadingSubmit(false);
         })

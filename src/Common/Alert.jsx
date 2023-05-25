@@ -1,7 +1,7 @@
 import React from "react";
 
 const Alert = (props) => {
-  const capital = (word) => {
+  const Capital = (word) => {
     if (word === "danger") {
       word = "Sorry";
     } else if (word === "success") {
@@ -17,7 +17,7 @@ const Alert = (props) => {
           className={`alert alert-${props.alert.type} fade show`}
           role="alert"
         >
-          <strong>{capital(props.alert.type)}! </strong>
+          <strong>{Capital(props.alert.type)}! </strong>
           {props.alert.msg}
         </div>
       )}
