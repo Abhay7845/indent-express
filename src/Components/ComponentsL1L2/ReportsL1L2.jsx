@@ -24,6 +24,7 @@ const ReportsL1L2 = (props) => {
   const [rowsPerPage, setRowsPerPage] = useState(50);
   const storeCode = localStorage.getItem("indent-expressId");
   console.log("reportsTable==>", reportsTable);
+  console.log("reports==>", reports.id);
 
   const getTrueFalse = () => {
     if (!switchData) {
@@ -61,7 +62,7 @@ const ReportsL1L2 = (props) => {
         setLoading(false);
       })
       .catch((error) => console.log("error==>", error));
-  }, [submitted, storeCode]);
+  }, [submitted, storeCode, reports.id]);
 
   const UpdateGetProductsDetails = () => {
     if (switchData && quality_Reasons.length === 0) {
