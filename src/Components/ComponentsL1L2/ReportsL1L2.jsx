@@ -111,7 +111,7 @@ const ReportsL1L2 = (props) => {
         saleable: reports.saleable,
         size: reports.size,
         uom: reports.uom,
-        reasons: reports.reasons,
+        reasons: quality_Reasons.toString(),
         indQty: reports.indQty,
         indCategory: reports.indCategory,
         submitStatus: reports.submitStatus,
@@ -137,9 +137,11 @@ const ReportsL1L2 = (props) => {
         stdUcpF: reports.stdUcpF,
         btqCount: reports.btqCount,
         quality_Rating: reports.quality_Rating,
-        quality_Reasons: quality_Reasons.toString(),
+        quality_Reasons: reports.quality_Reasons,
         indentLevelType: reports.indentLevelType,
       };
+
+      console.log("getProductInputData==>", getProductInputData);
       axios
         .post(
           `${HostManager.reportsL1L2}/INDENTL3/express/update/responses`,
@@ -364,8 +366,6 @@ const ReportsL1L2 = (props) => {
                       <td>{item.stdUCP}</td>
                       <td>{item.saleable}</td>
                       <td>{item.reasons}</td>
-                      <td>{item.quality_Rating}</td>
-                      <td>{item.quality_Reasons}</td>
                       <td className="text-center">
                         <Icon.PencilSquare
                           size={18}

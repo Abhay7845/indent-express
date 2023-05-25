@@ -25,8 +25,6 @@ const ReportsHeadingL1L2 = [
   "STD UCP",
   "SALEABLE",
   "REASONS",
-  "QUALITY RATING",
-  "QUALITY REASONS",
   "ACTION",
 ];
 
