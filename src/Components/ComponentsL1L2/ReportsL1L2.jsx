@@ -167,13 +167,6 @@ const ReportsL1L2 = (props) => {
   const imageCode = !reports.itemCode ? "" : reports.itemCode.substring(2, 9);
   const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
 
-  const SelectChange = (selectedList, selectedItem) => {
-    return selectedList.map((data) => data.valueData);
-  };
-
-  const RemoveChange = (selectedList, removedItem) => {
-    return selectedList.map((data) => data.valueData);
-  };
   return (
     <>
       <TopHeader />
@@ -301,8 +294,6 @@ const ReportsL1L2 = (props) => {
                         placeholder="Please select"
                         options={NoReasonOption}
                         onChange={setQuality_Reasons}
-                        onSelect={SelectChange}
-                        onRemove={RemoveChange}
                       />
                     </div>
                   ) : (
