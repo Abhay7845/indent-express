@@ -153,7 +153,7 @@ const ReportsL1L2 = (props) => {
             setReports({});
             swal({
               title: "Success!",
-              text: "Your Data Has been Saved Successfully",
+              text: "Your Data Has been Updated Successfully",
               icon: "success",
               buttons: "OK",
             });
@@ -161,7 +161,7 @@ const ReportsL1L2 = (props) => {
           if (response.data.code === "1001") {
             swal({
               title: "Sorry!",
-              text: "Sorry! Not Saved",
+              text: "Sorry! Not Data Not Updated",
               icon: "danger",
               buttons: "OK",
             });
