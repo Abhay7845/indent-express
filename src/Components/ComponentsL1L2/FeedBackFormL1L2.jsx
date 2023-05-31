@@ -51,7 +51,6 @@ export const FeedBackFormL1L2 = (props) => {
       .get(`${HostManager.reportsL1L2}/INDENT/express/dropdown/ALL/ALL/ALL/ALL`)
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           setCollection(response.data.value);
           setGroup([]);
@@ -103,7 +102,6 @@ export const FeedBackFormL1L2 = (props) => {
           `${HostManager.reportsL1L2}/INDENT/express/dropdown/${value}/ALL/ALL/ALL`
         )
         .then((response) => {
-          console.log("response1==>", response.data);
           if (response.data.code === "1000") {
             setNeedState(response.data.value);
             setGroup([]);
@@ -124,7 +122,6 @@ export const FeedBackFormL1L2 = (props) => {
           `${HostManager.reportsL1L2}/INDENT/express/dropdown/${dropState.collection}/${value}/ALL/ALL`
         )
         .then((response) => {
-          console.log("response2==>", response.data);
           if (response.data.code === "1000") {
             setGroup(response.data.value);
             setCategory([]);
@@ -143,7 +140,6 @@ export const FeedBackFormL1L2 = (props) => {
           `${HostManager.reportsL1L2}/INDENT/express/dropdown/${dropState.collection}/${dropState.consumerBase}/${value}/ALL`
         )
         .then((response) => {
-          console.log("response3==>", response.data);
           if (response.data.code === "1000") {
             setCategory(response.data.value);
           }
