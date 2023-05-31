@@ -285,11 +285,12 @@ export const FeedBackFormL1L2 = (props) => {
         )
         .then((res) => res)
         .then((response) => {
+          console.log("response==>", response.data);
           if (response.data.code === "1000") {
             setQuality_Reasons([]);
             GetNextProductDetails("next");
             swal({
-              title: "Success!",
+              title: "Success",
               text: "Your Data Has been Saved Successfully",
               icon: "success",
               buttons: "OK",
@@ -299,6 +300,14 @@ export const FeedBackFormL1L2 = (props) => {
             } else {
               setSwitchData(true);
             }
+          }
+          if (response.data.code === "1001") {
+            swal({
+              title: "Warning",
+              text: response.data.value,
+              icon: "warning",
+              buttons: "OK",
+            });
           }
           setLoadingSubmit(false);
         })
