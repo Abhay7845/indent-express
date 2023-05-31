@@ -294,6 +294,11 @@ export const FeedBackFormL1L2 = (props) => {
               icon: "success",
               buttons: "OK",
             });
+            if (switchData === false) {
+              setSwitchData(true);
+            } else {
+              setSwitchData(true);
+            }
           }
           setLoadingSubmit(false);
         })
@@ -358,6 +363,11 @@ export const FeedBackFormL1L2 = (props) => {
       .then((response) => {
         if (response.data.code === "1000") {
           setProductsDetails(response.data.value);
+          if (switchData === false) {
+            setSwitchData(true);
+          } else {
+            setSwitchData(true);
+          }
         } else if (response.data.code === "1001") {
           swal({
             title: "Data Not Found",
