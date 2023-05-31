@@ -29,7 +29,6 @@ const StatusReportsL1L2 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error==>", error);
         setLoading(false);
       });
   }, [storeCode]);

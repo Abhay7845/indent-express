@@ -14,7 +14,7 @@ import swal from "sweetalert";
 
 const ReportsL1L2 = (props) => {
   const { showAlert } = props;
-  const [switchData, setSwitchData] = useState(false);
+  const [switchData, setSwitchData] = useState(true);
   const [loading, setLoading] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [submitted, setSubmitted] = useState("scanned");
@@ -26,10 +26,10 @@ const ReportsL1L2 = (props) => {
   const storeCode = localStorage.getItem("indent-expressId");
 
   const getTrueFalse = () => {
-    if (!switchData) {
-      setSwitchData(true);
-    } else {
+    if (switchData) {
       setSwitchData(false);
+    } else {
+      setSwitchData(true);
     }
   };
   const EditReport = (reportData) => {
@@ -60,7 +60,9 @@ const ReportsL1L2 = (props) => {
         }
         setLoading(false);
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => {
+        setLoading(false);
+      });
   }, [submitted, storeCode, reports.id]);
 
   const UpdateGetProductsDetails = () => {
@@ -108,7 +110,7 @@ const ReportsL1L2 = (props) => {
         npimEventNo: reports.npimEventNo,
         rsoName: reports.rsoName,
         doe: reports.doe,
-        saleable: !switchData ? "YES" : "NO",
+        saleable: switchData ? "YES" : "NO",
         size: reports.size,
         uom: reports.uom,
         reasons: quality_Reasons.toString(),
@@ -170,7 +172,6 @@ const ReportsL1L2 = (props) => {
           setLoadingSubmit(false);
         })
         .catch((error) => {
-          console.log("error==>", error);
           setQuality_Reasons([]);
           setLoadingSubmit(false);
         });
@@ -290,7 +291,7 @@ const ReportsL1L2 = (props) => {
                       className="form-check-input "
                       type="checkbox"
                       onChange={getTrueFalse}
-                      checked={!switchData}
+                      checked={switchData}
                     />
                     <label className="mx-2">
                       {switchData === true ? "NO" : "YES"}

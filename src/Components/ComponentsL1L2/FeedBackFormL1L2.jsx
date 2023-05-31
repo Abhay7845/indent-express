@@ -12,7 +12,7 @@ import { BsSearch } from "react-icons/bs";
 import * as Icon from "react-bootstrap-icons";
 import { Select } from "antd";
 import swal from "sweetalert";
-import Switch from "@mui/material/Switch";
+import { FormControlLabel, Switch } from "@material-ui/core";
 
 export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
@@ -25,7 +25,7 @@ export const FeedBackFormL1L2 = (props) => {
   const [needState, setNeedState] = useState([]);
   const [group, setGroup] = useState([]);
   const [category, setCategory] = useState([]);
-  const [switchData, setSwitchData] = useState(false);
+  const [switchData, setSwitchData] = useState(true);
   const [quality_Reasons, setQuality_Reasons] = useState([]);
   const [productsDetails, setProductsDetails] = useState([]);
   const [dropState, setDropState] = useState({
@@ -64,7 +64,6 @@ export const FeedBackFormL1L2 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   }, []);
@@ -168,7 +167,6 @@ export const FeedBackFormL1L2 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   }, []);
@@ -181,7 +179,6 @@ export const FeedBackFormL1L2 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           setProductsDetails(response.data.value);
         } else if (response.data.code === "1001") {
@@ -195,16 +192,16 @@ export const FeedBackFormL1L2 = (props) => {
   };
 
   const getTrueFalse = () => {
-    if (!switchData) {
-      setSwitchData(true);
-    } else {
+    if (switchData) {
       setSwitchData(false);
+    } else {
+      setSwitchData(true);
     }
   };
 
   // SUBMIT PRODUCT DETAILS API
   const SubmitProductDetails = () => {
-    if (switchData && quality_Reasons.length === 0) {
+    if (!switchData && quality_Reasons.length === 0) {
       swal("Please Select For No Reason");
     } else {
       setLoadingSubmit(true);
@@ -248,7 +245,7 @@ export const FeedBackFormL1L2 = (props) => {
         npimEventNo: productsDetails.npimEventNo,
         rsoName: productsDetails.rsoName,
         doe: productsDetails.doe,
-        saleable: !switchData ? "YES" : "NO",
+        saleable: switchData ? "YES" : "NO",
         size: productsDetails.size,
         uom: productsDetails.uom,
         reasons: quality_Reasons.toString(),
@@ -288,7 +285,6 @@ export const FeedBackFormL1L2 = (props) => {
         )
         .then((res) => res)
         .then((response) => {
-          console.log("response==>", response.data);
           if (response.data.code === "1000") {
             setQuality_Reasons([]);
             GetNextProductDetails("next");
@@ -303,7 +299,6 @@ export const FeedBackFormL1L2 = (props) => {
         })
         .catch((error) => {
           setQuality_Reasons([]);
-          console.log("error==>", error);
           setLoadingSubmit(false);
         });
     }
@@ -340,15 +335,11 @@ export const FeedBackFormL1L2 = (props) => {
         setLoadingPre(false);
       })
       .catch((error) => {
-        console.log("error==>", error);
         setLoadingPre(false);
       });
   };
-  console.log("setSwitchData1", switchData);
-
   const GetNextProductDetails = (direction) => {
     setLoadingNext(true);
-    console.log("setSwitchData2==>", switchData);
     const getNextProductDetails = {
       category: !dropState.category ? "ALL" : dropState.category,
       collection: !dropState.collection ? "ALL" : dropState.collection,
@@ -378,7 +369,6 @@ export const FeedBackFormL1L2 = (props) => {
         setLoadingNext(false);
       })
       .catch((error) => {
-        console.log("error==>", error);
         setLoadingNext(false);
       });
   };
@@ -562,16 +552,14 @@ export const FeedBackFormL1L2 = (props) => {
                 </h6>
                 <br />
                 <div className="d-flex justify-content-center">
-                  <Switch
-                    defaultChecked
-                    onChange={getTrueFalse}
-                    className="switchStyle"
+                  <FormControlLabel
+                    control={
+                      <Switch checked={switchData} onChange={getTrueFalse} />
+                    }
+                    label={switchData ? <label>YES</label> : <label>NO</label>}
                   />
-                  <label className="mx-2">
-                    {switchData === true ? "NO" : "YES"}
-                  </label>
                 </div>
-                {!switchData === false ? (
+                {switchData === false ? (
                   <div className="my-3">
                     <label>Choose Reason For NO</label>
                     <Select
