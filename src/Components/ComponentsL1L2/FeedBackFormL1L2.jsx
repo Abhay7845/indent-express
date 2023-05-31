@@ -29,8 +29,8 @@ export const FeedBackFormL1L2 = (props) => {
   const [quality_Reasons, setQuality_Reasons] = useState([]);
   const [productsDetails, setProductsDetails] = useState([]);
   const [dropState, setDropState] = useState({
-    consumerBase: "ALL",
     collection: "ALL",
+    consumerBase: "ALL",
     groupData: "ALL",
     category: "ALL",
   });
