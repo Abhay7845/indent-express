@@ -12,7 +12,6 @@ import { BsSearch } from "react-icons/bs";
 import * as Icon from "react-bootstrap-icons";
 import { Select } from "antd";
 import swal from "sweetalert";
-import Switch from "react-switch";
 
 export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
@@ -568,7 +567,6 @@ export const FeedBackFormL1L2 = (props) => {
                     onChange={getTrueFalse}
                     checked={!switchData}
                   />
-                  <Switch />
                   <label className="mx-2">
                     {switchData === true ? "NO" : "YES"}
                   </label>
