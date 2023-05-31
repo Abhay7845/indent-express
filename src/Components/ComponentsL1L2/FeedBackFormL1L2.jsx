@@ -12,6 +12,7 @@ import { BsSearch } from "react-icons/bs";
 import * as Icon from "react-bootstrap-icons";
 import { Select } from "antd";
 import swal from "sweetalert";
+import Switch from "@mui/material/Switch";
 
 export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
@@ -560,12 +561,11 @@ export const FeedBackFormL1L2 = (props) => {
                   <b>FEEDBACK</b>
                 </h6>
                 <br />
-                <div className="form-switch d-flex justify-content-center">
-                  <input
-                    className="form-check-input switchStyle"
-                    type="checkbox"
+                <div className="d-flex justify-content-center">
+                  <Switch
+                    defaultChecked
                     onChange={getTrueFalse}
-                    checked={!switchData}
+                    className="switchStyle"
                   />
                   <label className="mx-2">
                     {switchData === true ? "NO" : "YES"}

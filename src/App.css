@@ -90,6 +90,7 @@
 
 .switchStyle {
   cursor: pointer;
+  margin-top: -7px;
 }
 
 /* TABLE STYLE CSS */

@@ -287,7 +287,7 @@ const ReportsL1L2 = (props) => {
                   <br />
                   <div className="form-switch d-flex justify-content-center">
                     <input
-                      className="form-check-input switchStyle"
+                      className="form-check-input "
                       type="checkbox"
                       onChange={getTrueFalse}
                       checked={!switchData}
