@@ -8,9 +8,11 @@ import { NoReasonOption } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import SideBar from "../../Common/SideBar";
+import { BsSearch } from "react-icons/bs";
 import * as Icon from "react-bootstrap-icons";
 import { Select } from "antd";
 import swal from "sweetalert";
+import Switch from "react-switch";
 
 export const FeedBackFormL1L2 = (props) => {
   const { showAlert } = props;
@@ -20,21 +22,24 @@ export const FeedBackFormL1L2 = (props) => {
   const [loadingNext, setLoadingNext] = useState(false);
   const [loadingPre, setLoadingPre] = useState(false);
   const [colLection, setCollection] = useState([]);
-  const [collectionValue, setCollectionValue] = useState("");
-  const [needSate, setNeedSate] = useState([]);
-  const [needStateValue, setNeedStateValue] = useState("");
+  const [needState, setNeedState] = useState([]);
   const [group, setGroup] = useState([]);
-  const [groupValue, setGroupValue] = useState("");
   const [category, setCategory] = useState([]);
-  const [categoryValue, setCategoryValue] = useState("");
   const [switchData, setSwitchData] = useState(false);
   const [quality_Reasons, setQuality_Reasons] = useState([]);
   const [productsDetails, setProductsDetails] = useState([]);
+  const [dropState, setDropState] = useState({
+    consumerBase: "ALL",
+    collection: "ALL",
+    groupData: "ALL",
+    category: "ALL",
+  });
+
   const GetProductsValues = {
-    category: !categoryValue ? "ALL" : categoryValue,
-    collection: !collectionValue ? "ALL" : collectionValue,
-    consumerBase: !needStateValue ? "ALL" : needStateValue,
-    group: !groupValue ? "ALL" : groupValue,
+    category: !dropState.category ? "ALL" : dropState.category,
+    collection: !dropState.collection ? "ALL" : dropState.collection,
+    consumerBase: !dropState.consumerBase ? "ALL" : dropState.consumerBase,
+    group: !dropState.groupData ? "ALL" : dropState.groupData,
     itemCode: "",
     storeCode: storeCode,
   };
@@ -48,13 +53,13 @@ export const FeedBackFormL1L2 = (props) => {
       .then((response) => {
         if (response.data.code === "1000") {
           setCollection(response.data.value);
+          setGroup([]);
+          setCategory([]);
         } else if (response.data.code === "1001") {
           showAlert("Data Not Found", "danger");
-          setCollectionValue("");
-          setNeedStateValue("");
-          setGroupValue("");
-          setCategoryValue("");
-          setLoading(false);
+          setNeedState([]);
+          setGroup([]);
+          setCategory([]);
         }
         setLoading(false);
       })
@@ -64,117 +69,87 @@ export const FeedBackFormL1L2 = (props) => {
       });
   }, []);
 
-  const collectionDropdown = colLection.map((element) => {
-    return {
-      value: element,
-      label: element,
-    };
-  });
-
-  //NEED STATE  DROPDOWN
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENT/express/dropdown/${collectionValue}/ALL/ALL/ALL`
-      )
-      .then((res) => res)
-      .then((response) => {
-        if (response.data.code === "1000") {
-          setNeedSate(response.data.value);
-          setNeedStateValue("");
-          setGroupValue("");
-          setCategoryValue("");
-        } else if (response.data.code === "1001") {
-          setCollectionValue("");
-          setNeedStateValue("");
-          setGroupValue("");
-          setCategoryValue("");
+  const onchangeHandler = (event) => {
+    const { name, value } = event.target;
+    setDropState((old) => {
+      switch (name) {
+        case "collection":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "consumerBase":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "groupData":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "category":
+          return {
+            ...old,
+            [name]: value,
+          };
+        default:
+          break;
+      }
+    });
+    if (name === "collection") {
+      axios
+        .get(
+          `${HostManager.reportsL1L2}/INDENT/express/dropdown/${value}/ALL/ALL/ALL`
+        )
+        .then((response) => {
+          if (response.data.code === "1000") {
+            setNeedState(response.data.value);
+            setGroup([]);
+            setCategory([]);
+            setLoading(false);
+          } else if (response.data.code === "1001") {
+            setGroup([]);
+            setCategory([]);
+          }
+        })
+        .catch((error) => {
           setLoading(false);
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log("");
-        setLoading(false);
-      });
-  }, [collectionValue]);
-
-  const needSateDropdown = needSate.map((element) => {
-    return {
-      value: element,
-      label: element,
-    };
-  });
-
-  //GROUP  DROPDOWN
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENT/express/dropdown/${collectionValue}/${needStateValue}/ALL/ALL`
-      )
-      .then((res) => res)
-      .then((response) => {
-        if (response.data.code === "1000") {
-          setGroup(response.data.value);
-          setGroupValue("");
-          setCategoryValue("");
-        } else if (response.data.code === "1001") {
-          setCollectionValue("");
-          setNeedStateValue("");
-          setGroupValue("");
-          setCategoryValue("");
+        });
+    } else if (name === "consumerBase") {
+      setLoading(true);
+      axios
+        .get(
+          `${HostManager.reportsL1L2}/INDENT/express/dropdown/${dropState.collection}/${value}/ALL/ALL`
+        )
+        .then((response) => {
+          if (response.data.code === "1000") {
+            setGroup(response.data.value);
+            setLoading(false);
+          } else if (response.data.code === "1001") {
+            setCategory([]);
+          }
+        })
+        .catch((error) => {
           setLoading(false);
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log("");
-        setLoading(false);
-      });
-  }, [needStateValue]);
-
-  const GroupDropdown = group.map((element) => {
-    return {
-      value: element,
-      label: element,
-    };
-  });
-
-  //CATEGORY  DROPDOWN
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENT/express/dropdown/${collectionValue}/${needStateValue}/${groupValue}/ALL`
-      )
-      .then((res) => res)
-      .then((response) => {
-        if (response.data.code === "1000") {
-          setCategory(response.data.value);
-          setCategoryValue("");
-        } else if (response.data.code === "1001") {
-          setCollectionValue("");
-          setNeedStateValue("");
-          setGroupValue("");
-          setCategoryValue("");
+        });
+    } else if (name === "groupData") {
+      setLoading(true);
+      axios
+        .get(
+          `${HostManager.reportsL1L2}/INDENT/express/dropdown/${dropState.collection}/${dropState.consumerBase}/${value}/ALL`
+        )
+        .then((response) => {
+          if (response.data.code === "1000") {
+            setCategory(response.data.value);
+            setLoading(false);
+          }
+        })
+        .catch((error) => {
           setLoading(false);
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log("");
-        setLoading(false);
-      });
-  }, [groupValue]);
-
-  const CategoryDropdown = category.map((element) => {
-    return {
-      value: element,
-      label: element,
-    };
-  });
+        });
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -189,7 +164,6 @@ export const FeedBackFormL1L2 = (props) => {
           setProductsDetails(response.data.value);
         } else if (response.data.code === "1001") {
           showAlert("Data Not Found", "danger");
-          setLoading(false);
         }
         setLoading(false);
       })
@@ -197,14 +171,28 @@ export const FeedBackFormL1L2 = (props) => {
         console.log("");
         setLoading(false);
       });
-  }, [
-    GetProductsValues.category,
-    GetProductsValues.collection,
-    GetProductsValues.consumerBase,
-    GetProductsValues.group,
-    GetProductsValues.itemCode,
-    GetProductsValues.itemCode,
-  ]);
+  }, []);
+
+  const GetProductsDetails = () => {
+    setLoading(true);
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENT/express/dropdown/${dropState.collection}/${dropState.consumerBase}/${dropState.groupData}/${dropState.category}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        console.log("response==>", response.data);
+        if (response.data.code === "1000") {
+          setProductsDetails(response.data.value);
+        } else if (response.data.code === "1001") {
+          showAlert("Data Not Found", "danger");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+      });
+  };
 
   const getTrueFalse = () => {
     if (!switchData) {
@@ -217,7 +205,7 @@ export const FeedBackFormL1L2 = (props) => {
   // SUBMIT PRODUCT DETAILS API
   const SubmitProductDetails = () => {
     if (switchData && quality_Reasons.length === 0) {
-      alert("Please Select For No Reason");
+      swal("Please Select For No Reason");
     } else {
       setLoadingSubmit(true);
       const getProductInputData = {
@@ -292,7 +280,6 @@ export const FeedBackFormL1L2 = (props) => {
         quality_Reasons: productsDetails.quality_Reasons,
         indentLevelType: productsDetails.indentLevelType,
       };
-      console.log("getProductInputData==>", getProductInputData);
 
       axios
         .post(
@@ -301,7 +288,7 @@ export const FeedBackFormL1L2 = (props) => {
         )
         .then((res) => res)
         .then((response) => {
-          console.log("response==>", response);
+          console.log("response==>", response.data);
           if (response.data.code === "1000") {
             setQuality_Reasons([]);
             GetNextProductDetails("next");
@@ -309,14 +296,6 @@ export const FeedBackFormL1L2 = (props) => {
               title: "Success!",
               text: "Your Data Has been Saved Successfully",
               icon: "success",
-              buttons: "OK",
-            });
-          }
-          if (response.data.code === "1001") {
-            swal({
-              title: "Sorry!",
-              text: "Sorry! Not Saved",
-              icon: "danger",
               buttons: "OK",
             });
           }
@@ -333,10 +312,10 @@ export const FeedBackFormL1L2 = (props) => {
   const GetPreviousProductDetails = (direction) => {
     setLoadingPre(true);
     const getPreviousProductDetails = {
-      category: !categoryValue ? "ALL" : categoryValue,
-      collection: !collectionValue ? "ALL" : collectionValue,
-      consumerBase: !needStateValue ? "ALL" : needStateValue,
-      group: !groupValue ? "ALL" : groupValue,
+      category: !dropState.category ? "ALL" : dropState.category,
+      collection: !dropState.collection ? "ALL" : dropState.collection,
+      consumerBase: !dropState.consumerBase ? "ALL" : dropState.consumerBase,
+      group: !dropState.groupData ? "ALL" : dropState.groupData,
       itemCode: productsDetails.itemCode,
       storeCode: storeCode,
       direction: direction,
@@ -350,6 +329,13 @@ export const FeedBackFormL1L2 = (props) => {
       .then((response) => {
         if (response.data.code === "1000") {
           setProductsDetails(response.data.value);
+        } else if (response.data.code === "1001") {
+          swal({
+            title: "Data Not Found",
+            text: response.data.value,
+            icon: "error",
+            buttons: "OK",
+          });
         }
         setLoadingPre(false);
       })
@@ -358,13 +344,16 @@ export const FeedBackFormL1L2 = (props) => {
         setLoadingPre(false);
       });
   };
+  console.log("setSwitchData1", switchData);
+
   const GetNextProductDetails = (direction) => {
     setLoadingNext(true);
+    console.log("setSwitchData2==>", switchData);
     const getNextProductDetails = {
-      category: !categoryValue ? "ALL" : categoryValue,
-      collection: !collectionValue ? "ALL" : collectionValue,
-      consumerBase: !needStateValue ? "ALL" : needStateValue,
-      group: !groupValue ? "ALL" : groupValue,
+      category: !dropState.category ? "ALL" : dropState.category,
+      collection: !dropState.collection ? "ALL" : dropState.collection,
+      consumerBase: !dropState.consumerBase ? "ALL" : dropState.consumerBase,
+      group: !dropState.groupData ? "ALL" : dropState.groupData,
       itemCode: productsDetails.itemCode,
       storeCode: storeCode,
       direction: direction,
@@ -378,6 +367,13 @@ export const FeedBackFormL1L2 = (props) => {
       .then((response) => {
         if (response.data.code === "1000") {
           setProductsDetails(response.data.value);
+        } else if (response.data.code === "1001") {
+          swal({
+            title: "Data Not Found",
+            text: response.data.value,
+            icon: "error",
+            buttons: "OK",
+          });
         }
         setLoadingNext(false);
       })
@@ -402,13 +398,14 @@ export const FeedBackFormL1L2 = (props) => {
           <div className="col-md-3">
             <select
               className="SSelect"
-              onChange={(e) => setCollectionValue(e.target.value)}
+              onChange={onchangeHandler}
+              name="collection"
             >
               <option>Select Collection</option>
-              {collectionDropdown.map((item, i) => {
+              {colLection.map((item, i) => {
                 return (
-                  <option key={i} value={item.value}>
-                    {item.label}
+                  <option key={i} value={item}>
+                    {item}
                   </option>
                 );
               })}
@@ -417,13 +414,14 @@ export const FeedBackFormL1L2 = (props) => {
           <div className="col-md-3">
             <select
               className="SSelect"
-              onChange={(e) => setNeedStateValue(e.target.value)}
+              onChange={onchangeHandler}
+              name="consumerBase"
             >
               <option>Select NeedState</option>
-              {needSateDropdown.map((item, i) => {
+              {needState.map((needSateValue, i) => {
                 return (
-                  <option key={i} value={item.value}>
-                    {item.label}
+                  <option key={i} value={needSateValue}>
+                    {needSateValue}
                   </option>
                 );
               })}
@@ -432,32 +430,41 @@ export const FeedBackFormL1L2 = (props) => {
           <div className="col-md-3">
             <select
               className="SSelect"
-              onChange={(e) => setGroupValue(e.target.value)}
+              onChange={onchangeHandler}
+              name="groupData"
             >
               <option>Select Group</option>
-              {GroupDropdown.map((item, i) => {
+              {group.map((groupValue, i) => {
                 return (
-                  <option key={i} value={item.value}>
-                    {item.label}
+                  <option key={i} value={groupValue}>
+                    {groupValue}
                   </option>
                 );
               })}
             </select>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-2">
             <select
               className="SSelect"
-              onChange={(e) => setCategoryValue(e.target.value)}
+              onChange={onchangeHandler}
+              name="category"
             >
               <option>Select Category</option>
-              {CategoryDropdown.map((item, i) => {
+              {category.map((categoryValue, i) => {
                 return (
-                  <option key={i} value={item.value}>
-                    {item.label}
+                  <option key={i} value={categoryValue}>
+                    {categoryValue}
                   </option>
                 );
               })}
             </select>
+          </div>
+          <div className="col-md-1 justify-content-end">
+            <BsSearch
+              size={35}
+              className="searchStyle"
+              onClick={GetProductsDetails}
+            />
           </div>
         </div>
       </div>
@@ -561,6 +568,7 @@ export const FeedBackFormL1L2 = (props) => {
                     onChange={getTrueFalse}
                     checked={!switchData}
                   />
+                  <Switch />
                   <label className="mx-2">
                     {switchData === true ? "NO" : "YES"}
                   </label>

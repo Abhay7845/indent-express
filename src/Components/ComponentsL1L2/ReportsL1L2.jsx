@@ -65,7 +65,7 @@ const ReportsL1L2 = (props) => {
 
   const UpdateGetProductsDetails = () => {
     if (switchData && quality_Reasons.length === 0) {
-      alert("Please Select For No Reason");
+      swal("Please Select For No Reason");
     } else {
       setLoadingSubmit(true);
       const getProductInputData = {
@@ -149,6 +149,7 @@ const ReportsL1L2 = (props) => {
         .then((res) => res)
         .then((response) => {
           if (response.data.code === "1000") {
+            setSwitchData(true);
             setQuality_Reasons([]);
             setReports({});
             swal({
@@ -161,8 +162,8 @@ const ReportsL1L2 = (props) => {
           if (response.data.code === "1001") {
             swal({
               title: "Sorry!",
-              text: "Sorry! Not Data Not Updated",
-              icon: "danger",
+              text: "Data Not Updated",
+              icon: "error",
               buttons: "OK",
             });
           }
