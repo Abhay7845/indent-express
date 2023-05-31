@@ -23,12 +23,12 @@
 /* IMAGE STYLE CSS */
 @media screen and (min-width:1200px) {
     .catalogImage {
-        height: 470px;
+        height: 455px;
     }
 }
 
 @media screen and (min-width:1200px) {
     .ReportCatalogImage {
-        height: 445px;
+        height: 435px;
     }
 }
