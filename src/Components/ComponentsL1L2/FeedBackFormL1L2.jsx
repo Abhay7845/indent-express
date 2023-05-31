@@ -51,6 +51,7 @@ export const FeedBackFormL1L2 = (props) => {
       .get(`${HostManager.reportsL1L2}/INDENT/express/dropdown/ALL/ALL/ALL/ALL`)
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           setCollection(response.data.value);
           setGroup([]);
@@ -102,15 +103,16 @@ export const FeedBackFormL1L2 = (props) => {
           `${HostManager.reportsL1L2}/INDENT/express/dropdown/${value}/ALL/ALL/ALL`
         )
         .then((response) => {
+          console.log("response1==>", response.data);
           if (response.data.code === "1000") {
             setNeedState(response.data.value);
             setGroup([]);
             setCategory([]);
-            setLoading(false);
           } else if (response.data.code === "1001") {
             setGroup([]);
             setCategory([]);
           }
+          setLoading(false);
         })
         .catch((error) => {
           setLoading(false);
@@ -122,12 +124,14 @@ export const FeedBackFormL1L2 = (props) => {
           `${HostManager.reportsL1L2}/INDENT/express/dropdown/${dropState.collection}/${value}/ALL/ALL`
         )
         .then((response) => {
+          console.log("response2==>", response.data);
           if (response.data.code === "1000") {
             setGroup(response.data.value);
-            setLoading(false);
+            setCategory([]);
           } else if (response.data.code === "1001") {
             setCategory([]);
           }
+          setLoading(false);
         })
         .catch((error) => {
           setLoading(false);
@@ -139,10 +143,14 @@ export const FeedBackFormL1L2 = (props) => {
           `${HostManager.reportsL1L2}/INDENT/express/dropdown/${dropState.collection}/${dropState.consumerBase}/${value}/ALL`
         )
         .then((response) => {
+          console.log("response3==>", response.data);
           if (response.data.code === "1000") {
             setCategory(response.data.value);
-            setLoading(false);
           }
+          if (response.data.code === "1001") {
+            setCategory([]);
+          }
+          setLoading(false);
         })
         .catch((error) => {
           setLoading(false);
@@ -428,10 +436,10 @@ export const FeedBackFormL1L2 = (props) => {
               name="consumerBase"
             >
               <option>Select NeedState</option>
-              {needState.map((needSateValue, i) => {
+              {needState.map((item, i) => {
                 return (
-                  <option key={i} value={needSateValue}>
-                    {needSateValue}
+                  <option key={i} value={item}>
+                    {item}
                   </option>
                 );
               })}
