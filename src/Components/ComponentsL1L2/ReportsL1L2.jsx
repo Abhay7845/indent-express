@@ -204,7 +204,7 @@ const ReportsL1L2 = (props) => {
           <div className="col">
             <img
               src={imageURL}
-              className="w-100 img-thumbnail"
+              className="w-100 img-thumbnail ReportCatalogImage"
               alt="Image_Unavailable"
             />
           </div>
@@ -312,7 +312,7 @@ const ReportsL1L2 = (props) => {
                   )}
                 </div>
               </div>
-              <div className="mt-4">
+              <div className="mt-5">
                 <button className="CButton" onClick={UpdateGetProductsDetails}>
                   {loadingSubmit ? (
                     <span

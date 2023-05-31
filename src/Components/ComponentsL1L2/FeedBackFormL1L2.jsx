@@ -82,6 +82,9 @@ export const FeedBackFormL1L2 = (props) => {
       .then((response) => {
         if (response.data.code === "1000") {
           setNeedSate(response.data.value);
+          setNeedStateValue("");
+          setGroupValue("");
+          setCategoryValue("");
         } else if (response.data.code === "1001") {
           setCollectionValue("");
           setNeedStateValue("");
@@ -115,6 +118,8 @@ export const FeedBackFormL1L2 = (props) => {
       .then((response) => {
         if (response.data.code === "1000") {
           setGroup(response.data.value);
+          setGroupValue("");
+          setCategoryValue("");
         } else if (response.data.code === "1001") {
           setCollectionValue("");
           setNeedStateValue("");
@@ -148,6 +153,7 @@ export const FeedBackFormL1L2 = (props) => {
       .then((response) => {
         if (response.data.code === "1000") {
           setCategory(response.data.value);
+          setCategoryValue("");
         } else if (response.data.code === "1001") {
           setCollectionValue("");
           setNeedStateValue("");
@@ -461,13 +467,13 @@ export const FeedBackFormL1L2 = (props) => {
           {imageCode === "" ? (
             <img
               src={LoadingGif}
-              className="w-100 img-thumbnail"
+              className="w-100 img-thumbnail catalogImage"
               alt="No_Image"
             />
           ) : (
             <img
               src={imageURL}
-              className="w-100 img-thumbnail"
+              className="w-100 img-thumbnail catalogImage"
               alt="No_Image"
             />
           )}

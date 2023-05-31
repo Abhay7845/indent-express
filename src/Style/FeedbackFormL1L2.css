@@ -19,3 +19,16 @@
 .productsDetailsStyle {
     font-size: 15px;
 }
+
+/* IMAGE STYLE CSS */
+@media screen and (min-width:1200px) {
+    .catalogImage {
+        height: 470px;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .ReportCatalogImage {
+        height: 445px;
+    }
+}
