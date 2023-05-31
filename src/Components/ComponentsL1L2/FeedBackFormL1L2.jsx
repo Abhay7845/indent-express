@@ -301,6 +301,7 @@ export const FeedBackFormL1L2 = (props) => {
             }
           }
           if (response.data.code === "1001") {
+            alert("Your Data Has been Saved Successfully");
             GetNextProductDetails("next");
             swal({
               title: "Warning",
