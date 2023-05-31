@@ -285,7 +285,6 @@ export const FeedBackFormL1L2 = (props) => {
         )
         .then((res) => res)
         .then((response) => {
-          console.log("response==>", response.data);
           if (response.data.code === "1000") {
             setQuality_Reasons([]);
             GetNextProductDetails("next");
@@ -302,9 +301,10 @@ export const FeedBackFormL1L2 = (props) => {
             }
           }
           if (response.data.code === "1001") {
+            GetNextProductDetails("next");
             swal({
               title: "Warning",
-              text: response.data.value,
+              text: "Selected Category Data Not Found",
               icon: "warning",
               buttons: "OK",
             });
