@@ -11,6 +11,7 @@ import axios from "axios";
 import { Select } from "antd";
 import { HostManager } from "../../APIList/HotMaster";
 import swal from "sweetalert";
+import { FormControlLabel, Switch } from "@material-ui/core";
 
 const ReportsL1L2 = (props) => {
   const { showAlert } = props;
@@ -66,7 +67,7 @@ const ReportsL1L2 = (props) => {
   }, [submitted, storeCode, reports.id]);
 
   const UpdateGetProductsDetails = () => {
-    if (switchData && quality_Reasons.length === 0) {
+    if (!switchData && quality_Reasons.length === 0) {
       swal("Please Select For No Reason");
     } else {
       setLoadingSubmit(true);
@@ -142,7 +143,7 @@ const ReportsL1L2 = (props) => {
         quality_Reasons: reports.quality_Reasons,
         indentLevelType: reports.indentLevelType,
       };
-
+      console.log("getProductInputData==>", getProductInputData);
       axios
         .post(
           `${HostManager.reportsL1L2}/INDENTL3/express/update/responses`,
@@ -286,18 +287,17 @@ const ReportsL1L2 = (props) => {
                     <b>FEEDBACK</b>
                   </h6>
                   <br />
-                  <div className="form-switch d-flex justify-content-center">
-                    <input
-                      className="form-check-input "
-                      type="checkbox"
-                      onChange={getTrueFalse}
-                      checked={switchData}
+                  <div className="d-flex justify-content-center">
+                    <FormControlLabel
+                      control={
+                        <Switch checked={switchData} onChange={getTrueFalse} />
+                      }
+                      label={
+                        switchData ? <label>YES</label> : <label>NO</label>
+                      }
                     />
-                    <label className="mx-2">
-                      {switchData === true ? "NO" : "YES"}
-                    </label>
                   </div>
-                  {!switchData === false ? (
+                  {switchData === false ? (
                     <div className="my-3">
                       <label>Choose Reason For NO</label>
                       <Select
