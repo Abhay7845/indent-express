@@ -15,6 +15,7 @@ const SideBar = () => {
     isOpen === true ? setIsOpen(false) : setIsOpen(true);
   };
   const UserRole = localStorage.getItem("indent-expressId").toUpperCase();
+  const ROLE = localStorage.getItem("indent - expressRole");
   return (
     <>
       <Icon.TextLeft
@@ -38,7 +39,7 @@ const SideBar = () => {
         </div>
         <div className="sd-body">
           <ul className="mx-2">
-            {UserRole === "ADMIN" ? (
+            {UserRole === "" ? (
               <>
                 <li className="my-3">
                   <Link
