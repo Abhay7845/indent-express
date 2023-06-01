@@ -14,8 +14,9 @@ const SideBar = () => {
   const ToggleSidebar = () => {
     isOpen === true ? setIsOpen(false) : setIsOpen(true);
   };
-  const UserRole = localStorage.getItem("indent-expressId").toUpperCase();
-  const ROLE = localStorage.getItem("indent - expressRole");
+  const AdminRole = localStorage.getItem("indent-expressId").toUpperCase();
+  const ROLE = localStorage.getItem("indent-expressRole");
+  console.log("ROLE==>", ROLE);
   return (
     <>
       <Icon.TextLeft
@@ -39,95 +40,8 @@ const SideBar = () => {
         </div>
         <div className="sd-body">
           <ul className="mx-2">
-            {UserRole === "" ? (
-              <>
-                <li className="my-3">
-                  <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
-                    <Icon.HouseDashFill
-                      size={20}
-                      style={{ marginTop: "-10px" }}
-                      className="mx-1"
-                    />
-                    HOME
-                  </Link>
-                  <hr />
-                </li>
-                <li className="my-3">
-                  <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
-                    COPY STORE INDENTS
-                  </Link>
-                  <hr />
-                </li>
-                <li className="my-3">
-                  <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
-                    MASTER FILE UPLOAD
-                  </Link>
-                  <hr />
-                </li>
-                <li className="my-3">
-                  <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
-                    UPDATE PORTAL STATUS
-                  </Link>
-                  <hr />
-                </li>
-                <li className="my-3">
-                  <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
-                    GET MASTER SKU
-                  </Link>
-                  <hr />
-                </li>
-                <li className="my-3">
-                  <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
-                    LOGIN CREDENTIALS
-                  </Link>
-                  <hr />
-                </li>
-                <li className="my-3">
-                  <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
-                    DAY END REPORTS
-                  </Link>
-                  <hr />
-                </li>
-                <li className="my-3">
-                  <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
-                    UPDATE AUTO MAIL
-                  </Link>
-                  <hr />
-                </li>
-              </>
-            ) : (
+            {/* COMPONENTS FOR L1L2 URL */}
+            {ROLE === "L1" && (
               <>
                 <li>
                   <Link
@@ -174,6 +88,133 @@ const SideBar = () => {
                   </Link>
                   <hr />
                 </li>
+              </>
+            )}
+            {/* COMPONENTS FOR L3 URL */}
+            {ROLE === "L3" && (
+              <>
+                <li>
+                  <Link
+                    className="NavigationStyle"
+                    to="/Indent-express/L3"
+                    onClick={ToggleSidebar}
+                  >
+                    <Icon.HouseDashFill
+                      size={20}
+                      style={{ marginTop: "-10px" }}
+                      className="mx-1"
+                    />
+                    HOME
+                  </Link>
+                </li>
+                <hr />
+                <li className="my-3">
+                  <Link
+                    className="NavigationStyle"
+                    to="/Indent-express/L1/L2/status/reports"
+                    onClick={ToggleSidebar}
+                  >
+                    <BsFillBarChartFill
+                      size={20}
+                      style={{ marginTop: "-10px" }}
+                      className="mx-1"
+                    />
+                    STATUS
+                  </Link>
+                  <hr />
+                </li>
+              </>
+            )}
+            {/* COMPONENTS FOR ADMIN URL */}
+            {AdminRole === "ADMIN" && (
+              <>
+                <>
+                  <li className="my-3">
+                    <Link
+                      className="NavigationStyle"
+                      to="/Indent-express/admin"
+                      onClick={ToggleSidebar}
+                    >
+                      <Icon.HouseDashFill
+                        size={20}
+                        style={{ marginTop: "-10px" }}
+                        className="mx-1"
+                      />
+                      HOME
+                    </Link>
+                    <hr />
+                  </li>
+                  <li className="my-3">
+                    <Link
+                      className="NavigationStyle"
+                      to="/Indent-express/admin"
+                      onClick={ToggleSidebar}
+                    >
+                      COPY STORE INDENTS
+                    </Link>
+                    <hr />
+                  </li>
+                  <li className="my-3">
+                    <Link
+                      className="NavigationStyle"
+                      to="/Indent-express/admin"
+                      onClick={ToggleSidebar}
+                    >
+                      MASTER FILE UPLOAD
+                    </Link>
+                    <hr />
+                  </li>
+                  <li className="my-3">
+                    <Link
+                      className="NavigationStyle"
+                      to="/Indent-express/admin"
+                      onClick={ToggleSidebar}
+                    >
+                      UPDATE PORTAL STATUS
+                    </Link>
+                    <hr />
+                  </li>
+                  <li className="my-3">
+                    <Link
+                      className="NavigationStyle"
+                      to="/Indent-express/admin"
+                      onClick={ToggleSidebar}
+                    >
+                      GET MASTER SKU
+                    </Link>
+                    <hr />
+                  </li>
+                  <li className="my-3">
+                    <Link
+                      className="NavigationStyle"
+                      to="/Indent-express/admin"
+                      onClick={ToggleSidebar}
+                    >
+                      LOGIN CREDENTIALS
+                    </Link>
+                    <hr />
+                  </li>
+                  <li className="my-3">
+                    <Link
+                      className="NavigationStyle"
+                      to="/Indent-express/admin"
+                      onClick={ToggleSidebar}
+                    >
+                      DAY END REPORTS
+                    </Link>
+                    <hr />
+                  </li>
+                  <li className="my-3">
+                    <Link
+                      className="NavigationStyle"
+                      to="/Indent-express/admin"
+                      onClick={ToggleSidebar}
+                    >
+                      UPDATE AUTO MAIL
+                    </Link>
+                    <hr />
+                  </li>
+                </>
               </>
             )}
           </ul>
