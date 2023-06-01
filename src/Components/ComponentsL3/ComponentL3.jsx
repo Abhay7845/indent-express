@@ -1,11 +1,14 @@
 import React from "react";
 import TopHeader from "../../Common/TopHeader";
+import SideBar from "../../Common/SideBar";
 
 const ComponentL3 = () => {
   return (
     <>
       <TopHeader />
-      <h6 className="text-center my-4">WILL WORK ON IT</h6>
+      <div className="DropDownFormStyle">
+        <SideBar />
+      </div>
     </>
   );
 };

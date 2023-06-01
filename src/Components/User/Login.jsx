@@ -32,6 +32,7 @@ const Login = (props) => {
         }
         if (response.data.value.role === "L3") {
           localStorage.setItem("indent-expressId", response.data.value.userID);
+          localStorage.setItem("indent-expressRole", response.data.value.role);
           navigate("/Indent-express/L3");
         }
         if (response.data.value.role === "Admin") {
