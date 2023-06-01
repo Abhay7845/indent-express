@@ -193,7 +193,7 @@ const ReportsL1L2 = (props) => {
               onChange={(e) => setSubmitted(e.target.value)}
             >
               <option value="scanned">SUBMITTED</option>
-              <option value="unscanned">YET TO SUBMITTED</option>
+              <option value="unscanned">YET TO SUBMIT</option>
             </select>
           </div>
         </div>
@@ -334,7 +334,7 @@ const ReportsL1L2 = (props) => {
       {reportsTable.length > 0 && (
         <div className="table-responsive mx-1">
           <b className="mx-1 my-3 text-secondary">
-            {submitted === "scanned" ? "SUBMITTED" : "YET TO SUBMITTED"}
+            {submitted === "scanned" ? "SUBMITTED" : "YET TO SUBMIT"}
           </b>
           <table className="table table-hover table-bordered">
             <thead>
