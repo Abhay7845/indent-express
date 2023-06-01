@@ -10,6 +10,7 @@ import Admin from "./Components/Admin/Admin";
 import ComponentL3 from "./Components/ComponentsL3/ComponentL3";
 import StatusReportsL1L2 from "./Components/ComponentsL1L2/StatusReportsL1L2";
 import AlertModal from "./Common/AlertModal";
+import StatusReportsL3 from "./Components/ComponentsL3/StatusReportsL3";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -51,6 +52,10 @@ const App = () => {
             <Route
               path="/Indent-express/L3"
               element={<ComponentL3 showAlert={showAlert} />}
+            />
+            <Route
+              path="/Indent-express/L3/status/reports"
+              element={<StatusReportsL3 showAlert={showAlert} />}
             />
             {/* ADMIN COMPONENTS */}
             <Route
