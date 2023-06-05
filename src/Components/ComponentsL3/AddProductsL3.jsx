@@ -4,7 +4,7 @@ import TopHeader from "../../Common/TopHeader";
 import SideBar from "../../Common/SideBar";
 import { BsCartFill } from "react-icons/bs";
 import Loader from "../../Common/Loader";
-import LoadingGif from "../../Asset/Img/Loading_Img.gif";
+import ShowImage from "./ShowImage";
 
 const AddProductsL3 = (props) => {
   const { showAlert } = props;
@@ -48,25 +48,13 @@ const AddProductsL3 = (props) => {
       </div>
 
       {singleProductsDetails.map((data, i) => {
-        const { itemCode } = data;
+        const { itemCode, videoLink } = data;
         const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
-        const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
+        const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}`;
         return (
           <div key={i} className="row row-cols-1 row-cols-md-2 mx-1 my-3">
             <div className="col-md-5">
-              {imageCode === "" ? (
-                <img
-                  src={LoadingGif}
-                  className="w-100 img-thumbnail ReportCatalogImage"
-                  alt="No_Image"
-                />
-              ) : (
-                <img
-                  src={imageURL}
-                  className="w-100 img-thumbnail ReportCatalogImage"
-                  alt="No_Image"
-                />
-              )}
+              <ShowImage imageURL={imageURL} videoLink={videoLink} />
             </div>
             <div className="col-md-7">
               <div className="card-body">

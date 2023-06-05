@@ -27,6 +27,7 @@
     "react-dom": "^18.2.0",
     "react-html-table-to-excel": "^2.0.0",
     "react-icons": "^4.8.0",
+    "react-image-magnify": "^2.7.4",
     "react-js-switch": "^1.1.6",
     "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",
