@@ -16,7 +16,6 @@ const SideBar = () => {
   };
   const AdminRole = localStorage.getItem("indent-expressId").toUpperCase();
   const ROLE = localStorage.getItem("indent-expressRole");
-  console.log("ROLE==>", ROLE);
   return (
     <>
       <Icon.TextLeft
