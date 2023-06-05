@@ -1,21 +1,43 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import TopHeader from "../../Common/TopHeader";
 import SideBar from "../../Common/SideBar";
 import TablePagination from "@mui/material/TablePagination";
-import axios from "axios";
+import Loader from "../../Common/Loader";
+import LoadingGif from "../../Asset/Img/Loading_Img.gif";
+import "../../Style/ComponentL3.css";
+import { BsCartFill } from "react-icons/bs";
 
-const ComponentL3 = () => {
+const ComponentL3 = (props) => {
+  const { showAlert } = props;
+  const storeCode = localStorage.getItem("indent-expressId");
+  const [loading, setLoading] = useState(false);
   const [productsData, setProductsData] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(12);
+
   useEffect(() => {
+    setLoading(true);
     axios
-      .get("https://jsonplaceholder.typicode.com/posts")
+      .get(
+        `https://tanishqdigitalnpim.titan.in:8443/IndentExpress/INDENTL3/express/item/wise/rpt/L3/${storeCode}`
+      )
       .then((res) => res)
-      .then((response) => setProductsData(response.data))
-      .catch((error) => console.log("error==>", error));
-  }, []);
-  console.log("productsData=>", productsData);
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setProductsData(response.data.value);
+        }
+        if (response.data.code === "1001") {
+          showAlert("Sorry Data Not Found", "danger");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("error==>", error);
+        setLoading(false);
+      });
+  }, [storeCode]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -29,48 +51,58 @@ const ComponentL3 = () => {
   return (
     <>
       <TopHeader />
-      <div className="DropDownFormStyle">
+      <div className="ComponentL3LowerHeader">
         <SideBar />
+        <BsCartFill size={25} className="trolleyStyle" />
       </div>
-      <div className="row mx-0 mt-3">
-        {productsData
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-          .map((item, i) => {
-            return (
-              <div key={i} className="col-sm-4 mt-3">
-                <div className="card">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"
-                    // src="https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg"
-                    className="card-img-top"
-                    alt="Image_Not Available"
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">Special title treatment</h5>
-                    <p className="card-text">
-                      With supporting text below as a natural lead-in to
-                      additional content.
-                    </p>
-                    <a href="/" className="btn btn-primary">
-                      Go somewhere
-                    </a>
+      {loading === true ? <Loader /> : ""}
+      {productsData.length > 0 && (
+        <div className="row mx-0 mt-3">
+          {productsData
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((productsDetails, i) => {
+              const { itemCode } = productsDetails;
+              const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
+              const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
+              return (
+                <div key={i} className="col-md-4 mt-3">
+                  <div className="card">
+                    {imageCode === "" ? (
+                      <img
+                        src={LoadingGif}
+                        className="card-img-top"
+                        alt="No_Image"
+                      />
+                    ) : (
+                      <img
+                        src={imageURL}
+                        className="card-img-top CardImageSize"
+                        alt="No_Image"
+                      />
+                    )}
+                    <div className="cardBodyStyle">
+                      <div className="innerBodyStyle">
+                        <b>{itemCode}</b>
+                        <BsCartFill size={20} className="trolleyStyle" />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        <div className="d-flex justify-content-end my-2 w-100">
-          <TablePagination
-            rowsPerPageOptions={[12, 24, 36, 48, productsData.length]}
-            component="div"
-            count={productsData.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
+              );
+            })}
+          <div className="d-flex justify-content-end my-2 w-100">
+            <TablePagination
+              rowsPerPageOptions={[50, 100, 150, productsData.length]}
+              component="div"
+              count={productsData.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
