@@ -8,6 +8,7 @@ import Loader from "../../Common/Loader";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import "../../Style/ComponentL3.css";
 import { BsCartFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const ComponentL3 = (props) => {
   const { showAlert } = props;
@@ -53,7 +54,7 @@ const ComponentL3 = (props) => {
       <TopHeader />
       <div className="ComponentL3LowerHeader">
         <SideBar />
-        <BsCartFill size={25} className="trolleyStyle" />
+        <BsCartFill size={25} className="trolleyLowerHeader" />
       </div>
       {loading === true ? <Loader /> : ""}
       {productsData.length > 0 && (
@@ -66,7 +67,7 @@ const ComponentL3 = (props) => {
               const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
               return (
                 <div key={i} className="col-md-4 mt-3">
-                  <div className="card">
+                  <div className="cardStyle">
                     {imageCode === "" ? (
                       <img
                         src={LoadingGif}
@@ -83,7 +84,12 @@ const ComponentL3 = (props) => {
                     <div className="cardBodyStyle">
                       <div className="innerBodyStyle">
                         <b>{itemCode}</b>
-                        <BsCartFill size={20} className="trolleyStyle" />
+                        <Link
+                          to={`/Indent-express/add/product/L3/${itemCode}`}
+                          className="trolleyStyle"
+                        >
+                          <BsCartFill size={20} />
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -92,7 +98,7 @@ const ComponentL3 = (props) => {
             })}
           <div className="d-flex justify-content-end my-2 w-100">
             <TablePagination
-              rowsPerPageOptions={[50, 100, 150, productsData.length]}
+              rowsPerPageOptions={[12, 24, 36, productsData.length]}
               component="div"
               count={productsData.length}
               rowsPerPage={rowsPerPage}

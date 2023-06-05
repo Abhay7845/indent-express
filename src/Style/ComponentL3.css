@@ -6,12 +6,27 @@
     justify-content: space-between;
 }
 
+.trolleyLowerHeader {
+    cursor: pointer;
+    color: #000000;
+    margin-top: 3px;
+}
+
+.trolleyLowerHeader:hover {
+    color: #f9eb54;
+}
+
+.cardStyle {
+    border: 1.5px solid #6e6d6d;
+    border-radius: 6px;
+}
+
 .CardImageSize {
     height: 300px;
 }
 
 .cardBodyStyle {
-    background-color: black;
+    background-color: #000000;
     color: #f6e95ed6;
     margin-top: 10px;
     border-bottom-left-radius: 4px;
@@ -25,8 +40,8 @@
 }
 
 .trolleyStyle {
-    margin-top: 4px;
     cursor: pointer;
+    color: #f6e95ed6
 }
 
 .trolleyStyle:hover {
