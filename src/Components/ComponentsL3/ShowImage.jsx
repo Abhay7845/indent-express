@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import ReactImageMagnify from "react-image-magnify";
+import "../../Style/ShowImage.css";
 import { Tabs, Tab, AppBar, Avatar } from "@material-ui/core";
 
 const ShowImage = (props) => {
@@ -12,13 +13,13 @@ const ShowImage = (props) => {
     setValue(newValue);
   };
   return (
-    <>
+    <div className="showImageStyle">
       <ReactImageMagnify
         {...{
           smallImage: {
             src: ImgLoad ? LoadingGif : `${imageURL}.jpg`,
-            height: 472,
-            width: window.innerWidth * (40.41145833 / 100),
+            height: 440,
+            width: window.innerWidth * (38.71145833 / 100),
             onLoad: () => {
               imageURL.length <= 0 ? setImgLoad(true) : setImgLoad(false);
             },
@@ -69,7 +70,7 @@ const ShowImage = (props) => {
           />
         </Tabs>
       </AppBar>
-    </>
+    </div>
   );
 };
 

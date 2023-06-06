@@ -68,7 +68,7 @@ const AddProductsL3 = (props) => {
                   <div className="col-md-6">
                     <div>
                       <h6 className="text-center my-2">
-                        <b>PRODUCT DETAILS</b>
+                        <b>PRODUCT SPECIFICATION</b>
                       </h6>
                       <br />
                       <table className="w-100">
@@ -129,7 +129,7 @@ const AddProductsL3 = (props) => {
                   </div>
                   <div className="col-md-6">
                     <h6 className="text-center my-2 feedBackText">
-                      <b>FEEDBACK</b>
+                      <b>INDENT DETAILS</b>
                     </h6>
                     <br />
                   </div>
