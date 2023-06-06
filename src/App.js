@@ -59,7 +59,7 @@ const App = () => {
               element={<StatusReportsL3 showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/add/product/L3/:itemCode"
+              path="/Indent-express/L3/add/product"
               element={<AddProductsL3 showAlert={showAlert} />}
             />
             {/* ADMIN COMPONENTS */}

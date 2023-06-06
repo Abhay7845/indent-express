@@ -8,8 +8,8 @@ import Loader from "../../Common/Loader";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import "../../Style/ComponentL3.css";
 import { BsCartFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
 import { HostManager } from "../../APIList/HotMaster";
+import AddProductsL3 from "./AddProductsL3";
 
 const ComponentL3 = (props) => {
   const { showAlert } = props;
@@ -18,6 +18,7 @@ const ComponentL3 = (props) => {
   const [productsData, setProductsData] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(12);
+  const [singleProductsDetails, setSingleProductsDetails] = useState({});
 
   useEffect(() => {
     setLoading(true);
@@ -47,8 +48,32 @@ const ComponentL3 = (props) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  const No_ImageURL =
-    "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg";
+  const GetProductsDetails = (Details) => {
+    const GetProductsDetails = {
+      storeCode: storeCode,
+      collection: "ALL",
+      consumerBase: "ALL",
+      group: "ALL",
+      category: Details.category,
+      itemCode: Details.itemcode,
+    };
+    axios
+      .post(
+        `${HostManager.reportsL1L2}/INDENT/express/get/product/details`,
+        GetProductsDetails
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setSingleProductsDetails(response.data.value);
+        }
+        if (response.data.code === "1001") {
+          alert(response.data.value);
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  };
+
   return (
     <>
       <TopHeader />
@@ -66,7 +91,7 @@ const ComponentL3 = (props) => {
               const imageCode = !itemcode ? "" : itemcode.substring(2, 9);
               const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
               return (
-                <div key={i} className="col-md-4 mt-3">
+                <div key={i} className="col-md-4 mt-5">
                   <div className="cardStyle">
                     {imageCode === "" ? (
                       <img
@@ -84,12 +109,13 @@ const ComponentL3 = (props) => {
                     <div className="cardBodyStyle">
                       <div className="innerBodyStyle">
                         <b>{itemcode}</b>
-                        <Link
-                          to={`/Indent-express/add/product/L3/${itemcode}`}
+                        <BsCartFill
+                          size={20}
+                          onClick={() => GetProductsDetails(productsDetails)}
+                          data-bs-toggle="modal"
+                          data-bs-target="#staticBackdrop"
                           className="trolleyStyle"
-                        >
-                          <BsCartFill size={20} />
-                        </Link>
+                        />
                       </div>
                     </div>
                   </div>
@@ -109,6 +135,37 @@ const ComponentL3 = (props) => {
           </div>
         </div>
       )}
+
+      {/* MODALS */}
+
+      <div
+        className="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex={-1}
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-fullscreen">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="staticBackdropLabel">
+                ADD PRODUCT
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              />
+            </div>
+            <div className="modal-body">
+              <AddProductsL3 singleProductsDetails={singleProductsDetails} />
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
