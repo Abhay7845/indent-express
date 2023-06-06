@@ -54,7 +54,7 @@ const ComponentL3 = (props) => {
       collection: "ALL",
       consumerBase: "ALL",
       group: "ALL",
-      category: Details.category,
+      category: "ALL",
       itemCode: Details.itemcode,
     };
     axios
@@ -136,8 +136,6 @@ const ComponentL3 = (props) => {
         </div>
       )}
 
-      {/* MODALS */}
-
       <div
         className="modal fade"
         id="staticBackdrop"
@@ -149,7 +147,10 @@ const ComponentL3 = (props) => {
       >
         <div className="modal-dialog modal-fullscreen">
           <div className="modal-content">
-            <div className="modal-header">
+            <div
+              className="modal-header"
+              style={{ backgroundColor: "#f5ea84" }}
+            >
               <h5 className="modal-title" id="staticBackdropLabel">
                 ADD PRODUCT
               </h5>
