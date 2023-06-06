@@ -10,6 +10,7 @@ import "../../Style/ComponentL3.css";
 import { BsCartFill } from "react-icons/bs";
 import { HostManager } from "../../APIList/HotMaster";
 import AddProductsL3 from "./AddProductsL3";
+// import No_ImageURL from "../../Asset/Img/No_Image.jpg";
 
 const ComponentL3 = (props) => {
   const { showAlert } = props;

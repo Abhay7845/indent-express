@@ -31,7 +31,7 @@ const AddProductsL3 = (props) => {
               {singleProductsDetails.itemCode}
             </h5>
             <div className="row my-3">
-              <div className="col-md-6">
+              <div className="col-md-5">
                 <div>
                   <h6 className="text-center my-2">
                     <b>PRODUCT SPECIFICATION</b>
@@ -93,7 +93,7 @@ const AddProductsL3 = (props) => {
                   </table>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-7">
                 <h6 className="text-center my-2 feedBackText">
                   <b>INDENT DETAILS</b>
                 </h6>

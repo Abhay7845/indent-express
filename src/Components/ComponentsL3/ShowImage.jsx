@@ -19,7 +19,7 @@ const ShowImage = (props) => {
           smallImage: {
             src: ImgLoad ? LoadingGif : `${imageURL}.jpg`,
             height: 440,
-            width: window.innerWidth * (37.71145833 / 100),
+            width: window.innerWidth * (37.81145833 / 100),
             onLoad: () => {
               imageURL.length <= 0 ? setImgLoad(true) : setImgLoad(false);
             },
