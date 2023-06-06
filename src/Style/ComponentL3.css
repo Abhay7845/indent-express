@@ -19,6 +19,7 @@
 .cardStyle {
     border: 1.5px solid #6e6d6d;
     border-radius: 6px;
+    height: 386px;
 }
 
 .cardStyle:hover {
