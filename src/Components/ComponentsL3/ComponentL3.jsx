@@ -9,6 +9,7 @@ import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import "../../Style/ComponentL3.css";
 import { BsCartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { HostManager } from "../../APIList/HotMaster";
 
 const ComponentL3 = (props) => {
   const { showAlert } = props;
@@ -21,9 +22,7 @@ const ComponentL3 = (props) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(
-        `https://tanishqdigitalnpim.titan.in:8443/IndentExpress/INDENTL3/express/item/wise/rpt/L3/${storeCode}`
-      )
+      .get(`${HostManager.reportsL1L2}/INDENT/express/get/itemcode/list`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -48,7 +47,8 @@ const ComponentL3 = (props) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
+  const No_ImageURL =
+    "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg";
   return (
     <>
       <TopHeader />
@@ -62,8 +62,8 @@ const ComponentL3 = (props) => {
           {productsData
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((productsDetails, i) => {
-              const { itemCode } = productsDetails;
-              const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
+              const { itemcode } = productsDetails;
+              const imageCode = !itemcode ? "" : itemcode.substring(2, 9);
               const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
               return (
                 <div key={i} className="col-md-4 mt-3">
@@ -83,9 +83,9 @@ const ComponentL3 = (props) => {
                     )}
                     <div className="cardBodyStyle">
                       <div className="innerBodyStyle">
-                        <b>{itemCode}</b>
+                        <b>{itemcode}</b>
                         <Link
-                          to={`/Indent-express/add/product/L3/${itemCode}`}
+                          to={`/Indent-express/add/product/L3/${itemcode}`}
                           className="trolleyStyle"
                         >
                           <BsCartFill size={20} />
