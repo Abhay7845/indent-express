@@ -46,7 +46,6 @@ const ShowImage = (props) => {
           scrollButtons="on"
           indicatorColor="primary"
           textColor="primary"
-          aria-label="scrollable force tabs example"
         >
           <Tab
             style={{ minWidth: "1%" }}
@@ -54,19 +53,19 @@ const ShowImage = (props) => {
           />
           <Tab
             style={{ minWidth: "1%" }}
-            icon={<Avatar variant="square" src={`${imageURL}_${value}.jpg`} />}
+            icon={<Avatar variant="square" src={`${imageURL}_2.jpg`} />}
           />
           <Tab
             style={{ minWidth: "1%" }}
-            icon={<Avatar variant="square" src={`${imageURL}_${value}.jpg`} />}
+            icon={<Avatar variant="square" src={`${imageURL}_3.jpg`} />}
           />
           <Tab
             style={{ minWidth: "1%" }}
-            icon={<Avatar variant="square" src={`${imageURL}_${value}.jpg`} />}
+            icon={<Avatar variant="square" src={`${imageURL}_4.jpg`} />}
           />
           <Tab
             style={{ minWidth: "1%" }}
-            icon={<Avatar variant="square" src={`${imageURL}_${value}.jpg`} />}
+            icon={<Avatar variant="square" src={`${imageURL}_5.jpg`} />}
           />
         </Tabs>
       </AppBar>
