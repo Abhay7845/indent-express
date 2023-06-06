@@ -20,6 +20,8 @@ const ComponentL3 = (props) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(12);
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
+  const [statusCode, setStatusCode] = useState("1001");
+  console.log("statusCode==>", typeof statusCode, statusCode);
 
   useEffect(() => {
     setLoading(true);
@@ -66,9 +68,11 @@ const ComponentL3 = (props) => {
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
+          setStatusCode(response.data.code);
           setSingleProductsDetails(response.data.value);
         }
         if (response.data.code === "1001") {
+          setStatusCode(response.data.code);
           alert(response.data.value);
         }
       })
@@ -113,7 +117,10 @@ const ComponentL3 = (props) => {
                         <BsCartFill
                           size={20}
                           onClick={() => GetProductsDetails(productsDetails)}
-                          data-bs-toggle="modal"
+                          data-bs-toggle={
+                            (statusCode === "1001" && "") ||
+                            (statusCode === "1000" && "modal")
+                          }
                           data-bs-target="#staticBackdrop"
                           className="trolleyStyle"
                         />
