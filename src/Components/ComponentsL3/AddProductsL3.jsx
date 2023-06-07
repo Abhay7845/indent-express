@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import Loader from "../../Common/Loader";
 import ShowImage from "./ShowImage";
@@ -85,7 +86,7 @@ const AddProductsL3 = (props) => {
     ) {
       setOption(tagsOptions);
     }
-  }, [digit]);
+  }, [digit, optionForSet0, optionForSet1, tagsOptions, tagsTCategory]);
 
   const GetTagFiledValues = (getTagSize) => {
     SettagQuantitys(getTagSize);

@@ -20,6 +20,7 @@ const ChooseDynamicTag = (props) => {
     GetFindingData,
   } = props;
   const { itemCode } = singleProductsDetails;
+  const setType2option = ["Chain", "Dori"];
   console.log("props==>", props);
   useEffect(() => {
     if (optionsList)
@@ -141,7 +142,6 @@ const ChooseDynamicTag = (props) => {
       labelValue: element,
     };
   });
-  const setType2option = ["Chain", "Dori"];
 
   const enableRows = (name, value) => {
     setSizeRow(function (old) {
@@ -380,7 +380,7 @@ const ChooseDynamicTag = (props) => {
       </table>
       <table className="w-100">
         <tbody>
-          {/* {optionN.map((row, index) => (
+          {optionN.map((row, index) => (
             <tr
               key={index}
               onChange={rowHandlerChange}
@@ -389,13 +389,13 @@ const ChooseDynamicTag = (props) => {
                 enableRow(row.labelValue) ? classes.showDropdown : classes.hide
               }
             >
-              <DropDownMaterialUI
+              <CommonDropdown
                 labelName="Type Set-2"
-                onChangeHandler={typeSet2ResHandler}
+                onChangeHandler={GetFindingData}
                 optionsList={setType2option}
               />
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </table>
     </>
