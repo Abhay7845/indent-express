@@ -21,7 +21,6 @@ const ComponentL3 = (props) => {
   const [rowsPerPage, setRowsPerPage] = useState(12);
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
   const [statusCode, setStatusCode] = useState("1001");
-  console.log("statusCode==>", typeof statusCode, statusCode);
 
   useEffect(() => {
     setLoading(true);

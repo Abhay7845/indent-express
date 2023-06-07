@@ -1,20 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Loader from "../../Common/Loader";
 import ShowImage from "./ShowImage";
 import "../../Style/ShowImage.css";
+import ChooseDynamicTag from "./ChooseDynamicTag";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
+  const [option, setOption] = useState([]);
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
-  console.log("singleProductsDetails==>", singleProductsDetails);
-
+  const digit = !itemCode ? "" : itemCode[6];
+  console.log("option==>", option);
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
   const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}`;
 
   const AddProductsToCard = () => {
     setLoading(false);
   };
+  // DYNAMIC TAG
+  const finger = !singleProductsDetails.childNodeF ? "" : "Only_FINGER_RING";
+  const harm = !singleProductsDetails.childNodeH ? "" : "Only_HARAM";
+  const Tikka = !singleProductsDetails.childNodeK ? "" : "Only_TIKKA";
+  const other = !singleProductsDetails.childNodeO ? "" : "Only_OTHER";
+  const bangle = !singleProductsDetails.childNodeV ? "" : "Only_BANGLE";
+  const earing = !singleProductsDetails.childNodesE ? "" : "Only_EARRING";
+  const neckwear = !singleProductsDetails.childNodesN ? "" : "Only_NECKWEAR";
+
+  const optionForOtherAllSet = [
+    "Single_Tag",
+    "Separate_Tag",
+    earing,
+    neckwear,
+    harm,
+    Tikka,
+    other,
+    finger,
+    bangle,
+  ];
+  const tagsOptions = optionForOtherAllSet.filter((item) => !item === false);
+  const optionForSet0 = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_CHAIN_WITH_PENDANT",
+  ];
+  const optionForSet1 = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_NECKWEAR_OR_PENDANT",
+  ];
+  const tagsTCategory = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_MANGALSUTRA",
+  ];
+  useEffect(() => {
+    if (digit === "0") {
+      setOption(optionForSet0);
+    }
+    if (digit === "1") {
+      setOption(optionForSet1);
+    }
+    if (digit === "T") {
+      setOption(tagsTCategory);
+    }
+    if (
+      digit === "2" ||
+      digit === "3" ||
+      digit === "4" ||
+      digit === "5" ||
+      digit === "6" ||
+      digit === "7"
+    ) {
+      setOption(tagsOptions);
+    }
+  }, [digit]);
+
   return (
     <>
       {loading === true ? <Loader /> : ""}
@@ -93,11 +156,15 @@ const AddProductsL3 = (props) => {
                   </table>
                 </div>
               </div>
-              <div className="col-md-7">
+              <div className="col-md-7 border">
                 <h6 className="text-center my-2 feedBackText">
                   <b>INDENT DETAILS</b>
                 </h6>
                 <br />
+                <ChooseDynamicTag
+                  optionsList={option}
+                  singleProductsDetails={singleProductsDetails}
+                />
               </div>
             </div>
             <div className="mt-5">
