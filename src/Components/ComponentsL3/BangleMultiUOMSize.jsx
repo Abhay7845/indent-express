@@ -177,6 +177,8 @@ const BangleMultiUOMSize = (props) => {
             ...old,
             [name]: value,
           };
+        default:
+          break;
       }
     });
   };
