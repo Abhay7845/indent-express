@@ -4,10 +4,14 @@ import Loader from "../../Common/Loader";
 import ShowImage from "./ShowImage";
 import "../../Style/ShowImage.css";
 import ChooseDynamicTag from "./ChooseDynamicTag";
+import BangleMultiUOMSize from "./BangleMultiUOMSize";
+import { HostManager } from "../../APIList/HotMaster";
+import axios from "axios";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
   const [option, setOption] = useState([]);
+  const [SizeState, setSizeState] = useState([]);
   // INPUT FILED VALUE VARIABLE
   const [tagQuantitys, SettagQuantitys] = useState([]);
   const [sizeUomQuantityRes, SetsizeUomQuantityRes] = useState([]);
@@ -86,7 +90,23 @@ const AddProductsL3 = (props) => {
     ) {
       setOption(tagsOptions);
     }
-  }, [digit, optionForSet0, optionForSet1, tagsOptions, tagsTCategory]);
+  }, [digit]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${itemCode}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setSizeState(response.data.value);
+        } else if (response.data.code === "1001") {
+          console.log("Size Not Found");
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  }, [itemCode]);
 
   const GetTagFiledValues = (getTagSize) => {
     SettagQuantitys(getTagSize);
@@ -182,13 +202,33 @@ const AddProductsL3 = (props) => {
                   <b>INDENT DETAILS</b>
                 </h6>
                 <br />
-                <ChooseDynamicTag
-                  optionsList={option}
-                  singleProductsDetails={singleProductsDetails}
-                  GetTagFiledValues={GetTagFiledValues}
-                  GetUomSizeQuantity={GetUomSizeQuantity}
-                  GetFindingData={GetFindingData}
-                />
+                {digit === "0" ||
+                digit === "1" ||
+                digit === "2" ||
+                digit === "3" ||
+                digit === "4" ||
+                digit === "5" ||
+                digit === "6" ||
+                digit === "7" ? (
+                  <ChooseDynamicTag
+                    optionsList={option}
+                    singleProductsDetails={singleProductsDetails}
+                    GetTagFiledValues={GetTagFiledValues}
+                    GetUomSizeQuantity={GetUomSizeQuantity}
+                    GetFindingData={GetFindingData}
+                    SizeState={SizeState}
+                  />
+                ) : (
+                  ""
+                )}
+                {digit === "V" ? (
+                  <BangleMultiUOMSize
+                    optionsList={SizeState}
+                    GetUomSizeQuantity={GetUomSizeQuantity}
+                  />
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div className="mt-5">

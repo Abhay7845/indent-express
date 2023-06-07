@@ -11,15 +11,15 @@ const ChooseDynamicTag = (props) => {
   const [sizeRow, setSizeRow] = useState();
   const [ChildNodeV, setChildNodeV] = useState([]);
   const [ChildNodesN, setChildNodesN] = useState([]);
-  const [SizeState, setSizeState] = useState([]);
   const {
     singleProductsDetails,
     optionsList,
     GetTagFiledValues,
     GetUomSizeQuantity,
     GetFindingData,
+    SizeState,
   } = props;
-  const { itemCode } = singleProductsDetails;
+
   const setType2option = ["Chain", "Dori"];
   console.log("props==>", props);
   useEffect(() => {
@@ -33,22 +33,6 @@ const ChooseDynamicTag = (props) => {
         );
       });
   }, [optionsList]);
-
-  useEffect(() => {
-    axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${itemCode}`
-      )
-      .then((res) => res)
-      .then((response) => {
-        if (response.data.code === "1000") {
-          setSizeState(response.data.value);
-        } else if (response.data.code === "1001") {
-          console.log("Size Not Found");
-        }
-      })
-      .catch((error) => console.log("error==>", error));
-  }, [itemCode]);
 
   const childNodeV = singleProductsDetails.childNodeV;
   useEffect(() => {
@@ -389,11 +373,13 @@ const ChooseDynamicTag = (props) => {
                 enableRow(row.labelValue) ? classes.showDropdown : classes.hide
               }
             >
-              <CommonDropdown
-                labelName="Type Set-2"
-                onChangeHandler={GetFindingData}
-                optionsList={setType2option}
-              />
+              <td className="w-100">
+                <CommonDropdown
+                  labelName="Type Set-2"
+                  onChangeHandler={GetFindingData}
+                  optionsList={setType2option}
+                />
+              </td>
             </tr>
           ))}
         </tbody>
