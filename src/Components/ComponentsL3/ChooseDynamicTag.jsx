@@ -86,6 +86,7 @@ const ChooseDynamicTag = (props) => {
 
   const findings = singleProductsDetails.findings;
   const findingsOptions = !findings ? "" : findings.split(",");
+
   const options = optionsList.map((element) => {
     return {
       valueData: element,

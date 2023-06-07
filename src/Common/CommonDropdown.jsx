@@ -1,19 +1,18 @@
 import React from "react";
-import { Select } from "antd";
 
 const CommonDropdown = (props) => {
-  const { optionList, findingValue } = props;
+  const { optionsList, findingValue } = props;
   return (
     <>
-      <Select onChange={findingValue}>
-        {optionList.map((item, i) => {
+      <select onChange={findingValue}>
+        {optionsList.map((item, i) => {
           return (
             <option key={i} value={item}>
               {item}
             </option>
           );
         })}
-      </Select>
+      </select>
     </>
   );
 };
