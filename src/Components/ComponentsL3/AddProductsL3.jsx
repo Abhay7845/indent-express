@@ -7,6 +7,9 @@ import ChooseDynamicTag from "./ChooseDynamicTag";
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
   const [option, setOption] = useState([]);
+  // INPUT FILED VALUE VARIABLE
+  const [tagQuantitys, SettagQuantitys] = useState([]);
+  console.log("tagQuantitys==>", tagQuantitys);
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
   const digit = !itemCode ? "" : itemCode[6];
@@ -77,6 +80,10 @@ const AddProductsL3 = (props) => {
       setOption(tagsOptions);
     }
   }, [digit]);
+
+  const getTagFiledValues = (getData) => {
+    SettagQuantitys(getData);
+  };
 
   return (
     <>
@@ -164,6 +171,7 @@ const AddProductsL3 = (props) => {
                 <ChooseDynamicTag
                   optionsList={option}
                   singleProductsDetails={singleProductsDetails}
+                  getTagFiledValues={getTagFiledValues}
                 />
               </div>
             </div>

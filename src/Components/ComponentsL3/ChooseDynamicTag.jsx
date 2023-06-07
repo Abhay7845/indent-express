@@ -8,8 +8,10 @@ const ChooseDynamicTag = (props) => {
   const classes = useStyles();
   const [sizeRow, setSizeRow] = useState();
   const [ChildNodeV, setChildNodeV] = useState([]);
-  const { singleProductsDetails, optionsList } = props;
-  console.log("singleProductsDetails==>", singleProductsDetails);
+  const [SizeState, setSizeState] = useState([]);
+  const { singleProductsDetails, optionsList, getTagFiledValues } = props;
+  const { itemCode } = singleProductsDetails;
+  console.log("props==>", SizeState);
   useEffect(() => {
     if (optionsList)
       setImmediate(() => {
@@ -22,6 +24,22 @@ const ChooseDynamicTag = (props) => {
       });
   }, [optionsList]);
 
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${itemCode}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setSizeState(response.data.value);
+        } else if (response.data.code === "1001") {
+          console.log("Size Not Found");
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  }, [itemCode]);
+
   const findings = singleProductsDetails.findings;
   const findingsOptions = !findings ? "" : findings.split(",");
   const options = optionsList.map((element) => {
@@ -30,12 +48,12 @@ const ChooseDynamicTag = (props) => {
       labelValue: element,
     };
   });
-  // const fingerRingSize = FingerRingSize.map((element) => {
-  //   return {
-  //     valueData: element,
-  //     labelValue: element,
-  //   };
-  // });
+  const fingerRingSize = SizeState.map((element) => {
+    return {
+      valueData: element,
+      labelValue: element,
+    };
+  });
   // const ChildNodeN = ChildNodeNSize.map((element) => {
   //   return {
   //     valueData: element,
@@ -108,8 +126,7 @@ const ChooseDynamicTag = (props) => {
         };
       }
     }
-    console.log("getData==>", getData);
-    // return onChangeHandler(getData);
+    return getTagFiledValues(getData);
   };
   const enableRow = (labelValue) => {
     for (let rowName in sizeRow) {
@@ -121,7 +138,7 @@ const ChooseDynamicTag = (props) => {
   };
 
   const childNodeV = singleProductsDetails.childNodeV;
-
+  console.log("ChildNodeV==>", childNodeV);
   useEffect(() => {
     axios
       .get(`${HostManager.reportsL1L2}/npim/size/dropdown/${childNodeV}`)
@@ -205,7 +222,7 @@ const ChooseDynamicTag = (props) => {
         </tbody>
       </table>
       <table style={{ width: "100%", margin: 0 }}>
-        {/* <tbody>
+        <tbody>
           {optionF.map((row, index) => (
             <tr
               key={index}
@@ -215,42 +232,46 @@ const ChooseDynamicTag = (props) => {
                 enableRow(row.labelValue) ? classes.showDropdown : classes.hide
               }
             >
-              <Multiselect
-                options={["A", "B"]}
-                displayValue="labelValue"
-                onSelect={onInternalSelectChange}
-                onRemove={onInternalRemoveChange}
-                showCheckbox={true}
-                closeOnSelect={true}
-                placeholder="Choose Size"
-                disablePreSelectedValues={true}
-              />
-              <table className="w-100">
-                <tbody className="d-flex">
-                  {fingerRingSize.map((row, index) => (
-                    <tr
-                      key={index}
-                      onChange={rowHandlerChange}
-                      id={row.labelValue}
-                      className={
-                        enableRow(row.labelValue) ? classes.show : classes.hide
-                      }
-                    >
-                      <input
-                        type="text"
-                        maxlength="1"
-                        id={`${row.labelValue}sq`}
-                        name={`${row.labelValue}sq`}
-                        className={classes.inputField}
-                        placeholder={row.labelValue}
-                      />
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <td className="w-100">
+                <Multiselect
+                  options={["A", "B"]}
+                  displayValue="labelValue"
+                  onSelect={onInternalSelectChange}
+                  onRemove={onInternalRemoveChange}
+                  showCheckbox={true}
+                  closeOnSelect={true}
+                  placeholder="Choose Size"
+                  disablePreSelectedValues={true}
+                />
+                <table className="w-100">
+                  <tbody className="d-flex">
+                    {fingerRingSize.map((row, index) => (
+                      <tr
+                        key={index}
+                        onChange={rowHandlerChange}
+                        id={row.labelValue}
+                        className={
+                          enableRow(row.labelValue)
+                            ? classes.show
+                            : classes.hide
+                        }
+                      >
+                        <input
+                          type="text"
+                          maxLength="1"
+                          id={`${row.labelValue}sq`}
+                          name={`${row.labelValue}sq`}
+                          className={classes.inputField}
+                          placeholder={row.labelValue}
+                        />
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </td>
             </tr>
           ))}
-        </tbody> */}
+        </tbody>
       </table>
       <table style={{ width: "100%", margin: 0 }}>
         <tbody>
