@@ -87,7 +87,7 @@ const AddProductsL3 = (props) => {
     }
   }, [digit]);
 
-  const getTagFiledValues = (getTagSize) => {
+  const GetTagFiledValues = (getTagSize) => {
     SettagQuantitys(getTagSize);
   };
   const GetUomSizeQuantity = (getUMOSize) => {
@@ -95,6 +95,9 @@ const AddProductsL3 = (props) => {
     SetsizeUomQuantityRes(getUMOSize);
   };
 
+  const GetFindingData = (findingValue) => {
+    console.log("GetFindingData==>", findingValue);
+  };
   return (
     <>
       {loading === true ? <Loader /> : ""}
@@ -181,8 +184,9 @@ const AddProductsL3 = (props) => {
                 <ChooseDynamicTag
                   optionsList={option}
                   singleProductsDetails={singleProductsDetails}
-                  getTagFiledValues={getTagFiledValues}
+                  GetTagFiledValues={GetTagFiledValues}
                   GetUomSizeQuantity={GetUomSizeQuantity}
+                  GetFindingData={GetFindingData}
                 />
               </div>
             </div>

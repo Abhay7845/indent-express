@@ -4,17 +4,20 @@ import { useStyles } from "../../Style/StyleJsx/ChooseDynamicTag";
 import Multiselect from "multiselect-react-dropdown";
 import { HostManager } from "../../APIList/HotMaster";
 import BangleMultiUOMSize from "./BangleMultiUOMSize";
+import CommonDropdown from "../../Common/CommonDropdown";
 
 const ChooseDynamicTag = (props) => {
   const classes = useStyles();
   const [sizeRow, setSizeRow] = useState();
   const [ChildNodeV, setChildNodeV] = useState([]);
+  const [ChildNodesN, setChildNodesN] = useState([]);
   const [SizeState, setSizeState] = useState([]);
   const {
     singleProductsDetails,
     optionsList,
-    getTagFiledValues,
+    GetTagFiledValues,
     GetUomSizeQuantity,
+    GetFindingData,
   } = props;
   const { itemCode } = singleProductsDetails;
   console.log("props==>", props);
@@ -64,6 +67,23 @@ const ChooseDynamicTag = (props) => {
       .catch((error) => console.log("error==>", error));
   }, [childNodeV]);
 
+  const childNodeN = singleProductsDetails.childNodesN;
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${childNodeN}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setChildNodesN(response.data.value);
+        } else {
+          console.log("Data Not Found");
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  }, [childNodeN]);
+
   const findings = singleProductsDetails.findings;
   const findingsOptions = !findings ? "" : findings.split(",");
   const options = optionsList.map((element) => {
@@ -78,12 +98,12 @@ const ChooseDynamicTag = (props) => {
       labelValue: element,
     };
   });
-  // const ChildNodeN = ChildNodeNSize.map((element) => {
-  //   return {
-  //     valueData: element,
-  //     labelValue: element,
-  //   };
-  // });
+  const ChildNodeN = ChildNodesN.map((element) => {
+    return {
+      valueData: element,
+      labelValue: element,
+    };
+  });
 
   const optionsOnlyE = ["Only_EARRING"];
   const optionE = optionsOnlyE.map((element) => {
@@ -150,7 +170,7 @@ const ChooseDynamicTag = (props) => {
         };
       }
     }
-    return getTagFiledValues(getData);
+    return GetTagFiledValues(getData);
   };
   const enableRow = (labelValue) => {
     for (let rowName in sizeRow) {
@@ -206,7 +226,7 @@ const ChooseDynamicTag = (props) => {
       </table>
       <table style={{ width: "100%", margin: 0 }}>
         <tbody>
-          {/* {optionE.map((row, index) => (
+          {optionE.map((row, index) => (
             <tr
               key={index}
               onChange={rowHandlerChange}
@@ -215,17 +235,17 @@ const ChooseDynamicTag = (props) => {
                 enableRow(row.labelValue) ? classes.showDropdown : classes.hide
               }
             >
-              {singleProductsDetails.findings ? (
-                <DropDownMaterialUI
-                  labelName="Findings"
-                  onChangeHandler={findingsResHandler}
-                  optionsList={findingsOptions}
-                />
-              ) : (
-                ""
-              )}
+              <td className="w-100">
+                {singleProductsDetails.findings && (
+                  <CommonDropdown
+                    labelName="Findings"
+                    GetFindingData={GetFindingData}
+                    optionsList={findingsOptions}
+                  />
+                )}
+              </td>
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </table>
       <table style={{ width: "100%", margin: 0 }}>
@@ -241,7 +261,7 @@ const ChooseDynamicTag = (props) => {
             >
               <td className="w-100">
                 <Multiselect
-                  options={["A", "B"]}
+                  options={SizeState}
                   displayValue="labelValue"
                   onSelect={onInternalSelectChange}
                   onRemove={onInternalRemoveChange}
@@ -263,14 +283,16 @@ const ChooseDynamicTag = (props) => {
                             : classes.hide
                         }
                       >
-                        <input
-                          type="text"
-                          maxLength="1"
-                          id={`${row.labelValue}sq`}
-                          name={`${row.labelValue}sq`}
-                          className={classes.inputField}
-                          placeholder={row.labelValue}
-                        />
+                        <td className="w-100">
+                          <input
+                            type="text"
+                            maxLength="1"
+                            id={`${row.labelValue}sq`}
+                            name={`${row.labelValue}sq`}
+                            className={classes.inputField}
+                            placeholder={row.labelValue}
+                          />
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -282,7 +304,7 @@ const ChooseDynamicTag = (props) => {
       </table>
       <table style={{ width: "100%", margin: 0 }}>
         <tbody>
-          {/* {optionM.map((row, index) => (
+          {optionM.map((row, index) => (
             <tr
               key={index}
               onChange={rowHandlerChange}
@@ -291,41 +313,47 @@ const ChooseDynamicTag = (props) => {
                 enableRow(row.labelValue) ? classes.showDropdown : classes.hide
               }
             >
-              <Multiselect
-                options={["ChildNodeN", "A"]}
-                displayValue="labelValue"
-                onSelect={onInternalSelectChange}
-                onRemove={onInternalRemoveChange}
-                showCheckbox={true}
-                closeOnSelect={true}
-                placeholder="Choose Size"
-                disablePreSelectedValues={true}
-              />
-              <table className="w-100">
-                <tbody className="d-flex">
-                {ChildNodeN.map((row, index) => (
-                    <tr
-                      key={index}
-                      onChange={rowHandlerChange}
-                      id={row.labelValue}
-                      className={
-                        enableRow(row.labelValue) ? classes.show : classes.hide
-                      }
-                    >
-                      <input
-                        type="text"
-                        maxlength="1"
-                        id={`${row.labelValue}sq`}
-                        name={`${row.labelValue}sq`}
-                        className={classes.inputField}
-                        placeholder={row.labelValue}
-                      />
-                    </tr>
-                  ))} 
-                </tbody>
-              </table>
+              <td className="w-100">
+                <Multiselect
+                  options={ChildNodesN}
+                  displayValue="labelValue"
+                  onSelect={onInternalSelectChange}
+                  onRemove={onInternalRemoveChange}
+                  showCheckbox={true}
+                  closeOnSelect={true}
+                  placeholder="Choose Size"
+                  disablePreSelectedValues={true}
+                />
+                <table className="w-100">
+                  <tbody className="d-flex">
+                    {ChildNodeN.map((row, index) => (
+                      <tr
+                        key={index}
+                        onChange={rowHandlerChange}
+                        id={row.labelValue}
+                        className={
+                          enableRow(row.labelValue)
+                            ? classes.show
+                            : classes.hide
+                        }
+                      >
+                        <td className="w-100">
+                          <input
+                            type="text"
+                            maxlength="1"
+                            id={`${row.labelValue}sq`}
+                            name={`${row.labelValue}sq`}
+                            className={classes.inputField}
+                            placeholder={row.labelValue}
+                          />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </td>
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </table>
       <table style={{ width: "100%", margin: 0 }}>
