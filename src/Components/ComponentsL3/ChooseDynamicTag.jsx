@@ -3,15 +3,21 @@ import axios from "axios";
 import { useStyles } from "../../Style/StyleJsx/ChooseDynamicTag";
 import Multiselect from "multiselect-react-dropdown";
 import { HostManager } from "../../APIList/HotMaster";
+import BangleMultiUOMSize from "./BangleMultiUOMSize";
 
 const ChooseDynamicTag = (props) => {
   const classes = useStyles();
   const [sizeRow, setSizeRow] = useState();
   const [ChildNodeV, setChildNodeV] = useState([]);
   const [SizeState, setSizeState] = useState([]);
-  const { singleProductsDetails, optionsList, getTagFiledValues } = props;
+  const {
+    singleProductsDetails,
+    optionsList,
+    getTagFiledValues,
+    GetUomSizeQuantity,
+  } = props;
   const { itemCode } = singleProductsDetails;
-  console.log("props==>", SizeState);
+  console.log("props==>", props);
   useEffect(() => {
     if (optionsList)
       setImmediate(() => {
@@ -39,6 +45,24 @@ const ChooseDynamicTag = (props) => {
       })
       .catch((error) => console.log("error==>", error));
   }, [itemCode]);
+
+  const childNodeV = singleProductsDetails.childNodeV;
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${childNodeV}`
+      )
+      .then((res) => res)
+      .then((result) => {
+        if (result.data.code === "1000") {
+          setChildNodeV(result.data.value);
+        }
+        if (result.data.code === "1001") {
+          console.log("Size Not Available");
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  }, [childNodeV]);
 
   const findings = singleProductsDetails.findings;
   const findingsOptions = !findings ? "" : findings.split(",");
@@ -136,23 +160,6 @@ const ChooseDynamicTag = (props) => {
     }
     return false;
   };
-
-  const childNodeV = singleProductsDetails.childNodeV;
-  console.log("ChildNodeV==>", childNodeV);
-  useEffect(() => {
-    axios
-      .get(`${HostManager.reportsL1L2}/npim/size/dropdown/${childNodeV}`)
-      .then((res) => res)
-      .then((result) => {
-        if (result.data.code === "1000") {
-          setChildNodeV(result.data.value);
-        }
-        if (result.data.code === "1001") {
-          console.log("Size Not Available");
-        }
-      })
-      .catch((error) => console.log("error==>", error));
-  }, [childNodeV]);
 
   return (
     <>
@@ -322,7 +329,7 @@ const ChooseDynamicTag = (props) => {
         </tbody>
       </table>
       <table style={{ width: "100%", margin: 0 }}>
-        {/* <tbody>
+        <tbody>
           {optionV.map((row, index) => (
             <tr
               key={index}
@@ -332,13 +339,15 @@ const ChooseDynamicTag = (props) => {
                 enableRow(row.labelValue) ? classes.showDropdown : classes.hide
               }
             >
-              <MultiselectUomAndSize
-                optionsList={ChildNodeV}
-                sizeUomQuantityResHandler={sizeUomQuantityResHandler}
-              />
+              <td className="w-100">
+                <BangleMultiUOMSize
+                  optionsList={ChildNodeV}
+                  GetUomSizeQuantity={GetUomSizeQuantity}
+                />
+              </td>
             </tr>
           ))}
-        </tbody> */}
+        </tbody>
       </table>
       <table className="w-100">
         <tbody>

@@ -9,7 +9,13 @@ const AddProductsL3 = (props) => {
   const [option, setOption] = useState([]);
   // INPUT FILED VALUE VARIABLE
   const [tagQuantitys, SettagQuantitys] = useState([]);
-  console.log("tagQuantitys==>", tagQuantitys);
+  const [sizeUomQuantityRes, SetsizeUomQuantityRes] = useState([]);
+  console.log(
+    "tagQuantitys==>",
+    tagQuantitys,
+    "sizeUomQuantityRes==>",
+    sizeUomQuantityRes
+  );
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
   const digit = !itemCode ? "" : itemCode[6];
@@ -81,8 +87,12 @@ const AddProductsL3 = (props) => {
     }
   }, [digit]);
 
-  const getTagFiledValues = (getData) => {
-    SettagQuantitys(getData);
+  const getTagFiledValues = (getTagSize) => {
+    SettagQuantitys(getTagSize);
+  };
+  const GetUomSizeQuantity = (getUMOSize) => {
+    console.log("getUMOSize==>", getUMOSize);
+    SetsizeUomQuantityRes(getUMOSize);
   };
 
   return (
@@ -172,6 +182,7 @@ const AddProductsL3 = (props) => {
                   optionsList={option}
                   singleProductsDetails={singleProductsDetails}
                   getTagFiledValues={getTagFiledValues}
+                  GetUomSizeQuantity={GetUomSizeQuantity}
                 />
               </div>
             </div>
