@@ -5,11 +5,11 @@ import TopHeader from "../../Common/TopHeader";
 import SideBar from "../../Common/SideBar";
 import TablePagination from "@mui/material/TablePagination";
 import Loader from "../../Common/Loader";
-import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import "../../Style/ComponentL3.css";
 import { BsCartFill } from "react-icons/bs";
 import { HostManager } from "../../APIList/HotMaster";
 import AddProductsL3 from "./AddProductsL3";
+import ShowImageCart from "./ShowImageCart";
 // import No_ImageURL from "../../Asset/Img/No_Image.jpg";
 
 const ComponentL3 = (props) => {
@@ -137,23 +137,11 @@ const ComponentL3 = (props) => {
             .map((productsDetails, i) => {
               const { itemcode } = productsDetails;
               const imageCode = !itemcode ? "" : itemcode.substring(2, 9);
-              const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
+              const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}`;
               return (
                 <div key={i} className="col-md-3 mt-5">
                   <div className="cardStyle">
-                    {imageCode === "" ? (
-                      <img
-                        src={LoadingGif}
-                        className="card-img-top"
-                        alt="No_Image"
-                      />
-                    ) : (
-                      <img
-                        src={imageURL}
-                        className="card-img-top CardImageSize"
-                        alt="No_Image"
-                      />
-                    )}
+                    <ShowImageCart imageURL={imageURL} />
                     <div className="cardBodyStyle">
                       <div className="innerBodyStyle">
                         <b>{itemcode}</b>
@@ -207,7 +195,7 @@ const ComponentL3 = (props) => {
               style={{ backgroundColor: "#f5ea84" }}
             >
               <h5 className="modal-title" id="staticBackdropLabel">
-                ADD PRODUCT
+                ADD TO CART
               </h5>
               <button
                 type="button"

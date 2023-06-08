@@ -271,7 +271,7 @@ const AddProductsL3 = (props) => {
                     aria-hidden="true"
                   />
                 ) : (
-                  <span className="sr-only">ADD PRODUCT</span>
+                  <span className="sr-only">ADD TO CART</span>
                 )}
               </button>
             </div>
