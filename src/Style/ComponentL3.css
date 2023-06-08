@@ -36,16 +36,13 @@
 .cardStyle {
     border: 1.5px solid #6e6d6d;
     border-radius: 6px;
-    height: 300px;
 }
 
 .cardStyle:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.CardImageSize {
-    height: 233px;
-}
+
 
 .cardBodyStyle {
     background-color: #f6e95ed6;
