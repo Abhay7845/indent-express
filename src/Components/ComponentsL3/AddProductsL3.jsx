@@ -8,6 +8,7 @@ import BangleMultiUOMSize from "./BangleMultiUOMSize";
 import { HostManager } from "../../APIList/HotMaster";
 import axios from "axios";
 import ChooseMultiSize from "./ChooseMultiSize";
+import TableDataDetails from "./TableDataDetails";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
@@ -243,6 +244,10 @@ const AddProductsL3 = (props) => {
                   optionsList={["A", "B", "C"]}
                   singleProductsDetails={singleProductsDetails}
                   GetChooseSizeData={GetChooseSizeData}
+                />
+                <br />
+                <TableDataDetails
+                  singleProductsDetails={singleProductsDetails}
                 />
               </div>
             </div>
