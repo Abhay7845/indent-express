@@ -9,6 +9,7 @@ import { HostManager } from "../../APIList/HotMaster";
 import axios from "axios";
 import ChooseMultiSize from "./ChooseMultiSize";
 import TableDataDetails from "./TableDataDetails";
+import IndentQuantityFiled from "./IndentQuantityFiled";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,7 @@ const AddProductsL3 = (props) => {
   const [sizeUomQuantityRes, SetSizeUomQuantityRes] = useState([]);
   const [sizeQuantityRes, setSizeQuantityRes] = useState([]);
   const [findingsRes, setFindingsRes] = useState("");
+  const [quantityRes, setQuantityRes] = useState("");
 
   console.log(
     "tagQuantitys==>",
@@ -128,6 +130,10 @@ const AddProductsL3 = (props) => {
   };
   const GetFindingData = (findingValue) => {
     setFindingsRes(findingValue);
+  };
+  const GetIndentQuantityValue = (indentQuantity) => {
+    console.log("indentQuantity==>", indentQuantity);
+    setQuantityRes(indentQuantity);
   };
   return (
     <>
@@ -248,6 +254,11 @@ const AddProductsL3 = (props) => {
                 <br />
                 <TableDataDetails
                   singleProductsDetails={singleProductsDetails}
+                />
+                <br />
+                <IndentQuantityFiled
+                  GetIndentQuantityValue={GetIndentQuantityValue}
+                  quantityRes={quantityRes}
                 />
               </div>
             </div>
