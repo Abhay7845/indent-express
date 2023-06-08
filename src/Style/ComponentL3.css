@@ -17,18 +17,13 @@
 }
 
 .SearchItemCode {
-    border: 2px solid #6e6d6d;
+    border: 1.5px solid #6e6d6d;
     border-radius: 3px;
-    width: 25%;
-    padding: 5px;
+    width: 100%;
     text-align: center;
+    outline: none;
 }
 
-@media screen and (max-width:768px) {
-    .SearchItemCode {
-        width: 100%;
-    }
-}
 
 .cardStyle {
     border: 1.5px solid #6e6d6d;

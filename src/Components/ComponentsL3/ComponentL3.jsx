@@ -8,6 +8,7 @@ import Loader from "../../Common/Loader";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import "../../Style/ComponentL3.css";
 import { BsCartFill } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import { HostManager } from "../../APIList/HotMaster";
 import AddProductsL3 from "./AddProductsL3";
 // import No_ImageURL from "../../Asset/Img/No_Image.jpg";
@@ -48,6 +49,26 @@ const ComponentL3 = (props) => {
         setLoading(false);
       });
   }, [storeCode]);
+
+  const SearchProductByItemCode = () => {
+    setLoading(true);
+    axios
+      .get(`${HostManager.reportsL1L2}/INDENT/express/get/itemcode/list`)
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setProductsData(response.data.value);
+        }
+        if (response.data.code === "1001") {
+          showAlert("Sorry Data Not Found", "danger");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("error==>", error);
+        setLoading(false);
+      });
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -93,19 +114,30 @@ const ComponentL3 = (props) => {
 
       {loading === true ? <Loader /> : ""}
 
-      <div className="mx-3 mt-4">
-        <input
-          type="text"
-          className="SearchItemCode"
-          placeholder="Search by Item Code"
-          onChange={(e) => setSearchItemCode(e.target.value)}
-        />
-        <b className="mx-2 text-danger">
-          {productsData.length === 0
-            ? "DATA NOT FOUND"
-            : productsData.maxLength}
-        </b>
+      <div className="row mx-1 mt-4">
+        <div className="col-md-4">
+          <input
+            type="text"
+            className="SearchItemCode"
+            placeholder="Search by Item Code"
+            onChange={(e) => setSearchItemCode(e.target.value)}
+          />
+        </div>
+        <div className="col-md-4">
+          <div className="d-flex justify-content-between">
+            <b className="mx-2 text-danger">
+              {productsData.length <= 0 ? "DATA NOT FOUND" : ""}
+            </b>
+            <BsSearch
+              size={20}
+              className="mt-1 mx-3"
+              style={{ cursor: "pointer" }}
+              onClick={SearchProductByItemCode}
+            />
+          </div>
+        </div>
       </div>
+
       {productsData.length && (
         <div className="row mx-0">
           {productsData
