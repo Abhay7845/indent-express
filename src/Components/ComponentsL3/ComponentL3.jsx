@@ -113,7 +113,6 @@ const ComponentL3 = (props) => {
       </div>
 
       {loading === true ? <Loader /> : ""}
-
       <div className="row mx-1 mt-4">
         <div className="col-md-4">
           <input
