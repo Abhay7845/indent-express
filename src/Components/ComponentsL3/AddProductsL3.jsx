@@ -7,19 +7,27 @@ import ChooseDynamicTag from "./ChooseDynamicTag";
 import BangleMultiUOMSize from "./BangleMultiUOMSize";
 import { HostManager } from "../../APIList/HotMaster";
 import axios from "axios";
+import ChooseMultiSize from "./ChooseMultiSize";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
   const [option, setOption] = useState([]);
   const [SizeState, setSizeState] = useState([]);
   // INPUT FILED VALUE VARIABLE
-  const [tagQuantitys, SettagQuantitys] = useState([]);
-  const [sizeUomQuantityRes, SetsizeUomQuantityRes] = useState([]);
+  const [tagQuantitys, SetTagQuantitys] = useState([]);
+  const [sizeUomQuantityRes, SetSizeUomQuantityRes] = useState([]);
+  const [sizeQuantityRes, setSizeQuantityRes] = useState([]);
+  const [findingsRes, setFindingsRes] = useState("");
+
   console.log(
     "tagQuantitys==>",
     tagQuantitys,
     "sizeUomQuantityRes==>",
-    sizeUomQuantityRes
+    sizeUomQuantityRes,
+    "sizeQuantityRes==>",
+    sizeQuantityRes,
+    "findingsRes==>",
+    findingsRes
   );
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
@@ -109,15 +117,16 @@ const AddProductsL3 = (props) => {
   }, [itemCode]);
 
   const GetTagFiledValues = (getTagSize) => {
-    SettagQuantitys(getTagSize);
+    SetTagQuantitys(getTagSize);
   };
   const GetUomSizeQuantity = (getUMOSize) => {
-    console.log("getUMOSize==>", getUMOSize);
-    SetsizeUomQuantityRes(getUMOSize);
+    SetSizeUomQuantityRes(getUMOSize);
   };
-
+  const GetChooseSizeData = (getSizeData) => {
+    setSizeQuantityRes(getSizeData);
+  };
   const GetFindingData = (findingValue) => {
-    console.log("GetFindingData==>", findingValue);
+    setFindingsRes(findingValue);
   };
   return (
     <>
@@ -229,6 +238,12 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
+                <br />
+                <ChooseMultiSize
+                  optionsList={["A", "B", "C"]}
+                  singleProductsDetails={singleProductsDetails}
+                  GetChooseSizeData={GetChooseSizeData}
+                />
               </div>
             </div>
             <div className="mt-5">

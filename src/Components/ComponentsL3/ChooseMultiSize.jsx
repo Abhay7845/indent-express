@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Typography } from "@material-ui/core";
+import { useStyles } from "../../Style/ChooseMultiSize";
 import Multiselect from "multiselect-react-dropdown";
-import { useStyles } from "../../Style/StyleJsx/BangleMultiUOMSize";
+import CommonDropdown from "../../Common/CommonDropdown";
 
-const BangleMultiUOMSize = (props) => {
-  const { optionsList, GetUomSizeQuantity } = props;
+const ChooseMultiSize = (props) => {
+  const { singleProductsDetails, optionsList, GetChooseSizeData } = props;
+  console.log("ChooseMultiSize==>", props);
   const classes = useStyles();
   const [sizeRow, setSizeRow] = useState({
     A: false,
@@ -27,21 +28,28 @@ const BangleMultiUOMSize = (props) => {
     R: false,
     S: false,
     T: false,
-    U: false,
     V: false,
-    W: false,
     X: false,
     Y: false,
     Z: false,
+    2: false,
+    4: false,
+    6: false,
+    8: false,
+    Single_Tag: false,
+    Separate_Tag: false,
+    Only_EAR_RING: false,
+    Only_BANGLE: false,
+    Only_NECKWEAR_OR_PENDANT: false,
   });
-
-  const options = optionsList.map((element, index) => {
+  const { findingsResHandler, findingsOptions, labelName } = props;
+  console.log("props==>", props);
+  const options = optionsList.map((element) => {
     return {
       valueData: element,
       labelValue: element,
     };
   });
-
   const enableRows = (name, value) => {
     setSizeRow(function (old) {
       switch (name) {
@@ -150,7 +158,6 @@ const BangleMultiUOMSize = (props) => {
             ...old,
             [name]: value,
           };
-
         case "V":
           return {
             ...old,
@@ -161,7 +168,6 @@ const BangleMultiUOMSize = (props) => {
             ...old,
             [name]: value,
           };
-
         case "X":
           return {
             ...old,
@@ -177,16 +183,89 @@ const BangleMultiUOMSize = (props) => {
             ...old,
             [name]: value,
           };
+        case "1":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "2":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "3":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "4":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "5":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "6":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "7":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "8":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "9":
+          return {
+            ...old,
+            [name]: value,
+          };
+
+        case "Single_Tag":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "Separate_Tag":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "Only_EAR_RING":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "Only_NECKWEAR_OR_PENDANT":
+          return {
+            ...old,
+            [name]: value,
+          };
+        case "Only_BANGLE":
+          return {
+            ...old,
+            [name]: value,
+          };
         default:
           break;
       }
     });
   };
   const onInternalSelectChange = (selectedList, selectedItem) => {
+    console.log("selected==>", selectedItem.labelValue);
     enableRows(selectedItem.labelValue, true);
   };
 
   const onInternalRemoveChange = (selectedList, removedItem) => {
+    console.log("selected item for remove", removedItem.labelValue);
     enableRows(removedItem.labelValue, false);
   };
   const rowHandlerChange = (event) => {
@@ -197,26 +276,14 @@ const BangleMultiUOMSize = (props) => {
       if (sizeRow[rowName]) {
         getData[count++] = {
           size: rowName,
-          uom8: document.getElementById(`${rowName}8`).value
-            ? document.getElementById(`${rowName}8`).value
-            : "",
-          uom6: document.getElementById(`${rowName}6`).value
-            ? document.getElementById(`${rowName}6`).value
-            : "",
-          uom4: document.getElementById(`${rowName}4`).value
-            ? document.getElementById(`${rowName}4`).value
-            : "",
-          uom2: document.getElementById(`${rowName}2`).value
-            ? document.getElementById(`${rowName}2`).value
-            : "",
-          uom1: document.getElementById(`${rowName}1`).value
-            ? document.getElementById(`${rowName}1`).value
+          quantity: document.getElementById(`${rowName}sq`).value
+            ? document.getElementById(`${rowName}sq`).value
             : "",
         };
       }
     }
-    console.log("get UMO Size==>", getData);
-    return GetUomSizeQuantity(getData);
+    console.log("getDataSize==>", getData);
+    return GetChooseSizeData(getData);
   };
 
   const enableRow = (labelValue) => {
@@ -227,104 +294,75 @@ const BangleMultiUOMSize = (props) => {
     }
     return false;
   };
+  const optionsOnlyE = ["Only_EARRING"];
+  const optionE = optionsOnlyE.map((element) => {
+    return {
+      valueData: element,
+      labelValue: element,
+    };
+  });
 
   return (
     <>
-      <Multiselect
-        options={options}
-        displayValue="labelValue"
-        onSelect={onInternalSelectChange}
-        onRemove={onInternalRemoveChange}
-        showCheckbox={true}
-        closeOnSelect={true}
-        placeholder="Choose Size"
-        disablePreSelectedValues={true}
-      />
+      <div className={classes.drop_multi}>
+        <b className="text-primary">{labelName}</b>
+        <Multiselect
+          options={options}
+          displayValue="labelValue"
+          onSelect={onInternalSelectChange}
+          onRemove={onInternalRemoveChange}
+          showCheckbox={true}
+          closeOnSelect={true}
+          placeholder="Choose Size"
+          disablePreSelectedValues={true}
+        />
+        <table className="w-100">
+          <tbody className="d-flex">
+            {options.map((row, index) => (
+              <tr
+                key={index}
+                onChange={rowHandlerChange}
+                id={row.labelValue}
+                className={
+                  enableRow(row.labelValue) ? classes.show : classes.hide
+                }
+              >
+                <td className="w-100">
+                  <input
+                    type="text"
+                    maxLength="1"
+                    id={`${row.labelValue}sq`}
+                    name={`${row.labelValue}sq`}
+                    className={classes.inputField}
+                    placeholder={row.labelValue}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <table style={{ width: "100%", padding: 1, margin: 0 }}>
         <tbody>
-          {options.map((row, index) => (
+          {optionE.map((row, index) => (
             <tr
               key={index}
               onChange={rowHandlerChange}
               id={row.labelValue}
               className={
-                enableRow(row.labelValue) ? classes.show : classes.hide
+                enableRow(row.labelValue) ? classes.showDropdown : classes.hide
               }
             >
-              <td>
-                <Typography size="small" color="primary">
-                  {row.labelValue}
-                </Typography>
-              </td>
-              <td>
-                <Typography size="small" color="primary">
-                  8
-                </Typography>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  maxLength="1"
-                  id={`${row.labelValue}8`}
-                  name={`${row.labelValue}8`}
-                  className={classes.inputField}
-                />
-              </td>
-              <td>
-                <Typography size="small" color="primary">
-                  6
-                </Typography>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  maxLength="1"
-                  id={`${row.labelValue}6`}
-                  name={`${row.labelValue}6`}
-                  className={classes.inputField}
-                />
-              </td>
-              <td>
-                <Typography size="small" color="primary">
-                  4
-                </Typography>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  maxLength="1"
-                  id={`${row.labelValue}4`}
-                  name={`${row.labelValue}4`}
-                  className={classes.inputField}
-                />
-              </td>
-              <td>
-                <Typography size="small" color="primary">
-                  2
-                </Typography>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  maxLength="1"
-                  id={`${row.labelValue}2`}
-                  name={`${row.labelValue}2`}
-                  className={classes.inputField}
-                />
-              </td>
-              <td>
-                <Typography size="small" color="primary">
-                  1
-                </Typography>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  maxLength="1"
-                  id={`${row.labelValue}1`}
-                  name={`${row.labelValue}1`}
-                  className={classes.inputField}
-                />
+              <td className="w-100">
+                {singleProductsDetails.findings ? (
+                  <CommonDropdown
+                    labelName="Findings"
+                    onChangeHandler={findingsResHandler}
+                    optionsList={findingsOptions}
+                  />
+                ) : (
+                  ""
+                )}
               </td>
             </tr>
           ))}
@@ -334,4 +372,4 @@ const BangleMultiUOMSize = (props) => {
   );
 };
 
-export default BangleMultiUOMSize;
+export default ChooseMultiSize;
