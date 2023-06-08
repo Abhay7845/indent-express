@@ -8,7 +8,6 @@ import Loader from "../../Common/Loader";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import "../../Style/ComponentL3.css";
 import { BsCartFill } from "react-icons/bs";
-import { BsSearch } from "react-icons/bs";
 import { HostManager } from "../../APIList/HotMaster";
 import AddProductsL3 from "./AddProductsL3";
 // import No_ImageURL from "../../Asset/Img/No_Image.jpg";
@@ -127,17 +126,11 @@ const ComponentL3 = (props) => {
             <b className="mx-2 text-danger">
               {productsData.length <= 0 ? "DATA NOT FOUND" : ""}
             </b>
-            <BsSearch
-              size={20}
-              className="mt-1 mx-3"
-              style={{ cursor: "pointer" }}
-              onClick={SearchProductByItemCode}
-            />
           </div>
         </div>
       </div>
 
-      {productsData.length && (
+      {productsData.length > 0 && (
         <div className="row mx-0">
           {productsData
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -146,7 +139,7 @@ const ComponentL3 = (props) => {
               const imageCode = !itemcode ? "" : itemcode.substring(2, 9);
               const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
               return (
-                <div key={i} className="col-md-4 mt-2">
+                <div key={i} className="col-md-3 mt-5">
                   <div className="cardStyle">
                     {imageCode === "" ? (
                       <img
@@ -191,6 +184,13 @@ const ComponentL3 = (props) => {
         </div>
       )}
 
+      <div className="my-4 mx-3">
+        {productsData.length <= 0 && (
+          <button onClick={SearchProductByItemCode} className="SButton">
+            HOME
+          </button>
+        )}
+      </div>
       <div
         className="modal fade"
         id="staticBackdrop"
