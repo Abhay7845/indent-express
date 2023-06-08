@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useStyles } from "../../Style/ChooseMultiSize";
 import Multiselect from "multiselect-react-dropdown";
-import CommonDropdown from "../../Common/CommonDropdown";
 
 const ChooseMultiSize = (props) => {
-  const { singleProductsDetails, optionsList, GetChooseSizeData } = props;
-  console.log("ChooseMultiSize==>", props);
+  const { optionsList, GetChooseSizeData } = props;
   const classes = useStyles();
   const [sizeRow, setSizeRow] = useState({
     A: false,
@@ -36,13 +34,7 @@ const ChooseMultiSize = (props) => {
     4: false,
     6: false,
     8: false,
-    Single_Tag: false,
-    Separate_Tag: false,
-    Only_EAR_RING: false,
-    Only_BANGLE: false,
-    Only_NECKWEAR_OR_PENDANT: false,
   });
-  const { findingsResHandler, findingsOptions, labelName } = props;
   console.log("props==>", props);
   const options = optionsList.map((element) => {
     return {
@@ -228,50 +220,21 @@ const ChooseMultiSize = (props) => {
             ...old,
             [name]: value,
           };
-
-        case "Single_Tag":
-          return {
-            ...old,
-            [name]: value,
-          };
-        case "Separate_Tag":
-          return {
-            ...old,
-            [name]: value,
-          };
-        case "Only_EAR_RING":
-          return {
-            ...old,
-            [name]: value,
-          };
-        case "Only_NECKWEAR_OR_PENDANT":
-          return {
-            ...old,
-            [name]: value,
-          };
-        case "Only_BANGLE":
-          return {
-            ...old,
-            [name]: value,
-          };
         default:
           break;
       }
     });
   };
   const onInternalSelectChange = (selectedList, selectedItem) => {
-    console.log("selected==>", selectedItem.labelValue);
     enableRows(selectedItem.labelValue, true);
   };
 
   const onInternalRemoveChange = (selectedList, removedItem) => {
-    console.log("selected item for remove", removedItem.labelValue);
     enableRows(removedItem.labelValue, false);
   };
   const rowHandlerChange = (event) => {
     let getData = [];
     let count = 0;
-
     for (let rowName in sizeRow) {
       if (sizeRow[rowName]) {
         getData[count++] = {
@@ -282,7 +245,6 @@ const ChooseMultiSize = (props) => {
         };
       }
     }
-    console.log("getDataSize==>", getData);
     return GetChooseSizeData(getData);
   };
 
@@ -294,18 +256,10 @@ const ChooseMultiSize = (props) => {
     }
     return false;
   };
-  const optionsOnlyE = ["Only_EARRING"];
-  const optionE = optionsOnlyE.map((element) => {
-    return {
-      valueData: element,
-      labelValue: element,
-    };
-  });
 
   return (
     <>
       <div className={classes.drop_multi}>
-        <b className="text-primary">{labelName}</b>
         <Multiselect
           options={options}
           displayValue="labelValue"
@@ -342,32 +296,6 @@ const ChooseMultiSize = (props) => {
           </tbody>
         </table>
       </div>
-      <table style={{ width: "100%", padding: 1, margin: 0 }}>
-        <tbody>
-          {optionE.map((row, index) => (
-            <tr
-              key={index}
-              onChange={rowHandlerChange}
-              id={row.labelValue}
-              className={
-                enableRow(row.labelValue) ? classes.showDropdown : classes.hide
-              }
-            >
-              <td className="w-100">
-                {singleProductsDetails.findings ? (
-                  <CommonDropdown
-                    labelName="Findings"
-                    onChangeHandler={findingsResHandler}
-                    optionsList={findingsOptions}
-                  />
-                ) : (
-                  ""
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </>
   );
 };
