@@ -20,7 +20,14 @@ const ComponentL3 = (props) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(12);
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
-  const [statusCode, setStatusCode] = useState("1001");
+  const [searchItemCode, setSearchItemCode] = useState("");
+
+  const productDataBySearch = productsData.filter(
+    (data) => data.itemcode === searchItemCode
+  );
+  useEffect(() => {
+    setProductsData(productDataBySearch);
+  }, [searchItemCode]);
 
   useEffect(() => {
     setLoading(true);
@@ -67,11 +74,9 @@ const ComponentL3 = (props) => {
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
-          setStatusCode(response.data.code);
           setSingleProductsDetails(response.data.value);
         }
         if (response.data.code === "1001") {
-          setStatusCode(response.data.code);
           alert(response.data.value);
         }
       })
@@ -85,9 +90,24 @@ const ComponentL3 = (props) => {
         <SideBar />
         <BsCartFill size={25} className="trolleyLowerHeader" />
       </div>
+
       {loading === true ? <Loader /> : ""}
-      {productsData.length > 0 && (
-        <div className="row mx-0 mt-3">
+
+      <div className="mx-3 mt-4">
+        <input
+          type="text"
+          className="SearchItemCode"
+          placeholder="Search by Item Code"
+          onChange={(e) => setSearchItemCode(e.target.value)}
+        />
+        <b className="mx-2 text-danger">
+          {productsData.length === 0
+            ? "DATA NOT FOUND"
+            : productsData.maxLength}
+        </b>
+      </div>
+      {productsData.length && (
+        <div className="row mx-0">
           {productsData
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((productsDetails, i) => {
@@ -95,7 +115,7 @@ const ComponentL3 = (props) => {
               const imageCode = !itemcode ? "" : itemcode.substring(2, 9);
               const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
               return (
-                <div key={i} className="col-md-4 mt-5">
+                <div key={i} className="col-md-4 mt-2">
                   <div className="cardStyle">
                     {imageCode === "" ? (
                       <img
@@ -116,10 +136,7 @@ const ComponentL3 = (props) => {
                         <BsCartFill
                           size={20}
                           onClick={() => GetProductsDetails(productsDetails)}
-                          data-bs-toggle={
-                            (statusCode === "1001" && "") ||
-                            (statusCode === "1000" && "modal")
-                          }
+                          data-bs-toggle="modal"
                           data-bs-target="#staticBackdrop"
                           className="trolleyStyle"
                         />
