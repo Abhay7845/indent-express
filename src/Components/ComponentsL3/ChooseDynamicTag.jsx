@@ -4,7 +4,8 @@ import { useStyles } from "../../Style/StyleJsx/ChooseDynamicTag";
 import Multiselect from "multiselect-react-dropdown";
 import { HostManager } from "../../APIList/HotMaster";
 import BangleMultiUOMSize from "./BangleMultiUOMSize";
-import CommonDropdown from "../../Common/CommonDropdown";
+import CommonDropdown from "../../Common/FindingDropdown";
+import FindingDropdown from "../../Common/FindingDropdown";
 
 const ChooseDynamicTag = (props) => {
   const classes = useStyles();
@@ -18,6 +19,7 @@ const ChooseDynamicTag = (props) => {
     GetUomSizeQuantity,
     GetFindingData,
     SizeState,
+    findingsOptions,
   } = props;
 
   const setType2option = ["Chain", "Dori"];
@@ -68,9 +70,6 @@ const ChooseDynamicTag = (props) => {
       })
       .catch((error) => console.log("error==>", error));
   }, [childNodeN]);
-
-  const findings = singleProductsDetails.findings;
-  const findingsOptions = !findings ? "" : findings.split(",");
 
   const options = optionsList.map((element) => {
     return {
@@ -222,7 +221,7 @@ const ChooseDynamicTag = (props) => {
             >
               <td className="w-100">
                 {singleProductsDetails.findings && (
-                  <CommonDropdown
+                  <FindingDropdown
                     labelName="Findings"
                     GetFindingData={GetFindingData}
                     optionsList={findingsOptions}

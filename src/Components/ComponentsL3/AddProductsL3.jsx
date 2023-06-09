@@ -10,6 +10,7 @@ import axios from "axios";
 import ChooseMultiSize from "./ChooseMultiSize";
 import TableDataDetails from "./TableDataDetails";
 import IndentQuantityFiled from "./IndentQuantityFiled";
+import FindingDropdown from "../../Common/FindingDropdown";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
@@ -40,6 +41,9 @@ const AddProductsL3 = (props) => {
   console.log("option==>", option);
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
   const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}`;
+
+  const findings = singleProductsDetails.findings;
+  const findingsOptions = !findings ? [""] : findings.split(",");
 
   const AddProductsToCard = () => {
     setLoading(false);
@@ -263,6 +267,11 @@ const AddProductsL3 = (props) => {
                 <IndentQuantityFiled
                   GetIndentQuantityValue={GetIndentQuantityValue}
                   quantityRes={quantityRes}
+                />
+                <br />
+                <FindingDropdown
+                  optionsList={findingsOptions}
+                  GetFindingData={GetFindingData}
                 />
               </div>
             </div>
