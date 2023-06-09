@@ -28,15 +28,14 @@ const AddProductsL3 = (props) => {
   const [quantityRes, setQuantityRes] = useState("");
   const [typeSet2Res, setTypeSet2Res] = useState("");
 
-  console.log(
-    tagQuantitys,
-    sizeUomQuantityRes,
-    sizeQuantityRes,
-    findingsRes,
-    quantityRes,
-    stoneQualityRes,
-    typeSet2Res
-  );
+  console.log("tagQuantitys==>", tagQuantitys);
+  console.log("sizeUomQuantityRes==>", sizeUomQuantityRes);
+  console.log("sizeQuantityRes==>", sizeQuantityRes);
+  console.log("findingsRes==>", findingsRes);
+  console.log("quantityRes==>", quantityRes);
+  console.log("stoneQualityRes==>", stoneQualityRes);
+  console.log("typeSet2Res==>", typeSet2Res);
+
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
   const digit = !itemCode ? "" : itemCode[6];
@@ -229,7 +228,7 @@ const AddProductsL3 = (props) => {
                   </table>
                 </div>
               </div>
-              <div className="col-md-7 border">
+              <div className="col-md-7">
                 <h6 className="text-center my-2 feedBackText">
                   <b>INDENT DETAILS</b>
                 </h6>
@@ -249,6 +248,7 @@ const AddProductsL3 = (props) => {
                     GetUomSizeQuantity={GetUomSizeQuantity}
                     GetFindingData={GetFindingData}
                     SizeState={SizeState}
+                    GetSet2TypeData={GetSet2TypeData}
                   />
                 ) : (
                   ""

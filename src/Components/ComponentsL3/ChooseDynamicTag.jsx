@@ -20,6 +20,7 @@ const ChooseDynamicTag = (props) => {
     GetFindingData,
     SizeState,
     findingsOptions,
+    GetSet2TypeData,
   } = props;
 
   const setType2option = ["Chain", "Dori"];
@@ -374,7 +375,7 @@ const ChooseDynamicTag = (props) => {
             >
               <td className="w-100">
                 <Set2TypeDropdown
-                  onChangeHandler={GetFindingData}
+                  GetSet2TypeData={GetSet2TypeData}
                   optionsList={setType2option}
                 />
               </td>

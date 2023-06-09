@@ -6,7 +6,7 @@ const StoneQualityDropdown = (props) => {
   return (
     <>
       <select onChange={GetStoneData} className="L3SelectDropdown">
-        <option>Select Stone Quality</option>
+        <option value="">Select Stone Quality</option>
         {optionsList.map((item, i) => {
           return (
             <option key={i} value={item}>

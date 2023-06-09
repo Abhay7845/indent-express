@@ -6,7 +6,7 @@ const Set2TypeDropdown = (props) => {
   return (
     <>
       <select onChange={GetSet2TypeData} className="L3SelectDropdown">
-        <option>Select Set2Type</option>
+        <option value="">Select Set2Type</option>
         {optionsList.map((item, i) => {
           return (
             <option key={i} value={item}>
