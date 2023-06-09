@@ -12,6 +12,7 @@ import TableDataDetails from "./TableDataDetails";
 import IndentQuantityFiled from "./IndentQuantityFiled";
 import FindingDropdown from "../../Common/FindingDropdown";
 import StoneQualityDropdown from "../../Common/StoneQualityDropdown";
+import Set2TypeDropdown from "../../Common/Set2TypeDropdown";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ const AddProductsL3 = (props) => {
   const [findingsRes, setFindingsRes] = useState("");
   const [stoneQualityRes, setStoneQualityRes] = useState("");
   const [quantityRes, setQuantityRes] = useState("");
+  const [typeSet2Res, setTypeSet2Res] = useState("");
 
   console.log(
     "tagQuantitys==>",
@@ -37,7 +39,9 @@ const AddProductsL3 = (props) => {
     "quantityRes==>",
     quantityRes,
     "stoneQualityRes==>",
-    stoneQualityRes
+    stoneQualityRes,
+    "typeSet2Res==>",
+    typeSet2Res
   );
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
@@ -143,6 +147,9 @@ const AddProductsL3 = (props) => {
   };
   const GetStoneData = (stoneValue) => {
     setStoneQualityRes(stoneValue.target.value);
+  };
+  const GetSet2TypeData = (set2TypeValue) => {
+    setTypeSet2Res(set2TypeValue.target.value);
   };
 
   const GetIndentQuantityValue = (indentQuantity) => {
@@ -284,6 +291,11 @@ const AddProductsL3 = (props) => {
                 <StoneQualityDropdown
                   optionsList={["stone1", "stone2", "stone3"]}
                   GetStoneData={GetStoneData}
+                />
+                <br />
+                <Set2TypeDropdown
+                  optionsList={["Chain", "Dori"]}
+                  GetSet2TypeData={GetSet2TypeData}
                 />
               </div>
             </div>
