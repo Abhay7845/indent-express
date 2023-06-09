@@ -2,10 +2,10 @@ import React from "react";
 import "../Style/ShowImage.css";
 
 const FindingDropdown = (props) => {
-  const { optionsList, findingValue } = props;
+  const { optionsList, GetFindingData } = props;
   return (
     <>
-      <select onChange={findingValue} className="L3SelectDropdown">
+      <select onChange={GetFindingData} className="L3SelectDropdown">
         <option>Select Finding</option>
         {optionsList.map((item, i) => {
           return (

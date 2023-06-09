@@ -135,7 +135,7 @@ const AddProductsL3 = (props) => {
     setSizeQuantityRes(getSizeData);
   };
   const GetFindingData = (findingValue) => {
-    setFindingsRes(findingValue);
+    setFindingsRes(findingValue.target.value);
   };
 
   const GetIndentQuantityValue = (indentQuantity) => {
