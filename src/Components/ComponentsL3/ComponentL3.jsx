@@ -116,7 +116,7 @@ const ComponentL3 = (props) => {
         <div className="col-md-4">
           <input
             type="text"
-            className="SearchItemCode"
+            className="GInput"
             placeholder="Search by Item Code"
             onChange={(e) => setSearchItemCode(e.target.value)}
           />

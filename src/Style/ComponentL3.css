@@ -16,22 +16,6 @@
     color: #f9eb54;
 }
 
-.SearchItemCode {
-    border: 1.5px solid #6e6d6d;
-    border-radius: 3px;
-    width: 100%;
-    text-align: center;
-    outline: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-}
-
-.SearchItemCode:hover {
-    border-bottom: 1.5px solid #8a8888;
-    cursor: pointer;
-}
-
 
 .cardStyle {
     border: 1.5px solid #6e6d6d;
