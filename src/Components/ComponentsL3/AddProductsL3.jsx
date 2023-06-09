@@ -29,19 +29,12 @@ const AddProductsL3 = (props) => {
   const [typeSet2Res, setTypeSet2Res] = useState("");
 
   console.log(
-    "tagQuantitys==>",
     tagQuantitys,
-    "sizeUomQuantityRes==>",
     sizeUomQuantityRes,
-    "sizeQuantityRes==>",
     sizeQuantityRes,
-    "findingsRes==>",
     findingsRes,
-    "quantityRes==>",
     quantityRes,
-    "stoneQualityRes==>",
     stoneQualityRes,
-    "typeSet2Res==>",
     typeSet2Res
   );
   const { singleProductsDetails } = props;
