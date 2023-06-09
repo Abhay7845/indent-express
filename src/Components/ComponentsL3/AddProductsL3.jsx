@@ -13,6 +13,7 @@ import IndentQuantityFiled from "./IndentQuantityFiled";
 import FindingDropdown from "../../Common/FindingDropdown";
 import StoneQualityDropdown from "../../Common/StoneQualityDropdown";
 import Set2TypeDropdown from "../../Common/Set2TypeDropdown";
+import StoneQualityTable from "./StoneQualityTable";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
@@ -299,7 +300,8 @@ const AddProductsL3 = (props) => {
                 />
               </div>
             </div>
-            <div className="mt-5">
+            <StoneQualityTable />
+            <div className="mt-1">
               <button className="CButton" onClick={AddProductsToCard}>
                 {loading ? (
                   <span
