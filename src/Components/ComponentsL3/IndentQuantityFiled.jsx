@@ -1,37 +1,22 @@
-import React, { useState, useEffect } from "react";
-import OTPInput from "otp-input-react";
+import React from "react";
 
 const IndentQuantityFiled = (props) => {
   const { GetIndentQuantityValue, quantityRes } = props;
-  const [showHelper, setHelper] = useState(0);
-
-  useEffect(() => {
-    if (quantityRes !== "") {
-      if (
-        quantityRes.length > 1 ||
-        parseInt(quantityRes) === 0 ||
-        parseInt(quantityRes) > 10
-      ) {
-        setHelper(1);
-      } else {
-        setHelper(0);
-      }
-    }
-  }, [quantityRes]);
 
   return (
-    <div>
-      <b>INDENT QUANTITY</b>
-      <OTPInput
-        value={quantityRes}
-        onChange={GetIndentQuantityValue}
-        OTPLength={1}
-        otpType="number"
-      />
-      <p className="text-danger">
-        {showHelper === 0 ? "" : "Please enter a valid quantity"}
-      </p>
-    </div>
+    <input
+      type="number"
+      pattern="[0-9]"
+      min="0"
+      max="9"
+      id="numberInput"
+      maxLength={1}
+      minLength={1}
+      value={`${quantityRes}`}
+      onInput={GetIndentQuantityValue}
+      className="IndentQuantity"
+      placeholder="Enter Indent Quantity"
+    />
   );
 };
 

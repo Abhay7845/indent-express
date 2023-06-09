@@ -30,7 +30,9 @@ const AddProductsL3 = (props) => {
     "sizeQuantityRes==>",
     sizeQuantityRes,
     "findingsRes==>",
-    findingsRes
+    findingsRes,
+    "quantityRes==>",
+    quantityRes
   );
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
@@ -131,9 +133,11 @@ const AddProductsL3 = (props) => {
   const GetFindingData = (findingValue) => {
     setFindingsRes(findingValue);
   };
+
   const GetIndentQuantityValue = (indentQuantity) => {
-    console.log("indentQuantity==>", indentQuantity);
-    setQuantityRes(indentQuantity);
+    const newValue = indentQuantity.target.value;
+    const lastNumber = parseInt(newValue.toString().slice(-1));
+    setQuantityRes(lastNumber);
   };
   return (
     <>
