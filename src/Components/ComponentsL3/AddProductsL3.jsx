@@ -12,7 +12,6 @@ import TableDataDetails from "./TableDataDetails";
 import IndentQuantityFiled from "./IndentQuantityFiled";
 import FindingDropdown from "../../Common/FindingDropdown";
 import StoneQualityDropdown from "../../Common/StoneQualityDropdown";
-import Set2TypeDropdown from "../../Common/Set2TypeDropdown";
 import StoneQualityTable from "./StoneQualityTable";
 
 const AddProductsL3 = (props) => {
@@ -302,11 +301,6 @@ const AddProductsL3 = (props) => {
                 <StoneQualityDropdown
                   optionsList={["stone1", "stone2", "stone3"]}
                   GetStoneData={GetStoneData}
-                />
-                <br />
-                <Set2TypeDropdown
-                  optionsList={["Chain", "Dori"]}
-                  GetSet2TypeData={GetSet2TypeData}
                 />
               </div>
             </div>
