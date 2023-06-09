@@ -272,9 +272,20 @@ const AddProductsL3 = (props) => {
                   ""
                 )}
                 <br />
-                <TableDataDetails
-                  singleProductsDetails={singleProductsDetails}
-                />
+                {digit === "0" ||
+                digit === "1" ||
+                digit === "2" ||
+                digit === "3" ||
+                digit === "4" ||
+                digit === "5" ||
+                digit === "6" ||
+                digit === "7" ? (
+                  <TableDataDetails
+                    singleProductsDetails={singleProductsDetails}
+                  />
+                ) : (
+                  ""
+                )}
                 <br />
                 <IndentQuantityFiled
                   GetIndentQuantityValue={GetIndentQuantityValue}
