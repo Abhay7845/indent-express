@@ -261,12 +261,16 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
-                <br />
-                <ChooseMultiSize
-                  optionsList={["A", "B", "C"]}
-                  singleProductsDetails={singleProductsDetails}
-                  GetChooseSizeData={GetChooseSizeData}
-                />
+
+                {digit === "F" ? (
+                  <ChooseMultiSize
+                    optionsList={["A", "B", "C"]}
+                    singleProductsDetails={singleProductsDetails}
+                    GetChooseSizeData={GetChooseSizeData}
+                  />
+                ) : (
+                  ""
+                )}
                 <br />
                 <TableDataDetails
                   singleProductsDetails={singleProductsDetails}
@@ -277,10 +281,12 @@ const AddProductsL3 = (props) => {
                   quantityRes={quantityRes}
                 />
                 <br />
-                <FindingDropdown
-                  optionsList={findingsOptions}
-                  GetFindingData={GetFindingData}
-                />
+                {singleProductsDetails.findings && (
+                  <FindingDropdown
+                    optionsList={findingsOptions}
+                    GetFindingData={GetFindingData}
+                  />
+                )}
                 <br />
                 <StoneQualityDropdown
                   optionsList={["stone1", "stone2", "stone3"]}
