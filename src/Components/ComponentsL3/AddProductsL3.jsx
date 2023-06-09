@@ -11,6 +11,7 @@ import ChooseMultiSize from "./ChooseMultiSize";
 import TableDataDetails from "./TableDataDetails";
 import IndentQuantityFiled from "./IndentQuantityFiled";
 import FindingDropdown from "../../Common/FindingDropdown";
+import StoneQualityDropdown from "../../Common/StoneQualityDropdown";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
@@ -21,6 +22,7 @@ const AddProductsL3 = (props) => {
   const [sizeUomQuantityRes, SetSizeUomQuantityRes] = useState([]);
   const [sizeQuantityRes, setSizeQuantityRes] = useState([]);
   const [findingsRes, setFindingsRes] = useState("");
+  const [stoneQualityRes, setStoneQualityRes] = useState("");
   const [quantityRes, setQuantityRes] = useState("");
 
   console.log(
@@ -33,7 +35,9 @@ const AddProductsL3 = (props) => {
     "findingsRes==>",
     findingsRes,
     "quantityRes==>",
-    quantityRes
+    quantityRes,
+    "stoneQualityRes==>",
+    stoneQualityRes
   );
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
@@ -136,6 +140,9 @@ const AddProductsL3 = (props) => {
   };
   const GetFindingData = (findingValue) => {
     setFindingsRes(findingValue.target.value);
+  };
+  const GetStoneData = (stoneValue) => {
+    setStoneQualityRes(stoneValue.target.value);
   };
 
   const GetIndentQuantityValue = (indentQuantity) => {
@@ -272,6 +279,11 @@ const AddProductsL3 = (props) => {
                 <FindingDropdown
                   optionsList={findingsOptions}
                   GetFindingData={GetFindingData}
+                />
+                <br />
+                <StoneQualityDropdown
+                  optionsList={["stone1", "stone2", "stone3"]}
+                  GetStoneData={GetStoneData}
                 />
               </div>
             </div>

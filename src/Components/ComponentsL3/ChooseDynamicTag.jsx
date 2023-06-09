@@ -4,7 +4,6 @@ import { useStyles } from "../../Style/StyleJsx/ChooseDynamicTag";
 import Multiselect from "multiselect-react-dropdown";
 import { HostManager } from "../../APIList/HotMaster";
 import BangleMultiUOMSize from "./BangleMultiUOMSize";
-import CommonDropdown from "../../Common/FindingDropdown";
 import FindingDropdown from "../../Common/FindingDropdown";
 
 const ChooseDynamicTag = (props) => {
@@ -373,8 +372,7 @@ const ChooseDynamicTag = (props) => {
               }
             >
               <td className="w-100">
-                <CommonDropdown
-                  labelName="Type Set-2"
+                <FindingDropdown
                   onChangeHandler={GetFindingData}
                   optionsList={setType2option}
                 />
