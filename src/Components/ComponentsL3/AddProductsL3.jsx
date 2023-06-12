@@ -28,6 +28,7 @@ const AddProductsL3 = (props) => {
   const [stoneQuality, setStoneQualityRes] = useState("");
   const [indentQuantity, setIndentQuantityRes] = useState("");
   const [typeSet2, setTypeSet2Res] = useState("");
+  console.log("SizeState==>", SizeState);
 
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
