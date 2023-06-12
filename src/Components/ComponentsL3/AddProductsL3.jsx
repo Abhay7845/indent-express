@@ -18,22 +18,15 @@ const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
   const [option, setOption] = useState([]);
   const [SizeState, setSizeState] = useState([]);
+  const storeCode = localStorage.getItem("indent-expressId");
   // INPUT FILED VALUE VARIABLE
-  const [tagQuantitys, SetTagQuantitys] = useState([]);
+  const [tagQuantity, SetTagQuantity] = useState([]);
   const [sizeUomQuantityRes, SetSizeUomQuantityRes] = useState([]);
   const [sizeQuantityRes, setSizeQuantityRes] = useState([]);
   const [findingsRes, setFindingsRes] = useState("");
   const [stoneQualityRes, setStoneQualityRes] = useState("");
-  const [quantityRes, setQuantityRes] = useState("");
+  const [indentQuantity, setIndentQuantityRes] = useState("");
   const [typeSet2Res, setTypeSet2Res] = useState("");
-
-  console.log("tagQuantitys==>", tagQuantitys);
-  console.log("sizeUomQuantityRes==>", sizeUomQuantityRes);
-  console.log("sizeQuantityRes==>", sizeQuantityRes);
-  console.log("findingsRes==>", findingsRes);
-  console.log("quantityRes==>", quantityRes);
-  console.log("stoneQualityRes==>", stoneQualityRes);
-  console.log("typeSet2Res==>", typeSet2Res);
 
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
@@ -44,10 +37,6 @@ const AddProductsL3 = (props) => {
 
   const findings = singleProductsDetails.findings;
   const findingsOptions = !findings ? [""] : findings.split(",");
-
-  const AddProductsToCard = () => {
-    setLoading(false);
-  };
   // DYNAMIC TAG
   const finger = !singleProductsDetails.childNodeF ? "" : "Only_FINGER_RING";
   const harm = !singleProductsDetails.childNodeH ? "" : "Only_HARAM";
@@ -126,7 +115,7 @@ const AddProductsL3 = (props) => {
   }, [itemCode]);
 
   const GetTagFiledValues = (getTagSize) => {
-    SetTagQuantitys(getTagSize);
+    SetTagQuantity(getTagSize);
   };
   const GetUomSizeQuantity = (getUMOSize) => {
     SetSizeUomQuantityRes(getUMOSize);
@@ -147,8 +136,52 @@ const AddProductsL3 = (props) => {
   const GetIndentQuantityValue = (indentQuantity) => {
     const newValue = indentQuantity.target.value;
     const lastNumber = parseInt(newValue.toString().slice(-1));
-    setQuantityRes(lastNumber);
+    setIndentQuantityRes(lastNumber);
   };
+
+  // ADD TO CART PRODUCTS
+  const AddProductsToCard = () => {
+    setLoading(false);
+    const AddToCardProduct = {
+      category: singleProductsDetails.category,
+      childNodesE: singleProductsDetails.childNodesE,
+      childNodesN: singleProductsDetails.childNodesN,
+      childNodeF: singleProductsDetails.childNodeF,
+      childNodeH: singleProductsDetails.childNodeH,
+      childNodeK: singleProductsDetails.childNodeK,
+      childNodeV: singleProductsDetails.childNodeV,
+      collection: singleProductsDetails.collection,
+      consumerbase: singleProductsDetails.consumerBase,
+      indCategory: singleProductsDetails.indCategory,
+      indentLevelType: singleProductsDetails.indentLevelType,
+      itemCode: singleProductsDetails.itemCode,
+      itgroup: singleProductsDetails.itGroup,
+      npimEventNo: singleProductsDetails.npimEventNo,
+      reasons: singleProductsDetails.reasons,
+      rsoName: singleProductsDetails.rsoName,
+      saleable: singleProductsDetails.saleable,
+      set2Type: typeSet2Res,
+      indQty: indentQuantity,
+      sizeQuantitys: sizeQuantityRes,
+      sizeUomQuantitys: sizeUomQuantityRes,
+      findings: findingsRes,
+      stoneQuality: stoneQualityRes,
+      stoneQualityVal: null,
+      tagQuantitys: tagQuantity,
+      strCode: storeCode,
+      submitStatus: singleProductsDetails.submitStatus,
+    };
+    console.log("AddToCardProduct==>", AddToCardProduct);
+    axios
+      .post(
+        `${HostManager.reportsL1L2}/INDENTL3/express/insert/responses/from/L3`,
+        AddToCardProduct
+      )
+      .then((res) => res)
+      .then((response) => console.log("response==>", response))
+      .catch((error) => console.log("error==>", error));
+  };
+
   return (
     <>
       {loading === true ? <Loader /> : ""}
@@ -288,7 +321,7 @@ const AddProductsL3 = (props) => {
                 <br />
                 <IndentQuantityFiled
                   GetIndentQuantityValue={GetIndentQuantityValue}
-                  quantityRes={quantityRes}
+                  indentQuantity={indentQuantity}
                 />
                 <br />
                 {singleProductsDetails.findings && (

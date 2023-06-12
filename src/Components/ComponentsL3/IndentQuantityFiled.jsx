@@ -1,7 +1,7 @@
 import React from "react";
 
 const IndentQuantityFiled = (props) => {
-  const { GetIndentQuantityValue, quantityRes } = props;
+  const { GetIndentQuantityValue, indentQuantity } = props;
 
   return (
     <input
@@ -12,7 +12,7 @@ const IndentQuantityFiled = (props) => {
       id="numberInput"
       maxLength={1}
       minLength={1}
-      value={`${quantityRes}`}
+      value={`${indentQuantity}`}
       onInput={GetIndentQuantityValue}
       className="IndentQuantity"
       placeholder="Enter Indent Quantity"
