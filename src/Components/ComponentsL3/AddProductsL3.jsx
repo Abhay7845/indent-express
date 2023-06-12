@@ -353,7 +353,11 @@ const AddProductsL3 = (props) => {
             </div>
             <StoneQualityTable />
             <div className="mt-1">
-              <button className="CButton" onClick={AddProductsToCard}>
+              <button
+                className="CButton"
+                data-bs-dismiss="modal"
+                onClick={AddProductsToCard}
+              >
                 {loading ? (
                   <span
                     className="spinner-border spinner-border-sm"
