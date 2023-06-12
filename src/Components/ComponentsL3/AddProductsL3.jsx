@@ -21,12 +21,12 @@ const AddProductsL3 = (props) => {
   const storeCode = localStorage.getItem("indent-expressId");
   // INPUT FILED VALUE VARIABLE
   const [tagQuantity, SetTagQuantity] = useState([]);
-  const [sizeUomQuantityRes, SetSizeUomQuantityRes] = useState([]);
-  const [sizeQuantityRes, setSizeQuantityRes] = useState([]);
+  const [sizeUomQuantity, SetSizeUomQuantityRes] = useState([]);
+  const [sizeQuantity, setSizeQuantityRes] = useState([]);
   const [findingsRes, setFindingsRes] = useState("");
-  const [stoneQualityRes, setStoneQualityRes] = useState("");
+  const [stoneQuality, setStoneQualityRes] = useState("");
   const [indentQuantity, setIndentQuantityRes] = useState("");
-  const [typeSet2Res, setTypeSet2Res] = useState("");
+  const [typeSet2, setTypeSet2Res] = useState("");
 
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
@@ -160,13 +160,13 @@ const AddProductsL3 = (props) => {
       reasons: singleProductsDetails.reasons,
       rsoName: singleProductsDetails.rsoName,
       saleable: singleProductsDetails.saleable,
-      set2Type: typeSet2Res,
-      indQty: indentQuantity,
-      sizeQuantitys: sizeQuantityRes,
-      sizeUomQuantitys: sizeUomQuantityRes,
-      findings: findingsRes,
-      stoneQuality: stoneQualityRes,
       stoneQualityVal: null,
+      set2Type: typeSet2,
+      indQty: indentQuantity,
+      sizeQuantitys: sizeQuantity,
+      sizeUomQuantitys: sizeUomQuantity,
+      findings: findingsRes,
+      stoneQuality: stoneQuality,
       tagQuantitys: tagQuantity,
       strCode: storeCode,
       submitStatus: singleProductsDetails.submitStatus,
