@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react";
 import Loader from "../../Common/Loader";
 import ShowImage from "./ShowImage";
 import "../../Style/ShowImage.css";
+import axios from "axios";
+import swal from "sweetalert";
 import ChooseDynamicTag from "./ChooseDynamicTag";
 import BangleMultiUOMSize from "./BangleMultiUOMSize";
 import { HostManager } from "../../APIList/HotMaster";
-import axios from "axios";
 import ChooseMultiSize from "./ChooseMultiSize";
 import TableDataDetails from "./TableDataDetails";
 import IndentQuantityFiled from "./IndentQuantityFiled";
@@ -141,7 +142,7 @@ const AddProductsL3 = (props) => {
 
   // ADD TO CART PRODUCTS
   const AddProductsToCard = () => {
-    setLoading(false);
+    setLoading(true);
     const AddToCardProduct = {
       category: singleProductsDetails.category,
       childNodesE: singleProductsDetails.childNodesE,
@@ -178,8 +179,21 @@ const AddProductsL3 = (props) => {
         AddToCardProduct
       )
       .then((res) => res)
-      .then((response) => console.log("response==>", response))
-      .catch((error) => console.log("error==>", error));
+      .then((response) => {
+        if (response.data.code === "1000") {
+          swal({
+            title: "Success!",
+            text: "Your Data Has been Added To Cart Successfully",
+            icon: "success",
+            buttons: "OK",
+          });
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("error==>", error);
+        setLoading(false);
+      });
   };
 
   return (
@@ -332,7 +346,7 @@ const AddProductsL3 = (props) => {
                 )}
                 <br />
                 <StoneQualityDropdown
-                  optionsList={["stone1", "stone2", "stone3"]}
+                  optionsList={["stdUcp-0", "stdUcp-1", "stdUcp-2"]}
                   GetStoneData={GetStoneData}
                 />
               </div>
