@@ -22,10 +22,10 @@ const ComponentL3 = (props) => {
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
   const [searchItemCode, setSearchItemCode] = useState("");
 
-  const productDataBySearch = productsData.filter(
-    (data) => data.itemcode === searchItemCode
-  );
   useEffect(() => {
+    const productDataBySearch = productsData.filter(
+      (data) => data.itemcode === searchItemCode
+    );
     setProductsData(productDataBySearch);
   }, [searchItemCode]);
 
