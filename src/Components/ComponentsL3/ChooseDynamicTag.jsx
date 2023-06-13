@@ -13,7 +13,6 @@ const ChooseDynamicTag = (props) => {
   const [ChildNodeV, setChildNodeV] = useState([]);
   const [ChildNodesN, setChildNodesN] = useState([]);
   const [ChildNodeF, setChildNodeF] = useState([]);
-  console.log("ChildNodeF==>", ChildNodeF);
 
   const {
     singleProductsDetails,
@@ -21,7 +20,6 @@ const ChooseDynamicTag = (props) => {
     GetTagFiledValues,
     GetUomSizeQuantity,
     GetFindingData,
-    SizeState,
     findingsOptions,
     GetSet2TypeData,
   } = props;
@@ -75,7 +73,7 @@ const ChooseDynamicTag = (props) => {
   }, [childNodeN]);
 
   const childNodeF = singleProductsDetails.childNodeF;
-
+  console.log("childNodeF==>", childNodeF);
   useEffect(() => {
     axios
       .get(
@@ -98,12 +96,13 @@ const ChooseDynamicTag = (props) => {
       labelValue: element,
     };
   });
-  const fingerRingSize = SizeState.map((element) => {
+  const fingerRingSize = ChildNodeF.map((element) => {
     return {
       valueData: element,
       labelValue: element,
     };
   });
+  console.log("fingerRingSize==>", fingerRingSize);
   const ChildNodeN = ChildNodesN.map((element) => {
     return {
       valueData: element,
@@ -265,13 +264,13 @@ const ChooseDynamicTag = (props) => {
             >
               <td className="w-100">
                 <Multiselect
-                  options={SizeState}
+                  options={fingerRingSize}
                   displayValue="labelValue"
                   onSelect={onInternalSelectChange}
                   onRemove={onInternalRemoveChange}
                   showCheckbox={true}
                   closeOnSelect={true}
-                  placeholder="Choose Size1"
+                  placeholder="Choose Size"
                   disablePreSelectedValues={true}
                 />
                 <table className="w-100">
