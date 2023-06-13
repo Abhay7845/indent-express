@@ -367,6 +367,7 @@ const AddProductsL3 = (props) => {
                   <StoneQualityDropdown
                     optionsList={stoneDropdown}
                     GetStoneData={GetStoneData}
+                    singleProductsDetails={singleProductsDetails}
                   />
                 )}
               </div>
