@@ -337,7 +337,18 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
-                {digit === "N" || digit === "O" || digit === "X" ? (
+                {digit === "N" ||
+                digit === "O" ||
+                digit === "X" ||
+                digit === "H" ||
+                digit === "J" ||
+                digit === "S" ||
+                digit === "W" ||
+                digit === "E" ||
+                digit === "P" ||
+                digit === "Y" ||
+                digit === "A" ||
+                digit === "G" ? (
                   <IndentQuantityFiled
                     GetIndentQuantityValue={GetIndentQuantityValue}
                     indentQuantity={indentQuantity}
