@@ -11,7 +11,6 @@ import { HostManager } from "../../APIList/HotMaster";
 import ChooseMultiSize from "./ChooseMultiSize";
 import TableDataDetails from "./TableDataDetails";
 import IndentQuantityFiled from "./IndentQuantityFiled";
-import FindingDropdown from "../../Common/FindingDropdown";
 import StoneQualityDropdown from "../../Common/StoneQualityDropdown";
 import StoneQualityTable from "./StoneQualityTable";
 
@@ -107,6 +106,7 @@ const AddProductsL3 = (props) => {
     }
   }, [digit]);
 
+  // DROPDOWN SIZE FOR NORMAL
   useEffect(() => {
     axios
       .get(
@@ -356,12 +356,6 @@ const AddProductsL3 = (props) => {
                   />
                 ) : (
                   ""
-                )}
-                {singleProductsDetails.findings && (
-                  <FindingDropdown
-                    optionsList={findingsOptions}
-                    GetFindingData={GetFindingData}
-                  />
                 )}
                 <br />
                 {stoneDropdown.length > 0 && (

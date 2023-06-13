@@ -35,7 +35,6 @@ const ChooseMultiSize = (props) => {
     6: false,
     8: false,
   });
-  console.log("props==>", props);
   const options = optionsList.map((element) => {
     return {
       valueData: element,

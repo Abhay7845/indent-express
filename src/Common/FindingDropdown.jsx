@@ -5,7 +5,7 @@ const FindingDropdown = (props) => {
   const { optionsList, GetFindingData } = props;
   console.log("optionsList==>", optionsList);
   return (
-    <>
+    <div className="mt-3">
       <select onChange={GetFindingData} className="L3SelectDropdown">
         <option value="">Select Finding</option>
         {optionsList.map((item, i) => {
@@ -16,7 +16,7 @@ const FindingDropdown = (props) => {
           );
         })}
       </select>
-    </>
+    </div>
   );
 };
 

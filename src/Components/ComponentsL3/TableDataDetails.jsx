@@ -4,7 +4,7 @@ const singleProductsDetailsDetails = (props) => {
   const { singleProductsDetails } = props;
   return (
     <>
-      <table className="table table-bordered" style={{ marginLeft: "0px" }}>
+      <table className="table table-bordered mt-4">
         <thead>
           <tr>
             <th scope="col">CATEGORY</th>
