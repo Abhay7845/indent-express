@@ -1,0 +1,12 @@
+.redirectionTab {
+    border: 1px solid #aca9a9;
+    padding: 5px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+}
+
+.redirectionTab:hover {
+    background-color: #90ee90;
+    border: 1px solid #90ee90;
+}

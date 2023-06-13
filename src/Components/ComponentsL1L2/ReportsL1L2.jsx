@@ -183,9 +183,9 @@ const ReportsL1L2 = (props) => {
   return (
     <>
       <TopHeader />
+      {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
         <SideBar />
-        {loading === true ? <Loader /> : ""}
         <div className="row mx-2 d-flex justify-content-between w-100">
           <div className="col-md-3">
             <select

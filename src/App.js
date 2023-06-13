@@ -11,6 +11,9 @@ import ComponentL3 from "./Components/ComponentsL3/ComponentL3";
 import StatusReportsL1L2 from "./Components/ComponentsL1L2/StatusReportsL1L2";
 import AlertModal from "./Common/AlertModal";
 import StatusReportsL3 from "./Components/ComponentsL3/StatusReportsL3";
+import PhysicalAndDigital from "./Components/ComponentsL1L2/PhysicalL1L2";
+import DigitalL1L2 from "./Components/ComponentsL1L2/DigitalL1L2";
+import RedirectionHomePage from "./Components/ComponentsL1L2/RedirectionHomePage";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -47,6 +50,18 @@ const App = () => {
             <Route
               path="/Indent-express/L1/L2/status/reports"
               element={<StatusReportsL1L2 showAlert={showAlert} />}
+            />
+            <Route
+              path="/Indent-express/L1/L2/physical/home"
+              element={<PhysicalAndDigital showAlert={showAlert} />}
+            />
+            <Route
+              path="/Indent-express/L1/L2/digital/home"
+              element={<DigitalL1L2 showAlert={showAlert} />}
+            />
+            <Route
+              path="/Indent-express/L1/L2/re/direction/home"
+              element={<RedirectionHomePage showAlert={showAlert} />}
             />
             {/* L3 COMPONENTS */}
             <Route

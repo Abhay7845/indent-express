@@ -26,15 +26,13 @@ const Login = (props) => {
     axios
       .post(`${HostManager.reportsL1L2}/INDENT/express/user/login`, inputData)
       .then((response) => {
-        if (response.data.value.role === "L1") {
+        if (
+          response.data.value.role === "L1" ||
+          response.data.value.role === "L3"
+        ) {
           localStorage.setItem("indent-expressId", response.data.value.userID);
           localStorage.setItem("indent-expressRole", response.data.value.role);
-          navigate("/Indent-express/feedback/L1/L2");
-        }
-        if (response.data.value.role === "L3") {
-          localStorage.setItem("indent-expressId", response.data.value.userID);
-          localStorage.setItem("indent-expressRole", response.data.value.role);
-          navigate("/Indent-express/L3");
+          navigate("/Indent-express/L1/L2/re/direction/home");
         }
         if (response.data.value.role === "Admin") {
           localStorage.setItem("indent-expressId", response.data.value.role);
