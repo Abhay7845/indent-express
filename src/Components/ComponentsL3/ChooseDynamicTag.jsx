@@ -49,7 +49,7 @@ const ChooseDynamicTag = (props) => {
           setChildNodeV(result.data.value);
         }
         if (result.data.code === "1001") {
-          console.log("Size Not Available");
+          setChildNodeV([]);
         }
       })
       .catch((error) => console.log("error==>", error));
@@ -65,15 +65,14 @@ const ChooseDynamicTag = (props) => {
       .then((response) => {
         if (response.data.code === "1000") {
           setChildNodesN(response.data.value);
-        } else {
-          console.log("Data Not Found");
+        } else if (response.data.code === "1001") {
+          setChildNodesN([]);
         }
       })
       .catch((error) => console.log("error==>", error));
   }, [childNodeN]);
 
   const childNodeF = singleProductsDetails.childNodeF;
-  console.log("childNodeF==>", childNodeF);
   useEffect(() => {
     axios
       .get(
@@ -102,7 +101,6 @@ const ChooseDynamicTag = (props) => {
       labelValue: element,
     };
   });
-  console.log("fingerRingSize==>", fingerRingSize);
   const ChildNodeN = ChildNodesN.map((element) => {
     return {
       valueData: element,
