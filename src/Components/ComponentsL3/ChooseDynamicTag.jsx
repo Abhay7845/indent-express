@@ -12,6 +12,9 @@ const ChooseDynamicTag = (props) => {
   const [sizeRow, setSizeRow] = useState();
   const [ChildNodeV, setChildNodeV] = useState([]);
   const [ChildNodesN, setChildNodesN] = useState([]);
+  const [ChildNodeF, setChildNodeF] = useState([]);
+  console.log("ChildNodeF==>", ChildNodeF);
+
   const {
     singleProductsDetails,
     optionsList,
@@ -70,6 +73,24 @@ const ChooseDynamicTag = (props) => {
       })
       .catch((error) => console.log("error==>", error));
   }, [childNodeN]);
+
+  const childNodeF = singleProductsDetails.childNodeF;
+
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${childNodeF}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setChildNodeF(response.data.value);
+        } else if (response.data.code === "1001") {
+          setChildNodeF([]);
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  }, [childNodeF]);
 
   const options = optionsList.map((element) => {
     return {
@@ -250,7 +271,7 @@ const ChooseDynamicTag = (props) => {
                   onRemove={onInternalRemoveChange}
                   showCheckbox={true}
                   closeOnSelect={true}
-                  placeholder="Choose Size"
+                  placeholder="Choose Size1"
                   disablePreSelectedValues={true}
                 />
                 <table className="w-100">
