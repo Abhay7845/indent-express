@@ -319,17 +319,15 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
-
                 {digit === "F" ? (
                   <ChooseMultiSize
-                    optionsList={["A", "B", "C"]}
+                    optionsList={SizeState}
                     singleProductsDetails={singleProductsDetails}
                     GetChooseSizeData={GetChooseSizeData}
                   />
                 ) : (
                   ""
                 )}
-                <br />
                 {digit === "0" ||
                 digit === "1" ||
                 digit === "2" ||
@@ -344,12 +342,14 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
-                <br />
-                <IndentQuantityFiled
-                  GetIndentQuantityValue={GetIndentQuantityValue}
-                  indentQuantity={indentQuantity}
-                />
-                <br />
+                {digit === "N" || digit === "O" || digit === "X" ? (
+                  <IndentQuantityFiled
+                    GetIndentQuantityValue={GetIndentQuantityValue}
+                    indentQuantity={indentQuantity}
+                  />
+                ) : (
+                  ""
+                )}
                 {singleProductsDetails.findings && (
                   <FindingDropdown
                     optionsList={findingsOptions}
