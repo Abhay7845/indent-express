@@ -28,13 +28,9 @@ const AddProductsL3 = (props) => {
   const [stoneQuality, setStoneQualityRes] = useState("");
   const [indentQuantity, setIndentQuantityRes] = useState("");
   const [typeSet2, setTypeSet2Res] = useState("");
-  console.log("SizeState==>", SizeState);
-
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
   const digit = !itemCode ? "" : itemCode[6];
-  console.log("option==>", option);
-  console.log("singleProductsDetails==>", singleProductsDetails);
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
   const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}`;
 
@@ -121,7 +117,7 @@ const AddProductsL3 = (props) => {
         if (response.data.code === "1000") {
           setSizeState(response.data.value);
         } else if (response.data.code === "1001") {
-          console.log("Size Not Found");
+          setSizeState([]);
         }
       })
       .catch((error) => console.log("error==>", error));
@@ -184,7 +180,6 @@ const AddProductsL3 = (props) => {
       strCode: storeCode,
       submitStatus: singleProductsDetails.submitStatus,
     };
-    console.log("AddToCardProduct==>", AddToCardProduct);
     axios
       .post(
         `${HostManager.reportsL1L2}/INDENTL3/express/insert/responses/from/L3`,
