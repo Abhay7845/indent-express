@@ -34,9 +34,20 @@ const AddProductsL3 = (props) => {
   const { itemCode, videoLink } = singleProductsDetails;
   const digit = !itemCode ? "" : itemCode[6];
   console.log("option==>", option);
+  console.log("singleProductsDetails==>", singleProductsDetails);
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
   const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}`;
 
+  // STONE QUANTITY DATA
+  const SI_2GH = singleProductsDetails.si2Gh;
+  const VS_GH = singleProductsDetails.vsGh;
+  const VVS1 = singleProductsDetails.vvs1;
+  const I2_GH = singleProductsDetails.i2Gh;
+  const SI2_IJ = singleProductsDetails.si2Ij;
+  const stoneTableData = [SI_2GH, VS_GH, VVS1, I2_GH, SI2_IJ];
+  const stoneDropdown = stoneTableData.filter((item) => !item === false);
+
+  // FINDINGS OPTIONS
   const findings = singleProductsDetails.findings;
   const findingsOptions = !findings ? [""] : findings.split(",");
   // DYNAMIC TAG
@@ -346,13 +357,17 @@ const AddProductsL3 = (props) => {
                   />
                 )}
                 <br />
-                <StoneQualityDropdown
-                  optionsList={["stdUcp-0", "stdUcp-1", "stdUcp-2"]}
-                  GetStoneData={GetStoneData}
-                />
+                {stoneDropdown.length > 0 && (
+                  <StoneQualityDropdown
+                    optionsList={stoneDropdown}
+                    GetStoneData={GetStoneData}
+                  />
+                )}
               </div>
             </div>
-            <StoneQualityTable />
+            {stoneDropdown.length > 0 && (
+              <StoneQualityTable tableRowData={singleProductsDetails} />
+            )}
             <div className="mt-1">
               <button
                 className="CButton"
