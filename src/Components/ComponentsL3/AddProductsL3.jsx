@@ -302,6 +302,7 @@ const AddProductsL3 = (props) => {
                     GetFindingData={GetFindingData}
                     SizeState={SizeState}
                     GetSet2TypeData={GetSet2TypeData}
+                    findingsOptions={findingsOptions}
                   />
                 ) : (
                   ""

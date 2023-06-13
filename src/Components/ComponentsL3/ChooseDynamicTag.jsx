@@ -24,7 +24,6 @@ const ChooseDynamicTag = (props) => {
   } = props;
 
   const setType2option = ["Chain", "Dori"];
-  console.log("props==>", props);
   useEffect(() => {
     if (optionsList)
       setImmediate(() => {
@@ -223,9 +222,8 @@ const ChooseDynamicTag = (props) => {
               <td className="w-100">
                 {singleProductsDetails.findings && (
                   <FindingDropdown
-                    labelName="Findings"
-                    GetFindingData={GetFindingData}
                     optionsList={findingsOptions}
+                    GetFindingData={GetFindingData}
                   />
                 )}
               </td>
