@@ -229,7 +229,7 @@ const BangleMultiUOMSize = (props) => {
   };
 
   return (
-    <>
+    <div className="mt-3">
       <Multiselect
         options={options}
         displayValue="labelValue"
@@ -330,7 +330,7 @@ const BangleMultiUOMSize = (props) => {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

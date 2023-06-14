@@ -18,6 +18,8 @@ const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
   const [option, setOption] = useState([]);
   const [SizeState, setSizeState] = useState([]);
+  const [CoupleGentsSize, setCoupleGentsSize] = useState([]);
+  const [CoupleLadiesSize, setCoupleLadiesSize] = useState([]);
   const storeCode = localStorage.getItem("indent-expressId");
   // INPUT FILED VALUE VARIABLE
   const [tagQuantity, SetTagQuantity] = useState([]);
@@ -27,6 +29,7 @@ const AddProductsL3 = (props) => {
   const [stoneQuality, setStoneQualityRes] = useState("");
   const [indentQuantity, setIndentQuantityRes] = useState("");
   const [typeSet2, setTypeSet2Res] = useState("");
+  const [coupleBandValue, setCoupleBandValue] = useState("");
   const { singleProductsDetails } = props;
   const { itemCode, videoLink } = singleProductsDetails;
   const digit = !itemCode ? "" : itemCode[6];
@@ -118,6 +121,37 @@ const AddProductsL3 = (props) => {
           setSizeState(response.data.value);
         } else if (response.data.code === "1001") {
           setSizeState([]);
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  }, [itemCode]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20GENTS`
+      )
+      .then((res) => res)
+      .then((result) => {
+        if (result.data.Code === "1000") {
+          setCoupleGentsSize(result.data.value);
+        } else if (result.data.Code === "1001") {
+          console.log("Size Not Available");
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  }, [itemCode]);
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20LADIES`
+      )
+      .then((res) => res)
+      .then((result) => {
+        if (result.data.Code === "1000") {
+          setCoupleLadiesSize(result.data.value);
+        } else if (result.data.Code === "1001") {
+          console.log("Size Not Available");
         }
       })
       .catch((error) => console.log("error==>", error));
@@ -315,7 +349,12 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
-                {digit === "F" ? (
+                {!singleProductsDetails.category ? (
+                  ""
+                ) : singleProductsDetails.category
+                    .toUpperCase()
+                    .replace(/\s{2,}/g, " ")
+                    .trim() === "FINGER RING" ? (
                   <ChooseMultiSize
                     optionsList={SizeState}
                     singleProductsDetails={singleProductsDetails}
@@ -348,6 +387,7 @@ const AddProductsL3 = (props) => {
                 digit === "E" ||
                 digit === "P" ||
                 digit === "Y" ||
+                digit === "K" ||
                 digit === "A" ||
                 digit === "G" ? (
                   <IndentQuantityFiled
@@ -357,7 +397,51 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
-                <br />
+
+                {!singleProductsDetails.category
+                  ? ""
+                  : singleProductsDetails.category
+                      .toUpperCase()
+                      .replace(/\s{2,}/g, " ")
+                      .trim() === "COUPLE BAND" && (
+                      <div>
+                        <select
+                          className="L3SelectDropdown"
+                          onChange={(e) => setCoupleBandValue(e.target.value)}
+                        >
+                          <option value="">SELECT COUPLE</option>
+                          <option value="Single_Tag">SINGLE TAG</option>
+                          <option value="Separate_Tag">SEPARATE TAG</option>
+                        </select>
+                        {coupleBandValue === "Single_Tag" && (
+                          <div className="mt-2">
+                            <ChooseMultiSize
+                              optionsList={SizeState}
+                              singleProductsDetails={singleProductsDetails}
+                              GetChooseSizeData={GetChooseSizeData}
+                            />
+                          </div>
+                        )}
+                        {coupleBandValue === "Separate_Tag" && (
+                          <div className="my-1">
+                            <span className="text-primary">FOR GENTS</span>
+                            <ChooseMultiSize
+                              optionsList={CoupleGentsSize}
+                              singleProductsDetails={singleProductsDetails}
+                              GetChooseSizeData={GetChooseSizeData}
+                            />
+                            <span className="text-primary mt-2">
+                              FOR LADIES
+                            </span>
+                            <ChooseMultiSize
+                              optionsList={CoupleLadiesSize}
+                              singleProductsDetails={singleProductsDetails}
+                              GetChooseSizeData={GetChooseSizeData}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    )}
                 {stoneDropdown.length > 0 && (
                   <StoneQualityDropdown
                     optionsList={stoneDropdown}
@@ -370,6 +454,7 @@ const AddProductsL3 = (props) => {
             {stoneDropdown.length > 0 && (
               <StoneQualityTable tableRowData={singleProductsDetails} />
             )}
+
             <div className="mt-1">
               <button
                 className="CButton"
