@@ -409,7 +409,7 @@ const AddProductsL3 = (props) => {
                           className="L3SelectDropdown"
                           onChange={(e) => setCoupleBandValue(e.target.value)}
                         >
-                          <option value="">SELECT COUPLE</option>
+                          <option value="">CHOOSE COUPLE TAG</option>
                           <option value="Single_Tag">SINGLE TAG</option>
                           <option value="Separate_Tag">SEPARATE TAG</option>
                         </select>
