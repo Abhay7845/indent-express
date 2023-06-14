@@ -10,6 +10,7 @@ import { BsCartFill } from "react-icons/bs";
 import { HostManager } from "../../APIList/HotMaster";
 import AddProductsL3 from "./AddProductsL3";
 import ShowImageCart from "./ShowImageCart";
+import { Link } from "react-router-dom";
 // import No_ImageURL from "../../Asset/Img/No_Image.jpg";
 
 const ComponentL3 = (props) => {
@@ -105,13 +106,15 @@ const ComponentL3 = (props) => {
 
   return (
     <>
+      {loading === true ? <Loader /> : ""}
       <TopHeader />
       <div className="ComponentL3LowerHeader">
         <SideBar />
-        <BsCartFill size={25} className="trolleyLowerHeader" />
+        <Link to="/Indent-express/L3/yor/cart/reports">
+          <BsCartFill size={25} className="trolleyLowerHeader" />
+        </Link>
       </div>
 
-      {loading === true ? <Loader /> : ""}
       <div className="row mx-1 mt-4">
         <div className="col-md-4">
           <input

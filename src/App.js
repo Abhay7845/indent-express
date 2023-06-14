@@ -14,6 +14,7 @@ import StatusReportsL3 from "./Components/ComponentsL3/StatusReportsL3";
 import PhysicalAndDigital from "./Components/ComponentsL1L2/PhysicalL1L2";
 import DigitalL1L2 from "./Components/ComponentsL1L2/DigitalL1L2";
 import RedirectionHomePage from "./Components/ComponentsL1L2/RedirectionHomePage";
+import YourProductsCart from "./Components/ComponentsL3/YourProductsCart";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -71,6 +72,10 @@ const App = () => {
             <Route
               path="/Indent-express/L3/status/reports"
               element={<StatusReportsL3 showAlert={showAlert} />}
+            />
+            <Route
+              path="/Indent-express/L3/yor/cart/reports"
+              element={<YourProductsCart showAlert={showAlert} />}
             />
             {/* ADMIN COMPONENTS */}
             <Route
