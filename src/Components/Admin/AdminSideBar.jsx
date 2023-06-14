@@ -28,7 +28,7 @@ const AdminSideBar = () => {
         style={{ background: "#f5ea84" }}
       >
         <div className="d-flex justify-content-between">
-          <img src={logo} alt="logo" className="Logo my-2 mx-2" />
+          <img src={logo} alt="logo" className="Logo my-3 mx-4" />
           <BsXLg
             onClick={ToggleSidebar}
             size={20}
