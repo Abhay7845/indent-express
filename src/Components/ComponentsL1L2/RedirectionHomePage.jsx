@@ -3,6 +3,7 @@ import TopHeader from "../../Common/TopHeader";
 import SideBar from "../../Common/SideBar";
 import "../../Style/RedirectionTab.css";
 import { Link } from "react-router-dom";
+import BGImage from "../../Asset/Img/L1L2Background.jpg";
 
 const RedirectionHomePage = () => {
   return (
@@ -25,6 +26,7 @@ const RedirectionHomePage = () => {
           </Link>
         </div>
       </div>
+      <img src={BGImage} alt="Image_Not Load" className="L1L2BGImage" />
     </>
   );
 };
