@@ -188,6 +188,7 @@ const PhysicalAndDigital = () => {
               icon: "warning",
               buttons: "OK",
             });
+            setProductsDetails("");
           }
           setLoadingSubmit(false);
         })

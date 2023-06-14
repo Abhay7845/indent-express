@@ -11,7 +11,7 @@ const RedirectionHomePage = () => {
       <TopHeader />
       <div className="DropDownFormStyle">
         <SideBar />
-        <div className="row mx-2 d-flex justify-content-between w-100">
+        <div className="row mx-1 d-flex justify-content-between w-100">
           <Link
             className="col-md-6 redirectionTab"
             to="/Indent-express/L1/L2/physical/home"
