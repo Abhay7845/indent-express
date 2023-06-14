@@ -60,8 +60,8 @@ const PhysicalAndDigital = () => {
               icon: "warning",
               buttons: "OK",
             });
-            setSearchItemCode("");
           }
+          setSearchItemCode("");
           setLoading(false);
         })
         .catch((error) => console.log("error==>", error));
@@ -312,7 +312,7 @@ const PhysicalAndDigital = () => {
           </div>
         </div>
       </div>
-      {/* <p>PHYSICAL PAGE</p> */}
+      {/* PHYSICAL PAGE */}
       {productsDetails.itemCode ? (
         <div className="row row-cols-1 row-cols-md-2 mx-0 my-3">
           <div className="col">
