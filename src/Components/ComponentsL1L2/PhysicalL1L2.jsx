@@ -26,9 +26,7 @@ const PhysicalAndDigital = () => {
   const [quality_Reasons, setQuality_Reasons] = useState([]);
 
   const GetProductsDetails = () => {
-    if (!searchItemCode) {
-      alert("Please Enter ItemCode");
-    } else {
+    if (searchItemCode) {
       setLoading(true);
       const SearchByItemCoe = {
         storeCode: storeCode,
@@ -45,30 +43,30 @@ const PhysicalAndDigital = () => {
         )
         .then((res) => res)
         .then((response) => {
-          console.log("response==>", response);
-          if ((response.data.code = "1000")) {
+          if (response.data.code === "1000") {
             setProductsDetails(response.data.value);
-          } else if ((response.data.code = "1001")) {
+          } else if (response.data.code === "1001") {
             swal({
               title: "Data Not Found",
               text: response.data.value,
               icon: "error",
               buttons: "OK",
             });
-          } else if ((response.data.code = "1003")) {
+          }
+          if (response.data.code === "1003") {
             swal({
-              title: "Already Indented",
+              title: "Already Indebted",
               text: response.data.value,
               icon: "warning",
               buttons: "OK",
             });
+            setSearchItemCode("");
           }
           setLoading(false);
         })
-        .catch((error) => {
-          setLoading(false);
-          console.log("error=>", error);
-        });
+        .catch((error) => console.log("error==>", error));
+    } else {
+      alert("Please Enter Item Code");
     }
   };
 
@@ -296,6 +294,7 @@ const PhysicalAndDigital = () => {
             <div className="d-flex">
               <input
                 type="text"
+                value={searchItemCode}
                 className="SearchInput"
                 placeholder="Search by Item Code"
                 onChange={(e) => setSearchItemCode(e.target.value)}
