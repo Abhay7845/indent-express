@@ -19,9 +19,9 @@ const TopHeader = () => {
           <span className="navbar-brand mb-0 h1">
             <img src={logo} alt="Logo" className="Logo" />
           </span>
-          <b className="removeIndentExpress">
+          <h4 className="removeIndentExpress">
             {UserRole === "ADMIN" ? "ADMIN" : "INDENT-EXPRESS"}
-          </b>
+          </h4>
           <b
             style={{ color: "#832729", cursor: "pointer" }}
             onClick={removeUserRole}

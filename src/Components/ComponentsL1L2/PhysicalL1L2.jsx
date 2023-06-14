@@ -5,7 +5,6 @@ import "../../Style/FeedbackFormL1L2.css";
 import { Link } from "react-router-dom";
 import { BsSearch, BsFillHouseDoorFill } from "react-icons/bs";
 import axios from "axios";
-import * as Icon from "react-bootstrap-icons";
 import swal from "sweetalert";
 import { Select } from "antd";
 import { HostManager } from "../../APIList/HotMaster";
@@ -19,8 +18,6 @@ const PhysicalAndDigital = () => {
   const [searchItemCode, setSearchItemCode] = useState("");
   const [productsDetails, setProductsDetails] = useState({});
   const [switchData, setSwitchData] = useState(true);
-  const [loadingPre, setLoadingPre] = useState(false);
-  const [loadingNext, setLoadingNext] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [quality_Reasons, setQuality_Reasons] = useState([]);
@@ -55,7 +52,7 @@ const PhysicalAndDigital = () => {
           }
           if (response.data.code === "1003") {
             swal({
-              title: "Already Indebted",
+              title: "Already Indented",
               text: response.data.value,
               icon: "warning",
               buttons: "OK",
@@ -81,88 +78,6 @@ const PhysicalAndDigital = () => {
     } else {
       setSwitchData(true);
     }
-  };
-
-  const GetPreviousProductDetails = (direction) => {
-    setLoadingPre(true);
-    const getPreviousProductDetails = {
-      category: !productsDetails.category ? "ALL" : productsDetails.category,
-      collection: !productsDetails.collection
-        ? "ALL"
-        : productsDetails.collection,
-      consumerBase: !productsDetails.consumerBase
-        ? "ALL"
-        : productsDetails.consumerBase,
-      group: !productsDetails.groupData ? "ALL" : productsDetails.groupData,
-      itemCode: productsDetails.itemCode,
-      storeCode: storeCode,
-      direction: direction,
-    };
-    axios
-      .post(
-        `${HostManager.reportsL1L2}/INDENT/express/get/product/details/PreNex`,
-        getPreviousProductDetails
-      )
-      .then((res) => res)
-      .then((response) => {
-        if (response.data.code === "1000") {
-          setProductsDetails(response.data.value);
-        } else if (response.data.code === "1001") {
-          swal({
-            title: "Data Not Found",
-            text: response.data.value,
-            icon: "error",
-            buttons: "OK",
-          });
-        }
-        setLoadingPre(false);
-      })
-      .catch((error) => {
-        setLoadingPre(false);
-      });
-  };
-  const GetNextProductDetails = (direction) => {
-    setLoadingNext(true);
-    const getNextProductDetails = {
-      category: !productsDetails.category ? "ALL" : productsDetails.category,
-      collection: !productsDetails.collection
-        ? "ALL"
-        : productsDetails.collection,
-      consumerBase: !productsDetails.consumerBase
-        ? "ALL"
-        : productsDetails.consumerBase,
-      group: !productsDetails.groupData ? "ALL" : productsDetails.groupData,
-      itemCode: productsDetails.itemCode,
-      storeCode: storeCode,
-      direction: direction,
-    };
-    axios
-      .post(
-        `${HostManager.reportsL1L2}/INDENT/express/get/product/details/PreNex`,
-        getNextProductDetails
-      )
-      .then((res) => res)
-      .then((response) => {
-        if (response.data.code === "1000") {
-          setProductsDetails(response.data.value);
-          if (switchData === false) {
-            setSwitchData(true);
-          } else {
-            setSwitchData(true);
-          }
-        } else if (response.data.code === "1001") {
-          swal({
-            title: "Data Not Found",
-            text: response.data.value,
-            icon: "error",
-            buttons: "OK",
-          });
-        }
-        setLoadingNext(false);
-      })
-      .catch((error) => {
-        setLoadingNext(false);
-      });
   };
 
   const SubmitProductDetails = () => {
@@ -252,7 +167,6 @@ const PhysicalAndDigital = () => {
         .then((response) => {
           if (response.data.code === "1000") {
             setQuality_Reasons([]);
-            GetNextProductDetails("next");
             swal({
               title: "Success",
               text: "Your Data Has been Saved Successfully",
@@ -264,10 +178,10 @@ const PhysicalAndDigital = () => {
             } else {
               setSwitchData(true);
             }
+            setProductsDetails("");
           }
           if (response.data.code === "1001") {
             alert("Your Data Has been Saved Successfully");
-            GetNextProductDetails("next");
             swal({
               title: "Warning",
               text: "Selected Category Data Not Found",
@@ -436,28 +350,6 @@ const PhysicalAndDigital = () => {
               <br />
               <br />
               <div className="d-flex justify-content-center mx-0">
-                <button
-                  className="CButton"
-                  onClick={() => {
-                    GetPreviousProductDetails("pre");
-                  }}
-                >
-                  {loadingPre ? (
-                    <span
-                      className="spinner-border spinner-border-sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <span className="sr-only">
-                      <Icon.ArrowLeft
-                        size={20}
-                        className="mx-2 hideArrowStyle"
-                      />
-                      PREVIOUS
-                    </span>
-                  )}
-                </button>
                 <button className="mx-2 CButton" onClick={SubmitProductDetails}>
                   {loadingSubmit ? (
                     <span
@@ -467,28 +359,6 @@ const PhysicalAndDigital = () => {
                     />
                   ) : (
                     <span className="sr-only">SUBMIT</span>
-                  )}
-                </button>
-                <button
-                  className="CButton"
-                  onClick={() => {
-                    GetNextProductDetails("next");
-                  }}
-                >
-                  {loadingNext ? (
-                    <span
-                      className="spinner-border spinner-border-sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <span className="sr-only">
-                      NEXT
-                      <Icon.ArrowRight
-                        size={20}
-                        className="mx-2 hideArrowStyle"
-                      />
-                    </span>
                   )}
                 </button>
               </div>

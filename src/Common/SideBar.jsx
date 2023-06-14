@@ -42,7 +42,7 @@ const SideBar = () => {
             {/* COMPONENTS FOR L1L2 URL */}
             {ROLE === "L1" && (
               <>
-                <li>
+                {/* <li>
                   <Link
                     className="NavigationStyle"
                     to="/Indent-express/feedback/L1/L2"
@@ -55,7 +55,7 @@ const SideBar = () => {
                     />
                     HOME
                   </Link>
-                </li>
+                </li> */}
                 <hr />
                 <li className="my-3">
                   <Link
@@ -92,7 +92,7 @@ const SideBar = () => {
             {/* COMPONENTS FOR L3 URL */}
             {ROLE === "L3" && (
               <>
-                <li>
+                {/* <li>
                   <Link
                     className="NavigationStyle"
                     to="/Indent-express/L3"
@@ -105,7 +105,7 @@ const SideBar = () => {
                     />
                     HOME
                   </Link>
-                </li>
+                </li> */}
                 <hr />
                 <li className="my-3">
                   <Link
