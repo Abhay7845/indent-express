@@ -38,7 +38,11 @@ const YourProductsCart = () => {
           <BsCartFill size={25} className="trolleyLowerHeader" />
         </Link>
       </div>
-      <br/>
+      <br />
+      <div className="d-flex justify-content-end mx-1 my-2">
+        <button className="mx-2">CONFIRM</button>
+        <button>SEND MAIL</button>
+      </div>
       {cartProducts.length > 0 && (
         <div className="table-responsive mx-1">
           <table className="table table-hover table-bordered">
