@@ -136,7 +136,7 @@ const AddProductsL3 = (props) => {
         if (result.data.Code === "1000") {
           setCoupleGentsSize(result.data.value);
         } else if (result.data.Code === "1001") {
-          console.log("Size Not Available");
+          setCoupleGentsSize([]);
         }
       })
       .catch((error) => console.log("error==>", error));
@@ -151,7 +151,7 @@ const AddProductsL3 = (props) => {
         if (result.data.Code === "1000") {
           setCoupleLadiesSize(result.data.value);
         } else if (result.data.Code === "1001") {
-          console.log("Size Not Available");
+          setCoupleLadiesSize([]);
         }
       })
       .catch((error) => console.log("error==>", error));
