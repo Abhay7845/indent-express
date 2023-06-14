@@ -60,7 +60,7 @@ const App = () => {
               element={<DigitalL1L2 showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/L1/L2/re/direction/home"
+              path="/Indent-express/direction/home"
               element={<RedirectionHomePage showAlert={showAlert} />}
             />
             {/* L3 COMPONENTS */}

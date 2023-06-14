@@ -198,7 +198,7 @@ const ReportsL1L2 = (props) => {
               <option value="unscanned">YET TO SUBMIT</option>
             </select>
           </div>
-          <Link to="/Indent-express/L1/L2/re/direction/home">
+          <Link to="/Indent-express/direction/home">
             <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
           </Link>
         </div>

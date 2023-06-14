@@ -57,7 +57,7 @@ const StatusReportsL1L2 = (props) => {
       <div className="DropDownFormStyle">
         <div className="d-flex justify-content-between w-100">
           <SideBar />
-          <Link to="/Indent-express/L1/L2/re/direction/home">
+          <Link to="/Indent-express/direction/home">
             <BsFillHouseDoorFill size={25} className="my-2 text-dark mx-2" />
           </Link>
         </div>

@@ -32,7 +32,7 @@ const Login = (props) => {
         ) {
           localStorage.setItem("indent-expressId", response.data.value.userID);
           localStorage.setItem("indent-expressRole", response.data.value.role);
-          navigate("/Indent-express/L1/L2/re/direction/home");
+          navigate("/Indent-express/direction/home");
         }
         if (response.data.value.role === "Admin") {
           localStorage.setItem("indent-expressId", response.data.value.role);

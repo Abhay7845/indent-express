@@ -92,10 +92,10 @@ const SideBar = () => {
             {/* COMPONENTS FOR L3 URL */}
             {ROLE === "L3" && (
               <>
-                {/* <li>
+                <li>
                   <Link
                     className="NavigationStyle"
-                    to="/Indent-express/L3"
+                    to="/Indent-express/direction/home"
                     onClick={ToggleSidebar}
                   >
                     <Icon.HouseDashFill
@@ -105,7 +105,7 @@ const SideBar = () => {
                     />
                     HOME
                   </Link>
-                </li> */}
+                </li>
                 <hr />
                 <li className="my-3">
                   <Link
