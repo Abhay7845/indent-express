@@ -12,6 +12,8 @@ import { Select } from "antd";
 import { HostManager } from "../../APIList/HotMaster";
 import swal from "sweetalert";
 import { FormControlLabel, Switch } from "@material-ui/core";
+import { BsFillHouseDoorFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const ReportsL1L2 = (props) => {
   const { showAlert } = props;
@@ -186,7 +188,7 @@ const ReportsL1L2 = (props) => {
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
         <SideBar />
-        <div className="row mx-2 d-flex justify-content-between w-100">
+        <div className="mx-2 d-flex justify-content-between w-100">
           <div className="col-md-3">
             <select
               className="SSelect"
@@ -196,6 +198,9 @@ const ReportsL1L2 = (props) => {
               <option value="unscanned">YET TO SUBMIT</option>
             </select>
           </div>
+          <Link to="/Indent-express/L1/L2/re/direction/home">
+            <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
+          </Link>
         </div>
       </div>
       {/* REPORTS FORM */}
