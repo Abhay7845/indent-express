@@ -6,6 +6,7 @@ import {
   BsSearch,
   BsFillHouseDoorFill,
   BsFillBarChartFill,
+  BsCartFill,
 } from "react-icons/bs";
 import axios from "axios";
 import swal from "sweetalert";
@@ -207,14 +208,14 @@ const PhysicalL3 = () => {
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
         <div className="row mx-2 w-100">
-          <div className="d-flex">
-            <Link to="/Indent-express/direction/home">
-              <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
-            </Link>
-            <Link to="/Indent-express/L3/status/reports">
-              <BsFillBarChartFill size={25} className="my-2 text-dark mx-3" />
-            </Link>
+          <div className="d-flex justify-content-between">
             <div className="d-flex">
+              <Link to="/Indent-express/direction/home">
+                <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
+              </Link>
+              <Link to="/Indent-express/L3/status/reports">
+                <BsFillBarChartFill size={25} className="my-2 text-dark mx-3" />
+              </Link>
               <input
                 type="text"
                 value={searchItemCode}
@@ -223,12 +224,15 @@ const PhysicalL3 = () => {
                 onChange={(e) => setSearchItemCode(e.target.value)}
               />
               <BsSearch
-                size={23}
+                size={30}
                 className="my-2 mx-3"
                 style={{ cursor: "pointer" }}
                 onClick={GetProductsDetails}
               />
             </div>
+            <Link to="/Indent-express/L3/your/cart/reports">
+              <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
+            </Link>
           </div>
         </div>
       </div>
