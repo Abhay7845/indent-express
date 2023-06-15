@@ -413,7 +413,21 @@ export const FeedBackFormL1L2 = (props) => {
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
         <div className="row mx-0 w-100">
-          <div className="col-md-2">
+          <div className="d-flex col-md-4">
+            <div className="w-100 py-2">
+              <Link to="/Indent-express/direction/home">
+                <BsFillHouseDoorFill size={25} className="text-dark" />
+              </Link>
+              <Link to="/Indent-express/L1/L2/products/reports">
+                <BsFillFileEarmarkPostFill
+                  size={25}
+                  className="text-dark mx-3"
+                />
+              </Link>
+              <Link to="/Indent-express/L1/L2/status/reports">
+                <BsFillBarChartFill size={25} className="text-dark" />
+              </Link>
+            </div>
             <select
               className="SSelect"
               onChange={onchangeHandler}
@@ -477,26 +491,12 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          <div className="col-md-3 d-flex justify-content-between">
+          <div className="col-md-1 d-flex justify-content-end">
             <BsSearch
               size={35}
               className="searchStyle"
               onClick={GetProductsDetails}
             />
-            <div className="mt-2">
-              <Link to="/Indent-express/direction/home">
-                <BsFillHouseDoorFill size={25} className="text-dark" />
-              </Link>
-              <Link to="/Indent-express/L1/L2/products/reports">
-                <BsFillFileEarmarkPostFill
-                  size={25}
-                  className="text-dark mx-3"
-                />
-              </Link>
-              <Link to="/Indent-express/L1/L2/status/reports">
-                <BsFillBarChartFill size={25} className="text-dark" />
-              </Link>
-            </div>
           </div>
         </div>
       </div>
