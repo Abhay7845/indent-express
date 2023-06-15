@@ -54,10 +54,10 @@ const StatusReportsL3 = (props) => {
       <TopHeader />
       <div className="DropDownFormStyle">
         <Link to="/Indent-express/direction/home">
-          <BsFillHouseDoorFill size={25} className="mt-2 text-dark" />
+          <BsFillHouseDoorFill size={25} className="mt-2 mx-3 text-dark" />
         </Link>
         <Link to="/Indent-express/L3/status/reports">
-          <BsFillBarChartFill size={25} className="mt-2 mx-2 text-dark" />
+          <BsFillBarChartFill size={25} className="mt-2 text-dark" />
         </Link>
       </div>
       {loading === true ? <Loader /> : ""}
