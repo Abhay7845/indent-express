@@ -51,7 +51,7 @@ const RedirectionHomePage = () => {
           )}
           {ROLE === "L3" && (
             <div className="d-flex">
-              <Link to="/Indent-express/L3/home">
+              <Link to="/Indent-express/direction/home">
                 <BsFillHouseDoorFill size={25} className="mt-2 text-dark" />
               </Link>
               <Link to="/Indent-express/L3/status/reports">
@@ -60,7 +60,7 @@ const RedirectionHomePage = () => {
               <div className="d-flex w-100 mx-3">
                 <Link
                   className="col-md-6 redirectionTab"
-                  to="/Indent-express/L1/L2/physical/home"
+                  to="/Indent-express/L3/physical/home"
                 >
                   PHYSICAL
                 </Link>

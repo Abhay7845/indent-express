@@ -6,7 +6,6 @@ import {
   BsSearch,
   BsFillHouseDoorFill,
   BsFillBarChartFill,
-  BsFillFileEarmarkPostFill,
 } from "react-icons/bs";
 import axios from "axios";
 import swal from "sweetalert";
@@ -17,7 +16,7 @@ import { FormControlLabel, Switch } from "@material-ui/core";
 import { NoReasonOption } from "../../Data/DataList";
 import Loader from "../../Common/Loader";
 
-const PhysicalL1L2 = () => {
+const PhysicalL3 = () => {
   const storeCode = localStorage.getItem("indent-expressId");
   const [searchItemCode, setSearchItemCode] = useState("");
   const [productsDetails, setProductsDetails] = useState({});
@@ -212,16 +211,10 @@ const PhysicalL1L2 = () => {
             <Link to="/Indent-express/direction/home">
               <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
             </Link>
-            <Link to="/Indent-express/L1/L2/products/reports">
-              <BsFillFileEarmarkPostFill
-                size={25}
-                className="my-2 text-dark mx-3"
-              />
+            <Link to="/Indent-express/L3/status/reports">
+              <BsFillBarChartFill size={25} className="my-2 text-dark mx-3" />
             </Link>
-            <Link to="/Indent-express/L1/L2/status/reports">
-              <BsFillBarChartFill size={25} className="my-2 text-dark" />
-            </Link>
-            <div className="d-flex mx-3">
+            <div className="d-flex">
               <input
                 type="text"
                 value={searchItemCode}
@@ -385,4 +378,4 @@ const PhysicalL1L2 = () => {
   );
 };
 
-export default PhysicalL1L2;
+export default PhysicalL3;

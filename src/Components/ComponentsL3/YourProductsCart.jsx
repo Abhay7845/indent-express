@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { BsCartFill } from "react-icons/bs";
+import {
+  BsCartFill,
+  BsFillBarChartFill,
+  BsFillHouseDoorFill,
+} from "react-icons/bs";
 import { Link } from "react-router-dom";
 import TopHeader from "../../Common/TopHeader";
 import axios from "axios";
@@ -32,8 +36,16 @@ const YourProductsCart = () => {
     <>
       <TopHeader />
       <div className="ComponentL3LowerHeader">
-        <Link to="/Indent-express/L3/yor/cart/reports">
-          <BsCartFill size={25} className="trolleyLowerHeader" />
+        <div>
+          <Link to="/Indent-express/direction/home">
+            <BsFillHouseDoorFill size={25} className="mt-2 text-dark" />
+          </Link>
+          <Link to="/Indent-express/L3/status/reports">
+            <BsFillBarChartFill size={25} className="mt-2 mx-2 text-dark" />
+          </Link>
+        </div>
+        <Link to="/Indent-express/L3/your/cart/reports">
+          <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
         </Link>
       </div>
       <br />

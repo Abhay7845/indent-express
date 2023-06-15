@@ -113,15 +113,15 @@ const ComponentL3 = (props) => {
       <TopHeader />
       <div className="ComponentL3LowerHeader">
         <div className="d-flex">
-          <Link to="/Indent-express/L3/home">
+          <Link to="/Indent-express/direction/home">
             <BsFillHouseDoorFill size={25} className="mt-2 text-dark" />
           </Link>
-          <Link to="/Indent-express/L1/L2/status/reports">
+          <Link to="/Indent-express/L3/status/reports">
             <BsFillBarChartFill size={25} className="mt-2 mx-2 text-dark" />
           </Link>
         </div>
         <div>
-          <Link to="/Indent-express/L3/yor/cart/reports">
+          <Link to="/Indent-express/L3/your/cart/reports">
             <BsCartFill size={25} className="trolleyLowerHeader" />
           </Link>
         </div>

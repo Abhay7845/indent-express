@@ -6,6 +6,8 @@ import { HostManager } from "../../APIList/HotMaster";
 import axios from "axios";
 import { L1L2StatusHeading } from "../../Data/DataList";
 import Loader from "../../Common/Loader";
+import { Link } from "react-router-dom";
+import { BsFillBarChartFill, BsFillHouseDoorFill } from "react-icons/bs";
 
 const StatusReportsL3 = (props) => {
   const { showAlert } = props;
@@ -50,7 +52,14 @@ const StatusReportsL3 = (props) => {
   return (
     <>
       <TopHeader />
-      <div className="DropDownFormStyle">L3</div>
+      <div className="DropDownFormStyle">
+        <Link to="/Indent-express/direction/home">
+          <BsFillHouseDoorFill size={25} className="mt-2 text-dark" />
+        </Link>
+        <Link to="/Indent-express/L3/status/reports">
+          <BsFillBarChartFill size={25} className="mt-2 mx-2 text-dark" />
+        </Link>
+      </div>
       {loading === true ? <Loader /> : ""}
       <br />
       {statusData.length > 0 && (

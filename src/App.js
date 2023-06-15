@@ -11,10 +11,10 @@ import ComponentL3 from "./Components/ComponentsL3/ComponentL3";
 import StatusReportsL1L2 from "./Components/ComponentsL1L2/StatusReportsL1L2";
 import AlertModal from "./Common/AlertModal";
 import StatusReportsL3 from "./Components/ComponentsL3/StatusReportsL3";
-import PhysicalAndDigital from "./Components/ComponentsL1L2/PhysicalL1L2";
-import DigitalL1L2 from "./Components/ComponentsL1L2/DigitalL1L2";
 import RedirectionHomePage from "./Components/ComponentsL1L2/RedirectionHomePage";
 import YourProductsCart from "./Components/ComponentsL3/YourProductsCart";
+import PhysicalL1L2 from "./Components/ComponentsL1L2/PhysicalL1L2";
+import PhysicalL3 from "./Components/ComponentsL3/PhysicalL3";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -54,11 +54,7 @@ const App = () => {
             />
             <Route
               path="/Indent-express/L1/L2/physical/home"
-              element={<PhysicalAndDigital showAlert={showAlert} />}
-            />
-            <Route
-              path="/Indent-express/L1/L2/digital/home"
-              element={<DigitalL1L2 showAlert={showAlert} />}
+              element={<PhysicalL1L2 showAlert={showAlert} />}
             />
             <Route
               path="/Indent-express/direction/home"
@@ -74,8 +70,12 @@ const App = () => {
               element={<StatusReportsL3 showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/L3/yor/cart/reports"
+              path="/Indent-express/L3/your/cart/reports"
               element={<YourProductsCart showAlert={showAlert} />}
+            />
+            <Route
+              path="/Indent-express/L3/physical/home"
+              element={<PhysicalL3 showAlert={showAlert} />}
             />
             {/* ADMIN COMPONENTS */}
             <Route
