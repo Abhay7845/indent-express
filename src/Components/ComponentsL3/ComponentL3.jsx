@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TopHeader from "../../Common/TopHeader";
-import SideBar from "../../Common/SideBar";
 import TablePagination from "@mui/material/TablePagination";
 import Loader from "../../Common/Loader";
 import "../../Style/ComponentL3.css";
@@ -109,7 +108,6 @@ const ComponentL3 = (props) => {
       {loading === true ? <Loader /> : ""}
       <TopHeader />
       <div className="ComponentL3LowerHeader">
-        <SideBar />
         <Link to="/Indent-express/L3/yor/cart/reports">
           <BsCartFill size={25} className="trolleyLowerHeader" />
         </Link>

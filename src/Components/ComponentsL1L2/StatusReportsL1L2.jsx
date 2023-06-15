@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import TopHeader from "../../Common/TopHeader";
-import SideBar from "../../Common/SideBar";
 import "../../Style/TopHeader.css";
 import { HostManager } from "../../APIList/HotMaster";
 import axios from "axios";
@@ -56,7 +55,6 @@ const StatusReportsL1L2 = (props) => {
       <TopHeader />
       <div className="DropDownFormStyle">
         <div className="d-flex justify-content-between w-100">
-          <SideBar />
           <Link to="/Indent-express/direction/home">
             <BsFillHouseDoorFill size={25} className="my-2 text-dark mx-2" />
           </Link>

@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import TopHeader from "../../Common/TopHeader";
-import SideBar from "../../Common/SideBar";
 import "../../Style/TopHeader.css";
 import { HostManager } from "../../APIList/HotMaster";
 import axios from "axios";
@@ -51,9 +50,7 @@ const StatusReportsL3 = (props) => {
   return (
     <>
       <TopHeader />
-      <div className="DropDownFormStyle">
-        <SideBar />
-      </div>
+      <div className="DropDownFormStyle"></div>
       {loading === true ? <Loader /> : ""}
       <br />
       {statusData.length > 0 && (

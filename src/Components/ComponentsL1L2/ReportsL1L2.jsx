@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import TopHeader from "../../Common/TopHeader";
 import Loader from "../../Common/Loader";
 import "../../Style/FeedbackFormL1L2.css";
-import SideBar from "../../Common/SideBar";
 import { L1L2HeadingData, NoReasonOption } from "../../Data/DataList";
 import * as Icon from "react-bootstrap-icons";
 import TablePagination from "@mui/material/TablePagination";
@@ -187,7 +186,6 @@ const ReportsL1L2 = (props) => {
       <TopHeader />
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
-        <SideBar />
         <div className="mx-2 d-flex justify-content-between w-100">
           <div className="col-md-3">
             <select

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import TopHeader from "../../Common/TopHeader";
-import SideBar from "../../Common/SideBar";
 import "../../Style/FeedbackFormL1L2.css";
 import { Link } from "react-router-dom";
 import { BsSearch, BsFillHouseDoorFill } from "react-icons/bs";
@@ -203,7 +202,6 @@ const PhysicalAndDigital = () => {
       <TopHeader />
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
-        <SideBar />
         <div className="row mx-2 w-100">
           <div className="d-flex justify-content-between">
             <div className="d-flex">

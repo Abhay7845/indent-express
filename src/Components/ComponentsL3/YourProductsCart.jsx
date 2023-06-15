@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import SideBar from "../../Common/SideBar";
 import { BsCartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import TopHeader from "../../Common/TopHeader";
@@ -33,7 +32,6 @@ const YourProductsCart = () => {
     <>
       <TopHeader />
       <div className="ComponentL3LowerHeader">
-        <SideBar />
         <Link to="/Indent-express/L3/yor/cart/reports">
           <BsCartFill size={25} className="trolleyLowerHeader" />
         </Link>

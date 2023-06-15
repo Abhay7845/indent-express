@@ -7,7 +7,6 @@ import Loader from "../../Common/Loader";
 import { NoReasonOption } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
-import SideBar from "../../Common/SideBar";
 import { BsSearch, BsFillHouseDoorFill } from "react-icons/bs";
 import * as Icon from "react-bootstrap-icons";
 import { Select } from "antd";
@@ -408,7 +407,6 @@ export const FeedBackFormL1L2 = (props) => {
       <TopHeader />
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
-        <SideBar />
         <div className="row mx-0 w-100">
           <div className="col-md-3">
             <select

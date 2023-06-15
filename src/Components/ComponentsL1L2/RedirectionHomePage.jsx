@@ -1,6 +1,5 @@
 import React from "react";
 import TopHeader from "../../Common/TopHeader";
-import SideBar from "../../Common/SideBar";
 import "../../Style/RedirectionTab.css";
 import { Link } from "react-router-dom";
 import BGImage from "../../Asset/Img/L1L2Background.jpg";
@@ -12,7 +11,6 @@ const RedirectionHomePage = () => {
     <>
       <TopHeader />
       <div className="DropDownFormStyle">
-        <SideBar />
         <div className="row mx-1 d-flex justify-content-between w-100">
           {ROLE === "L1" || ROLE === "L2" ? (
             <>
