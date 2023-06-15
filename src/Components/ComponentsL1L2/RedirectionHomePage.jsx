@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import BGImage from "../../Asset/Img/L1L2Background.jpg";
 
 const RedirectionHomePage = () => {
-  // const AdminRole = localStorage.getItem("indent-expressId").toUpperCase();
   const ROLE = localStorage.getItem("indent-expressRole");
   console.log("ROLE==>", ROLE);
   return (
@@ -15,23 +14,24 @@ const RedirectionHomePage = () => {
       <div className="DropDownFormStyle">
         <SideBar />
         <div className="row mx-1 d-flex justify-content-between w-100">
-          {ROLE === "L1" ||
-            (ROLE === "L2" && (
-              <>
-                <Link
-                  className="col-md-6 redirectionTab"
-                  to="/Indent-express/L1/L2/physical/home"
-                >
-                  PHYSICAL
-                </Link>
-                <Link
-                  className="col-md-6 redirectionTab"
-                  to="/Indent-express/feedback/L1/L2"
-                >
-                  DIGITAL
-                </Link>
-              </>
-            ))}
+          {ROLE === "L1" || ROLE === "L2" ? (
+            <>
+              <Link
+                className="col-md-6 redirectionTab"
+                to="/Indent-express/L1/L2/physical/home"
+              >
+                PHYSICAL
+              </Link>
+              <Link
+                className="col-md-6 redirectionTab"
+                to="/Indent-express/feedback/L1/L2"
+              >
+                DIGITAL
+              </Link>
+            </>
+          ) : (
+            ""
+          )}
           {ROLE === "L3" && (
             <>
               <Link
