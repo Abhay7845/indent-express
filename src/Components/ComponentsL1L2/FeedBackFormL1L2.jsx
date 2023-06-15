@@ -483,7 +483,7 @@ export const FeedBackFormL1L2 = (props) => {
               className="searchStyle"
               onClick={GetProductsDetails}
             />
-            <div className="mt-3">
+            <div className="mt-2">
               <Link to="/Indent-express/direction/home">
                 <BsFillHouseDoorFill size={25} className="text-dark" />
               </Link>
