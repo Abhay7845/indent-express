@@ -7,7 +7,11 @@ import axios from "axios";
 import { L1L2StatusHeading } from "../../Data/DataList";
 import Loader from "../../Common/Loader";
 import { Link } from "react-router-dom";
-import { BsFillHouseDoorFill } from "react-icons/bs";
+import {
+  BsFillBarChartFill,
+  BsFillFileEarmarkPostFill,
+  BsFillHouseDoorFill,
+} from "react-icons/bs";
 
 const StatusReportsL1L2 = (props) => {
   const { showAlert } = props;
@@ -54,9 +58,18 @@ const StatusReportsL1L2 = (props) => {
       {loading === true ? <Loader /> : ""}
       <TopHeader />
       <div className="DropDownFormStyle">
-        <div className="d-flex justify-content-between w-100">
+        <div className="d-flex mx-3">
           <Link to="/Indent-express/direction/home">
-            <BsFillHouseDoorFill size={25} className="my-2 text-dark mx-2" />
+            <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
+          </Link>
+          <Link to="/Indent-express/L1/L2/products/reports">
+            <BsFillFileEarmarkPostFill
+              size={25}
+              className="my-2 text-dark mx-3"
+            />
+          </Link>
+          <Link to="/Indent-express/L1/L2/status/reports">
+            <BsFillBarChartFill size={25} className="my-2 text-dark" />
           </Link>
         </div>
       </div>

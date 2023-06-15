@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import "../../Style/FeedbackFormL1L2.css";
 import { Link } from "react-router-dom";
-import { BsSearch, BsFillHouseDoorFill } from "react-icons/bs";
+import {
+  BsSearch,
+  BsFillHouseDoorFill,
+  BsFillBarChartFill,
+  BsFillFileEarmarkPostFill,
+} from "react-icons/bs";
 import axios from "axios";
 import swal from "sweetalert";
 import { Select } from "antd";
@@ -203,8 +208,20 @@ const PhysicalAndDigital = () => {
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
         <div className="row mx-2 w-100">
-          <div className="d-flex justify-content-between">
-            <div className="d-flex">
+          <div className="d-flex">
+            <Link to="/Indent-express/direction/home">
+              <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
+            </Link>
+            <Link to="/Indent-express/L1/L2/products/reports">
+              <BsFillFileEarmarkPostFill
+                size={25}
+                className="my-2 text-dark mx-3"
+              />
+            </Link>
+            <Link to="/Indent-express/L1/L2/status/reports">
+              <BsFillBarChartFill size={25} className="my-2 text-dark" />
+            </Link>
+            <div className="d-flex mx-3">
               <input
                 type="text"
                 value={searchItemCode}
@@ -219,9 +236,6 @@ const PhysicalAndDigital = () => {
                 onClick={GetProductsDetails}
               />
             </div>
-            <Link to="Indent-express/direction/home">
-              <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
-            </Link>
           </div>
         </div>
       </div>
