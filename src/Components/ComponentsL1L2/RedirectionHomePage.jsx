@@ -36,13 +36,13 @@ const RedirectionHomePage = () => {
                   className="col-md-6 redirectionTab"
                   to="/Indent-express/L1/L2/physical/home"
                 >
-                  PHYSICAL - FEEDBACK FORM
+                  PHYSICAL
                 </Link>
                 <Link
                   className="col-md-6 redirectionTab"
                   to="/Indent-express/feedback/L1/L2"
                 >
-                  DIGITAL - FEEDBACK FORM
+                  DIGITAL
                 </Link>
               </div>
             </div>
