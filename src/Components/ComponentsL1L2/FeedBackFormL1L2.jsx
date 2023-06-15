@@ -7,7 +7,12 @@ import Loader from "../../Common/Loader";
 import { NoReasonOption } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
-import { BsSearch, BsFillHouseDoorFill } from "react-icons/bs";
+import {
+  BsSearch,
+  BsFillHouseDoorFill,
+  BsFillFileEarmarkPostFill,
+  BsFillBarChartFill,
+} from "react-icons/bs";
 import * as Icon from "react-bootstrap-icons";
 import { Select } from "antd";
 import swal from "sweetalert";
@@ -255,7 +260,7 @@ export const FeedBackFormL1L2 = (props) => {
         reasons: quality_Reasons.toString(),
         indQty: productsDetails.indQty,
         indCategory: productsDetails.indCategory,
-        submitStatus: productsDetails.submitStatus,
+        submitStatus: "feedback",
         set2Type: productsDetails.set2Type,
         stoneQuality: productsDetails.stoneQuality,
         stoneQualityVal: productsDetails.stoneQualityVal,
@@ -408,7 +413,7 @@ export const FeedBackFormL1L2 = (props) => {
       {loading === true ? <Loader /> : ""}
       <div className="DropDownFormStyle">
         <div className="row mx-0 w-100">
-          <div className="col-md-3">
+          <div className="col-md-2">
             <select
               className="SSelect"
               onChange={onchangeHandler}
@@ -424,7 +429,7 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-2">
             <select
               className="SSelect"
               onChange={onchangeHandler}
@@ -440,7 +445,7 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-2">
             <select
               className="SSelect"
               onChange={onchangeHandler}
@@ -456,7 +461,7 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          <div className="col-md-2">
+          <div className="col-md-3">
             <select
               className="SSelect"
               onChange={onchangeHandler}
@@ -472,15 +477,29 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          <div className="col-md-1 justify-content-end">
+          <div className="col-md-3 d-flex justify-content-between">
             <BsSearch
               size={35}
               className="searchStyle"
               onClick={GetProductsDetails}
             />
-            <Link to="/Indent-express/direction/home">
-              <BsFillHouseDoorFill size={25} className="my-2 text-dark mx-1" />
-            </Link>
+            <div>
+              <Link to="/Indent-express/direction/home">
+                <BsFillHouseDoorFill
+                  size={25}
+                  className="my-2 text-dark mx-1"
+                />
+              </Link>
+              <Link to="/Indent-express/L1/L2/products/reports">
+                <BsFillFileEarmarkPostFill
+                  size={25}
+                  className="my-2 text-dark mx-1"
+                />
+              </Link>
+              <Link to="/Indent-express/L1/L2/status/reports">
+                <BsFillBarChartFill size={25} className="my-2 text-dark mx-1" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

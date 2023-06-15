@@ -118,7 +118,7 @@ const ReportsL1L2 = (props) => {
         reasons: quality_Reasons.toString(),
         indQty: reports.indQty,
         indCategory: reports.indCategory,
-        submitStatus: reports.submitStatus,
+        submitStatus: "report",
         set2Type: reports.set2Type,
         stoneQuality: reports.stoneQuality,
         stoneQualityVal: reports.stoneQualityVal,
