@@ -5,7 +5,11 @@ import TopHeader from "../../Common/TopHeader";
 import TablePagination from "@mui/material/TablePagination";
 import Loader from "../../Common/Loader";
 import "../../Style/ComponentL3.css";
-import { BsCartFill } from "react-icons/bs";
+import {
+  BsCartFill,
+  BsFillBarChartFill,
+  BsFillHouseDoorFill,
+} from "react-icons/bs";
 import { HostManager } from "../../APIList/HotMaster";
 import AddProductsL3 from "./AddProductsL3";
 import ShowImageCart from "./ShowImageCart";
@@ -108,9 +112,19 @@ const ComponentL3 = (props) => {
       {loading === true ? <Loader /> : ""}
       <TopHeader />
       <div className="ComponentL3LowerHeader">
-        <Link to="/Indent-express/L3/yor/cart/reports">
-          <BsCartFill size={25} className="trolleyLowerHeader" />
-        </Link>
+        <div className="d-flex">
+          <Link to="/Indent-express/L3/home">
+            <BsFillHouseDoorFill size={25} className="mt-2 text-dark" />
+          </Link>
+          <Link to="/Indent-express/L1/L2/status/reports">
+            <BsFillBarChartFill size={25} className="mt-2 mx-2 text-dark" />
+          </Link>
+        </div>
+        <div>
+          <Link to="/Indent-express/L3/yor/cart/reports">
+            <BsCartFill size={25} className="trolleyLowerHeader" />
+          </Link>
+        </div>
       </div>
 
       <div className="row mx-1 mt-4">

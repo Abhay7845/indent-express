@@ -66,7 +66,7 @@ const App = () => {
             />
             {/* L3 COMPONENTS */}
             <Route
-              path="/Indent-express/L3"
+              path="/Indent-express/L3/home"
               element={<ComponentL3 showAlert={showAlert} />}
             />
             <Route
