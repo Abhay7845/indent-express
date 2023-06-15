@@ -28,6 +28,7 @@ const Login = (props) => {
       .then((response) => {
         if (
           response.data.value.role === "L1" ||
+          response.data.value.role === "L2" ||
           response.data.value.role === "L3"
         ) {
           localStorage.setItem("indent-expressId", response.data.value.userID);
