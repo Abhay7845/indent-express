@@ -16,7 +16,6 @@ const YourProductsCart = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(50);
   const [itemWiseValue, setItemWiseValue] = useState("");
-  console.log("itemWiseValue==>", itemWiseValue);
 
   useEffect(() => {
     axios
@@ -25,7 +24,7 @@ const YourProductsCart = () => {
       .then((response) => {
         setCartProducts(response.data);
       });
-  }, []);
+  }, [itemWiseValue]);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -45,9 +44,9 @@ const YourProductsCart = () => {
           <Link to="/Indent-express/L3/status/reports">
             <BsFillBarChartFill size={25} className="mt-2 mx-3 text-dark" />
           </Link>
-          <div className="col-md-3 mx-2">
+          <div className="col-md-2 mx-2">
             <select
-              className="SSelect text-center"
+              className="SSelect"
               onChange={(e) => setItemWiseValue(e.target.value)}
             >
               {ItemWiseReportsDropdown.map((item, i) => {
