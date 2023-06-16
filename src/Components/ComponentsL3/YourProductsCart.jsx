@@ -34,6 +34,7 @@ const YourProductsCart = () => {
       });
     setLoading(false);
   }, [itemWiseValue]);
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -85,7 +86,7 @@ const YourProductsCart = () => {
                 onChange={(e) => setSearchItemCode(e.target.value)}
               />
             </div>
-            <div className="col-md-3 text-center">
+            <div className="col-md-3 text-center mt-2">
               <b className="text-danger">{itemWiseValue.toUpperCase()}</b>
               <span className="mx-2">||</span>
               <b className="text-primary">COUNT- {cartProducts.length}</b>
