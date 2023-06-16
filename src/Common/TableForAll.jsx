@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import TableDataDownload from "./TableDataDownload";
 import * as Icon from "react-bootstrap-icons";
+import "../Style/TableForAll.css";
 
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
@@ -19,23 +20,20 @@ const TableForAll = (props) => {
           return (
             <>
               {params.row.confirmationStatus === "" && (
-                <div className="mx-3">
+                <div>
                   <Icon.PencilSquare
-                    className="text-primary mx-1"
-                    size={16}
+                    className="EditButton"
                     // onClick={() => rowDataHandler(params.row)}
                   />
                   <Icon.Trash
-                    className="text-danger"
-                    size={16}
+                    className="DeleteButton"
                     // onClick={() => DeleteRowData(params.row)}
                   />
                 </div>
               )}
               {reportsName === "Cancel_Item_List" && (
                 <Icon.PencilSquare
-                  className="text-primary"
-                  size={16}
+                  className="EditButton"
                   //   onClick={() => rowDataHandler(params.row)}
                 />
               )}
