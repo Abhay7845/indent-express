@@ -50,7 +50,7 @@ const TableForAll = (props) => {
         headerName: "Image",
         sortable: false,
         innerHeight: 500,
-        renderCell: (params) => {
+        renderCell: () => {
           return (
             <img
               src={imageURL}
