@@ -8,6 +8,9 @@ const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
   const [searchItemCode, setSearchItemCode] = useState("");
 
+  const imageCode = !rows.itemCode ? "" : rows.itemCode.substring(2, 9);
+  const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
+
   const column = col.map((element) => {
     let fieldRes;
     if (element === "Action") {
@@ -50,10 +53,9 @@ const TableForAll = (props) => {
         renderCell: (params) => {
           return (
             <img
-              src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
+              src={imageURL}
               alt="Image_Not Available"
-              width="50"
-              height="50"
+              className="img-thumbnail"
             />
           );
         },
