@@ -35,6 +35,32 @@ export const L1L2HeadingData = ReportsHeadingL1L2.map((element) => {
   };
 });
 
+const AddedCarHeadingL3 = [
+  "IMAGE",
+  "ITEMCODE",
+  "NEEDSTATE",
+  "IT GROUP",
+  "INDENT CATEGORY",
+  "STD WT",
+  "STD UCP",
+  "STONE QUALITY",
+  "STONE QUALITY VAL",
+  "SIZE",
+  "UMO SIZE",
+  "ITEM QUANTITY",
+  "TOTAL WEIGHT",
+  "TOTAL COST",
+  "REVISED ITEMCODE",
+  "CONFIRM STATUS",
+  "ACTION",
+];
+export const L3AddedCartHeadingData = AddedCarHeadingL3.map((element) => {
+  return {
+    value: element,
+    label: element,
+  };
+});
+
 const L1L2StatusData = [
   "ID",
   "NEEDSTATE",

@@ -9,7 +9,10 @@ import axios from "axios";
 import TopHeader from "../../Common/TopHeader";
 import * as Icon from "react-bootstrap-icons";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
-import { ItemWiseReportsDropdown, L1L2HeadingData } from "../../Data/DataList";
+import {
+  ItemWiseReportsDropdown,
+  L3AddedCartHeadingData,
+} from "../../Data/DataList";
 import TablePagination from "@mui/material/TablePagination";
 import Loader from "../../Common/Loader";
 
@@ -94,9 +97,9 @@ const YourProductsCart = () => {
             >
               <thead>
                 <tr>
-                  {L1L2HeadingData.map((item, i) => {
+                  {L3AddedCartHeadingData.map((item, i) => {
                     return (
-                      <th key={i} className="tableHeading">
+                      <th key={i} className="tableHeading text-center">
                         {item.label}
                       </th>
                     );
@@ -112,7 +115,6 @@ const YourProductsCart = () => {
                     const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
                     return (
                       <tr key={i} className="tableRowData">
-                        <td>{item.id}</td>
                         <td className="text-center">
                           <img
                             src={imageURL}
@@ -131,11 +133,17 @@ const YourProductsCart = () => {
                         <td>{item.stdUCP}</td>
                         <td>{item.saleable}</td>
                         <td>{item.reasons}</td>
+                        <td>{item.reasons}</td>
+                        <td>{item.reasons}</td>
+                        <td>{item.reasons}</td>
+                        <td>{item.reasons}</td>
+                        <td>{item.reasons}</td>
+                        <td>{item.reasons}</td>
                         <td className="text-center">
                           <Icon.PencilSquare
                             size={18}
                             cursor="pointer"
-                            className="mx-2"
+                            className="mx-1"
                             // onClick={() => EditReport(item)}
                           />
                           <Icon.Trash
