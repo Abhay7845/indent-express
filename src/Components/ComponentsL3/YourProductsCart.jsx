@@ -5,9 +5,10 @@ import {
   BsFillHouseDoorFill,
 } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import TopHeader from "../../Common/TopHeader";
 import axios from "axios";
+import TopHeader from "../../Common/TopHeader";
 import * as Icon from "react-bootstrap-icons";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { ItemWiseReportsDropdown, L1L2HeadingData } from "../../Data/DataList";
 import TablePagination from "@mui/material/TablePagination";
 
@@ -16,6 +17,7 @@ const YourProductsCart = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(50);
   const [itemWiseValue, setItemWiseValue] = useState("");
+  const [searchItemCode, setSearchItemCode] = useState("");
 
   useEffect(() => {
     axios
@@ -64,13 +66,24 @@ const YourProductsCart = () => {
         </Link>
       </div>
       <br />
-      <div className="d-flex justify-content-end mx-1 my-2">
-        <button className="mx-2">CONFIRM</button>
-        <button>SEND MAIL</button>
+      <div className="row d-flex justify-content-between mx-0 my-2">
+        <div className="col-md-3">
+          <input
+            type="text"
+            value={searchItemCode}
+            className="SearchRowByItem"
+            placeholder="Search by Item Code"
+            onChange={(e) => setSearchItemCode(e.target.value)}
+          />
+        </div>
+        <div className="col-md-4 confirmButtons">
+          <button className="confirmSendmail mx-2">CONFIRM</button>
+          <button className="confirmSendmail">SEND MAIL</button>
+        </div>
       </div>
       {cartProducts.length > 0 && (
         <div className="table-responsive mx-1">
-          <table className="table table-hover table-bordered">
+          <table className="table table-hover table-bordered" id="table-to-xls">
             <thead>
               <tr>
                 {L1L2HeadingData.map((item, i) => {
@@ -123,6 +136,14 @@ const YourProductsCart = () => {
             </tbody>
           </table>
           <div className="d-flex justify-content-end my-2 w-100">
+            <ReactHTMLTableToExcel
+              id="test-table-xls-button"
+              className="excelButton"
+              table="table-to-xls"
+              filename={itemWiseValue}
+              sheet="tablexls"
+              buttonText="DOWNLOAD"
+            />
             <TablePagination
               rowsPerPageOptions={[50, 100, 150, cartProducts.length]}
               component="div"

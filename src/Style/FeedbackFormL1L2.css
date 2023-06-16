@@ -42,3 +42,50 @@
     padding: 7px;
     width: 100%;
 }
+
+/* CART PAGE STYLE */
+
+.SearchRowByItem {
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #c1bfbf;
+    padding: 7px;
+}
+
+.confirmSendmail {
+    padding: 6px;
+    border: none;
+    background-color: #5050dc;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.confirmButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width:800px) {
+    .confirmButtons {
+        margin-top: 10px;
+        justify-content: space-between;
+    }
+}
+
+.excelButton {
+    height: 30px;
+    margin-top: 6px;
+    border: none;
+    background-color: #268d26;
+    outline: none;
+    color: #fff;
+    border-radius: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.excelButton:hover {
+    background-color: #27ac27;
+}
