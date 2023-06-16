@@ -8,13 +8,16 @@ import { Link } from "react-router-dom";
 import TopHeader from "../../Common/TopHeader";
 import axios from "axios";
 import * as Icon from "react-bootstrap-icons";
-import { L1L2HeadingData } from "../../Data/DataList";
+import { ItemWiseReportsDropdown, L1L2HeadingData } from "../../Data/DataList";
 import TablePagination from "@mui/material/TablePagination";
 
 const YourProductsCart = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(50);
+  const [itemWiseValue, setItemWiseValue] = useState("");
+  console.log("itemWiseValue==>", itemWiseValue);
+
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/users")
@@ -23,7 +26,6 @@ const YourProductsCart = () => {
         setCartProducts(response.data);
       });
   }, []);
-  console.log("cartProducts==>", cartProducts);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -36,13 +38,27 @@ const YourProductsCart = () => {
     <>
       <TopHeader />
       <div className="ComponentL3LowerHeader">
-        <div className="mx-2">
+        <div className="d-flex mx-2 w-100">
           <Link to="/Indent-express/direction/home">
             <BsFillHouseDoorFill size={25} className="mt-2 text-dark" />
           </Link>
           <Link to="/Indent-express/L3/status/reports">
             <BsFillBarChartFill size={25} className="mt-2 mx-3 text-dark" />
           </Link>
+          <div className="col-md-3 mx-2">
+            <select
+              className="SSelect text-center"
+              onChange={(e) => setItemWiseValue(e.target.value)}
+            >
+              {ItemWiseReportsDropdown.map((item, i) => {
+                return (
+                  <option key={i} value={item.value}>
+                    {item.label}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
         </div>
         <Link to="/Indent-express/L3/your/cart/reports">
           <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
