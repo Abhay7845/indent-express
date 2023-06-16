@@ -1,17 +1,100 @@
 import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import TableDataDownload from "./TableDataDownload";
+import * as Icon from "react-bootstrap-icons";
 
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
   const [searchItemCode, setSearchItemCode] = useState("");
-  const colum = col.map((element) => {
-    return {
-      field: element,
-      sortable: false,
-      flex: 1,
-    };
+
+  const column = col.map((element) => {
+    let fieldRes;
+    if (element === "Action") {
+      fieldRes = {
+        field: "Action",
+        headerName: "Action",
+        sortable: false,
+        disableClickEventBubbling: true,
+        renderCell: (params) => {
+          return (
+            <>
+              {params.row.confirmationStatus === "" && (
+                <div className="mx-3">
+                  <Icon.PencilSquare
+                    // onClick={() => {
+                    //   rowDataHandler(params.row);
+                    // }}
+                    size={16}
+                    className="EditButton"
+                  />
+                  <Icon.Trash
+                    size={16}
+                    className="DeleteButton"
+                    // onClick={() => {
+                    //   DeleteRowData(params.row);
+                    // }}
+                  />
+                </div>
+              )}
+              {reportsName === "Cancel_Item_List" && (
+                <Icon.PencilSquare
+                  //   onClick={() => {
+                  //     rowDataHandler(params.row);
+                  //   }}
+                  size={16}
+                  className="EditButton"
+                />
+              )}
+            </>
+          );
+        },
+      };
+    } else if (element === "Image") {
+      fieldRes = {
+        field: "Image",
+        headerName: "Image",
+        sortable: false,
+        innerHeight: 500,
+        renderCell: (params) => {
+          return (
+            <img
+              src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
+              alt="Image_Not Available"
+              width="50"
+              height="50"
+            />
+          );
+        },
+      };
+    } else if (element === "confirmationStatus") {
+      fieldRes = {
+        field: "confirmationStatus",
+        headerName: "confirmationStatus",
+        sortable: false,
+        flex: 1,
+        disableClickEventBubbling: true,
+        renderCell: (params) => {
+          return (
+            <>
+              {params.row.confirmationStatus === "" ? (
+                ""
+              ) : (
+                <p className="text-success">Success</p>
+              )}
+            </>
+          );
+        },
+      };
+    } else {
+      fieldRes = {
+        field: element,
+        sortable: false,
+        flex: 1,
+      };
+    }
+    return fieldRes;
   });
+
   const DataRows = rows.filter((eachRow) =>
     eachRow.itemCode.includes(searchItemCode.toUpperCase())
   );
@@ -40,7 +123,7 @@ const TableForAll = (props) => {
       </div>
       <DataGrid
         rows={DataRows}
-        columns={colum}
+        columns={column}
         autoHeight={true}
         pageSize={50}
         components={{
