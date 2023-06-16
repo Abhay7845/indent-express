@@ -21,28 +21,22 @@ const TableForAll = (props) => {
               {params.row.confirmationStatus === "" && (
                 <div className="mx-3">
                   <Icon.PencilSquare
-                    // onClick={() => {
-                    //   rowDataHandler(params.row);
-                    // }}
+                    className="text-primary mx-1"
                     size={16}
-                    className="EditButton"
+                    // onClick={() => rowDataHandler(params.row)}
                   />
                   <Icon.Trash
+                    className="text-danger"
                     size={16}
-                    className="DeleteButton"
-                    // onClick={() => {
-                    //   DeleteRowData(params.row);
-                    // }}
+                    // onClick={() => DeleteRowData(params.row)}
                   />
                 </div>
               )}
               {reportsName === "Cancel_Item_List" && (
                 <Icon.PencilSquare
-                  //   onClick={() => {
-                  //     rowDataHandler(params.row);
-                  //   }}
+                  className="text-primary"
                   size={16}
-                  className="EditButton"
+                  //   onClick={() => rowDataHandler(params.row)}
                 />
               )}
             </>
