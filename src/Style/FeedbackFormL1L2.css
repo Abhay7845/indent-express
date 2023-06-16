@@ -60,6 +60,11 @@
     background-color: #5050dc;
     color: #fff;
     border-radius: 3px;
+    font-style: italic;
+}
+
+.confirmSendmail:hover {
+    background-color: #3838da;
 }
 
 .confirmButtons {
