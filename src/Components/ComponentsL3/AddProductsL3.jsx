@@ -216,7 +216,6 @@ const AddProductsL3 = (props) => {
       strCode: storeCode,
       submitStatus: singleProductsDetails.submitStatus,
     };
-    console.log("AddToCardProduct==>", AddToCardProduct);
     axios
       .post(
         `${HostManager.reportsL1L2}/INDENTL3/express/insert/responses/from/L3`,
