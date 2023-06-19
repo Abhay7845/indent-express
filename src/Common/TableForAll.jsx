@@ -8,6 +8,9 @@ const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
   const [searchItemCode, setSearchItemCode] = useState("");
   const [reports, setReports] = useState({});
+  const { itemCode } = reports;
+  const digit = !itemCode ? "" : itemCode[6];
+  console.log("digit==>", digit);
 
   const imageCode = !rows.itemCode ? "" : rows.itemCode.substring(2, 9);
   const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
@@ -172,7 +175,7 @@ const TableForAll = (props) => {
                   <h6 className="text-center my-2 feedBackText">
                     <b>INDENT DETAILS</b>
                   </h6>
-                  <br />
+                  <p>Hello</p>
                 </div>
               </div>
               <div className="d-flex">
