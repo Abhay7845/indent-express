@@ -183,6 +183,7 @@ const AddProductsL3 = (props) => {
     setIndentQuantityRes(lastNumber);
   };
 
+  console.log("singleProductsDetails==>", singleProductsDetails);
   // ADD TO CART PRODUCTS
   const AddProductsToCard = () => {
     setLoading(true);
@@ -196,7 +197,7 @@ const AddProductsL3 = (props) => {
       childNodeV: singleProductsDetails.childNodeV,
       collection: singleProductsDetails.collection,
       consumerbase: singleProductsDetails.consumerBase,
-      indCategory: singleProductsDetails.indCategory,
+      indCategory: singleProductsDetails.category,
       indentLevelType: singleProductsDetails.indentLevelType,
       itemCode: singleProductsDetails.itemCode,
       itgroup: singleProductsDetails.itGroup,
@@ -215,6 +216,7 @@ const AddProductsL3 = (props) => {
       strCode: storeCode,
       submitStatus: singleProductsDetails.submitStatus,
     };
+    console.log("AddToCardProduct==>", AddToCardProduct);
     axios
       .post(
         `${HostManager.reportsL1L2}/INDENTL3/express/insert/responses/from/L3`,
