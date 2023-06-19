@@ -7,12 +7,18 @@ import "../Style/TableForAll.css";
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
   const [searchItemCode, setSearchItemCode] = useState("");
+  const [reports, setReports] = useState({});
 
   const imageCode = !rows.itemCode ? "" : rows.itemCode.substring(2, 9);
   const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
 
   const CancelIndentRowData = (RowData) => {
     console.log("RowData==>", RowData);
+  };
+
+  const UpdateRowData = (UpdateData) => {
+    setReports(UpdateData);
+    console.log("UpdateData==>", UpdateData);
   };
 
   const column = col.map((element) => {
@@ -30,7 +36,7 @@ const TableForAll = (props) => {
                 <div>
                   <Icon.PencilSquare
                     className="EditButton"
-                    // onClick={() => rowDataHandler(params.row)}
+                    onClick={() => UpdateRowData(params.row)}
                   />
                   <Icon.Trash
                     className="DeleteButton"
@@ -41,7 +47,7 @@ const TableForAll = (props) => {
               {reportsName === "Cancel_Item_List" && (
                 <Icon.PencilSquare
                   className="EditButton"
-                  //   onClick={() => rowDataHandler(params.row)}
+                  onClick={() => UpdateRowData(params.row)}
                 />
               )}
             </>
@@ -92,9 +98,91 @@ const TableForAll = (props) => {
   const DataRows = rows.filter((eachRow) =>
     eachRow.itemCode.includes(searchItemCode.toUpperCase())
   );
-
   return (
     <>
+      {reports.itemCode === undefined ? (
+        ""
+      ) : (
+        <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
+          <div className="col">
+            <img
+              src={imageURL}
+              className="w-100 img-thumbnail ReportCatalogImage"
+              alt="Image_Unavailable"
+            />
+          </div>
+          <div className="col">
+            <div className="card-body">
+              <h5
+                className="text-center p-1 itemCodeText"
+                style={{ backgroundColor: "#f5ea84" }}
+              >
+                {reports.itemCode}
+              </h5>
+              <div className="row my-3">
+                <div className="col-md-5">
+                  <div>
+                    <h6 className="text-center my-2">
+                      <b>PRODUCT DETAILS</b>
+                    </h6>
+                    <br />
+                    <table className="w-100">
+                      <tbody className="productsDetailsStyle">
+                        <tr>
+                          <th>GROUP</th>
+                          <td>-</td>
+                          <td>{reports.itGroup}</td>
+                        </tr>
+                        <tr>
+                          <th>CATEGORY</th>
+                          <td>-</td>
+                          <td>{reports.category}</td>
+                        </tr>
+                        <tr>
+                          <th>NEED STATE</th>
+                          <td>-</td>
+                          <td>{reports.needState}</td>
+                        </tr>
+                        <tr>
+                          <th>STD WT</th>
+                          <td>-</td>
+                          <td>{reports.stdWt}</td>
+                        </tr>
+                        <tr>
+                          <th>STD UCP</th>
+                          <td>-</td>
+                          <td>{reports.stdUCP}</td>
+                        </tr>
+                        <tr>
+                          <th>IND-CATEGORY</th>
+                          <td>-</td>
+                          <td>{reports.indCategory}</td>
+                        </tr>
+                        <tr>
+                          <th>QUANTITY</th>
+                          <td>-</td>
+                          <td>{reports.itemQty}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div className="col-md-7">
+                  <h6 className="text-center my-2 feedBackText">
+                    <b>FEEDBACK</b>
+                  </h6>
+                  <br />
+                </div>
+              </div>
+              <div className="d-flex">
+                <button className="CButton mx-1">CANCEL INDENT</button>
+                <button className="CButton">UPDATE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      <hr />
       <div className="row d-flex justify-content-between mx-0 my-3">
         <div className="col-md-3">
           <input
