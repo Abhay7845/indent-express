@@ -9,6 +9,7 @@ import BangleMultiUOMSize from "../Components/ComponentsL3/BangleMultiUOMSize";
 import axios from "axios";
 import { HostManager } from "../APIList/HotMaster";
 import IndentQuantityFiled from "../Components/ComponentsL3/IndentQuantityFiled";
+import ChooseMultiSize from "../Components/ComponentsL3/ChooseMultiSize";
 
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
@@ -19,7 +20,7 @@ const TableForAll = (props) => {
   // INPUT FILED VALUE VARIABLE
   const [tagQuantity, SetTagQuantity] = useState([]);
   const [sizeUomQuantity, SetSizeUomQuantityRes] = useState([]);
-  // const [sizeQuantity, setSizeQuantityRes] = useState([]);
+  const [sizeQuantity, setSizeQuantityRes] = useState([]);
   const [findingsRes, setFindingsRes] = useState("");
   // const [stoneQuality, setStoneQualityRes] = useState("");
   const [indentQuantity, setIndentQuantityRes] = useState("");
@@ -32,7 +33,8 @@ const TableForAll = (props) => {
     sizeUomQuantity,
     findingsRes,
     typeSet2,
-    indentQuantity
+    indentQuantity,
+    sizeQuantity
   );
 
   const finger = !reportRowTable.childNodeF ? "" : "Only_FINGER_RING";
@@ -209,9 +211,9 @@ const TableForAll = (props) => {
   const GetUomSizeQuantity = (getUMOSize) => {
     SetSizeUomQuantityRes(getUMOSize);
   };
-  // const GetChooseSizeData = (getSizeData) => {
-  //   setSizeQuantityRes(getSizeData);
-  // };
+  const GetChooseSizeData = (getSizeData) => {
+    setSizeQuantityRes(getSizeData);
+  };
   const GetFindingData = (findingValue) => {
     setFindingsRes(findingValue.target.value);
   };
@@ -329,6 +331,20 @@ const TableForAll = (props) => {
                       />
                     )}
                   </div>
+                  {!reportRowTable.category ? (
+                    ""
+                  ) : reportRowTable.category
+                      .toUpperCase()
+                      .replace(/\s{2,}/g, " ")
+                      .trim() === "FINGER RING" ? (
+                    <ChooseMultiSize
+                      optionsList={SizeState}
+                      GetChooseSizeData={GetChooseSizeData}
+                    />
+                  ) : (
+                    ""
+                  )}
+
                   {digit === "N" ||
                   digit === "O" ||
                   digit === "X" ||
