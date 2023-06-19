@@ -443,10 +443,12 @@ const TableForAll = (props) => {
                   digit === "K" ||
                   digit === "A" ||
                   digit === "G" ? (
-                    <IndentQuantityFiled
-                      GetIndentQuantityValue={GetIndentQuantityValue}
-                      indentQuantity={indentQuantity}
-                    />
+                    <div className="mt-3">
+                      <IndentQuantityFiled
+                        GetIndentQuantityValue={GetIndentQuantityValue}
+                        indentQuantity={indentQuantity}
+                      />
+                    </div>
                   ) : (
                     ""
                   )}
