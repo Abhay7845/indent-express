@@ -17,6 +17,7 @@ const TableForAll = (props) => {
   };
 
   const UpdateRowData = (UpdateData) => {
+    window.scrollTo({ top: "0", behavior: "smooth" });
     setReports(UpdateData);
     console.log("UpdateData==>", UpdateData);
   };
@@ -104,14 +105,14 @@ const TableForAll = (props) => {
         ""
       ) : (
         <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
-          <div className="col">
+          <div className="col-md-5">
             <img
               src={imageURL}
               className="w-100 img-thumbnail ReportCatalogImage"
               alt="Image_Unavailable"
             />
           </div>
-          <div className="col">
+          <div className="col-md-7">
             <div className="card-body">
               <h5
                 className="text-center p-1 itemCodeText"
@@ -120,10 +121,10 @@ const TableForAll = (props) => {
                 {reports.itemCode}
               </h5>
               <div className="row my-3">
-                <div className="col-md-5">
+                <div className="col-md-6">
                   <div>
                     <h6 className="text-center my-2">
-                      <b>PRODUCT DETAILS</b>
+                      <b>PRODUCT DESCRIPTION</b>
                     </h6>
                     <br />
                     <table className="w-100">
@@ -167,9 +168,9 @@ const TableForAll = (props) => {
                     </table>
                   </div>
                 </div>
-                <div className="col-md-7">
+                <div className="col-md-6">
                   <h6 className="text-center my-2 feedBackText">
-                    <b>FEEDBACK</b>
+                    <b>INDENT DETAILS</b>
                   </h6>
                   <br />
                 </div>
@@ -194,7 +195,6 @@ const TableForAll = (props) => {
           />
         </div>
         <div className="col-md-3 text-center mt-2">
-          <span className="mx-2">||</span>
           <b className="text-primary">COUNT- {DataRows.length}</b>
         </div>
         <div className="col-md-4 confirmButtons">
