@@ -12,6 +12,7 @@ import IndentQuantityFiled from "../Components/ComponentsL3/IndentQuantityFiled"
 import ChooseMultiSize from "../Components/ComponentsL3/ChooseMultiSize";
 import StoneQualityTable from "../Components/ComponentsL3/StoneQualityTable";
 import StoneQualityDropdown from "./StoneQualityDropdown";
+import CommonImage from "./CommonImage";
 
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
@@ -207,11 +208,8 @@ const TableForAll = (props) => {
         field: "Image",
         headerName: "Image",
         sortable: false,
-        innerHeight: 500,
-        renderCell: () => {
-          return (
-            <img src="" alt="Image_Not Available" className="img-thumbnail" />
-          );
+        renderCell: (params) => {
+          return <CommonImage itemCode={params.row.itemCode} />;
         },
       };
     } else if (element === "confirmationStatus") {
@@ -242,8 +240,8 @@ const TableForAll = (props) => {
   const DataRows = rows.filter((eachRow) =>
     eachRow.itemCode.includes(searchItemCode.toUpperCase())
   );
-  //GET INPUT VALUES
 
+  //GET INPUT VALUES
   const GetTagFiledValues = (getTagSize) => {
     SetTagQuantity(getTagSize);
   };
