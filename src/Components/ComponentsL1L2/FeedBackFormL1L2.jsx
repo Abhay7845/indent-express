@@ -4,7 +4,7 @@ import TopHeader from "../../Common/TopHeader";
 import axios from "axios";
 import { HostManager } from "../../APIList/HotMaster";
 import Loader from "../../Common/Loader";
-import { NoReasonOption } from "../../Data/DataList";
+import { IMAGE_URL, NoReasonOption } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import {
@@ -405,7 +405,7 @@ export const FeedBackFormL1L2 = (props) => {
   const imageCode = !productsDetails.itemCode
     ? ""
     : productsDetails.itemCode.substring(2, 9);
-  const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
+  const imageURL = `${IMAGE_URL}${imageCode}.jpg`;
 
   return (
     <>

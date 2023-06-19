@@ -13,6 +13,7 @@ import TableDataDetails from "./TableDataDetails";
 import IndentQuantityFiled from "./IndentQuantityFiled";
 import StoneQualityDropdown from "../../Common/StoneQualityDropdown";
 import StoneQualityTable from "./StoneQualityTable";
+import { IMAGE_URL } from "../../Data/DataList";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
@@ -34,7 +35,7 @@ const AddProductsL3 = (props) => {
   const { itemCode, videoLink } = singleProductsDetails;
   const digit = !itemCode ? "" : itemCode[6];
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
-  const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}`;
+  const imageURL = `${IMAGE_URL}${imageCode}`;
 
   // STONE QUANTITY DATA
   const SI_2GH = singleProductsDetails.si2Gh;

@@ -14,7 +14,7 @@ import { Select } from "antd";
 import { HostManager } from "../../APIList/HotMaster";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import { FormControlLabel, Switch } from "@material-ui/core";
-import { NoReasonOption } from "../../Data/DataList";
+import { IMAGE_URL, NoReasonOption } from "../../Data/DataList";
 import Loader from "../../Common/Loader";
 
 const PhysicalL1L2 = () => {
@@ -74,7 +74,7 @@ const PhysicalL1L2 = () => {
   const imageCode = !productsDetails.itemCode
     ? ""
     : productsDetails.itemCode.substring(2, 9);
-  const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
+  const imageURL = `${IMAGE_URL}${imageCode}.jpg`;
 
   const getTrueFalse = () => {
     if (switchData) {

@@ -1,9 +1,10 @@
 import React from "react";
+import { IMAGE_URL } from "../Data/DataList";
 
 const CommonImage = (props) => {
   const { itemCode } = props;
   const imageCode = itemCode.substring(2, 9);
-  const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
+  const imageURL = `${IMAGE_URL}${imageCode}.jpg`;
 
   return (
     <img

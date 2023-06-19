@@ -76,9 +76,10 @@ export const L1L2StatusHeading = L1L2StatusData.map((element) => {
     label: element,
   };
 });
+export const IMAGE_URL =
+  "https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=";
 
 // FAKE DATA
-
 export const ItemWiseReportsDropdown = [
   {
     value: "item_wise_report",

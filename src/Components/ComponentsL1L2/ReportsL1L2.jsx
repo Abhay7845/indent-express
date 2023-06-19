@@ -3,7 +3,11 @@ import React, { useState, useEffect } from "react";
 import TopHeader from "../../Common/TopHeader";
 import Loader from "../../Common/Loader";
 import "../../Style/FeedbackFormL1L2.css";
-import { L1L2HeadingData, NoReasonOption } from "../../Data/DataList";
+import {
+  IMAGE_URL,
+  L1L2HeadingData,
+  NoReasonOption,
+} from "../../Data/DataList";
 import * as Icon from "react-bootstrap-icons";
 import TablePagination from "@mui/material/TablePagination";
 import axios from "axios";
@@ -183,7 +187,7 @@ const ReportsL1L2 = (props) => {
     }
   };
   const imageCode = !reports.itemCode ? "" : reports.itemCode.substring(2, 9);
-  const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
+  const imageURL = `${IMAGE_URL}${imageCode}.jpg`;
 
   return (
     <>
@@ -372,7 +376,7 @@ const ReportsL1L2 = (props) => {
                 .map((item, i) => {
                   const { itemCode } = item;
                   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
-                  const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
+                  const imageURL = `${IMAGE_URL}${imageCode}.jpg`;
                   return (
                     <tr key={i} className="tableRowData">
                       <td>{item.id}</td>

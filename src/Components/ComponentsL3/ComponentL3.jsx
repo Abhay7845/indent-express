@@ -14,6 +14,7 @@ import { HostManager } from "../../APIList/HotMaster";
 import AddProductsL3 from "./AddProductsL3";
 import ShowImageCart from "./ShowImageCart";
 import { Link } from "react-router-dom";
+import { IMAGE_URL } from "../../Data/DataList";
 // import No_ImageURL from "../../Asset/Img/No_Image.jpg";
 
 const ComponentL3 = (props) => {
@@ -152,7 +153,7 @@ const ComponentL3 = (props) => {
             .map((productsDetails, i) => {
               const { itemcode } = productsDetails;
               const imageCode = !itemcode ? "" : itemcode.substring(2, 9);
-              const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}`;
+              const imageURL = `${IMAGE_URL}${imageCode}`;
               return (
                 <div key={i} className="col-md-3 mt-5">
                   <div className="cardStyle">
