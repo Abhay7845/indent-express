@@ -13,7 +13,6 @@ const ChooseDynamicTag = (props) => {
   const [ChildNodeV, setChildNodeV] = useState([]);
   const [ChildNodesN, setChildNodesN] = useState([]);
   const [ChildNodeF, setChildNodeF] = useState([]);
-
   const {
     singleProductsDetails,
     optionsList,
@@ -22,6 +21,7 @@ const ChooseDynamicTag = (props) => {
     GetFindingData,
     findingsOptions,
     GetSet2TypeData,
+    reportRowTable,
   } = props;
 
   const setType2option = ["Chain", "Dori"];
@@ -37,7 +37,10 @@ const ChooseDynamicTag = (props) => {
       });
   }, [optionsList]);
 
-  const childNodeV = singleProductsDetails.childNodeV;
+  const childNodeV =
+    singleProductsDetails === undefined
+      ? reportRowTable.childNodeV
+      : singleProductsDetails.childNodeV;
   useEffect(() => {
     axios
       .get(
@@ -55,7 +58,9 @@ const ChooseDynamicTag = (props) => {
       .catch((error) => console.log("error==>", error));
   }, [childNodeV]);
 
-  const childNodeN = singleProductsDetails.childNodesN;
+  const childNodeN = !singleProductsDetails
+    ? reportRowTable.ChildNodesN
+    : singleProductsDetails.ChildNodesN;
   useEffect(() => {
     axios
       .get(
@@ -72,7 +77,9 @@ const ChooseDynamicTag = (props) => {
       .catch((error) => console.log("error==>", error));
   }, [childNodeN]);
 
-  const childNodeF = singleProductsDetails.childNodeF;
+  const childNodeF = !singleProductsDetails
+    ? reportRowTable.ChildNodeF
+    : singleProductsDetails.ChildNodeF;
   useEffect(() => {
     axios
       .get(
@@ -238,12 +245,14 @@ const ChooseDynamicTag = (props) => {
               }
             >
               <td className="w-100">
-                {singleProductsDetails.findings && (
-                  <FindingDropdown
-                    optionsList={findingsOptions}
-                    GetFindingData={GetFindingData}
-                  />
-                )}
+                {!singleProductsDetails
+                  ? reportRowTable.findings
+                  : singleProductsDetails.findings && (
+                      <FindingDropdown
+                        optionsList={findingsOptions}
+                        GetFindingData={GetFindingData}
+                      />
+                    )}
               </td>
             </tr>
           ))}

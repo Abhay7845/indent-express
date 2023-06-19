@@ -36,6 +36,8 @@ const AddProductsL3 = (props) => {
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
   const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}`;
 
+  console.log("addProducts==>", singleProductsDetails);
+
   // STONE QUANTITY DATA
   const SI_2GH = singleProductsDetails.si2Gh;
   const VS_GH = singleProductsDetails.vsGh;

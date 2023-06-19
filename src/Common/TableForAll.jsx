@@ -4,24 +4,25 @@ import { DataGrid } from "@mui/x-data-grid";
 import TableDataDownload from "./TableDataDownload";
 import * as Icon from "react-bootstrap-icons";
 import "../Style/TableForAll.css";
+import ChooseDynamicTag from "../Components/ComponentsL3/ChooseDynamicTag";
 
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
   const [searchItemCode, setSearchItemCode] = useState("");
   const [option, setOption] = useState([]);
-  const [reports, setReports] = useState({});
-  const { itemCode } = reports;
+  const [reportRowTable, setReportRowTable] = useState({});
+  const { itemCode } = reportRowTable;
   const digit = !itemCode ? "" : itemCode[6];
   console.log("digit==>", digit);
   console.log("option==>", option);
 
-  const finger = !reports.childNodeF ? "" : "Only_FINGER_RING";
-  const harm = !reports.childNodeH ? "" : "Only_HARAM";
-  const Tikka = !reports.childNodeK ? "" : "Only_TIKKA";
-  const other = !reports.childNodeO ? "" : "Only_OTHER";
-  const bangle = !reports.childNodeV ? "" : "Only_BANGLE";
-  const earing = !reports.childNodesE ? "" : "Only_EARRING";
-  const neckwear = !reports.childNodesN ? "" : "Only_NECKWEAR";
+  const finger = !reportRowTable.childNodeF ? "" : "Only_FINGER_RING";
+  const harm = !reportRowTable.childNodeH ? "" : "Only_HARAM";
+  const Tikka = !reportRowTable.childNodeK ? "" : "Only_TIKKA";
+  const other = !reportRowTable.childNodeO ? "" : "Only_OTHER";
+  const bangle = !reportRowTable.childNodeV ? "" : "Only_BANGLE";
+  const earing = !reportRowTable.childNodesE ? "" : "Only_EARRING";
+  const neckwear = !reportRowTable.childNodesN ? "" : "Only_NECKWEAR";
 
   const optionForOtherAllSet = [
     "Single_Tag",
@@ -84,7 +85,7 @@ const TableForAll = (props) => {
 
   const UpdateRowData = (UpdateData) => {
     window.scrollTo({ top: "0", behavior: "smooth" });
-    setReports(UpdateData);
+    setReportRowTable(UpdateData);
     console.log("UpdateData==>", UpdateData);
   };
 
@@ -167,7 +168,7 @@ const TableForAll = (props) => {
   );
   return (
     <>
-      {reports.itemCode === undefined ? (
+      {reportRowTable.itemCode === undefined ? (
         ""
       ) : (
         <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
@@ -184,7 +185,7 @@ const TableForAll = (props) => {
                 className="text-center p-1 itemCodeText"
                 style={{ backgroundColor: "#f5ea84" }}
               >
-                {reports.itemCode}
+                {reportRowTable.itemCode}
               </h5>
               <div className="row my-3">
                 <div className="col-md-6">
@@ -198,37 +199,37 @@ const TableForAll = (props) => {
                         <tr>
                           <th>GROUP</th>
                           <td>-</td>
-                          <td>{reports.itGroup}</td>
+                          <td>{reportRowTable.itGroup}</td>
                         </tr>
                         <tr>
                           <th>CATEGORY</th>
                           <td>-</td>
-                          <td>{reports.category}</td>
+                          <td>{reportRowTable.category}</td>
                         </tr>
                         <tr>
                           <th>NEED STATE</th>
                           <td>-</td>
-                          <td>{reports.needState}</td>
+                          <td>{reportRowTable.needState}</td>
                         </tr>
                         <tr>
                           <th>STD WT</th>
                           <td>-</td>
-                          <td>{reports.stdWt}</td>
+                          <td>{reportRowTable.stdWt}</td>
                         </tr>
                         <tr>
                           <th>STD UCP</th>
                           <td>-</td>
-                          <td>{reports.stdUCP}</td>
+                          <td>{reportRowTable.stdUCP}</td>
                         </tr>
                         <tr>
                           <th>IND-CATEGORY</th>
                           <td>-</td>
-                          <td>{reports.indCategory}</td>
+                          <td>{reportRowTable.indCategory}</td>
                         </tr>
                         <tr>
                           <th>QUANTITY</th>
                           <td>-</td>
-                          <td>{reports.itemQty}</td>
+                          <td>{reportRowTable.itemQty}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -238,6 +239,17 @@ const TableForAll = (props) => {
                   <h6 className="text-center my-2 feedBackText">
                     <b>INDENT DETAILS</b>
                   </h6>
+                  <ChooseDynamicTag
+                    optionsList={option}
+                    // singleProductsDetails={singleProductsDetails}
+                    // GetTagFiledValues={GetTagFiledValues}
+                    // GetUomSizeQuantity={GetUomSizeQuantity}
+                    // GetFindingData={GetFindingData}
+                    // SizeState={SizeState}
+                    // GetSet2TypeData={GetSet2TypeData}
+                    // findingsOptions={findingsOptions}
+                    reportRowTable={reportRowTable}
+                  />
                 </div>
               </div>
               <div className="d-flex">
