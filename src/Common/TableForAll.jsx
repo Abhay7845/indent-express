@@ -11,10 +11,18 @@ const TableForAll = (props) => {
   const [searchItemCode, setSearchItemCode] = useState("");
   const [option, setOption] = useState([]);
   const [reportRowTable, setReportRowTable] = useState({});
+  // INPUT FILED VALUE VARIABLE
+  const [tagQuantity, SetTagQuantity] = useState([]);
+  const [sizeUomQuantity, SetSizeUomQuantityRes] = useState([]);
+  // const [sizeQuantity, setSizeQuantityRes] = useState([]);
+  const [findingsRes, setFindingsRes] = useState("");
+  // const [stoneQuality, setStoneQualityRes] = useState("");
+  // const [indentQuantity, setIndentQuantityRes] = useState("");
+  const [typeSet2, setTypeSet2Res] = useState("");
   const { itemCode } = reportRowTable;
   const digit = !itemCode ? "" : itemCode[6];
   console.log("digit==>", digit);
-  console.log("option==>", option);
+  console.log(tagQuantity, sizeUomQuantity, findingsRes, typeSet2);
 
   const finger = !reportRowTable.childNodeF ? "" : "Only_FINGER_RING";
   const harm = !reportRowTable.childNodeH ? "" : "Only_HARAM";
@@ -166,6 +174,27 @@ const TableForAll = (props) => {
   const DataRows = rows.filter((eachRow) =>
     eachRow.itemCode.includes(searchItemCode.toUpperCase())
   );
+  //GET INPUT VALUES
+
+  const GetTagFiledValues = (getTagSize) => {
+    SetTagQuantity(getTagSize);
+  };
+  const GetUomSizeQuantity = (getUMOSize) => {
+    SetSizeUomQuantityRes(getUMOSize);
+  };
+  // const GetChooseSizeData = (getSizeData) => {
+  //   setSizeQuantityRes(getSizeData);
+  // };
+  const GetFindingData = (findingValue) => {
+    setFindingsRes(findingValue.target.value);
+  };
+  // const GetStoneData = (stoneValue) => {
+  //   setStoneQualityRes(stoneValue.target.value);
+  // };
+  const GetSet2TypeData = (set2TypeValue) => {
+    setTypeSet2Res(set2TypeValue.target.value);
+  };
+
   return (
     <>
       {reportRowTable.itemCode === undefined ? (
@@ -239,17 +268,25 @@ const TableForAll = (props) => {
                   <h6 className="text-center my-2 feedBackText">
                     <b>INDENT DETAILS</b>
                   </h6>
-                  <ChooseDynamicTag
-                    optionsList={option}
-                    // singleProductsDetails={singleProductsDetails}
-                    // GetTagFiledValues={GetTagFiledValues}
-                    // GetUomSizeQuantity={GetUomSizeQuantity}
-                    // GetFindingData={GetFindingData}
-                    // SizeState={SizeState}
-                    // GetSet2TypeData={GetSet2TypeData}
-                    // findingsOptions={findingsOptions}
-                    reportRowTable={reportRowTable}
-                  />
+                  {digit === "0" ||
+                  digit === "1" ||
+                  digit === "2" ||
+                  digit === "3" ||
+                  digit === "4" ||
+                  digit === "5" ||
+                  digit === "6" ||
+                  digit === "7" ? (
+                    <ChooseDynamicTag
+                      optionsList={option}
+                      reportRowTable={reportRowTable}
+                      GetTagFiledValues={GetTagFiledValues}
+                      GetUomSizeQuantity={GetUomSizeQuantity}
+                      GetFindingData={GetFindingData}
+                      GetSet2TypeData={GetSet2TypeData}
+                    />
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
               <div className="d-flex">
