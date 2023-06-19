@@ -10,6 +10,8 @@ import axios from "axios";
 import { HostManager } from "../APIList/HotMaster";
 import IndentQuantityFiled from "../Components/ComponentsL3/IndentQuantityFiled";
 import ChooseMultiSize from "../Components/ComponentsL3/ChooseMultiSize";
+import StoneQualityTable from "../Components/ComponentsL3/StoneQualityTable";
+import StoneQualityDropdown from "./StoneQualityDropdown";
 
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
@@ -25,7 +27,7 @@ const TableForAll = (props) => {
   const [sizeUomQuantity, SetSizeUomQuantityRes] = useState([]);
   const [sizeQuantity, setSizeQuantityRes] = useState([]);
   const [findingsRes, setFindingsRes] = useState("");
-  // const [stoneQuality, setStoneQualityRes] = useState("");
+  const [stoneQuality, setStoneQualityRes] = useState("");
   const [indentQuantity, setIndentQuantityRes] = useState("");
   const [typeSet2, setTypeSet2Res] = useState("");
   const { itemCode } = reportRowTable;
@@ -37,8 +39,19 @@ const TableForAll = (props) => {
     findingsRes,
     typeSet2,
     indentQuantity,
-    sizeQuantity
+    sizeQuantity,
+    stoneQuality
   );
+
+  // STONE QUANTITY DATA
+  const SI_2GH = reportRowTable.si2Gh;
+  const VS_GH = reportRowTable.vsGh;
+  const VVS1 = reportRowTable.vvs1;
+  const I2_GH = reportRowTable.i2Gh;
+  const SI2_IJ = reportRowTable.si2Ij;
+  const stoneTableData = [SI_2GH, VS_GH, VVS1, I2_GH, SI2_IJ];
+  const stoneDropdown = stoneTableData.filter((item) => !item === false);
+  console.log("stoneDropdown==>", stoneDropdown);
 
   const finger = !reportRowTable.childNodeF ? "" : "Only_FINGER_RING";
   const harm = !reportRowTable.childNodeH ? "" : "Only_HARAM";
@@ -251,9 +264,9 @@ const TableForAll = (props) => {
   const GetFindingData = (findingValue) => {
     setFindingsRes(findingValue.target.value);
   };
-  // const GetStoneData = (stoneValue) => {
-  //   setStoneQualityRes(stoneValue.target.value);
-  // };
+  const GetStoneData = (stoneValue) => {
+    setStoneQualityRes(stoneValue.target.value);
+  };
   const GetSet2TypeData = (set2TypeValue) => {
     setTypeSet2Res(set2TypeValue.target.value);
   };
@@ -371,14 +384,15 @@ const TableForAll = (props) => {
                       .toUpperCase()
                       .replace(/\s{2,}/g, " ")
                       .trim() === "FINGER RING" ? (
-                    <ChooseMultiSize
-                      optionsList={SizeState}
-                      GetChooseSizeData={GetChooseSizeData}
-                    />
+                    <div className="mt-3">
+                      <ChooseMultiSize
+                        optionsList={SizeState}
+                        GetChooseSizeData={GetChooseSizeData}
+                      />
+                    </div>
                   ) : (
                     ""
                   )}
-
                   {!reportRowTable.category
                     ? ""
                     : reportRowTable.category
@@ -441,8 +455,20 @@ const TableForAll = (props) => {
                   ) : (
                     ""
                   )}
+
+                  {stoneDropdown.length > 0 && (
+                    <StoneQualityDropdown
+                      optionsList={stoneDropdown}
+                      GetStoneData={GetStoneData}
+                      singleProductsDetails={reportRowTable}
+                    />
+                  )}
                 </div>
               </div>
+              {stoneDropdown.length > 0 && (
+                <StoneQualityTable tableRowData={reportRowTable} />
+              )}
+
               <div className="d-flex">
                 <button className="CButton mx-1">CANCEL INDENT</button>
                 <button className="CButton">UPDATE</button>
