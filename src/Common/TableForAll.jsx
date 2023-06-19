@@ -160,9 +160,6 @@ const TableForAll = (props) => {
       .catch((error) => console.log("error==>", error));
   }, [itemCode]);
 
-  const imageCode = !rows.itemCode ? "" : rows.itemCode.substring(2, 9);
-  const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
-
   const CancelIndentRowData = (RowData) => {
     console.log("RowData==>", RowData);
   };
@@ -170,7 +167,6 @@ const TableForAll = (props) => {
   const UpdateRowData = (UpdateData) => {
     window.scrollTo({ top: "0", behavior: "smooth" });
     setReportRowTable(UpdateData);
-    console.log("UpdateData==>", UpdateData);
   };
 
   const column = col.map((element) => {
@@ -214,11 +210,7 @@ const TableForAll = (props) => {
         innerHeight: 500,
         renderCell: () => {
           return (
-            <img
-              src={imageURL}
-              alt="Image_Not Available"
-              className="img-thumbnail"
-            />
+            <img src="" alt="Image_Not Available" className="img-thumbnail" />
           );
         },
       };
@@ -285,7 +277,7 @@ const TableForAll = (props) => {
         <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
           <div className="col-md-5">
             <img
-              src={imageURL}
+              src=""
               className="w-100 img-thumbnail ReportCatalogImage"
               alt="Image_Unavailable"
             />
