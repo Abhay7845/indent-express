@@ -8,6 +8,7 @@ import ChooseDynamicTag from "../Components/ComponentsL3/ChooseDynamicTag";
 import BangleMultiUOMSize from "../Components/ComponentsL3/BangleMultiUOMSize";
 import axios from "axios";
 import { HostManager } from "../APIList/HotMaster";
+import IndentQuantityFiled from "../Components/ComponentsL3/IndentQuantityFiled";
 
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
@@ -21,12 +22,18 @@ const TableForAll = (props) => {
   // const [sizeQuantity, setSizeQuantityRes] = useState([]);
   const [findingsRes, setFindingsRes] = useState("");
   // const [stoneQuality, setStoneQualityRes] = useState("");
-  // const [indentQuantity, setIndentQuantityRes] = useState("");
+  const [indentQuantity, setIndentQuantityRes] = useState("");
   const [typeSet2, setTypeSet2Res] = useState("");
   const { itemCode } = reportRowTable;
   const digit = !itemCode ? "" : itemCode[6];
   console.log("digit==>", digit);
-  console.log(tagQuantity, sizeUomQuantity, findingsRes, typeSet2);
+  console.log(
+    tagQuantity,
+    sizeUomQuantity,
+    findingsRes,
+    typeSet2,
+    indentQuantity
+  );
 
   const finger = !reportRowTable.childNodeF ? "" : "Only_FINGER_RING";
   const harm = !reportRowTable.childNodeH ? "" : "Only_HARAM";
@@ -215,6 +222,12 @@ const TableForAll = (props) => {
     setTypeSet2Res(set2TypeValue.target.value);
   };
 
+  const GetIndentQuantityValue = (indentQuantity) => {
+    const newValue = indentQuantity.target.value;
+    const lastNumber = parseInt(newValue.toString().slice(-1));
+    setIndentQuantityRes(lastNumber);
+  };
+
   return (
     <>
       {reportRowTable.itemCode === undefined ? (
@@ -288,6 +301,7 @@ const TableForAll = (props) => {
                   <h6 className="text-center my-2 feedBackText">
                     <b>INDENT DETAILS</b>
                   </h6>
+                  <br />
                   {digit === "0" ||
                   digit === "1" ||
                   digit === "2" ||
@@ -307,11 +321,33 @@ const TableForAll = (props) => {
                   ) : (
                     ""
                   )}
-                  {digit === "V" && (
-                    <BangleMultiUOMSize
-                      optionsList={SizeState}
-                      GetUomSizeQuantity={GetUomSizeQuantity}
+                  <div style={{ marginTop: "-15px" }}>
+                    {digit === "V" && (
+                      <BangleMultiUOMSize
+                        optionsList={SizeState}
+                        GetUomSizeQuantity={GetUomSizeQuantity}
+                      />
+                    )}
+                  </div>
+                  {digit === "N" ||
+                  digit === "O" ||
+                  digit === "X" ||
+                  digit === "H" ||
+                  digit === "J" ||
+                  digit === "S" ||
+                  digit === "W" ||
+                  digit === "E" ||
+                  digit === "P" ||
+                  digit === "Y" ||
+                  digit === "K" ||
+                  digit === "A" ||
+                  digit === "G" ? (
+                    <IndentQuantityFiled
+                      GetIndentQuantityValue={GetIndentQuantityValue}
+                      indentQuantity={indentQuantity}
                     />
+                  ) : (
+                    ""
                   )}
                 </div>
               </div>
