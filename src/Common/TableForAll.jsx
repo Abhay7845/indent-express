@@ -5,12 +5,16 @@ import TableDataDownload from "./TableDataDownload";
 import * as Icon from "react-bootstrap-icons";
 import "../Style/TableForAll.css";
 import ChooseDynamicTag from "../Components/ComponentsL3/ChooseDynamicTag";
+import BangleMultiUOMSize from "../Components/ComponentsL3/BangleMultiUOMSize";
+import axios from "axios";
+import { HostManager } from "../APIList/HotMaster";
 
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
   const [searchItemCode, setSearchItemCode] = useState("");
   const [option, setOption] = useState([]);
   const [reportRowTable, setReportRowTable] = useState({});
+  const [SizeState, setSizeState] = useState([]);
   // INPUT FILED VALUE VARIABLE
   const [tagQuantity, SetTagQuantity] = useState([]);
   const [sizeUomQuantity, SetSizeUomQuantityRes] = useState([]);
@@ -83,6 +87,22 @@ const TableForAll = (props) => {
       setOption(tagsOptions);
     }
   }, [digit]);
+  // DROPDOWN SIZE FOR NORMAL
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${itemCode}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setSizeState(response.data.value);
+        } else if (response.data.code === "1001") {
+          setSizeState([]);
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  }, [itemCode]);
 
   const imageCode = !rows.itemCode ? "" : rows.itemCode.substring(2, 9);
   const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
@@ -286,6 +306,12 @@ const TableForAll = (props) => {
                     />
                   ) : (
                     ""
+                  )}
+                  {digit === "V" && (
+                    <BangleMultiUOMSize
+                      optionsList={SizeState}
+                      GetUomSizeQuantity={GetUomSizeQuantity}
+                    />
                   )}
                 </div>
               </div>
