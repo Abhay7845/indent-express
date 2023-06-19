@@ -3,17 +3,19 @@ import {
   BsCartFill,
   BsFillBarChartFill,
   BsFillHouseDoorFill,
+  BsJournalBookmarkFill,
 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import TopHeader from "../../Common/TopHeader";
 // import * as Icon from "react-bootstrap-icons";
-import { ItemWiseReportsDropdown } from "../../Data/DataList";
 import Loader from "../../Common/Loader";
 import TableForAll from "../../Common/TableForAll";
+import { HostManager } from "../../APIList/HotMaster";
 
 const YourProductsCart = () => {
-  const [itemWiseValue, setItemWiseValue] = useState("item_wise_reports");
+  // const [itemWiseValue, setItemWiseValue] = useState("item_wise_reports");
+  const storeCode = localStorage.getItem("indent-expressId");
   const [cols, setCol] = useState([]);
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -22,7 +24,7 @@ const YourProductsCart = () => {
     setLoading(true);
     axios
       .get(
-        "https://tanishqdigitalnpim.titan.in:8443/DNPIM/NPIML3/npim/item/wise/rpt/L3/NAT1"
+        `${HostManager.reportsL1L2}/INDENTL3/express/item/wise/rpt/L3/${storeCode}`
       )
       .then((res) => res)
       .then((response) => {
@@ -40,7 +42,7 @@ const YourProductsCart = () => {
         console.log("error=>", error);
         setLoading(false);
       });
-  }, [itemWiseValue]);
+  }, [storeCode]);
 
   return (
     <>
@@ -54,8 +56,11 @@ const YourProductsCart = () => {
           <Link to="/Indent-express/L3/status/reports">
             <BsFillBarChartFill size={25} className="mt-2 mx-3 text-dark" />
           </Link>
-          <div className="col-md-2 mx-2">
-            <select
+          <Link to="/Indent-express/L3/status/reports">
+            <BsJournalBookmarkFill size={25} className="mt-2 text-dark" />
+          </Link>
+          {/* <div className="col-md-2 mx-2">
+          <select
               className="SSelect"
               onChange={(e) => setItemWiseValue(e.target.value)}
             >
@@ -66,8 +71,8 @@ const YourProductsCart = () => {
                   </option>
                 );
               })}
-            </select>
-          </div>
+            </select> 
+          </div> */}
         </div>
         <Link to="/Indent-express/L3/your/cart/reports">
           <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
@@ -75,7 +80,7 @@ const YourProductsCart = () => {
       </div>
       {rows.length > 0 && (
         <div className="mx-2 my-3">
-          <TableForAll col={cols} rows={rows} reportsName={itemWiseValue} />
+          <TableForAll col={cols} rows={rows} />
         </div>
       )}
     </>

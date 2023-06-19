@@ -11,6 +11,10 @@ const TableForAll = (props) => {
   const imageCode = !rows.itemCode ? "" : rows.itemCode.substring(2, 9);
   const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
 
+  const CancelIndentRowData = (RowData) => {
+    console.log("RowData==>", RowData);
+  };
+
   const column = col.map((element) => {
     let fieldRes;
     if (element === "Action") {
@@ -30,7 +34,7 @@ const TableForAll = (props) => {
                   />
                   <Icon.Trash
                     className="DeleteButton"
-                    // onClick={() => DeleteRowData(params.row)}
+                    onClick={() => CancelIndentRowData(params.row)}
                   />
                 </div>
               )}
@@ -69,13 +73,9 @@ const TableForAll = (props) => {
         disableClickEventBubbling: true,
         renderCell: (params) => {
           return (
-            <>
-              {params.row.confirmationStatus === "" ? (
-                ""
-              ) : (
-                <p className="text-success">Success</p>
-              )}
-            </>
+            <p className="text-success">
+              {params.row.confirmationStatus === "" ? "" : "Success"}
+            </p>
           );
         },
       };
@@ -106,7 +106,6 @@ const TableForAll = (props) => {
           />
         </div>
         <div className="col-md-3 text-center mt-2">
-          <b className="text-danger">{reportsName.toUpperCase()}</b>
           <span className="mx-2">||</span>
           <b className="text-primary">COUNT- {DataRows.length}</b>
         </div>
