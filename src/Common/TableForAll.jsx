@@ -15,8 +15,11 @@ const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
   const [searchItemCode, setSearchItemCode] = useState("");
   const [option, setOption] = useState([]);
+  const [coupleBandValue, setCoupleBandValue] = useState("");
   const [reportRowTable, setReportRowTable] = useState({});
   const [SizeState, setSizeState] = useState([]);
+  const [CoupleGentsSize, setCoupleGentsSize] = useState([]);
+  const [CoupleLadiesSize, setCoupleLadiesSize] = useState([]);
   // INPUT FILED VALUE VARIABLE
   const [tagQuantity, SetTagQuantity] = useState([]);
   const [sizeUomQuantity, SetSizeUomQuantityRes] = useState([]);
@@ -108,6 +111,37 @@ const TableForAll = (props) => {
           setSizeState(response.data.value);
         } else if (response.data.code === "1001") {
           setSizeState([]);
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  }, [itemCode]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20GENTS`
+      )
+      .then((res) => res)
+      .then((result) => {
+        if (result.data.Code === "1000") {
+          setCoupleGentsSize(result.data.value);
+        } else if (result.data.Code === "1001") {
+          setCoupleGentsSize([]);
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  }, [itemCode]);
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20LADIES`
+      )
+      .then((res) => res)
+      .then((result) => {
+        if (result.data.Code === "1000") {
+          setCoupleLadiesSize(result.data.value);
+        } else if (result.data.Code === "1001") {
+          setCoupleLadiesSize([]);
         }
       })
       .catch((error) => console.log("error==>", error));
@@ -344,6 +378,48 @@ const TableForAll = (props) => {
                   ) : (
                     ""
                   )}
+
+                  {!reportRowTable.category
+                    ? ""
+                    : reportRowTable.category
+                        .toUpperCase()
+                        .replace(/\s{2,}/g, " ")
+                        .trim() === "COUPLE BAND" && (
+                        <div className="mt-3">
+                          <select
+                            className="L3SelectDropdown"
+                            onChange={(e) => setCoupleBandValue(e.target.value)}
+                          >
+                            <option value="">CHOOSE COUPLE TAG</option>
+                            <option value="Single_Tag">SINGLE TAG</option>
+                            <option value="Separate_Tag">SEPARATE TAG</option>
+                          </select>
+                          {coupleBandValue === "Single_Tag" && (
+                            <div className="mt-2">
+                              <ChooseMultiSize
+                                optionsList={SizeState}
+                                GetChooseSizeData={GetChooseSizeData}
+                              />
+                            </div>
+                          )}
+                          {coupleBandValue === "Separate_Tag" && (
+                            <div className="my-1">
+                              <span className="text-primary">FOR GENTS</span>
+                              <ChooseMultiSize
+                                optionsList={CoupleGentsSize}
+                                GetChooseSizeData={GetChooseSizeData}
+                              />
+                              <span className="text-primary mt-2">
+                                FOR LADIES
+                              </span>
+                              <ChooseMultiSize
+                                optionsList={CoupleLadiesSize}
+                                GetChooseSizeData={GetChooseSizeData}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      )}
 
                   {digit === "N" ||
                   digit === "O" ||
