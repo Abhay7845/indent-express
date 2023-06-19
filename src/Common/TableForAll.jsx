@@ -171,6 +171,7 @@ const TableForAll = (props) => {
   const UpdateRowData = (UpdateData) => {
     window.scrollTo({ top: "0", behavior: "smooth" });
     setReportRowTable(UpdateData);
+    console.log("UpdateData==>", UpdateData);
   };
 
   const column = col.map((element) => {
@@ -331,6 +332,16 @@ const TableForAll = (props) => {
                           <th>IND-CATEGORY</th>
                           <td>-</td>
                           <td>{reportRowTable.indCategory}</td>
+                        </tr>
+                        <tr>
+                          <th>SIZE</th>
+                          <td>-</td>
+                          <td>{reportRowTable.size}</td>
+                        </tr>
+                        <tr>
+                          <th>UOM</th>
+                          <td>-</td>
+                          <td>{reportRowTable.uom}</td>
                         </tr>
                         <tr>
                           <th>QUANTITY</th>
