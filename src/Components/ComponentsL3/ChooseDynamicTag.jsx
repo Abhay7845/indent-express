@@ -226,7 +226,7 @@ const ChooseDynamicTag = (props) => {
           ))}
         </tbody>
       </table>
-      <table style={{ width: "100%", margin: 0 }}>
+      <table className="w-100">
         <tbody>
           {optionE.map((row, index) => (
             <tr

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import TableDataDownload from "./TableDataDownload";
 import * as Icon from "react-bootstrap-icons";
@@ -7,10 +8,72 @@ import "../Style/TableForAll.css";
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
   const [searchItemCode, setSearchItemCode] = useState("");
+  const [option, setOption] = useState([]);
   const [reports, setReports] = useState({});
   const { itemCode } = reports;
   const digit = !itemCode ? "" : itemCode[6];
   console.log("digit==>", digit);
+  console.log("option==>", option);
+
+  const finger = !reports.childNodeF ? "" : "Only_FINGER_RING";
+  const harm = !reports.childNodeH ? "" : "Only_HARAM";
+  const Tikka = !reports.childNodeK ? "" : "Only_TIKKA";
+  const other = !reports.childNodeO ? "" : "Only_OTHER";
+  const bangle = !reports.childNodeV ? "" : "Only_BANGLE";
+  const earing = !reports.childNodesE ? "" : "Only_EARRING";
+  const neckwear = !reports.childNodesN ? "" : "Only_NECKWEAR";
+
+  const optionForOtherAllSet = [
+    "Single_Tag",
+    "Separate_Tag",
+    earing,
+    neckwear,
+    harm,
+    Tikka,
+    other,
+    finger,
+    bangle,
+  ];
+  const tagsOptions = optionForOtherAllSet.filter((item) => !item === false);
+  const optionForSet0 = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_CHAIN_WITH_PENDANT",
+  ];
+  const optionForSet1 = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_NECKWEAR_OR_PENDANT",
+  ];
+  const tagsTCategory = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_MANGALSUTRA",
+  ];
+  useEffect(() => {
+    if (digit === "0") {
+      setOption(optionForSet0);
+    }
+    if (digit === "1") {
+      setOption(optionForSet1);
+    }
+    if (digit === "T") {
+      setOption(tagsTCategory);
+    }
+    if (
+      digit === "2" ||
+      digit === "3" ||
+      digit === "4" ||
+      digit === "5" ||
+      digit === "6" ||
+      digit === "7"
+    ) {
+      setOption(tagsOptions);
+    }
+  }, [digit]);
 
   const imageCode = !rows.itemCode ? "" : rows.itemCode.substring(2, 9);
   const imageURL = `https://jewbridge.titanjew.in/CatalogImages/api/ImageFetch/?Type=ProductImages&ImageName=${imageCode}.jpg`;
@@ -175,7 +238,6 @@ const TableForAll = (props) => {
                   <h6 className="text-center my-2 feedBackText">
                     <b>INDENT DETAILS</b>
                   </h6>
-                  <p>Hello</p>
                 </div>
               </div>
               <div className="d-flex">
