@@ -18,6 +18,7 @@ import ShowImage from "../Components/ComponentsL3/ShowImage";
 
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
+  const storeCode = localStorage.getItem("indent-expressId");
   const [searchItemCode, setSearchItemCode] = useState("");
   const [option, setOption] = useState([]);
   const [coupleBandValue, setCoupleBandValue] = useState("");
@@ -37,15 +38,15 @@ const TableForAll = (props) => {
   const digit = !itemCode ? "" : itemCode[6];
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
   const imageURL = `${IMAGE_URL}${imageCode}`;
-  console.log(
-    tagQuantity,
-    sizeUomQuantity,
-    findingsRes,
-    typeSet2,
-    indentQuantity,
-    sizeQuantity,
-    stoneQuality
-  );
+  // console.log(
+  //   tagQuantity,
+  //   sizeUomQuantity,
+  //   findingsRes,
+  //   typeSet2,
+  //   indentQuantity,
+  //   sizeQuantity,
+  //   stoneQuality
+  // );
 
   // STONE QUANTITY DATA
   const SI_2GH = reportRowTable.si2Gh;
@@ -270,7 +271,43 @@ const TableForAll = (props) => {
     const lastNumber = parseInt(newValue.toString().slice(-1));
     setIndentQuantityRes(lastNumber);
   };
-
+  const UpdateTableRowData = () => {
+    const UpdateInputData = {
+      itemCode: reportRowTable.itemCode,
+      strCode: storeCode,
+      saleable: "",
+      reasons: "",
+      childNodesE: reportRowTable.childNodesE,
+      childNodesN: reportRowTable.childNodesN,
+      childNodeF: reportRowTable.childNodeF,
+      childNodeK: reportRowTable.childNodeK,
+      childNodeV: reportRowTable.childNodeV,
+      childNodeH: reportRowTable.childNodeH,
+      childNodeO: reportRowTable.childNodeO,
+      indQty: reportRowTable.quantityRes,
+      indCategory: reportRowTable.category,
+      submitStatus: "report",
+      stoneQualityVal: reportRowTable.stoneQualityVal,
+      rsoName: "",
+      npimEventNo: reportRowTable.npimEventNo,
+      indentLevelType: "L3",
+      collection: reportRowTable.collection,
+      consumerbase: reportRowTable.consumerBase,
+      itgroup: reportRowTable.itGroup,
+      category: reportRowTable.category,
+      exSize: reportRowTable.size,
+      exUOM: reportRowTable.uom,
+      exIndCategory: reportRowTable.indCategory,
+      set2Type: typeSet2,
+      stoneQuality: stoneQuality,
+      exStonequality: stoneQuality,
+      findings: findingsRes,
+      sizeUomQuantitys: sizeUomQuantity,
+      sizeQuantitys: sizeQuantity,
+      tagQuantitys: tagQuantity,
+    };
+    console.log("UpdateInputData==>", UpdateInputData);
+  };
   return (
     <>
       {reportRowTable.itemCode === undefined ? (
@@ -278,12 +315,6 @@ const TableForAll = (props) => {
       ) : (
         <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
           <div className="col-md-5">
-            {/* <img
-              src={imageURL}
-              className="w-100 img-thumbnail ReportCatalogImage"
-              alt="Image_Unavailable"
-            /> */}
-
             <ShowImage imageURL={imageURL} />
           </div>
           <div className="col-md-7">
@@ -479,7 +510,9 @@ const TableForAll = (props) => {
 
               <div className="d-flex">
                 <button className="CButton mx-1">CANCEL INDENT</button>
-                <button className="CButton">UPDATE</button>
+                <button className="CButton" onClick={UpdateTableRowData}>
+                  UPDATE
+                </button>
               </div>
             </div>
           </div>
