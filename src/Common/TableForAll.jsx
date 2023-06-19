@@ -14,6 +14,7 @@ import StoneQualityTable from "../Components/ComponentsL3/StoneQualityTable";
 import StoneQualityDropdown from "./StoneQualityDropdown";
 import CommonImage from "./CommonImage";
 import { IMAGE_URL } from "../Data/DataList";
+import ShowImage from "../Components/ComponentsL3/ShowImage";
 
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
@@ -35,7 +36,7 @@ const TableForAll = (props) => {
   const { itemCode } = reportRowTable;
   const digit = !itemCode ? "" : itemCode[6];
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
-  const imageURL = `${IMAGE_URL}${imageCode}.jpg`;
+  const imageURL = `${IMAGE_URL}${imageCode}`;
   console.log(
     tagQuantity,
     sizeUomQuantity,
@@ -276,11 +277,13 @@ const TableForAll = (props) => {
       ) : (
         <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
           <div className="col-md-5">
-            <img
+            {/* <img
               src={imageURL}
               className="w-100 img-thumbnail ReportCatalogImage"
               alt="Image_Unavailable"
-            />
+            /> */}
+
+            <ShowImage imageURL={imageURL} />
           </div>
           <div className="col-md-7">
             <div className="card-body">
