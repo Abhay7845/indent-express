@@ -19,6 +19,7 @@ import Loader from "../../Common/Loader";
 
 const PhysicalL3 = () => {
   const storeCode = localStorage.getItem("indent-expressId");
+  const YourCart = localStorage.getItem("your-cart");
   const [searchItemCode, setSearchItemCode] = useState("");
   const [productsDetails, setProductsDetails] = useState({});
   const [switchData, setSwitchData] = useState(true);
@@ -230,8 +231,12 @@ const PhysicalL3 = () => {
                 onClick={GetProductsDetails}
               />
             </div>
-            <Link to="/Indent-express/L3/your/cart/reports">
+            <Link
+              to="/Indent-express/L3/your/cart/reports"
+              className="notification"
+            >
               <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
+              <span className="badge">{YourCart}</span>
             </Link>
           </div>
         </div>

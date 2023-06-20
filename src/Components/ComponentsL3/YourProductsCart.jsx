@@ -19,6 +19,7 @@ const YourProductsCart = () => {
   const [cols, setCol] = useState([]);
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
+  localStorage.setItem("your-cart", rows.length);
 
   useEffect(() => {
     setLoading(true);

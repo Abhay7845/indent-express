@@ -20,6 +20,7 @@ import { IMAGE_URL } from "../../Data/DataList";
 const ComponentL3 = (props) => {
   const { showAlert } = props;
   const storeCode = localStorage.getItem("indent-expressId");
+  const YourCart = localStorage.getItem("your-cart");
   const [loading, setLoading] = useState(false);
   const [productsData, setProductsData] = useState([]);
   const [page, setPage] = useState(0);
@@ -127,7 +128,7 @@ const ComponentL3 = (props) => {
             className="notification"
           >
             <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
-            <span className="badge">2</span>
+            <span className="badge">{YourCart}</span>
           </Link>
         </div>
       </div>
