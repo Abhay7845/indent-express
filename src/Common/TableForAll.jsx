@@ -4,9 +4,10 @@ import { DataGrid } from "@mui/x-data-grid";
 import TableDataDownload from "./TableDataDownload";
 import * as Icon from "react-bootstrap-icons";
 import "../Style/TableForAll.css";
+import axios from "axios";
+import swal from "sweetalert";
 import ChooseDynamicTag from "../Components/ComponentsL3/ChooseDynamicTag";
 import BangleMultiUOMSize from "../Components/ComponentsL3/BangleMultiUOMSize";
-import axios from "axios";
 import { HostManager } from "../APIList/HotMaster";
 import IndentQuantityFiled from "../Components/ComponentsL3/IndentQuantityFiled";
 import ChooseMultiSize from "../Components/ComponentsL3/ChooseMultiSize";
@@ -15,9 +16,11 @@ import StoneQualityDropdown from "./StoneQualityDropdown";
 import CommonImage from "./CommonImage";
 import { IMAGE_URL } from "../Data/DataList";
 import ShowImage from "../Components/ComponentsL3/ShowImage";
+import Loader from "./Loader";
 
 const TableForAll = (props) => {
   const { col, rows, reportsName } = props;
+  const [loading, setLoading] = useState(false);
   const storeCode = localStorage.getItem("indent-expressId");
   const [searchItemCode, setSearchItemCode] = useState("");
   const [option, setOption] = useState([]);
@@ -38,15 +41,6 @@ const TableForAll = (props) => {
   const digit = !itemCode ? "" : itemCode[6];
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
   const imageURL = `${IMAGE_URL}${imageCode}`;
-  // console.log(
-  //   tagQuantity,
-  //   sizeUomQuantity,
-  //   findingsRes,
-  //   typeSet2,
-  //   indentQuantity,
-  //   sizeQuantity,
-  //   stoneQuality
-  // );
 
   // STONE QUANTITY DATA
   const SI_2GH = reportRowTable.si2Gh;
@@ -56,7 +50,6 @@ const TableForAll = (props) => {
   const SI2_IJ = reportRowTable.si2Ij;
   const stoneTableData = [SI_2GH, VS_GH, VVS1, I2_GH, SI2_IJ];
   const stoneDropdown = stoneTableData.filter((item) => !item === false);
-  console.log("stoneDropdown==>", stoneDropdown);
 
   const finger = !reportRowTable.childNodeF ? "" : "Only_FINGER_RING";
   const harm = !reportRowTable.childNodeH ? "" : "Only_HARAM";
@@ -272,6 +265,7 @@ const TableForAll = (props) => {
     setIndentQuantityRes(lastNumber);
   };
   const UpdateTableRowData = () => {
+    setLoading(true);
     const UpdateInputData = {
       itemCode: reportRowTable.itemCode,
       strCode: storeCode,
@@ -289,9 +283,9 @@ const TableForAll = (props) => {
       submitStatus: "report",
       stoneQualityVal: reportRowTable.stoneQualityVal,
       rsoName: "",
-      npimEventNo: reportRowTable.npimEventNo,
+      npimEventNo: 1,
       indentLevelType: "L3",
-      collection: reportRowTable.collection,
+      collection: "",
       consumerbase: reportRowTable.needState,
       itgroup: reportRowTable.itGroup,
       category: reportRowTable.category,
@@ -300,16 +294,47 @@ const TableForAll = (props) => {
       exIndCategory: reportRowTable.indCategory,
       set2Type: typeSet2,
       stoneQuality: stoneQuality,
-      exStonequality: stoneQuality,
+      exStonequality: reportRowTable.stoneQuality,
       findings: findingsRes,
       sizeUomQuantitys: sizeUomQuantity,
       sizeQuantitys: sizeQuantity,
       tagQuantitys: tagQuantity,
     };
     console.log("UpdateInputData==>", UpdateInputData);
+    axios
+      .post(
+        `${HostManager.reportsL1L2}//INDENTL3/express/update/responses/from/L3`,
+        UpdateInputData
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          swal({
+            title: "Success",
+            text: "Your Data Has been Updated Successfully",
+            icon: "success",
+            buttons: "OK",
+          });
+        }
+        if (response.data.code === "1001") {
+          swal({
+            title: "error",
+            text: "Your Data is Not Updated",
+            icon: "error",
+            buttons: "OK",
+          });
+        }
+        setReportRowTable("");
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("error==>", error);
+        setLoading(false);
+      });
   };
   return (
     <>
+      {loading === true ? <Loader /> : ""}
       {reportRowTable.itemCode === undefined ? (
         ""
       ) : (
