@@ -165,7 +165,6 @@ const TableForAll = (props) => {
   const UpdateRowData = (UpdateData) => {
     window.scrollTo({ top: "0", behavior: "smooth" });
     setReportRowTable(UpdateData);
-    console.log("UpdateData==>", UpdateData);
   };
 
   const column = col.map((element) => {
