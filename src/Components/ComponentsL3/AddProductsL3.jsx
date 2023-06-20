@@ -231,6 +231,15 @@ const AddProductsL3 = (props) => {
             buttons: "OK",
           });
         }
+        if (response.data.code === "1001") {
+          alert("Your Data Has been Added To Cart Successfully");
+          swal({
+            title: "Warning",
+            text: "No more data available for the selected category",
+            icon: "warning",
+            buttons: "OK",
+          });
+        }
         setLoading(false);
       })
       .catch((error) => {
