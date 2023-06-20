@@ -122,8 +122,12 @@ const ComponentL3 = (props) => {
           </Link>
         </div>
         <div>
-          <Link to="/Indent-express/L3/your/cart/reports">
-            <BsCartFill size={25} className="trolleyLowerHeader" />
+          <Link
+            to="/Indent-express/L3/your/cart/reports"
+            className="notification"
+          >
+            <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
+            <span className="badge">2</span>
           </Link>
         </div>
       </div>

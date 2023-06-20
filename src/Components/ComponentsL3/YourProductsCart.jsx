@@ -7,6 +7,7 @@ import {
 import { Link } from "react-router-dom";
 import axios from "axios";
 import TopHeader from "../../Common/TopHeader";
+import "../../Style/YourCard.css";
 // import * as Icon from "react-bootstrap-icons";
 import Loader from "../../Common/Loader";
 import TableForAll from "../../Common/TableForAll";
@@ -55,26 +56,13 @@ const YourProductsCart = () => {
           <Link to="/Indent-express/L3/status/reports">
             <BsFillBarChartFill size={25} className="mt-2 mx-3 text-dark" />
           </Link>
-          {/* <Link to="/Indent-express/L3/status/reports">
-            <BsJournalBookmarkFill size={25} className="mt-2 text-dark" />
-          </Link> */}
-          {/* <div className="col-md-2 mx-2">
-          <select
-              className="SSelect"
-              onChange={(e) => setItemWiseValue(e.target.value)}
-            >
-              {ItemWiseReportsDropdown.map((item, i) => {
-                return (
-                  <option key={i} value={item.value}>
-                    {item.label}
-                  </option>
-                );
-              })}
-            </select> 
-          </div> */}
         </div>
-        <Link to="/Indent-express/L3/your/cart/reports">
+        <Link
+          to="/Indent-express/L3/your/cart/reports"
+          className="notification"
+        >
           <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
+          <span className="badge">{rows.length}</span>
         </Link>
       </div>
       {rows.length > 0 && (
