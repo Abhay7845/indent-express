@@ -15,7 +15,6 @@ import AddProductsL3 from "./AddProductsL3";
 import ShowImageCart from "./ShowImageCart";
 import { Link } from "react-router-dom";
 import { IMAGE_URL } from "../../Data/DataList";
-// import No_ImageURL from "../../Asset/Img/No_Image.jpg";
 
 const ComponentL3 = (props) => {
   const { showAlert } = props;

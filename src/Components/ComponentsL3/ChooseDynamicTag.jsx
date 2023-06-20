@@ -55,7 +55,7 @@ const ChooseDynamicTag = (props) => {
           setChildNodeV([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [childNodeV]);
 
   const childNodeN = !singleProductsDetails
@@ -74,7 +74,7 @@ const ChooseDynamicTag = (props) => {
           setChildNodesN([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [childNodeN]);
 
   const childNodeF = !singleProductsDetails
@@ -93,7 +93,7 @@ const ChooseDynamicTag = (props) => {
           setChildNodeF([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [childNodeF]);
 
   const options = optionsList.map((element) => {
