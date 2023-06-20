@@ -37,10 +37,9 @@ const ChooseDynamicTag = (props) => {
       });
   }, [optionsList]);
 
-  const childNodeV =
-    singleProductsDetails === undefined
-      ? reportRowTable.childNodeV
-      : singleProductsDetails.childNodeV;
+  const childNodeV = !singleProductsDetails
+    ? reportRowTable.childNodeV
+    : singleProductsDetails.childNodeV;
   useEffect(() => {
     axios
       .get(
