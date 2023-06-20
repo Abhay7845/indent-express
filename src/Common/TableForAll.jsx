@@ -277,7 +277,6 @@ const TableForAll = (props) => {
       childNodeV: reportRowTable.childNodeV,
       childNodeH: reportRowTable.childNodeH,
       childNodeO: reportRowTable.childNodeO,
-      indQty: reportRowTable.itemQty,
       indCategory: reportRowTable.category,
       submitStatus: "report",
       stoneQualityVal: reportRowTable.stoneQualityVal,
@@ -292,6 +291,7 @@ const TableForAll = (props) => {
       exUOM: reportRowTable.uom,
       exIndCategory: reportRowTable.indCategory,
       set2Type: typeSet2,
+      indQty: indentQuantity,
       stoneQuality: stoneQuality,
       exStonequality: reportRowTable.stoneQuality,
       findings: findingsRes,
@@ -299,10 +299,9 @@ const TableForAll = (props) => {
       sizeQuantitys: sizeQuantity,
       tagQuantitys: tagQuantity,
     };
-    console.log("UpdateInputData==>", UpdateInputData);
     axios
       .post(
-        `${HostManager.reportsL1L2}//INDENTL3/express/update/responses/from/L3`,
+        `${HostManager.reportsL1L2}/INDENTL3/express/update/responses/from/L3`,
         UpdateInputData
       )
       .then((res) => res)
