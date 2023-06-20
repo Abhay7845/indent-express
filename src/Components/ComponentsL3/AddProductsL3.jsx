@@ -183,7 +183,6 @@ const AddProductsL3 = (props) => {
     setIndentQuantityRes(lastNumber);
   };
 
-  console.log("singleProductsDetails==>", singleProductsDetails);
   // ADD TO CART PRODUCTS
   const AddProductsToCard = () => {
     setLoading(true);
