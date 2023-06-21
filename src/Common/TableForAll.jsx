@@ -333,6 +333,7 @@ const TableForAll = (props) => {
 
   // SEND MAIL API CALLING
   const SendMail = () => {
+    setLoading(true);
     axios
       .get(
         `${HostManager.reportsL1L2}/INDENTL3/express/L3/mail/content/${storeCode}`
@@ -340,15 +341,29 @@ const TableForAll = (props) => {
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
+          const success =
+            "Thankyou for completing the Indent Confirmation Process successfully";
+          const error =
+            "There was an error in Triggering email Please try Again";
+          const msg =
+            response.data.value.storeNPIMStatus === "LOCKED"
+              ? `${response.data.value.storeNPIMStatus}, And Mail Already Sent`
+              : response.data.mailStatus === "Sent successfully"
+              ? success
+              : error;
           swal({
             title: "Success",
-            text: "Message Has Been Sent Successfully",
+            text: msg,
             icon: "success",
             buttons: "OK",
           });
         }
+        setLoading(false);
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => {
+        console.log("");
+        setLoading(false);
+      });
   };
 
   return (
