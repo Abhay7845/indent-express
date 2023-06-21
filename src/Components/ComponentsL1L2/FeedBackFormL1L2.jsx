@@ -410,7 +410,7 @@ export const FeedBackFormL1L2 = (props) => {
   return (
     <>
       <TopHeader />
-      {loading === true ? <Loader /> : ""}
+      {loading === true && <Loader />}
       <div className="DropDownFormStyle">
         <div className="row mx-0 w-100">
           <div className="d-flex col-md-4">

@@ -47,7 +47,7 @@ const YourProductsCart = () => {
 
   return (
     <>
-      {loading === true ? <Loader /> : ""}
+      {loading === true && <Loader />}
       <TopHeader />
       <div className="ComponentL3LowerHeader">
         <div className="d-flex mx-2 w-100">

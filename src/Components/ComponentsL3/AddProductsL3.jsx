@@ -249,7 +249,7 @@ const AddProductsL3 = (props) => {
 
   return (
     <>
-      {loading === true ? <Loader /> : ""}
+      {loading === true && <Loader />}
       <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
         <div className="col-md-5">
           <ShowImage imageURL={imageURL} videoLink={videoLink} />

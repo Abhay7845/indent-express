@@ -192,7 +192,7 @@ const ReportsL1L2 = (props) => {
   return (
     <>
       <TopHeader />
-      {loading === true ? <Loader /> : ""}
+      {loading === true && <Loader />}
       <div className="DropDownFormStyle">
         <div className="mx-2 d-flex justify-content-between w-100">
           <div>

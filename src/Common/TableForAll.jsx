@@ -353,7 +353,7 @@ const TableForAll = (props) => {
 
   return (
     <>
-      {loading === true ? <Loader /> : ""}
+      {loading === true && <Loader />}
       {reportRowTable.itemCode === undefined ? (
         ""
       ) : (

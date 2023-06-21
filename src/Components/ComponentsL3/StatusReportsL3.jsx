@@ -52,6 +52,7 @@ const StatusReportsL3 = (props) => {
   return (
     <>
       <TopHeader />
+      {loading === true && <Loader />}
       <div className="DropDownFormStyle">
         <Link to="/Indent-express/direction/home">
           <BsFillHouseDoorFill size={25} className="mt-2 mx-3 text-dark" />
@@ -60,7 +61,6 @@ const StatusReportsL3 = (props) => {
           <BsFillBarChartFill size={25} className="mt-2 text-dark" />
         </Link>
       </div>
-      {loading === true ? <Loader /> : ""}
       <br />
       {statusData.length > 0 && (
         <div className="table-responsive mx-4 text-center">

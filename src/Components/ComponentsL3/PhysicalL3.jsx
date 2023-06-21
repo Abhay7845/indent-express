@@ -206,7 +206,7 @@ const PhysicalL3 = () => {
   return (
     <>
       <TopHeader />
-      {loading === true ? <Loader /> : ""}
+      {loading === true && <Loader />}
       <div className="DropDownFormStyle">
         <div className="row mx-2 w-100">
           <div className="d-flex justify-content-between">
