@@ -15,6 +15,7 @@ import RedirectionHomePage from "./Components/ComponentsL1L2/RedirectionHomePage
 import YourProductsCart from "./Components/ComponentsL3/YourProductsCart";
 import PhysicalL1L2 from "./Components/ComponentsL1L2/PhysicalL1L2";
 import PhysicalL3 from "./Components/ComponentsL3/PhysicalL3";
+import CancelDataReport from "./Components/ComponentsL3/CancelDataReport";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -72,6 +73,10 @@ const App = () => {
             <Route
               path="/Indent-express/L3/your/cart/reports"
               element={<YourProductsCart showAlert={showAlert} />}
+            />
+            <Route
+              path="/Indent-express/L3/cancel/item/list"
+              element={<CancelDataReport showAlert={showAlert} />}
             />
             <Route
               path="/Indent-express/L3/physical/home"

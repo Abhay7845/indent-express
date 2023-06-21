@@ -9,24 +9,22 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import TopHeader from "../../Common/TopHeader";
 import "../../Style/YourCard.css";
-// import * as Icon from "react-bootstrap-icons";
 import Loader from "../../Common/Loader";
 import { HostManager } from "../../APIList/HotMaster";
-import CardTableList from "../../Common/CardTableList";
+import CancelTableList from "./CancelTableList";
 
-const YourProductsCart = () => {
-  // const [itemWiseValue, setItemWiseValue] = useState("item_wise_reports");
+const CancelDataReport = () => {
   const storeCode = localStorage.getItem("indent-expressId");
+  const YourCart = localStorage.getItem("your-cart");
   const [cols, setCol] = useState([]);
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
-  localStorage.setItem("your-cart", rows.length);
 
   useEffect(() => {
     setLoading(true);
     axios
       .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/item/wise/rpt/L3/${storeCode}`
+        `${HostManager.reportsL1L2}/INDENTL3/express/get/item/cancel/list/${storeCode}`
       )
       .then((res) => res)
       .then((response) => {
@@ -41,7 +39,7 @@ const YourProductsCart = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error=>", error);
+        console.log("");
         setLoading(false);
       });
   }, [storeCode]);
@@ -68,17 +66,17 @@ const YourProductsCart = () => {
             className="notification"
           >
             <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
-            <span className="badge">{rows.length}</span>
+            <span className="badge">{YourCart}</span>
           </Link>
         </div>
       </div>
       {rows.length > 0 && (
         <div className="mx-2 my-3">
-          <CardTableList col={cols} rows={rows} />
+          <CancelTableList col={cols} rows={rows} />
         </div>
       )}
     </>
   );
 };
 
-export default YourProductsCart;
+export default CancelDataReport;

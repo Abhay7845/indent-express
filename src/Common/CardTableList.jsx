@@ -18,7 +18,7 @@ import { IMAGE_URL } from "../Data/DataList";
 import ShowImage from "../Components/ComponentsL3/ShowImage";
 import Loader from "./Loader";
 
-const TableForAll = (props) => {
+const CardTableList = (props) => {
   const { col, rows, reportsName } = props;
   const [loading, setLoading] = useState(false);
   const storeCode = localStorage.getItem("indent-expressId");
@@ -608,7 +608,6 @@ const TableForAll = (props) => {
           </div>
         </div>
       )}
-      <hr />
       <div className="row d-flex justify-content-between mx-0 my-3">
         <div className="col-md-3">
           <input
@@ -643,4 +642,4 @@ const TableForAll = (props) => {
     </>
   );
 };
-export default TableForAll;
+export default CardTableList;
