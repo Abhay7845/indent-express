@@ -263,6 +263,11 @@ const TableForAll = (props) => {
     const lastNumber = parseInt(newValue.toString().slice(-1));
     setIndentQuantityRes(lastNumber);
   };
+
+  const CancelIndent = () => {
+    console.log("CancelIndent");
+  };
+
   const UpdateTableRowData = () => {
     setLoading(true);
     const UpdateInputData = {
@@ -592,7 +597,9 @@ const TableForAll = (props) => {
               )}
 
               <div className="d-flex">
-                <button className="CButton mx-1">CANCEL INDENT</button>
+                <button className="CButton mx-1" onClick={CancelIndent}>
+                  CANCEL INDENT
+                </button>
                 <button className="CButton" onClick={UpdateTableRowData}>
                   UPDATE
                 </button>
