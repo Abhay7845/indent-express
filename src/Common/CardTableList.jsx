@@ -31,12 +31,12 @@ const CardTableList = (props) => {
   const [CoupleLadiesSize, setCoupleLadiesSize] = useState([]);
   // INPUT FILED VALUE VARIABLE
   const [tagQuantity, SetTagQuantity] = useState([]);
-  const [sizeUomQuantity, SetSizeUomQuantityRes] = useState([]);
-  const [sizeQuantity, setSizeQuantityRes] = useState([]);
-  const [findingsRes, setFindingsRes] = useState("");
-  const [stoneQuality, setStoneQualityRes] = useState("");
-  const [indentQuantity, setIndentQuantityRes] = useState("");
-  const [typeSet2, setTypeSet2Res] = useState("");
+  const [sizeUomQuantity, SetSizeUomQuantity] = useState([]);
+  const [sizeQuantity, setSizeQuantity] = useState([]);
+  const [findingsRes, setFindings] = useState("");
+  const [stoneQuality, setStoneQuality] = useState("");
+  const [indentQuantity, setIndentQuantity] = useState("");
+  const [typeSet2, setTypeSet2] = useState("");
   const { itemCode } = reportRowTable;
   const digit = !itemCode ? "" : itemCode[6];
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
@@ -243,25 +243,25 @@ const CardTableList = (props) => {
     SetTagQuantity(getTagSize);
   };
   const GetUomSizeQuantity = (getUMOSize) => {
-    SetSizeUomQuantityRes(getUMOSize);
+    SetSizeUomQuantity(getUMOSize);
   };
   const GetChooseSizeData = (getSizeData) => {
-    setSizeQuantityRes(getSizeData);
+    setSizeQuantity(getSizeData);
   };
   const GetFindingData = (findingValue) => {
-    setFindingsRes(findingValue.target.value);
+    setFindings(findingValue.target.value);
   };
   const GetStoneData = (stoneValue) => {
-    setStoneQualityRes(stoneValue.target.value);
+    setStoneQuality(stoneValue.target.value);
   };
   const GetSet2TypeData = (set2TypeValue) => {
-    setTypeSet2Res(set2TypeValue.target.value);
+    setTypeSet2(set2TypeValue.target.value);
   };
 
   const GetIndentQuantityValue = (indentQuantity) => {
     const newValue = indentQuantity.target.value;
     const lastNumber = parseInt(newValue.toString().slice(-1));
-    setIndentQuantityRes(lastNumber);
+    setIndentQuantity(lastNumber);
   };
 
   const CancelIndent = () => {
