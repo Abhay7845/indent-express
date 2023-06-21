@@ -330,6 +330,30 @@ const TableForAll = (props) => {
         setLoading(false);
       });
   };
+  // CONFIRM MAIL API CALLING
+  const ConfirmMail = () => {
+    setLoading(true);
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/L3/store/status/update/${storeCode}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          swal({
+            title: "Success",
+            text: "Success",
+            icon: "success",
+            buttons: "OK",
+          });
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("");
+        setLoading(false);
+      });
+  };
 
   // SEND MAIL API CALLING
   const SendMail = () => {
@@ -592,7 +616,9 @@ const TableForAll = (props) => {
           <b className="text-primary">COUNT- {DataRows.length}</b>
         </div>
         <div className="col-md-4 confirmButtons">
-          <button className="confirmSendmail mx-2">CONFIRM</button>
+          <button className="confirmSendmail mx-2" onClick={ConfirmMail}>
+            CONFIRM
+          </button>
           <button className="confirmSendmail" onClick={SendMail}>
             SEND MAIL
           </button>
