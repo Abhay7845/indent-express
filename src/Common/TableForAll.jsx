@@ -330,6 +330,27 @@ const TableForAll = (props) => {
         setLoading(false);
       });
   };
+
+  // SEND MAIL API CALLING
+  const SendMail = () => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/L3/mail/content/${storeCode}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          swal({
+            title: "Success",
+            text: "Message Has Been Sent Successfully",
+            icon: "success",
+            buttons: "OK",
+          });
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  };
+
   return (
     <>
       {loading === true ? <Loader /> : ""}
@@ -557,7 +578,9 @@ const TableForAll = (props) => {
         </div>
         <div className="col-md-4 confirmButtons">
           <button className="confirmSendmail mx-2">CONFIRM</button>
-          <button className="confirmSendmail">SEND MAIL</button>
+          <button className="confirmSendmail" onClick={SendMail}>
+            SEND MAIL
+          </button>
         </div>
       </div>
       <DataGrid
