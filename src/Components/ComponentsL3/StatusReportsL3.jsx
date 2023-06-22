@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import "../../Style/TopHeader.css";
+import Tippy from "@tippyjs/react";
 import { HostManager } from "../../APIList/HotMaster";
 import axios from "axios";
 import { L1L2StatusHeading } from "../../Data/DataList";
@@ -54,12 +55,16 @@ const StatusReportsL3 = (props) => {
       <TopHeader />
       {loading === true && <Loader />}
       <div className="DropDownFormStyle">
-        <Link to="/Indent-express/direction/home">
-          <BsFillHouseDoorFill size={25} className="mt-2 mx-3 text-dark" />
-        </Link>
-        <Link to="/Indent-express/L3/status/reports">
-          <BsFillBarChartFill size={25} className="mt-2 text-dark" />
-        </Link>
+        <Tippy content="Home">
+          <Link to="/Indent-express/direction/home">
+            <BsFillHouseDoorFill size={25} className="mt-2 mx-3 text-dark" />
+          </Link>
+        </Tippy>
+        <Tippy content="Status Report">
+          <Link to="/Indent-express/L3/status/reports">
+            <BsFillBarChartFill size={25} className="mt-2 text-dark" />
+          </Link>
+        </Tippy>
       </div>
       <br />
       {statusData.length > 0 && (
