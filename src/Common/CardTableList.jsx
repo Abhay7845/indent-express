@@ -263,9 +263,52 @@ const CardTableList = (props) => {
     const lastNumber = parseInt(newValue.toString().slice(-1));
     setIndentQuantity(lastNumber);
   };
-
+  // CANCEL INDENT API CALLING
   const CancelIndent = () => {
-    console.log("CancelIndent");
+    setLoading(true);
+    const CancelIndentInputsData = {
+      itemCode: reportRowTable.itemCode,
+      strCode: storeCode,
+      saleable: "",
+      reasons: "",
+      childNodesE: "",
+      childNodesN: "",
+      childNodeF: "",
+      childNodeK: "",
+      childNodeV: "",
+      childNodeH: "",
+      childNodeO: "",
+      indCategory: "",
+      submitStatus: "report",
+      stoneQualityVal: "",
+      rsoName: "",
+      npimEventNo: 1,
+      indentLevelType: "L3",
+      collection: "",
+      consumerbase: "",
+      itgroup: "",
+      category: "",
+      exSize: "",
+      exUOM: "",
+      exIndCategory: "",
+      set2Type: "",
+      indQty: "0",
+      stoneQuality: "",
+      exStonequality: "",
+      findings: "",
+      sizeUomQuantitys: [],
+      sizeQuantitys: [],
+      tagQuantitys: [],
+    };
+    console.log("CancelIndentInputsData==>", CancelIndentInputsData);
+    axios
+      .post(
+        `${HostManager.reportsL1L2}/INDENTL3/express/update/responses/from/L3`
+      )
+      .then((res) => res)
+      .then((response) => console.log("response=>", response))
+      .catch((error) => console.log("error=>", error));
+    setLoading(false);
   };
 
   const UpdateTableRowData = () => {
