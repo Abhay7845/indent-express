@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import "tippy.js/dist/tippy.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/User/Login";
 import PrivateComponent from "./Common/PrivateComponent";

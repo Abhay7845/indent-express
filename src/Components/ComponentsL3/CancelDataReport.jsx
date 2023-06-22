@@ -8,7 +8,6 @@ import {
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
 import TopHeader from "../../Common/TopHeader";
 import "../../Style/YourCard.css";
 import Loader from "../../Common/Loader";
