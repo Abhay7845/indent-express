@@ -9,6 +9,7 @@ import {
   BsFillFileEarmarkPostFill,
 } from "react-icons/bs";
 import axios from "axios";
+import Tippy from "@tippyjs/react";
 import swal from "sweetalert";
 import { Select } from "antd";
 import { HostManager } from "../../APIList/HotMaster";
@@ -209,18 +210,24 @@ const PhysicalL1L2 = () => {
       <div className="DropDownFormStyle">
         <div className="row mx-2 w-100">
           <div className="d-flex">
-            <Link to="/Indent-express/direction/home">
-              <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
-            </Link>
-            <Link to="/Indent-express/L1/L2/products/reports">
-              <BsFillFileEarmarkPostFill
-                size={25}
-                className="my-2 text-dark mx-3"
-              />
-            </Link>
-            <Link to="/Indent-express/L1/L2/status/reports">
-              <BsFillBarChartFill size={25} className="my-2 text-dark" />
-            </Link>
+            <Tippy content="Home">
+              <Link to="/Indent-express/direction/home">
+                <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
+              </Link>
+            </Tippy>
+            <Tippy content="Report">
+              <Link to="/Indent-express/L1/L2/products/reports">
+                <BsFillFileEarmarkPostFill
+                  size={25}
+                  className="my-2 text-dark mx-3"
+                />
+              </Link>
+            </Tippy>
+            <Tippy content="Status Report">
+              <Link to="/Indent-express/L1/L2/status/reports">
+                <BsFillBarChartFill size={25} className="my-2 text-dark" />
+              </Link>
+            </Tippy>
             <div className="d-flex mx-3">
               <input
                 type="text"
