@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import TopHeader from "../../Common/TopHeader";
 import Loader from "../../Common/Loader";
+import Tippy from "@tippyjs/react";
 import "../../Style/FeedbackFormL1L2.css";
 import {
   IMAGE_URL,
@@ -196,18 +197,24 @@ const ReportsL1L2 = (props) => {
       <div className="DropDownFormStyle">
         <div className="mx-2 d-flex justify-content-between w-100">
           <div>
-            <Link to="/Indent-express/direction/home">
-              <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
-            </Link>
-            <Link to="/Indent-express/L1/L2/products/reports">
-              <BsFillFileEarmarkPostFill
-                size={25}
-                className="my-2 text-dark mx-3"
-              />
-            </Link>
-            <Link to="/Indent-express/L1/L2/status/reports">
-              <BsFillBarChartFill size={25} className="my-2 text-dark" />
-            </Link>
+            <Tippy content="Home">
+              <Link to="/Indent-express/direction/home">
+                <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
+              </Link>
+            </Tippy>
+            <Tippy content="Report">
+              <Link to="/Indent-express/L1/L2/products/reports">
+                <BsFillFileEarmarkPostFill
+                  size={25}
+                  className="my-2 text-dark mx-3"
+                />
+              </Link>
+            </Tippy>
+            <Tippy content="Status Report">
+              <Link to="/Indent-express/L1/L2/status/reports">
+                <BsFillBarChartFill size={25} className="my-2 text-dark" />
+              </Link>
+            </Tippy>
           </div>
           <div className="col-md-3">
             <select

@@ -4,6 +4,7 @@ import TopHeader from "../../Common/TopHeader";
 import axios from "axios";
 import { HostManager } from "../../APIList/HotMaster";
 import Loader from "../../Common/Loader";
+import Tippy from "@tippyjs/react";
 import { IMAGE_URL, NoReasonOption } from "../../Data/DataList";
 import "../../Style/FeedbackFormL1L2.css";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
@@ -415,18 +416,24 @@ export const FeedBackFormL1L2 = (props) => {
         <div className="row mx-0 w-100">
           <div className="d-flex col-md-4">
             <div className="w-100 py-2">
-              <Link to="/Indent-express/direction/home">
-                <BsFillHouseDoorFill size={25} className="text-dark" />
-              </Link>
-              <Link to="/Indent-express/L1/L2/products/reports">
-                <BsFillFileEarmarkPostFill
-                  size={25}
-                  className="text-dark mx-3"
-                />
-              </Link>
-              <Link to="/Indent-express/L1/L2/status/reports">
-                <BsFillBarChartFill size={25} className="text-dark" />
-              </Link>
+              <Tippy content="Home">
+                <Link to="/Indent-express/direction/home">
+                  <BsFillHouseDoorFill size={25} className="text-dark" />
+                </Link>
+              </Tippy>
+              <Tippy content="Report">
+                <Link to="/Indent-express/L1/L2/products/reports">
+                  <BsFillFileEarmarkPostFill
+                    size={25}
+                    className="text-dark mx-3"
+                  />
+                </Link>
+              </Tippy>
+              <Tippy content="Status Report">
+                <Link to="/Indent-express/L1/L2/status/reports">
+                  <BsFillBarChartFill size={25} className="text-dark" />
+                </Link>
+              </Tippy>
             </div>
             <select
               className="SSelect"
