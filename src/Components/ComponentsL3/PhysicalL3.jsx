@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import "../../Style/FeedbackFormL1L2.css";
+import Tippy from "@tippyjs/react";
 import { Link } from "react-router-dom";
 import {
   BsSearch,
@@ -211,12 +212,19 @@ const PhysicalL3 = () => {
         <div className="row mx-2 w-100">
           <div className="d-flex justify-content-between">
             <div className="d-flex">
-              <Link to="/Indent-express/direction/home">
-                <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
-              </Link>
-              <Link to="/Indent-express/L3/status/reports">
-                <BsFillBarChartFill size={25} className="my-2 text-dark mx-3" />
-              </Link>
+              <Tippy content="Home">
+                <Link to="/Indent-express/direction/home">
+                  <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
+                </Link>
+              </Tippy>
+              <Tippy content="Status Report">
+                <Link to="/Indent-express/L3/status/reports">
+                  <BsFillBarChartFill
+                    size={25}
+                    className="my-2 text-dark mx-3"
+                  />
+                </Link>
+              </Tippy>
               <input
                 type="text"
                 value={searchItemCode}
