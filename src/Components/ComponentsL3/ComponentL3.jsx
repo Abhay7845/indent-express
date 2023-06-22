@@ -4,6 +4,7 @@ import axios from "axios";
 import TopHeader from "../../Common/TopHeader";
 import TablePagination from "@mui/material/TablePagination";
 import Loader from "../../Common/Loader";
+import Tippy from "@tippyjs/react";
 import "../../Style/ComponentL3.css";
 import {
   BsCartFill,
@@ -114,12 +115,16 @@ const ComponentL3 = (props) => {
       <TopHeader />
       <div className="ComponentL3LowerHeader">
         <div className="d-flex">
-          <Link to="/Indent-express/direction/home">
-            <BsFillHouseDoorFill size={25} className="mt-2 text-dark" />
-          </Link>
-          <Link to="/Indent-express/L3/status/reports">
-            <BsFillBarChartFill size={25} className="mt-2 mx-2 text-dark" />
-          </Link>
+          <Tippy content="Home">
+            <Link to="/Indent-express/direction/home">
+              <BsFillHouseDoorFill size={25} className="mt-2 text-dark" />
+            </Link>
+          </Tippy>
+          <Tippy content="Status Report">
+            <Link to="/Indent-express/L3/status/reports">
+              <BsFillBarChartFill size={25} className="mt-2 mx-2 text-dark" />
+            </Link>
+          </Tippy>
         </div>
         <div>
           <Link
