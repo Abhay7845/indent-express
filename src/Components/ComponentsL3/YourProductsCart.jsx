@@ -54,7 +54,7 @@ const YourProductsCart = () => {
       <div className="ComponentL3LowerHeader">
         <div className="d-flex mx-2 w-100">
           <Tippy content="Home">
-            <Link to="/Indent-express/direction/home">
+            <Link to="/Indent-express/L3/home">
               <BsFillHouseDoorFill size={25} className="mt-2 text-dark" />
             </Link>
           </Tippy>

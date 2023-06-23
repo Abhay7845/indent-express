@@ -7,6 +7,7 @@ import Loader from "../../Common/Loader";
 import Tippy from "@tippyjs/react";
 import "../../Style/ComponentL3.css";
 import {
+  BsCardList,
   BsCartFill,
   BsFillBarChartFill,
   BsFillHouseDoorFill,
@@ -126,7 +127,12 @@ const ComponentL3 = (props) => {
             </Link>
           </Tippy>
         </div>
-        <div>
+        <div className="d-flex">
+          <Tippy content="Cancel Item List">
+            <Link to="/Indent-express/L3/cancel/item/list">
+              <BsCardList size={25} className="mt-2 mx-2 text-dark" />
+            </Link>
+          </Tippy>
           <Link
             to="/Indent-express/L3/your/cart/reports"
             className="notification"
