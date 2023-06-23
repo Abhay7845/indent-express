@@ -42,6 +42,8 @@ const CardTableList = (props) => {
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
   const imageURL = `${IMAGE_URL}${imageCode}`;
 
+  console.log("reportRowTable==>", reportRowTable);
+
   // STONE QUANTITY DATA
   const SI_2GH = reportRowTable.si2Gh;
   const VS_GH = reportRowTable.vsGh;
@@ -162,24 +164,24 @@ const CardTableList = (props) => {
     setLoading(true);
     const DeleRowInputData = {
       itemCode: DeleteRow.itemCode,
-      exIndCategory: DeleteRow.indCategory,
-      exStonequality: DeleteRow.stoneQuality,
       strCode: storeCode,
-      IndentLevelType: "",
+      saleable: "",
+      exIndCategory: !DeleteRow.indCategory ? "" : DeleteRow.indCategory,
+      exStonequality: !DeleteRow.stoneQuality ? "0-0" : DeleteRow.stoneQuality,
       indCategory: "0",
       indQty: "0",
       size: "0",
       uom: "0",
       stoneQuality: "0-0",
       npimEventNo: "1",
-      exSize: "",
-      exUOM: "",
+      exUOM: !DeleteRow.uom ? "" : DeleteRow.uom,
+      exSize: !DeleteRow.size ? "" : DeleteRow.size,
       findings: "",
       reasons: "",
       rsoName: "",
-      saleable: "",
       set2Type: "",
-      stoneQualityVal: "",
+      IndentLevelType: "L3",
+      stoneQualityVal: "0",
       submitStatus: "report",
       sizeUomQuantitys: [],
       sizeQuantitys: [],
@@ -248,29 +250,34 @@ const CardTableList = (props) => {
     setLoading(true);
     const CancelIndentInputsData = {
       itemCode: reportRowTable.itemCode,
-      exIndCategory: reportRowTable.indCategory,
-      exStonequality: reportRowTable.stoneQuality,
+      strCode: storeCode,
+      saleable: "",
+      exIndCategory: !reportRowTable.indCategory
+        ? ""
+        : reportRowTable.indCategory,
+      exStonequality: !reportRowTable.stoneQuality
+        ? "0-0"
+        : reportRowTable.stoneQuality,
       indCategory: "0",
       indQty: "0",
       size: "0",
       uom: "0",
-      exUOM: "",
-      exSize: "",
       stoneQuality: "0-0",
       npimEventNo: "1",
+      exUOM: !reportRowTable.uom ? "" : reportRowTable.uom,
+      exSize: !reportRowTable.size ? "" : reportRowTable.size,
       findings: "",
       reasons: "",
       rsoName: "",
-      saleable: "",
       set2Type: "",
-      IndentLevelType: "",
-      stoneQualityVal: "",
-      strCode: storeCode,
+      IndentLevelType: "L3",
+      stoneQualityVal: "0",
       submitStatus: "report",
       sizeUomQuantitys: [],
       sizeQuantitys: [],
       tagQuantitys: [],
     };
+    console.log("CancelIndentInputsData==>", CancelIndentInputsData);
     axios
       .post(
         `${HostManager.reportsL1L2}/INDENTL3/express/update/responses/from/L3`,
