@@ -184,8 +184,9 @@ export const FeedBackFormL1L2 = (props) => {
   const GetProductsDetails = () => {
     setLoading(true);
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENT/express/dropdown/${dropState.collection}/${dropState.consumerBase}/${dropState.groupData}/${dropState.category}`
+      .post(
+        `${HostManager.reportsL1L2}/INDENT/express/get/product/details`,
+        GetProductsValues
       )
       .then((res) => res)
       .then((response) => {
