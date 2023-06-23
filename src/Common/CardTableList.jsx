@@ -159,9 +159,54 @@ const CardTableList = (props) => {
   }, [itemCode]);
 
   const DeleteRow = (DeleteRow) => {
-    console.log("DeleteRow==>", DeleteRow);
+    setLoading(true);
+    const DeleRowInputData = {
+      IndentLevelType: "",
+      exIndCategory: DeleteRow.indCategory,
+      exSize: "",
+      exStonequality: DeleteRow.stoneQuality,
+      exUOM: "",
+      findings: "",
+      indCategory: "0",
+      indQty: "0",
+      itemCode: DeleteRow.itemCode,
+      npimEventNo: "1",
+      reasons: "",
+      rsoName: "",
+      saleable: "",
+      set2Type: "",
+      size: "0",
+      stoneQuality: "0-0",
+      stoneQualityVal: "",
+      strCode: storeCode,
+      submitStatus: "report",
+      uom: "0",
+      sizeUomQuantitys: [],
+      sizeQuantitys: [],
+      tagQuantitys: [],
+    };
+    axios
+      .post(
+        `${HostManager.reportsL1L2}/INDENTL3/express/update/responses/from/L3`,
+        DeleRowInputData
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          swal({
+            title: "Success",
+            text: "Cancel Indent Has been Successful",
+            icon: "success",
+            buttons: "OK",
+          });
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log("");
+      });
   };
-  console.log("setReportRowTable==>", reportRowTable);
   const UpdateRowData = (UpdateRow) => {
     window.scrollTo({ top: "0", behavior: "smooth" });
     setReportRowTable(UpdateRow);
@@ -241,9 +286,12 @@ const CardTableList = (props) => {
           });
         }
         setReportRowTable("");
+        setLoading(false);
       })
-      .catch((error) => console.log("error=>", error));
-    setLoading(false);
+      .catch((error) => {
+        setLoading(false);
+        console.log("");
+      });
   };
 
   const UpdateTableRowData = () => {
