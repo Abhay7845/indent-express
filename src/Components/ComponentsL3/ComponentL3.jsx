@@ -160,7 +160,6 @@ const ComponentL3 = (props) => {
           </div>
         </div>
       </div>
-
       {productsData.length > 0 && (
         <div className="row mx-0">
           {productsData
