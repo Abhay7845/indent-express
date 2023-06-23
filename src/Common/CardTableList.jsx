@@ -248,18 +248,17 @@ const CardTableList = (props) => {
     setLoading(true);
     const CancelIndentInputsData = {
       itemCode: reportRowTable.itemCode,
-
       exIndCategory: reportRowTable.indCategory,
       exStonequality: reportRowTable.stoneQuality,
       indCategory: "0",
       indQty: "0",
       size: "0",
       uom: "0",
+      exUOM: "",
+      exSize: "",
       stoneQuality: "0-0",
       npimEventNo: "1",
-      exUOM: "",
       findings: "",
-      exSize: "",
       reasons: "",
       rsoName: "",
       saleable: "",
