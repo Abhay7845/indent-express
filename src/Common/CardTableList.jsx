@@ -158,81 +158,14 @@ const CardTableList = (props) => {
       .catch((error) => console.log("error==>", error));
   }, [itemCode]);
 
-  const CancelIndentRowData = (RowData) => {
-    console.log("RowData==>", RowData);
+  const DeleteRow = (DeleteRow) => {
+    console.log("DeleteRow==>", DeleteRow);
   };
-
-  const UpdateRowData = (UpdateData) => {
+  console.log("setReportRowTable==>", reportRowTable);
+  const UpdateRowData = (UpdateRow) => {
     window.scrollTo({ top: "0", behavior: "smooth" });
-    setReportRowTable(UpdateData);
+    setReportRowTable(UpdateRow);
   };
-
-  const column = col.map((element) => {
-    let fieldRes;
-    if (element === "Action") {
-      fieldRes = {
-        field: "Action",
-        headerName: "Action",
-        sortable: false,
-        disableClickEventBubbling: true,
-        renderCell: (params) => {
-          return (
-            <>
-              {params.row.confirmationStatus === "" && (
-                <div>
-                  <Icon.PencilSquare
-                    className="EditButton"
-                    onClick={() => UpdateRowData(params.row)}
-                  />
-                  <Icon.Trash
-                    className="DeleteButton"
-                    onClick={() => CancelIndentRowData(params.row)}
-                  />
-                </div>
-              )}
-              {reportsName === "Cancel_Item_List" && (
-                <Icon.PencilSquare
-                  className="EditButton"
-                  onClick={() => UpdateRowData(params.row)}
-                />
-              )}
-            </>
-          );
-        },
-      };
-    } else if (element === "Image") {
-      fieldRes = {
-        field: "Image",
-        headerName: "Image",
-        sortable: false,
-        renderCell: (params) => {
-          return <CommonImage itemCode={params.row.itemCode} />;
-        },
-      };
-    } else if (element === "confirmationStatus") {
-      fieldRes = {
-        field: "confirmationStatus",
-        headerName: "confirmationStatus",
-        sortable: false,
-        flex: 1,
-        disableClickEventBubbling: true,
-        renderCell: (params) => {
-          return (
-            <p className="text-success">
-              {params.row.confirmationStatus === "" ? "" : "Success"}
-            </p>
-          );
-        },
-      };
-    } else {
-      fieldRes = {
-        field: element,
-        sortable: false,
-        flex: 1,
-      };
-    }
-    return fieldRes;
-  });
 
   const DataRows = rows.filter((eachRow) =>
     eachRow.itemCode.includes(searchItemCode.toUpperCase())
@@ -263,50 +196,52 @@ const CardTableList = (props) => {
     const lastNumber = parseInt(newValue.toString().slice(-1));
     setIndentQuantity(lastNumber);
   };
+
   // CANCEL INDENT API CALLING
   const CancelIndent = () => {
     setLoading(true);
     const CancelIndentInputsData = {
-      itemCode: reportRowTable.itemCode,
-      strCode: storeCode,
-      saleable: "",
-      reasons: "",
-      childNodesE: "",
-      childNodesN: "",
-      childNodeF: "",
-      childNodeK: "",
-      childNodeV: "",
-      childNodeH: "",
-      childNodeO: "",
-      indCategory: "",
-      submitStatus: "report",
-      stoneQualityVal: "",
-      rsoName: "",
-      npimEventNo: 1,
-      indentLevelType: "L3",
-      collection: "",
-      consumerbase: "",
-      itgroup: "",
-      category: "",
+      IndentLevelType: "",
+      exIndCategory: reportRowTable.indCategory,
       exSize: "",
+      exStonequality: reportRowTable.stoneQuality,
       exUOM: "",
-      exIndCategory: "",
-      set2Type: "",
-      indQty: "0",
-      stoneQuality: "",
-      exStonequality: "",
       findings: "",
+      indCategory: "0",
+      indQty: "0",
+      itemCode: reportRowTable.itemCode,
+      npimEventNo: "1",
+      reasons: "",
+      rsoName: "",
+      saleable: "",
+      set2Type: "",
+      size: "0",
+      stoneQuality: "0-0",
+      stoneQualityVal: "",
+      strCode: storeCode,
+      submitStatus: "report",
+      uom: "0",
       sizeUomQuantitys: [],
       sizeQuantitys: [],
       tagQuantitys: [],
     };
-    console.log("CancelIndentInputsData==>", CancelIndentInputsData);
     axios
       .post(
-        `${HostManager.reportsL1L2}/INDENTL3/express/update/responses/from/L3`
+        `${HostManager.reportsL1L2}/INDENTL3/express/update/responses/from/L3`,
+        CancelIndentInputsData
       )
       .then((res) => res)
-      .then((response) => console.log("response=>", response))
+      .then((response) => {
+        if (response.data.code === "1000") {
+          swal({
+            title: "Success",
+            text: "Cancel Indent Has been Successful",
+            icon: "success",
+            buttons: "OK",
+          });
+        }
+        setReportRowTable("");
+      })
       .catch((error) => console.log("error=>", error));
     setLoading(false);
   };
@@ -438,6 +373,72 @@ const CardTableList = (props) => {
       });
   };
 
+  const column = col.map((element) => {
+    let fieldRes;
+    if (element === "Action") {
+      fieldRes = {
+        field: "Action",
+        headerName: "Action",
+        sortable: false,
+        disableClickEventBubbling: true,
+        renderCell: (params) => {
+          return (
+            <>
+              {params.row.confirmationStatus === "" && (
+                <div>
+                  <Icon.PencilSquare
+                    className="EditButton"
+                    onClick={() => UpdateRowData(params.row)}
+                  />
+                  <Icon.Trash
+                    className="DeleteButton"
+                    onClick={() => DeleteRow(params.row)}
+                  />
+                </div>
+              )}
+              {reportsName === "Cancel_Item_List" && (
+                <Icon.PencilSquare
+                  className="EditButton"
+                  onClick={() => UpdateRowData(params.row)}
+                />
+              )}
+            </>
+          );
+        },
+      };
+    } else if (element === "Image") {
+      fieldRes = {
+        field: "Image",
+        headerName: "Image",
+        sortable: false,
+        renderCell: (params) => {
+          return <CommonImage itemCode={params.row.itemCode} />;
+        },
+      };
+    } else if (element === "confirmationStatus") {
+      fieldRes = {
+        field: "confirmationStatus",
+        headerName: "confirmationStatus",
+        sortable: false,
+        flex: 1,
+        disableClickEventBubbling: true,
+        renderCell: (params) => {
+          return (
+            <p className="text-success">
+              {params.row.confirmationStatus === "" ? "" : "Success"}
+            </p>
+          );
+        },
+      };
+    } else {
+      fieldRes = {
+        field: element,
+        sortable: false,
+        flex: 1,
+      };
+    }
+    return fieldRes;
+  });
   return (
     <>
       {loading === true && <Loader />}
