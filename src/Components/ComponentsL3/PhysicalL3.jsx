@@ -8,6 +8,7 @@ import {
   BsFillHouseDoorFill,
   BsFillBarChartFill,
   BsCartFill,
+  BsCardList,
 } from "react-icons/bs";
 import axios from "axios";
 import swal from "sweetalert";
@@ -239,13 +240,20 @@ const PhysicalL3 = () => {
                 onClick={GetProductsDetails}
               />
             </div>
-            <Link
-              to="/Indent-express/L3/your/cart/reports"
-              className="notification"
-            >
-              <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
-              <span className="badge">{YourCart}</span>
-            </Link>
+            <div className="d-flex">
+              <Tippy content="Cancel Item List">
+                <Link to="/Indent-express/L3/cancel/item/list">
+                  <BsCardList size={25} className="mt-2 mx-2 text-dark" />
+                </Link>
+              </Tippy>
+              <Link
+                to="/Indent-express/L3/your/cart/reports"
+                className="notification"
+              >
+                <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
+                <span className="badge">{YourCart}</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
