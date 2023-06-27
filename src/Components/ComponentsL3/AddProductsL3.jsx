@@ -387,6 +387,7 @@ const AddProductsL3 = (props) => {
                 )}
                 {digit === "N" ||
                 digit === "O" ||
+                digit === "D" ||
                 digit === "X" ||
                 digit === "H" ||
                 digit === "J" ||

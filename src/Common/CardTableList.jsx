@@ -691,6 +691,7 @@ const CardTableList = (props) => {
                   {digit === "N" ||
                   digit === "O" ||
                   digit === "X" ||
+                  digit === "D" ||
                   digit === "H" ||
                   digit === "J" ||
                   digit === "S" ||
