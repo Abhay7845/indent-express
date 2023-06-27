@@ -77,8 +77,8 @@ const ChooseDynamicTag = (props) => {
   }, [childNodeN]);
 
   const childNodeF = !singleProductsDetails
-    ? reportRowTable.ChildNodeF
-    : singleProductsDetails.ChildNodeF;
+    ? reportRowTable.childNodeF
+    : singleProductsDetails.childNodeF;
   useEffect(() => {
     axios
       .get(
@@ -257,7 +257,7 @@ const ChooseDynamicTag = (props) => {
           ))}
         </tbody>
       </table>
-      <table style={{ width: "100%", margin: 0 }}>
+      <table className="w-100">
         <tbody>
           {optionF.map((row, index) => (
             <tr
