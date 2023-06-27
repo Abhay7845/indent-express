@@ -23,7 +23,6 @@ const ChooseDynamicTag = (props) => {
     GetSet2TypeData,
     reportRowTable,
   } = props;
-
   const setType2option = ["Chain", "Dori"];
   useEffect(() => {
     if (optionsList)
@@ -58,8 +57,8 @@ const ChooseDynamicTag = (props) => {
   }, [childNodeV]);
 
   const childNodeN = !singleProductsDetails
-    ? reportRowTable.ChildNodesN
-    : singleProductsDetails.ChildNodesN;
+    ? reportRowTable.childNodesN
+    : singleProductsDetails.childNodesN;
   useEffect(() => {
     axios
       .get(
@@ -67,6 +66,7 @@ const ChooseDynamicTag = (props) => {
       )
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           setChildNodesN(response.data.value);
         } else if (response.data.code === "1001") {
@@ -107,6 +107,7 @@ const ChooseDynamicTag = (props) => {
       labelValue: element,
     };
   });
+
   const ChildNodeN = ChildNodesN.map((element) => {
     return {
       valueData: element,
@@ -159,12 +160,10 @@ const ChooseDynamicTag = (props) => {
     });
   };
   const onInternalSelectChange = (selectedList, selectedItem) => {
-    console.log("selected item for Add", selectedItem.labelValue);
     enableRows(selectedItem.labelValue, true);
   };
 
   const onInternalRemoveChange = (selectedList, removedItem) => {
-    console.log("selected item for remove", removedItem.labelValue);
     enableRows(removedItem.labelValue, false);
   };
   const rowHandlerChange = (event) => {
@@ -311,7 +310,7 @@ const ChooseDynamicTag = (props) => {
           ))}
         </tbody>
       </table>
-      <table style={{ width: "100%", margin: 0 }}>
+      <table className="w-100">
         <tbody>
           {optionM.map((row, index) => (
             <tr
@@ -324,18 +323,17 @@ const ChooseDynamicTag = (props) => {
             >
               <td className="w-100">
                 <Multiselect
-                  options={ChildNodesN}
-                  displayValue="labelValue"
+                  options={["A", "B", "C"]}
                   onSelect={onInternalSelectChange}
                   onRemove={onInternalRemoveChange}
                   showCheckbox={true}
                   closeOnSelect={true}
-                  placeholder="Choose Size"
+                  placeholder="Choose Size here"
                   disablePreSelectedValues={true}
                 />
                 <table className="w-100">
                   <tbody className="d-flex">
-                    {ChildNodeN.map((row, index) => (
+                    {fingerRingSize.map((row, index) => (
                       <tr
                         key={index}
                         onChange={rowHandlerChange}
@@ -349,7 +347,7 @@ const ChooseDynamicTag = (props) => {
                         <td className="w-100">
                           <input
                             type="text"
-                            maxlength="1"
+                            maxLength="1"
                             id={`${row.labelValue}sq`}
                             name={`${row.labelValue}sq`}
                             className={classes.inputField}
@@ -365,7 +363,7 @@ const ChooseDynamicTag = (props) => {
           ))}
         </tbody>
       </table>
-      <table style={{ width: "100%", margin: 0 }}>
+      <table className="w-100">
         <tbody>
           {optionV.map((row, index) => (
             <tr

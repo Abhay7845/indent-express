@@ -330,7 +330,9 @@ const AddProductsL3 = (props) => {
                   <b>INDENT DETAILS</b>
                 </h6>
                 <br />
-                {digit === "0" ||
+
+                {digit === "T" ||
+                digit === "0" ||
                 digit === "1" ||
                 digit === "2" ||
                 digit === "3" ||
@@ -406,7 +408,6 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
-
                 {!singleProductsDetails.category
                   ? ""
                   : singleProductsDetails.category
