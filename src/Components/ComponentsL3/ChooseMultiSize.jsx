@@ -260,8 +260,8 @@ const ChooseMultiSize = (props) => {
     <>
       <div className={classes.drop_multi}>
         <Multiselect
-          options={options}
           displayValue="labelValue"
+          options={options}
           onSelect={onInternalSelectChange}
           onRemove={onInternalRemoveChange}
           showCheckbox={true}

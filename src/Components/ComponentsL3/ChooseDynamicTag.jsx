@@ -66,7 +66,6 @@ const ChooseDynamicTag = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           setChildNodesN(response.data.value);
         } else if (response.data.code === "1001") {
@@ -191,8 +190,8 @@ const ChooseDynamicTag = (props) => {
   return (
     <>
       <Multiselect
-        options={options}
         displayValue="labelValue"
+        options={options}
         onSelect={onInternalSelectChange}
         onRemove={onInternalRemoveChange}
         showCheckbox={true}
@@ -269,8 +268,8 @@ const ChooseDynamicTag = (props) => {
             >
               <td className="w-100">
                 <Multiselect
-                  options={fingerRingSize}
                   displayValue="labelValue"
+                  options={fingerRingSize}
                   onSelect={onInternalSelectChange}
                   onRemove={onInternalRemoveChange}
                   showCheckbox={true}
@@ -323,17 +322,18 @@ const ChooseDynamicTag = (props) => {
             >
               <td className="w-100">
                 <Multiselect
-                  options={["A", "B", "C"]}
+                  displayValue="labelValue"
+                  options={ChildNodeN}
                   onSelect={onInternalSelectChange}
                   onRemove={onInternalRemoveChange}
                   showCheckbox={true}
                   closeOnSelect={true}
-                  placeholder="Choose Size here"
+                  placeholder="Choose Size"
                   disablePreSelectedValues={true}
                 />
                 <table className="w-100">
                   <tbody className="d-flex">
-                    {fingerRingSize.map((row, index) => (
+                    {ChildNodeN.map((row, index) => (
                       <tr
                         key={index}
                         onChange={rowHandlerChange}
