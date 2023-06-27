@@ -10,13 +10,11 @@ import axios from "axios";
 import Tippy from "@tippyjs/react";
 import TopHeader from "../../Common/TopHeader";
 import "../../Style/YourCard.css";
-// import * as Icon from "react-bootstrap-icons";
 import Loader from "../../Common/Loader";
 import { HostManager } from "../../APIList/HotMaster";
 import CardTableList from "../../Common/CardTableList";
 
 const YourProductsCart = () => {
-  // const [itemWiseValue, setItemWiseValue] = useState("item_wise_reports");
   const storeCode = localStorage.getItem("indent-expressId");
   const [cols, setCol] = useState([]);
   const [rows, setRows] = useState([]);
@@ -31,6 +29,7 @@ const YourProductsCart = () => {
       )
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response.data.value);
         if (response.data.code === "1000") {
           setCol(response.data.coloum);
           setRows(response.data.value);
@@ -45,7 +44,7 @@ const YourProductsCart = () => {
         console.log("error=>", error);
         setLoading(false);
       });
-  }, [storeCode]);
+  }, [storeCode, rows.length]);
 
   return (
     <>

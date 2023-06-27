@@ -42,8 +42,6 @@ const CardTableList = (props) => {
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
   const imageURL = `${IMAGE_URL}${imageCode}`;
 
-  console.log("reportRowTable==>", reportRowTable);
-
   // STONE QUANTITY DATA
   const SI_2GH = reportRowTable.si2Gh;
   const VS_GH = reportRowTable.vsGh;
