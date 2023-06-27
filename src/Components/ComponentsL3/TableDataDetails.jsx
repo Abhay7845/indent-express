@@ -2,7 +2,6 @@ import React from "react";
 
 const singleProductsDetailsDetails = (props) => {
   const { singleProductsDetails } = props;
-  console.log("singleProductsDetails==>", singleProductsDetails);
   return (
     <>
       <table className="table table-bordered mt-4">
