@@ -29,6 +29,8 @@ const CardTableList = (props) => {
   const [SizeState, setSizeState] = useState([]);
   const [CoupleGentsSize, setCoupleGentsSize] = useState([]);
   const [CoupleLadiesSize, setCoupleLadiesSize] = useState([]);
+  const [cardDeletedRows, setCardDeletedRows] = useState({});
+  console.log("reportRowTable==>", reportRowTable.id);
   // INPUT FILED VALUE VARIABLE
   const [tagQuantity, SetTagQuantity] = useState([]);
   const [sizeUomQuantity, SetSizeUomQuantity] = useState([]);
@@ -110,6 +112,29 @@ const CardTableList = (props) => {
       setOption(tagsOptions);
     }
   }, [digit]);
+
+  // CARD REPORTS DATA
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/item/wise/rpt/L3/${storeCode}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        console.log("response123==>", response.data.value);
+        if (response.data.code === "1000") {
+        }
+        if (response.data.code === "1001") {
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("error=>", error);
+        setLoading(false);
+      });
+  }, [storeCode, cardDeletedRows.id, reportRowTable.id]);
+
   // DROPDOWN SIZE FOR NORMAL
   useEffect(() => {
     axios
@@ -160,6 +185,7 @@ const CardTableList = (props) => {
 
   const DeleteRow = (DeleteRow) => {
     setLoading(true);
+    setCardDeletedRows(DeleteRow);
     const DeleRowInputData = {
       itemCode: DeleteRow.itemCode,
       strCode: storeCode,

@@ -44,7 +44,7 @@ const YourProductsCart = () => {
         console.log("error=>", error);
         setLoading(false);
       });
-  }, [storeCode, rows.length]);
+  }, [storeCode]);
 
   return (
     <>
