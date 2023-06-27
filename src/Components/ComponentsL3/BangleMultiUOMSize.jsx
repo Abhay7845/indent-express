@@ -240,7 +240,7 @@ const BangleMultiUOMSize = (props) => {
         placeholder="Choose Size"
         disablePreSelectedValues={true}
       />
-      <table style={{ width: "100%", padding: 1, margin: 0 }}>
+      <table className="w-100">
         <tbody>
           {options.map((row, index) => (
             <tr

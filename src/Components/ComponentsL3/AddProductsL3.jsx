@@ -330,16 +330,20 @@ const AddProductsL3 = (props) => {
                   <b>INDENT DETAILS</b>
                 </h6>
                 <br />
-
-                {digit === "T" ||
-                digit === "0" ||
-                digit === "1" ||
-                digit === "2" ||
-                digit === "3" ||
-                digit === "4" ||
-                digit === "5" ||
-                digit === "6" ||
-                digit === "7" ? (
+                {!singleProductsDetails.category ? (
+                  ""
+                ) : singleProductsDetails.category
+                    .toUpperCase()
+                    .replace(/\s{2,}/g, " ")
+                    .trim() === "T CATEGORY" ||
+                  digit === "0" ||
+                  digit === "1" ||
+                  digit === "2" ||
+                  digit === "3" ||
+                  digit === "4" ||
+                  digit === "5" ||
+                  digit === "6" ||
+                  digit === "7" ? (
                   <ChooseDynamicTag
                     optionsList={option}
                     singleProductsDetails={singleProductsDetails}
@@ -359,12 +363,29 @@ const AddProductsL3 = (props) => {
                     GetUomSizeQuantity={GetUomSizeQuantity}
                   />
                 )}
+
+                {/* FINGER RING */}
                 {!singleProductsDetails.category ? (
                   ""
                 ) : singleProductsDetails.category
                     .toUpperCase()
                     .replace(/\s{2,}/g, " ")
                     .trim() === "FINGER RING" ? (
+                  <ChooseMultiSize
+                    optionsList={SizeState}
+                    singleProductsDetails={singleProductsDetails}
+                    GetChooseSizeData={GetChooseSizeData}
+                  />
+                ) : (
+                  ""
+                )}
+                {/* TOE RING */}
+                {!singleProductsDetails.category ? (
+                  ""
+                ) : singleProductsDetails.category
+                    .toUpperCase()
+                    .replace(/\s{2,}/g, " ")
+                    .trim() === "TOE RING" ? (
                   <ChooseMultiSize
                     optionsList={SizeState}
                     singleProductsDetails={singleProductsDetails}
