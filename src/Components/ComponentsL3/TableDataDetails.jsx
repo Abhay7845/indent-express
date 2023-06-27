@@ -2,16 +2,21 @@ import React from "react";
 
 const singleProductsDetailsDetails = (props) => {
   const { singleProductsDetails } = props;
+  console.log("singleProductsDetails==>", singleProductsDetails);
   return (
     <>
       <table className="table table-bordered mt-4">
-        <thead>
-          <tr>
-            <th scope="col">CATEGORY</th>
-            <th scope="col">StdWt</th>
-            <th scope="col">UCP</th>
-          </tr>
-        </thead>
+        {!singleProductsDetails.childNodesE ? (
+          ""
+        ) : (
+          <thead>
+            <tr>
+              <th scope="col">CATEGORY</th>
+              <th scope="col">StdWt</th>
+              <th scope="col">UCP</th>
+            </tr>
+          </thead>
+        )}
         <tbody>
           {singleProductsDetails.childNodeF === "" ? (
             ""
