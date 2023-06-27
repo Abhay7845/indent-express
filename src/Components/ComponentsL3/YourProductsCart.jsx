@@ -28,7 +28,6 @@ const YourProductsCart = () => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response.data.value);
         if (response.data.code === "1000") {
           setRows(response.data.value);
         }
@@ -38,7 +37,6 @@ const YourProductsCart = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error=>", error);
         setLoading(false);
       });
   }, [storeCode]);
