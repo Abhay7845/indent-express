@@ -231,8 +231,8 @@ const BangleMultiUOMSize = (props) => {
   return (
     <div className="mt-3">
       <Multiselect
-        options={options}
         displayValue="labelValue"
+        options={options}
         onSelect={onInternalSelectChange}
         onRemove={onInternalRemoveChange}
         showCheckbox={true}
