@@ -19,7 +19,7 @@ import ShowImage from "../Components/ComponentsL3/ShowImage";
 import Loader from "./Loader";
 
 const CardTableList = (props) => {
-  const { col, rows, reportsName } = props;
+  const { reportsName } = props;
   const [loading, setLoading] = useState(false);
   const storeCode = localStorage.getItem("indent-expressId");
   const [searchItemCode, setSearchItemCode] = useState("");
@@ -29,8 +29,9 @@ const CardTableList = (props) => {
   const [SizeState, setSizeState] = useState([]);
   const [CoupleGentsSize, setCoupleGentsSize] = useState([]);
   const [CoupleLadiesSize, setCoupleLadiesSize] = useState([]);
+  const [col, setCol] = useState([]);
+  const [rows, setRows] = useState([]);
   const [cardDeletedRows, setCardDeletedRows] = useState({});
-  console.log("reportRowTable==>", reportRowTable.id);
   // INPUT FILED VALUE VARIABLE
   const [tagQuantity, SetTagQuantity] = useState([]);
   const [sizeUomQuantity, SetSizeUomQuantity] = useState([]);
@@ -122,10 +123,14 @@ const CardTableList = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response123==>", response.data.value);
+        console.log("response==>", response.data.value);
         if (response.data.code === "1000") {
+          setCol(response.data.coloum);
+          setRows(response.data.value);
         }
         if (response.data.code === "1001") {
+          setCol([]);
+          setRows([]);
         }
         setLoading(false);
       })

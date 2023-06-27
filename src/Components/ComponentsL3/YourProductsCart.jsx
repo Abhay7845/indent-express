@@ -16,7 +16,6 @@ import CardTableList from "../../Common/CardTableList";
 
 const YourProductsCart = () => {
   const storeCode = localStorage.getItem("indent-expressId");
-  const [cols, setCol] = useState([]);
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
   localStorage.setItem("your-cart", rows.length);
@@ -31,11 +30,9 @@ const YourProductsCart = () => {
       .then((response) => {
         console.log("response==>", response.data.value);
         if (response.data.code === "1000") {
-          setCol(response.data.coloum);
           setRows(response.data.value);
         }
         if (response.data.code === "1001") {
-          setCol([]);
           setRows([]);
         }
         setLoading(false);
@@ -80,7 +77,7 @@ const YourProductsCart = () => {
       </div>
       {rows.length > 0 && (
         <div className="mx-2 my-3">
-          <CardTableList col={cols} rows={rows} />
+          <CardTableList />
         </div>
       )}
     </>
