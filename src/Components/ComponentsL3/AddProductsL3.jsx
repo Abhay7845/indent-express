@@ -374,6 +374,7 @@ const AddProductsL3 = (props) => {
                     .replace(/\s{2,}/g, " ")
                     .trim() === "FINGER RING" ||
                   digit === "L" ||
+                  digit === "C" ||
                   digit === "B" ? (
                   <ChooseMultiSize
                     optionsList={SizeState}
@@ -413,8 +414,7 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
-                {digit === "C" ||
-                digit === "N" ||
+                {digit === "N" ||
                 digit === "O" ||
                 digit === "D" ||
                 digit === "X" ||
