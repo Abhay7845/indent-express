@@ -178,6 +178,7 @@ const ChooseDynamicTag = (props) => {
     }
     return GetTagFiledValues(getData);
   };
+
   const enableRow = (labelValue) => {
     for (let rowName in sizeRow) {
       if (rowName === labelValue && sizeRow[rowName]) {

@@ -197,14 +197,14 @@ const AddProductsL3 = (props) => {
       collection: singleProductsDetails.collection,
       consumerbase: singleProductsDetails.consumerBase,
       indCategory: singleProductsDetails.category,
-      indentLevelType: singleProductsDetails.indentLevelType,
+      indentLevelType: "L3",
       itemCode: singleProductsDetails.itemCode,
       itgroup: singleProductsDetails.itGroup,
       npimEventNo: singleProductsDetails.npimEventNo,
       reasons: singleProductsDetails.reasons,
       rsoName: singleProductsDetails.rsoName,
       saleable: singleProductsDetails.saleable,
-      stoneQualityVal: null,
+      stoneQualityVal: singleProductsDetails.stoneQualityVal,
       set2Type: typeSet2,
       indQty: indentQuantity,
       sizeQuantitys: sizeQuantity,
@@ -213,8 +213,9 @@ const AddProductsL3 = (props) => {
       stoneQuality: stoneQuality,
       tagQuantitys: tagQuantity,
       strCode: storeCode,
-      submitStatus: singleProductsDetails.submitStatus,
+      submitStatus: "indent",
     };
+    console.log("AddToCardProduct==>", AddToCardProduct);
     axios
       .post(
         `${HostManager.reportsL1L2}/INDENTL3/express/insert/responses/from/L3`,
@@ -222,6 +223,7 @@ const AddProductsL3 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           swal({
             title: "Success!",
@@ -370,7 +372,7 @@ const AddProductsL3 = (props) => {
                 ) : singleProductsDetails.category
                     .toUpperCase()
                     .replace(/\s{2,}/g, " ")
-                    .trim() === "FINGER RING" ? (
+                    .trim() === "FINGER RING" || digit === "L" ? (
                   <ChooseMultiSize
                     optionsList={SizeState}
                     singleProductsDetails={singleProductsDetails}
@@ -379,6 +381,7 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
+
                 {/* TOE RING */}
                 {!singleProductsDetails.category ? (
                   ""
@@ -408,7 +411,8 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
-                {digit === "N" ||
+                {digit === "C" ||
+                digit === "N" ||
                 digit === "O" ||
                 digit === "D" ||
                 digit === "X" ||
