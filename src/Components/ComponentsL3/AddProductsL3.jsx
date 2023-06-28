@@ -372,7 +372,9 @@ const AddProductsL3 = (props) => {
                 ) : singleProductsDetails.category
                     .toUpperCase()
                     .replace(/\s{2,}/g, " ")
-                    .trim() === "FINGER RING" || digit === "L" ? (
+                    .trim() === "FINGER RING" ||
+                  digit === "L" ||
+                  digit === "B" ? (
                   <ChooseMultiSize
                     optionsList={SizeState}
                     singleProductsDetails={singleProductsDetails}
