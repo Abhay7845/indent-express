@@ -114,6 +114,64 @@ const CardTableList = (props) => {
     }
   }, [digit]);
 
+  const ErrorOnConfirmMail = () => {
+    setLoading(true);
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/L3/store/status/update/${storeCode}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          swal({
+            title: "Success",
+            text: "All Data Already Confirmed",
+            icon: "success",
+            buttons: "OK",
+          });
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        alert(`${error.message} from error handling mail`);
+        setLoading(false);
+      });
+  };
+
+  // CONFIRM MAIL API CALLING
+  const SuccessCount = rows.filter(
+    (item) => item.confirmationStatus === "Successful"
+  );
+
+  const ConfirmMailData = rows.filter(
+    (item) => item.confirmationStatus !== "Successful"
+  );
+  const ConfirmMail = () => {
+    setLoading(true);
+    axios
+      .post(
+        `${HostManager.reportsL1L2}/INDENTL3/express/item/wise/rpt/edr/L3/${storeCode}`,
+        ConfirmMailData
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          swal({
+            title: "Success",
+            text: "Success",
+            icon: "success",
+            buttons: "OK",
+          });
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        ErrorOnConfirmMail();
+        console.log("");
+        setLoading(false);
+      });
+  };
+
   // CARD REPORTS DATA
   useEffect(() => {
     setLoading(true);
@@ -394,36 +452,6 @@ const CardTableList = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        setLoading(false);
-      });
-  };
-  // CONFIRM MAIL API CALLING
-  const ConfirmMailData = rows.filter(
-    (item) => item.confirmationStatus !== "Successful"
-  );
-
-  const ConfirmMail = () => {
-    setLoading(true);
-    axios
-      .post(
-        `${HostManager.reportsL1L2}/INDENTL3/express/item/wise/rpt/edr/L3/${storeCode}`,
-        ConfirmMailData
-      )
-      .then((res) => res)
-      .then((response) => {
-        console.log("response==>", response.data);
-        if (response.data.code === "1000") {
-          swal({
-            title: "Success",
-            text: "Success",
-            icon: "success",
-            buttons: "OK",
-          });
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   };
@@ -778,8 +806,11 @@ const CardTableList = (props) => {
             onChange={(e) => setSearchItemCode(e.target.value)}
           />
         </div>
-        <div className="col-md-3 text-center mt-2">
-          <b className="text-primary">COUNT- {DataRows.length}</b>
+        <div className="col-md-4 text-center mt-2">
+          <b className="text-primary">
+            TOTAL COUNT- {DataRows.length} || SUCCESSFUL COUNT-
+            {SuccessCount.length}
+          </b>
         </div>
         <div className="col-md-4 confirmButtons">
           <button className="confirmSendmail mx-2" onClick={ConfirmMail}>
