@@ -27,7 +27,7 @@ const AddProductsL3 = (props) => {
   const [tagQuantity, SetTagQuantity] = useState([]);
   const [sizeUomQuantity, SetSizeUomQuantityRes] = useState([]);
   const [sizeQuantity, setSizeQuantityRes] = useState([]);
-  const [findingsRes, setFindingsRes] = useState("");
+  const [findingsRes, setFindings] = useState("");
   const [stoneQuality, setStoneQualityRes] = useState("");
   const [indentQuantity, setIndentQuantityRes] = useState("");
   const [typeSet2, setTypeSet2Res] = useState("");
@@ -169,7 +169,7 @@ const AddProductsL3 = (props) => {
     setSizeQuantityRes(getSizeData);
   };
   const GetFindingData = (findingValue) => {
-    setFindingsRes(findingValue.target.value);
+    setFindings(findingValue.target.value);
   };
   const GetStoneData = (stoneValue) => {
     setStoneQualityRes(stoneValue.target.value);

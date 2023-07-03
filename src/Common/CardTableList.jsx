@@ -326,6 +326,7 @@ const CardTableList = (props) => {
   const UpdateRowData = (UpdateRow) => {
     window.scrollTo({ top: "0", behavior: "smooth" });
     setReportRowTable(UpdateRow);
+    console.log("UpdateRow==>", UpdateRow);
   };
 
   const DataRows = rows.filter((eachRow) =>
