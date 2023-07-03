@@ -398,14 +398,20 @@ const CardTableList = (props) => {
       });
   };
   // CONFIRM MAIL API CALLING
+  const ConfirmMailData = rows.filter(
+    (item) => item.confirmationStatus !== "Successful"
+  );
+
   const ConfirmMail = () => {
     setLoading(true);
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/L3/store/status/update/${storeCode}`
+      .post(
+        `${HostManager.reportsL1L2}/INDENTL3/express/item/wise/rpt/edr/L3/${storeCode}`,
+        ConfirmMailData
       )
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           swal({
             title: "Success",
