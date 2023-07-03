@@ -14,6 +14,7 @@ import IndentQuantityFiled from "./IndentQuantityFiled";
 import StoneQualityDropdown from "../../Common/StoneQualityDropdown";
 import StoneQualityTable from "./StoneQualityTable";
 import { IMAGE_URL } from "../../Data/DataList";
+import FindingDropdown from "../../Common/FindingDropdown";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
@@ -482,6 +483,14 @@ const AddProductsL3 = (props) => {
                     optionsList={stoneDropdown}
                     GetStoneData={GetStoneData}
                     singleProductsDetails={singleProductsDetails}
+                  />
+                )}
+
+                {singleProductsDetails.findings && (
+                  <FindingDropdown
+                    singleProductsDetails={singleProductsDetails}
+                    GetFindingData={GetFindingData}
+                    optionsList={findingsOptions}
                   />
                 )}
               </div>
