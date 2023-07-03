@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 import TopHeader from "../../Common/TopHeader";
 import TablePagination from "@mui/material/TablePagination";
 import Loader from "../../Common/Loader";
@@ -28,6 +29,7 @@ const ComponentL3 = (props) => {
   const [rowsPerPage, setRowsPerPage] = useState(12);
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
   const [searchItemCode, setSearchItemCode] = useState("");
+  const [statusCode, setStatusCode] = useState("");
 
   useEffect(() => {
     const productDataBySearch = productsData.filter(
@@ -100,11 +102,22 @@ const ComponentL3 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response.data);
         if (response.data.code === "1000") {
+          setStatusCode("1000");
           setSingleProductsDetails(response.data.value);
         }
         if (response.data.code === "1001") {
           alert(response.data.value);
+        }
+        if (response.data.code === "1003") {
+          swal({
+            title: "Warning!",
+            text: "Sorry! Already Indented",
+            icon: "warning",
+            buttons: "OK",
+          });
+          setStatusCode("1003");
         }
       })
       .catch((error) => console.log("error==>", error));
@@ -178,7 +191,7 @@ const ComponentL3 = (props) => {
                         <BsCartFill
                           size={20}
                           onClick={() => GetProductsDetails(productsDetails)}
-                          data-bs-toggle="modal"
+                          data-bs-toggle={statusCode === "1003" ? "" : "modal"}
                           data-bs-target="#staticBackdrop"
                           className="trolleyStyle"
                         />
