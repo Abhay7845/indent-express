@@ -366,7 +366,7 @@ const AddProductsL3 = (props) => {
                   />
                 )}
 
-                {/* FINGER RING */}
+                {/* SIZEABLE CATEGORY */}
                 {!singleProductsDetails.category ? (
                   ""
                 ) : singleProductsDetails.category
@@ -375,6 +375,7 @@ const AddProductsL3 = (props) => {
                     .trim() === "FINGER RING" ||
                   digit === "L" ||
                   digit === "C" ||
+                  digit === "Y" ||
                   digit === "B" ? (
                   <ChooseMultiSize
                     optionsList={SizeState}
@@ -424,7 +425,6 @@ const AddProductsL3 = (props) => {
                 digit === "W" ||
                 digit === "E" ||
                 digit === "P" ||
-                digit === "Y" ||
                 digit === "K" ||
                 digit === "A" ||
                 digit === "G" ? (
