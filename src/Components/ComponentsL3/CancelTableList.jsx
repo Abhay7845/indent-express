@@ -373,14 +373,20 @@ const CancelTableList = (props) => {
                     <b>INDENT DETAILS</b>
                   </h6>
                   <br />
-                  {digit === "0" ||
-                  digit === "1" ||
-                  digit === "2" ||
-                  digit === "3" ||
-                  digit === "4" ||
-                  digit === "5" ||
-                  digit === "6" ||
-                  digit === "7" ? (
+                  {!reportRowTable.category ? (
+                    ""
+                  ) : reportRowTable.category
+                      .toUpperCase()
+                      .replace(/\s{2,}/g, " ")
+                      .trim() === "T CATEGORY" ||
+                    digit === "0" ||
+                    digit === "1" ||
+                    digit === "2" ||
+                    digit === "3" ||
+                    digit === "4" ||
+                    digit === "5" ||
+                    digit === "6" ||
+                    digit === "7" ? (
                     <ChooseDynamicTag
                       optionsList={option}
                       reportRowTable={reportRowTable}
@@ -405,7 +411,11 @@ const CancelTableList = (props) => {
                   ) : reportRowTable.category
                       .toUpperCase()
                       .replace(/\s{2,}/g, " ")
-                      .trim() === "FINGER RING" ? (
+                      .trim() === "FINGER RING" ||
+                    digit === "L" ||
+                    digit === "C" ||
+                    digit === "Y" ||
+                    digit === "B" ? (
                     <div className="mt-3">
                       <ChooseMultiSize
                         optionsList={SizeState}
@@ -415,6 +425,22 @@ const CancelTableList = (props) => {
                   ) : (
                     ""
                   )}
+
+                  {/* TOE RING */}
+                  {!reportRowTable.category ? (
+                    ""
+                  ) : reportRowTable.category
+                      .toUpperCase()
+                      .replace(/\s{2,}/g, " ")
+                      .trim() === "TOE RING" ? (
+                    <ChooseMultiSize
+                      optionsList={SizeState}
+                      GetChooseSizeData={GetChooseSizeData}
+                    />
+                  ) : (
+                    ""
+                  )}
+
                   {!reportRowTable.category
                     ? ""
                     : reportRowTable.category
@@ -459,6 +485,7 @@ const CancelTableList = (props) => {
 
                   {digit === "N" ||
                   digit === "O" ||
+                  digit === "D" ||
                   digit === "X" ||
                   digit === "H" ||
                   digit === "J" ||
@@ -466,7 +493,6 @@ const CancelTableList = (props) => {
                   digit === "W" ||
                   digit === "E" ||
                   digit === "P" ||
-                  digit === "Y" ||
                   digit === "K" ||
                   digit === "A" ||
                   digit === "G" ? (
