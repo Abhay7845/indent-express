@@ -114,6 +114,31 @@ const CardTableList = (props) => {
     }
   }, [digit]);
 
+  const ReloadTableRows = () => {
+    setLoading(true);
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/item/wise/rpt/L3/${storeCode}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        console.log("Reload==>", response.data.value);
+        if (response.data.code === "1000") {
+          setCol(response.data.coloum);
+          setRows(response.data.value);
+        }
+        if (response.data.code === "1001") {
+          setCol([]);
+          setRows([]);
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("error=>", error);
+        setLoading(false);
+      });
+  };
+
   const ErrorOnConfirmMail = () => {
     setLoading(true);
     axios
@@ -129,6 +154,7 @@ const CardTableList = (props) => {
             icon: "success",
             buttons: "OK",
           });
+          ReloadTableRows();
         }
         setLoading(false);
       })
@@ -162,6 +188,7 @@ const CardTableList = (props) => {
             icon: "success",
             buttons: "OK",
           });
+          ReloadTableRows();
         }
         setLoading(false);
       })
@@ -289,6 +316,7 @@ const CardTableList = (props) => {
             icon: "success",
             buttons: "OK",
           });
+          ReloadTableRows();
         }
         setLoading(false);
       })
@@ -382,6 +410,7 @@ const CardTableList = (props) => {
         }
         setReportRowTable("");
         setLoading(false);
+        ReloadTableRows();
       })
       .catch((error) => {
         setLoading(false);
