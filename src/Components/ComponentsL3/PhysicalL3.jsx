@@ -68,7 +68,7 @@ const PhysicalL3 = () => {
           setSearchItemCode("");
           setLoading(false);
         })
-        .catch((error) => console.log("error==>", error));
+        .catch((error) => console.log(""));
     } else {
       alert("Please Enter Item Code");
     }

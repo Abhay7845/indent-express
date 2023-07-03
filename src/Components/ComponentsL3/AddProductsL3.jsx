@@ -124,7 +124,7 @@ const AddProductsL3 = (props) => {
           setSizeState([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [itemCode]);
 
   useEffect(() => {
@@ -140,7 +140,7 @@ const AddProductsL3 = (props) => {
           setCoupleGentsSize([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [itemCode]);
   useEffect(() => {
     axios
@@ -155,7 +155,7 @@ const AddProductsL3 = (props) => {
           setCoupleLadiesSize([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [itemCode]);
 
   const GetTagFiledValues = (getTagSize) => {
@@ -215,7 +215,6 @@ const AddProductsL3 = (props) => {
       strCode: storeCode,
       submitStatus: "indent",
     };
-    console.log("AddToCardProduct==>", AddToCardProduct);
     axios
       .post(
         `${HostManager.reportsL1L2}/INDENTL3/express/insert/responses/from/L3`,
@@ -223,7 +222,6 @@ const AddProductsL3 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           swal({
             title: "Success!",
@@ -244,7 +242,7 @@ const AddProductsL3 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error==>", error);
+        console.log("");
         setLoading(false);
       });
   };

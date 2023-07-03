@@ -53,7 +53,7 @@ const ComponentL3 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error==>", error);
+        console.log("");
         setLoading(false);
       });
   }, [storeCode]);
@@ -73,7 +73,7 @@ const ComponentL3 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error==>", error);
+        console.log("");
         setLoading(false);
       });
   };
@@ -119,7 +119,7 @@ const ComponentL3 = (props) => {
           setStatusCode("1003");
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   };
 
   return (

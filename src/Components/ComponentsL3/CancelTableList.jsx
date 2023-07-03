@@ -132,7 +132,7 @@ const CancelTableList = (props) => {
           setSizeState([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [itemCode]);
 
   useEffect(() => {
@@ -148,7 +148,7 @@ const CancelTableList = (props) => {
           setCoupleGentsSize([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [itemCode]);
   useEffect(() => {
     axios
@@ -163,7 +163,7 @@ const CancelTableList = (props) => {
           setCoupleLadiesSize([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [itemCode]);
 
   //GET INPUT VALUES
@@ -288,7 +288,7 @@ const CancelTableList = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error==>", error);
+        console.log("");
         setLoading(false);
       });
   };

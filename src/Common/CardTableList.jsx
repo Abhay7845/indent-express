@@ -218,7 +218,7 @@ const CardTableList = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error=>", error);
+        console.log("");
         setLoading(false);
       });
   }, [storeCode, cardDeletedRows.id, reportRowTable.id]);
@@ -237,7 +237,7 @@ const CardTableList = (props) => {
           setSizeState([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [itemCode]);
 
   useEffect(() => {
@@ -253,7 +253,7 @@ const CardTableList = (props) => {
           setCoupleGentsSize([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [itemCode]);
   useEffect(() => {
     axios
@@ -268,7 +268,7 @@ const CardTableList = (props) => {
           setCoupleLadiesSize([]);
         }
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => console.log(""));
   }, [itemCode]);
 
   const DeleteRow = (DeleteRow) => {
