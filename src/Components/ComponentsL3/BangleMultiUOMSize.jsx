@@ -215,7 +215,6 @@ const BangleMultiUOMSize = (props) => {
         };
       }
     }
-    console.log("get UMO Size==>", getData);
     return GetUomSizeQuantity(getData);
   };
 

@@ -122,7 +122,6 @@ const CardTableList = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("Reload==>", response.data.value);
         if (response.data.code === "1000") {
           setCol(response.data.coloum);
           setRows(response.data.value);
@@ -134,7 +133,7 @@ const CardTableList = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error=>", error);
+        console.log("");
         setLoading(false);
       });
   };
@@ -208,7 +207,6 @@ const CardTableList = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response1234==>", response.data.value);
         if (response.data.code === "1000") {
           setCol(response.data.coloum);
           setRows(response.data.value);
