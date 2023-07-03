@@ -279,12 +279,12 @@ const CardTableList = (props) => {
       strCode: storeCode,
       saleable: "",
       exIndCategory: !DeleteRow.indCategory ? "" : DeleteRow.indCategory,
-      exStonequality: !DeleteRow.stoneQuality ? "0-0" : DeleteRow.stoneQuality,
+      exStonequality: "stdUCP",
       indCategory: "0",
       indQty: "0",
       size: "0",
       uom: "0",
-      stoneQuality: "0-0",
+      stoneQuality: !DeleteRow.stoneQuality ? "0-0" : DeleteRow.stoneQuality,
       npimEventNo: "1",
       exUOM: !DeleteRow.uom ? "" : DeleteRow.uom,
       exSize: !DeleteRow.size ? "" : DeleteRow.size,
@@ -320,7 +320,7 @@ const CardTableList = (props) => {
       })
       .catch((error) => {
         setLoading(false);
-        console.log("");
+        console.log("error==>", error);
       });
   };
   const UpdateRowData = (UpdateRow) => {
