@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import TopHeader from "../../Common/TopHeader";
 import "../../Style/FeedbackFormL1L2.css";
 import Tippy from "@tippyjs/react";
@@ -13,19 +14,45 @@ import {
 import axios from "axios";
 import swal from "sweetalert";
 import { HostManager } from "../../APIList/HotMaster";
-import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import { IMAGE_URL } from "../../Data/DataList";
 import Loader from "../../Common/Loader";
+import ShowImage from "./ShowImage";
+import ChooseDynamicTag from "./ChooseDynamicTag";
 
 const PhysicalL3 = () => {
   const storeCode = localStorage.getItem("indent-expressId");
   const YourCart = localStorage.getItem("your-cart");
+  const [option, setOption] = useState([]);
+  const [SizeState, setSizeState] = useState([]);
   const [searchItemCode, setSearchItemCode] = useState("");
   const [productsDetails, setProductsDetails] = useState({});
   const [switchData, setSwitchData] = useState(true);
   const [loading, setLoading] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [quality_Reasons, setQuality_Reasons] = useState([]);
+  // INPUT FILED VALUE VARIABLE
+  const [tagQuantity, SetTagQuantity] = useState([]);
+  const [sizeUomQuantity, SetSizeUomQuantityRes] = useState([]);
+  const [sizeQuantity, setSizeQuantityRes] = useState([]);
+  const [findingsRes, setFindings] = useState("");
+  const [stoneQuality, setStoneQualityRes] = useState("");
+  const [indentQuantity, setIndentQuantityRes] = useState("");
+  const [typeSet2, setTypeSet2Res] = useState("");
+  const [coupleBandValue, setCoupleBandValue] = useState("");
+
+  console.log(
+    tagQuantity,
+    sizeUomQuantity,
+    sizeQuantity,
+    findingsRes,
+    stoneQuality,
+    indentQuantity,
+    typeSet2,
+    coupleBandValue
+  );
+
+  const { itemCode, videoLink } = productsDetails;
+  const digit = !itemCode ? "" : itemCode[6];
 
   const GetProductsDetails = () => {
     if (searchItemCode) {
@@ -75,8 +102,116 @@ const PhysicalL3 = () => {
   const imageCode = !productsDetails.itemCode
     ? ""
     : productsDetails.itemCode.substring(2, 9);
-  const imageURL = `${IMAGE_URL}${imageCode}.jpg`;
+  const imageURL = `${IMAGE_URL}${imageCode}`;
 
+  // FINDINGS OPTIONS
+  const findings = productsDetails.findings;
+  const findingsOptions = !findings ? [""] : findings.split(",");
+
+  // DYNAMIC TAG
+  const finger = !productsDetails.childNodeF ? "" : "Only_FINGER_RING";
+  const harm = !productsDetails.childNodeH ? "" : "Only_HARAM";
+  const Tikka = !productsDetails.childNodeK ? "" : "Only_TIKKA";
+  const other = !productsDetails.childNodeO ? "" : "Only_OTHER";
+  const bangle = !productsDetails.childNodeV ? "" : "Only_BANGLE";
+  const earing = !productsDetails.childNodesE ? "" : "Only_EARRING";
+  const neckwear = !productsDetails.childNodesN ? "" : "Only_NECKWEAR";
+
+  const optionForOtherAllSet = [
+    "Single_Tag",
+    "Separate_Tag",
+    earing,
+    neckwear,
+    harm,
+    Tikka,
+    other,
+    finger,
+    bangle,
+  ];
+  const tagsOptions = optionForOtherAllSet.filter((item) => !item === false);
+  const optionForSet0 = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_CHAIN_WITH_PENDANT",
+  ];
+  const optionForSet1 = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_NECKWEAR_OR_PENDANT",
+  ];
+  const tagsTCategory = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_MANGALSUTRA",
+  ];
+  useEffect(() => {
+    if (digit === "0") {
+      setOption(optionForSet0);
+    }
+    if (digit === "1") {
+      setOption(optionForSet1);
+    }
+    if (digit === "T") {
+      setOption(tagsTCategory);
+    }
+    if (
+      digit === "2" ||
+      digit === "3" ||
+      digit === "4" ||
+      digit === "5" ||
+      digit === "6" ||
+      digit === "7"
+    ) {
+      setOption(tagsOptions);
+    }
+  }, [digit]);
+
+  // DROPDOWN SIZE FOR NORMAL
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${itemCode}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setSizeState(response.data.value);
+        } else if (response.data.code === "1001") {
+          setSizeState([]);
+        }
+      })
+      .catch((error) => console.log(""));
+  }, [itemCode]);
+
+  const GetTagFiledValues = (getTagSize) => {
+    SetTagQuantity(getTagSize);
+  };
+  const GetUomSizeQuantity = (getUMOSize) => {
+    SetSizeUomQuantityRes(getUMOSize);
+  };
+  const GetChooseSizeData = (getSizeData) => {
+    setSizeQuantityRes(getSizeData);
+  };
+  const GetFindingData = (findingValue) => {
+    setFindings(findingValue.target.value);
+  };
+  const GetStoneData = (stoneValue) => {
+    setStoneQualityRes(stoneValue.target.value);
+  };
+  const GetSet2TypeData = (set2TypeValue) => {
+    setTypeSet2Res(set2TypeValue.target.value);
+  };
+
+  const GetIndentQuantityValue = (indentQuantity) => {
+    const newValue = indentQuantity.target.value;
+    const lastNumber = parseInt(newValue.toString().slice(-1));
+    setIndentQuantityRes(lastNumber);
+  };
+
+  // SUBMIT BUTTON
   const SubmitProductDetails = () => {
     if (!switchData && quality_Reasons.length === 0) {
       swal("Please Select For No Reason");
@@ -250,22 +385,10 @@ const PhysicalL3 = () => {
       {/* PHYSICAL PAGE */}
       {productsDetails.itemCode ? (
         <div className="row row-cols-1 row-cols-md-2 mx-0 my-3">
-          <div className="col">
-            {imageCode === "" ? (
-              <img
-                src={LoadingGif}
-                className="w-100 img-thumbnail catalogImage"
-                alt="No_Image"
-              />
-            ) : (
-              <img
-                src={imageURL}
-                className="w-100 img-thumbnail catalogImage"
-                alt="No_Image"
-              />
-            )}
+          <div className="col-md-5">
+            <ShowImage imageURL={imageURL} videoLink={videoLink} />
           </div>
-          <div className="col">
+          <div className="col-md-7">
             <div className="card-body">
               <h5
                 className="text-center p-1 itemCodeText"
@@ -274,10 +397,10 @@ const PhysicalL3 = () => {
                 {productsDetails.itemCode}
               </h5>
               <div className="row my-3">
-                <div className="col-md-6 border">
+                <div className="col-md-5">
                   <div>
                     <h6 className="text-center my-2">
-                      <b>PRODUCT DETAILS</b>
+                      <b>PRODUCT SPECIFICATION</b>
                     </h6>
                     <br />
                     <table className="w-100">
@@ -336,11 +459,38 @@ const PhysicalL3 = () => {
                     </table>
                   </div>
                 </div>
-                <div className="col-md-6 border">
+                <div className="col-md-7 border">
                   <h6 className="text-center my-2 feedBackText">
-                    <b>FEEDBACK</b>
+                    <b>INDENT DETAILS</b>
                   </h6>
                   <br />
+                  {!productsDetails.category ? (
+                    ""
+                  ) : productsDetails.category
+                      .toUpperCase()
+                      .replace(/\s{2,}/g, " ")
+                      .trim() === "T CATEGORY" ||
+                    digit === "0" ||
+                    digit === "1" ||
+                    digit === "2" ||
+                    digit === "3" ||
+                    digit === "4" ||
+                    digit === "5" ||
+                    digit === "6" ||
+                    digit === "7" ? (
+                    <ChooseDynamicTag
+                      optionsList={option}
+                      singleProductsDetails={productsDetails}
+                      GetTagFiledValues={GetTagFiledValues}
+                      GetUomSizeQuantity={GetUomSizeQuantity}
+                      GetFindingData={GetFindingData}
+                      SizeState={SizeState}
+                      GetSet2TypeData={GetSet2TypeData}
+                      findingsOptions={findingsOptions}
+                    />
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
               <br />
