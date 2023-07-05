@@ -12,11 +12,9 @@ import {
 } from "react-icons/bs";
 import axios from "axios";
 import swal from "sweetalert";
-import { Select } from "antd";
 import { HostManager } from "../../APIList/HotMaster";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
-import { FormControlLabel, Switch } from "@material-ui/core";
-import { IMAGE_URL, NoReasonOption } from "../../Data/DataList";
+import { IMAGE_URL } from "../../Data/DataList";
 import Loader from "../../Common/Loader";
 
 const PhysicalL3 = () => {
@@ -78,14 +76,6 @@ const PhysicalL3 = () => {
     ? ""
     : productsDetails.itemCode.substring(2, 9);
   const imageURL = `${IMAGE_URL}${imageCode}.jpg`;
-
-  const getTrueFalse = () => {
-    if (switchData) {
-      setSwitchData(false);
-    } else {
-      setSwitchData(true);
-    }
-  };
 
   const SubmitProductDetails = () => {
     if (!switchData && quality_Reasons.length === 0) {
@@ -284,7 +274,7 @@ const PhysicalL3 = () => {
                 {productsDetails.itemCode}
               </h5>
               <div className="row my-3">
-                <div className="col-md-7">
+                <div className="col-md-6 border">
                   <div>
                     <h6 className="text-center my-2">
                       <b>PRODUCT DETAILS</b>
@@ -346,36 +336,11 @@ const PhysicalL3 = () => {
                     </table>
                   </div>
                 </div>
-                <div className="col-md-5">
+                <div className="col-md-6 border">
                   <h6 className="text-center my-2 feedBackText">
                     <b>FEEDBACK</b>
                   </h6>
                   <br />
-                  <div className="d-flex justify-content-center">
-                    <FormControlLabel
-                      control={
-                        <Switch checked={switchData} onChange={getTrueFalse} />
-                      }
-                      label={
-                        switchData ? <label>YES</label> : <label>NO</label>
-                      }
-                    />
-                  </div>
-                  {switchData === false ? (
-                    <div className="my-3">
-                      <label>Choose Reason For NO</label>
-                      <Select
-                        className="NoReasonSelect"
-                        mode="multiple"
-                        value={quality_Reasons}
-                        placeholder="Please select"
-                        options={NoReasonOption}
-                        onChange={setQuality_Reasons}
-                      />
-                    </div>
-                  ) : (
-                    ""
-                  )}
                 </div>
               </div>
               <br />
