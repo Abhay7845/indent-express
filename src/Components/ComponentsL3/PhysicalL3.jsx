@@ -17,7 +17,13 @@ import { HostManager } from "../../APIList/HotMaster";
 import { IMAGE_URL } from "../../Data/DataList";
 import Loader from "../../Common/Loader";
 import ShowImage from "./ShowImage";
+import TableDataDetails from "./TableDataDetails";
 import ChooseDynamicTag from "./ChooseDynamicTag";
+import BangleMultiUOMSize from "./BangleMultiUOMSize";
+import ChooseMultiSize from "./ChooseMultiSize";
+import IndentQuantityFiled from "./IndentQuantityFiled";
+import StoneQualityDropdown from "../../Common/StoneQualityDropdown";
+import StoneQualityTable from "./StoneQualityTable";
 
 const PhysicalL3 = () => {
   const storeCode = localStorage.getItem("indent-expressId");
@@ -30,6 +36,8 @@ const PhysicalL3 = () => {
   const [loading, setLoading] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [quality_Reasons, setQuality_Reasons] = useState([]);
+  const [CoupleGentsSize, setCoupleGentsSize] = useState([]);
+  const [CoupleLadiesSize, setCoupleLadiesSize] = useState([]);
   // INPUT FILED VALUE VARIABLE
   const [tagQuantity, SetTagQuantity] = useState([]);
   const [sizeUomQuantity, SetSizeUomQuantityRes] = useState([]);
@@ -53,6 +61,15 @@ const PhysicalL3 = () => {
 
   const { itemCode, videoLink } = productsDetails;
   const digit = !itemCode ? "" : itemCode[6];
+
+  // STONE QUANTITY DATA
+  const SI_2GH = productsDetails.si2Gh;
+  const VS_GH = productsDetails.vsGh;
+  const VVS1 = productsDetails.vvs1;
+  const I2_GH = productsDetails.i2Gh;
+  const SI2_IJ = productsDetails.si2Ij;
+  const stoneTableData = [SI_2GH, VS_GH, VVS1, I2_GH, SI2_IJ];
+  const stoneDropdown = stoneTableData.filter((item) => !item === false);
 
   const GetProductsDetails = () => {
     if (searchItemCode) {
@@ -181,6 +198,38 @@ const PhysicalL3 = () => {
           setSizeState(response.data.value);
         } else if (response.data.code === "1001") {
           setSizeState([]);
+        }
+      })
+      .catch((error) => console.log(""));
+  }, [itemCode]);
+
+  // <----------------------------COUPLE BAND SIZE-------------------->
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20GENTS`
+      )
+      .then((res) => res)
+      .then((result) => {
+        if (result.data.Code === "1000") {
+          setCoupleGentsSize(result.data.value);
+        } else if (result.data.Code === "1001") {
+          setCoupleGentsSize([]);
+        }
+      })
+      .catch((error) => console.log(""));
+  }, [itemCode]);
+  useEffect(() => {
+    axios
+      .get(
+        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20LADIES`
+      )
+      .then((res) => res)
+      .then((result) => {
+        if (result.data.Code === "1000") {
+          setCoupleLadiesSize(result.data.value);
+        } else if (result.data.Code === "1001") {
+          setCoupleLadiesSize([]);
         }
       })
       .catch((error) => console.log(""));
@@ -464,6 +513,8 @@ const PhysicalL3 = () => {
                     <b>INDENT DETAILS</b>
                   </h6>
                   <br />
+
+                  {/* <-----------------------------TAG CATEGORY------------------------------->  */}
                   {!productsDetails.category ? (
                     ""
                   ) : productsDetails.category
@@ -491,7 +542,143 @@ const PhysicalL3 = () => {
                   ) : (
                     ""
                   )}
+
+                  {digit === "V" && (
+                    <BangleMultiUOMSize
+                      optionsList={SizeState}
+                      GetUomSizeQuantity={GetUomSizeQuantity}
+                    />
+                  )}
+
+                  {/* <----------------------------SIZEABLE CATEGORY------------------------------> */}
+                  {!productsDetails.category ? (
+                    ""
+                  ) : productsDetails.category
+                      .toUpperCase()
+                      .replace(/\s{2,}/g, " ")
+                      .trim() === "FINGER RING" ||
+                    digit === "L" ||
+                    digit === "C" ||
+                    digit === "Y" ||
+                    digit === "B" ? (
+                    <ChooseMultiSize
+                      optionsList={SizeState}
+                      singleProductsDetails={productsDetails}
+                      GetChooseSizeData={GetChooseSizeData}
+                    />
+                  ) : (
+                    ""
+                  )}
+
+                  {/* <------------------------------TOE RING-------------------------> */}
+                  {!productsDetails.category ? (
+                    ""
+                  ) : productsDetails.category
+                      .toUpperCase()
+                      .replace(/\s{2,}/g, " ")
+                      .trim() === "TOE RING" ? (
+                    <ChooseMultiSize
+                      optionsList={SizeState}
+                      singleProductsDetails={productsDetails}
+                      GetChooseSizeData={GetChooseSizeData}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  {/* <----------------------TABLE DATA--------------------------> */}
+                  {digit === "0" ||
+                  digit === "1" ||
+                  digit === "2" ||
+                  digit === "3" ||
+                  digit === "4" ||
+                  digit === "5" ||
+                  digit === "6" ||
+                  digit === "7" ? (
+                    <TableDataDetails singleProductsDetails={productsDetails} />
+                  ) : (
+                    ""
+                  )}
+                  {/*<-----------------------INDENT QUANTITY BOX-----------------------------------> */}
+                  {digit === "N" ||
+                  digit === "O" ||
+                  digit === "D" ||
+                  digit === "X" ||
+                  digit === "H" ||
+                  digit === "J" ||
+                  digit === "S" ||
+                  digit === "W" ||
+                  digit === "E" ||
+                  digit === "P" ||
+                  digit === "K" ||
+                  digit === "A" ||
+                  digit === "G" ? (
+                    <IndentQuantityFiled
+                      GetIndentQuantityValue={GetIndentQuantityValue}
+                      indentQuantity={indentQuantity}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  {/* <-------------------------------COUPLE BAND--------------------------------> */}
+
+                  {!productsDetails.category
+                    ? ""
+                    : productsDetails.category
+                        .toUpperCase()
+                        .replace(/\s{2,}/g, " ")
+                        .trim() === "COUPLE BAND" && (
+                        <div>
+                          <select
+                            className="L3SelectDropdown"
+                            onChange={(e) => setCoupleBandValue(e.target.value)}
+                          >
+                            <option value="">CHOOSE COUPLE TAG</option>
+                            <option value="Single_Tag">SINGLE TAG</option>
+                            <option value="Separate_Tag">SEPARATE TAG</option>
+                          </select>
+                          {coupleBandValue === "Single_Tag" && (
+                            <div className="mt-2">
+                              <ChooseMultiSize
+                                optionsList={SizeState}
+                                singleProductsDetails={productsDetails}
+                                GetChooseSizeData={GetChooseSizeData}
+                              />
+                            </div>
+                          )}
+                          {coupleBandValue === "Separate_Tag" && (
+                            <div className="my-1">
+                              <span className="text-primary">FOR GENTS</span>
+                              <ChooseMultiSize
+                                optionsList={CoupleGentsSize}
+                                singleProductsDetails={productsDetails}
+                                GetChooseSizeData={GetChooseSizeData}
+                              />
+                              <span className="text-primary mt-2">
+                                FOR LADIES
+                              </span>
+                              <ChooseMultiSize
+                                optionsList={CoupleLadiesSize}
+                                singleProductsDetails={productsDetails}
+                                GetChooseSizeData={GetChooseSizeData}
+                              />
+                            </div>
+                          )}
+                          {/* <----------------------STONE QUALITY DROPDOWN--------------------------> */}
+                          {stoneDropdown.length > 0 && (
+                            <StoneQualityDropdown
+                              optionsList={stoneDropdown}
+                              GetStoneData={GetStoneData}
+                              singleProductsDetails={productsDetails}
+                            />
+                          )}
+                        </div>
+                      )}
                 </div>
+
+                {/* <----------------------STONE QUALITY TABLE--------------------------> */}
+                {stoneDropdown.length > 0 && (
+                  <StoneQualityTable tableRowData={productsDetails} />
+                )}
               </div>
               <br />
               <br />

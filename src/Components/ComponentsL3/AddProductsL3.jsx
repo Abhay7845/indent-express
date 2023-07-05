@@ -331,6 +331,7 @@ const AddProductsL3 = (props) => {
                   <b>INDENT DETAILS</b>
                 </h6>
                 <br />
+                {/* <--------------------------TAGS CATEGORY-------------------------------> */}
                 {!singleProductsDetails.category ? (
                   ""
                 ) : singleProductsDetails.category
@@ -364,8 +365,7 @@ const AddProductsL3 = (props) => {
                     GetUomSizeQuantity={GetUomSizeQuantity}
                   />
                 )}
-
-                {/* SIZEABLE CATEGORY */}
+                {/* <-------------------------------------SIZEABLE CATEGORY-------------------------> */}
                 {!singleProductsDetails.category ? (
                   ""
                 ) : singleProductsDetails.category
@@ -384,8 +384,7 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
-
-                {/* TOE RING */}
+                {/* <-------------------------------TOE RING------------------------------------> */}
                 {!singleProductsDetails.category ? (
                   ""
                 ) : singleProductsDetails.category
@@ -400,6 +399,7 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
+                {/* <---------------------------TAGS TABLE DATA-------------------------------> */}
                 {digit === "0" ||
                 digit === "1" ||
                 digit === "2" ||
@@ -414,6 +414,7 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
+                {/*<-----------------------INDENT QUANTITY BOX-----------------------------------> */}
                 {digit === "N" ||
                 digit === "O" ||
                 digit === "D" ||
@@ -434,6 +435,7 @@ const AddProductsL3 = (props) => {
                 ) : (
                   ""
                 )}
+                {/* <---------------------------COUPLE BAND -------------------------------> */}
                 {!singleProductsDetails.category
                   ? ""
                   : singleProductsDetails.category
@@ -478,6 +480,8 @@ const AddProductsL3 = (props) => {
                         )}
                       </div>
                     )}
+                \
+                {/* <----------------------STONE QUALITY DROPDOWN--------------------------> */}
                 {stoneDropdown.length > 0 && (
                   <StoneQualityDropdown
                     optionsList={stoneDropdown}
@@ -485,7 +489,7 @@ const AddProductsL3 = (props) => {
                     singleProductsDetails={singleProductsDetails}
                   />
                 )}
-
+                {/* <----------------------FINDING DROPDOWN--------------------------> */}
                 {singleProductsDetails.findings && (
                   <FindingDropdown
                     singleProductsDetails={singleProductsDetails}
@@ -495,6 +499,8 @@ const AddProductsL3 = (props) => {
                 )}
               </div>
             </div>
+            {/* <----------------------STONE QUALITY TABLE--------------------------> */}
+
             {stoneDropdown.length > 0 && (
               <StoneQualityTable tableRowData={singleProductsDetails} />
             )}
