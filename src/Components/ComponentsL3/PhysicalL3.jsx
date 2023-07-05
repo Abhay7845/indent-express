@@ -508,7 +508,7 @@ const PhysicalL3 = () => {
                     </table>
                   </div>
                 </div>
-                <div className="col-md-7 border">
+                <div className="col-md-7">
                   <h6 className="text-center my-2 feedBackText">
                     <b>INDENT DETAILS</b>
                   </h6>
@@ -680,8 +680,6 @@ const PhysicalL3 = () => {
                   <StoneQualityTable tableRowData={productsDetails} />
                 )}
               </div>
-              <br />
-              <br />
               <div className="d-flex justify-content-center mx-0">
                 <button className="mx-2 CButton" onClick={SubmitProductDetails}>
                   {loadingSubmit ? (
