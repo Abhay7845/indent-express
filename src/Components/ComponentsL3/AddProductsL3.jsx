@@ -508,7 +508,7 @@ const AddProductsL3 = (props) => {
                         )}
                       </div>
                     )}
-                \
+
                 {/* <----------------------STONE QUALITY DROPDOWN--------------------------> */}
                 {stoneDropdown.length > 0 && (
                   <StoneQualityDropdown
