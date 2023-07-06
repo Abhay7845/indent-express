@@ -11,6 +11,7 @@ import { HostManager } from "../../APIList/HotMaster";
 import { IMAGE_URL } from "../../Data/DataList";
 import ShowImageCart from "./ShowImageCart";
 import swal from "sweetalert";
+import AddProductsL3 from "./AddProductsL3";
 
 const CategoryTypeL3 = (props) => {
   const { showAlert } = props;
@@ -21,7 +22,14 @@ const CategoryTypeL3 = (props) => {
   const [rowsPerPage, setRowsPerPage] = useState(12);
   const [page, setPage] = useState(0);
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
-  console.log("singleProductsDetails==>", singleProductsDetails);
+  const [searchItemCode, setSearchItemCode] = useState("");
+
+  useEffect(() => {
+    const productDataBySearch = productsData.filter(
+      (data) => data.itemcode === searchItemCode
+    );
+    setProductsData(productDataBySearch);
+  }, [searchItemCode]);
 
   useEffect(() => {
     setLoading(true);
@@ -49,6 +57,25 @@ const CategoryTypeL3 = (props) => {
   };
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+  };
+  const SearchProductByItemCode = () => {
+    setLoading(true);
+    axios
+      .get(`${HostManager.reportsL1L2}/INDENT/express/get/itemcode/list`)
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setProductsData(response.data.value);
+        }
+        if (response.data.code === "1001") {
+          showAlert("Sorry Data Not Found", "danger");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("");
+        setLoading(false);
+      });
   };
   const GetProductsDetails = (Details) => {
     const GetProductsDetails = {
@@ -91,7 +118,7 @@ const CategoryTypeL3 = (props) => {
       <div className="ComponentL3LowerHeader">
         <div className="d-flex">
           <Link to="/Indent-express/L3/digital/home">
-            <button type="button" class="btn btn-dark btn-sm">
+            <button type="button" className="btn btn-dark btn-sm">
               BACK
             </button>
           </Link>
@@ -116,44 +143,101 @@ const CategoryTypeL3 = (props) => {
           </Link>
         </div>
       </div>
+
+      <div className="d-flex row mx-1 mt-4">
+        <div className="d-flex col-4">
+          <input
+            type="text"
+            className="GInput"
+            placeholder="Search by Item Code"
+            onChange={(e) => setSearchItemCode(e.target.value)}
+          />
+        </div>
+        <div className="col-4">
+          <b className="mx-2 text-danger">
+            {productsData.length <= 0 ? "DATA NOT FOUND" : ""}
+          </b>
+        </div>
+      </div>
+
       {/* <---------------CART DATA DETAILS =----------------------->*/}
-      <div className="row mx-0">
-        {productsData
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-          .map((productsDetails, i) => {
-            const { itemcode } = productsDetails;
-            const imageCode = !itemcode ? "" : itemcode.substring(2, 9);
-            const imageURL = `${IMAGE_URL}${imageCode}`;
-            return (
-              <div key={i} className="col-md-3 mt-5">
-                <div className="cardStyle">
-                  <ShowImageCart imageURL={imageURL} />
-                  <div className="cardBodyStyle">
-                    <div className="innerBodyStyle">
-                      <b>{itemcode}</b>
-                      <BsCartFill
-                        size={20}
-                        onClick={() => GetProductsDetails(productsDetails)}
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"
-                        className="trolleyStyle"
-                      />
+      {productsData.length > 0 && (
+        <div className="row mx-0">
+          {productsData
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((productsDetails, i) => {
+              const { itemcode } = productsDetails;
+              const imageCode = !itemcode ? "" : itemcode.substring(2, 9);
+              const imageURL = `${IMAGE_URL}${imageCode}`;
+              return (
+                <div key={i} className="col-md-3 mt-5">
+                  <div className="cardStyle">
+                    <ShowImageCart imageURL={imageURL} />
+                    <div className="cardBodyStyle">
+                      <div className="innerBodyStyle">
+                        <b>{itemcode}</b>
+                        <BsCartFill
+                          size={20}
+                          onClick={() => GetProductsDetails(productsDetails)}
+                          data-bs-toggle="modal"
+                          data-bs-target="#staticBackdrop"
+                          className="trolleyStyle"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        <div className="d-flex justify-content-end my-2 w-100">
-          <TablePagination
-            rowsPerPageOptions={[12, 24, 36, productsData.length]}
-            component="div"
-            count={productsData.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
+              );
+            })}
+          <div className="d-flex justify-content-end my-2 w-100">
+            <TablePagination
+              rowsPerPageOptions={[12, 24, 36, productsData.length]}
+              component="div"
+              count={productsData.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </div>
+        </div>
+      )}
+      <div className="my-4 mx-3">
+        {productsData.length <= 0 && (
+          <button onClick={SearchProductByItemCode} className="SButton">
+            HOME
+          </button>
+        )}
+      </div>
+      <div
+        className="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex={-1}
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-fullscreen">
+          <div className="modal-content">
+            <div
+              className="modal-header"
+              style={{ backgroundColor: "#f5ea84" }}
+            >
+              <h5 className="modal-title" id="staticBackdropLabel">
+                ADD TO CART
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              />
+            </div>
+            <div className="modal-body">
+              <AddProductsL3 singleProductsDetails={singleProductsDetails} />
+            </div>
+          </div>
         </div>
       </div>
     </>
