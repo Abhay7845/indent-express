@@ -17,7 +17,8 @@ import { HostManager } from "../../APIList/HotMaster";
 import AddProductsL3 from "./AddProductsL3";
 import ShowImageCart from "./ShowImageCart";
 import { Link } from "react-router-dom";
-import { IMAGE_URL } from "../../Data/DataList";
+import { IMAGE_URL, ItemWiseReportsDropdown } from "../../Data/DataList";
+import { Select } from "antd";
 
 const ComponentL3 = (props) => {
   const { showAlert } = props;
@@ -30,6 +31,8 @@ const ComponentL3 = (props) => {
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
   const [searchItemCode, setSearchItemCode] = useState("");
   const [statusCode, setStatusCode] = useState("");
+  const [categoryType, setCategoryType] = useState("");
+  console.log("categoryType==>", categoryType);
 
   useEffect(() => {
     const productDataBySearch = productsData.filter(
@@ -155,8 +158,8 @@ const ComponentL3 = (props) => {
         </div>
       </div>
 
-      <div className="row mx-1 mt-4">
-        <div className="col-md-4">
+      <div className="d-flex row mx-1 mt-4">
+        <div className="d-flex col-4">
           <input
             type="text"
             className="GInput"
@@ -164,12 +167,25 @@ const ComponentL3 = (props) => {
             onChange={(e) => setSearchItemCode(e.target.value)}
           />
         </div>
-        <div className="col-md-4">
-          <div className="d-flex justify-content-between">
-            <b className="mx-2 text-danger">
-              {productsData.length <= 0 ? "DATA NOT FOUND" : ""}
-            </b>
-          </div>
+        <div className="col-4">
+          <b className="mx-2 text-danger">
+            {productsData.length <= 0 ? "DATA NOT FOUND" : ""}
+          </b>
+        </div>
+        <div className="col-4">
+          <Select
+            className="w-100"
+            placeholder="Select"
+            onChange={(value) => setCategoryType(value)}
+          >
+            {ItemWiseReportsDropdown.map((item, i) => {
+              return (
+                <Select.Option key={i} value={item.value}>
+                  {item.label}
+                </Select.Option>
+              );
+            })}
+          </Select>
         </div>
       </div>
       {productsData.length > 0 && (

@@ -82,23 +82,23 @@ export const IMAGE_URL =
 // FAKE DATA
 export const ItemWiseReportsDropdown = [
   {
-    value: "item_wise_report",
-    label: "Item Wise Report",
+    value: "category",
+    label: "Category",
   },
   {
-    value: "NeedState",
+    value: "needState",
     label: "NeedState",
   },
   {
-    value: "Collection",
+    value: "collection",
     label: "Collection",
   },
   {
-    value: "ItGroup",
-    label: "IT Group",
+    value: "group",
+    label: "Group",
   },
   {
-    value: "Cancel_item_List",
-    label: "Cancel Item List",
+    value: "attributes",
+    label: "Attributes",
   },
 ];

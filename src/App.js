@@ -17,6 +17,7 @@ import YourProductsCart from "./Components/ComponentsL3/YourProductsCart";
 import PhysicalL1L2 from "./Components/ComponentsL1L2/PhysicalL1L2";
 import PhysicalL3 from "./Components/ComponentsL3/PhysicalL3";
 import CancelDataReport from "./Components/ComponentsL3/CancelDataReport";
+import CategoryTypeL3 from "./Components/ComponentsL3/CategoryTypeL3";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -82,6 +83,10 @@ const App = () => {
             <Route
               path="/Indent-express/L3/physical/home"
               element={<PhysicalL3 showAlert={showAlert} />}
+            />
+            <Route
+              path="/Indent-express/L3/digital/categoryType"
+              element={<CategoryTypeL3 showAlert={showAlert} />}
             />
             {/* ADMIN COMPONENTS */}
             <Route
