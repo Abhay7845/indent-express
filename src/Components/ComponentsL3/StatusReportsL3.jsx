@@ -24,7 +24,6 @@ const StatusReportsL3 = (props) => {
       .then((response) => {
         if (response.data.code === "1000") {
           setStatusData(response.data.value);
-          showAlert("Data Fetched Successfully", "success");
         } else if (response.data.code === "1001") {
           showAlert("Data Not Found", "danger");
         }
