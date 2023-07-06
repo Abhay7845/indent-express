@@ -44,20 +44,9 @@ const PhysicalL3 = () => {
   const [indentQuantity, setIndentQuantityRes] = useState("");
   const [typeSet2, setTypeSet2Res] = useState("");
   const [coupleBandValue, setCoupleBandValue] = useState("");
-
-  console.log(
-    tagQuantity,
-    sizeUomQuantity,
-    sizeQuantity,
-    findingsRes,
-    stoneQuality,
-    indentQuantity,
-    typeSet2,
-    coupleBandValue
-  );
-
   const { itemCode, videoLink } = productsDetails;
   const digit = !itemCode ? "" : itemCode[6];
+  console.log("digit==>", digit);
 
   // STONE QUANTITY DATA
   const SI_2GH = productsDetails.si2Gh;
@@ -143,6 +132,8 @@ const PhysicalL3 = () => {
     bangle,
   ];
   const tagsOptions = optionForOtherAllSet.filter((item) => !item === false);
+  console.log("tagsOptions==>", tagsOptions);
+  console.log("option==>", option);
   const optionForSet0 = [
     "Single_Tag",
     "Separate_Tag",
