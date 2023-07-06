@@ -1,8 +1,8 @@
 import React from "react";
-import TopHeader from "../../Common/TopHeader";
-import "../../Style/RedirectionTab.css";
+import TopHeader from "./TopHeader";
+import "../Style/RedirectionTab.css";
 import { Link } from "react-router-dom";
-import BGImage from "../../Asset/Img/L1L2Background.jpg";
+import BGImage from "../Asset/Img/L1L2Background.jpg";
 
 const RedirectionHomePage = () => {
   const ROLE = localStorage.getItem("indent-expressRole");

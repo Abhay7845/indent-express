@@ -12,7 +12,7 @@ import ComponentL3 from "./Components/ComponentsL3/ComponentL3";
 import StatusReportsL1L2 from "./Components/ComponentsL1L2/StatusReportsL1L2";
 import AlertModal from "./Common/AlertModal";
 import StatusReportsL3 from "./Components/ComponentsL3/StatusReportsL3";
-import RedirectionHomePage from "./Components/ComponentsL1L2/RedirectionHomePage";
+import RedirectionHomePage from "./Common/RedirectionHomePage";
 import YourProductsCart from "./Components/ComponentsL3/YourProductsCart";
 import PhysicalL1L2 from "./Components/ComponentsL1L2/PhysicalL1L2";
 import PhysicalL3 from "./Components/ComponentsL3/PhysicalL3";
