@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useStyles } from "../../Style/StyleJsx/ChooseDynamicTag";
@@ -9,6 +10,7 @@ import Set2TypeDropdown from "../../Common/Set2TypeDropdown";
 
 const ChooseDynamicTag = (props) => {
   const classes = useStyles();
+  const [option, setOption] = useState([]);
   const [sizeRow, setSizeRow] = useState();
   const [ChildNodeV, setChildNodeV] = useState([]);
   const [ChildNodesN, setChildNodesN] = useState([]);
@@ -19,10 +21,100 @@ const ChooseDynamicTag = (props) => {
     GetTagFiledValues,
     GetUomSizeQuantity,
     GetFindingData,
-    findingsOptions,
     GetSet2TypeData,
-    reportRowTable,
   } = props;
+  const { itemCode } = singleProductsDetails;
+  const digit = !itemCode ? "" : itemCode[6];
+
+  // DYNAMIC TAG
+  const FingerTag = !singleProductsDetails.childNodeF
+    ? ""
+    : singleProductsDetails.childNodeF.trim();
+
+  const haramTag = !singleProductsDetails.childNodeH
+    ? ""
+    : singleProductsDetails.childNodeH.trim();
+
+  const tikkaTag = !singleProductsDetails.childNodeK
+    ? ""
+    : singleProductsDetails.childNodeK.trim();
+
+  const otherTag = !singleProductsDetails.childNodeO
+    ? ""
+    : singleProductsDetails.childNodeO.trim();
+
+  const bangleTag = !singleProductsDetails.childNodeV
+    ? ""
+    : singleProductsDetails.childNodeV.trim();
+
+  const earingTag = !singleProductsDetails.childNodesE
+    ? ""
+    : singleProductsDetails.childNodesE.trim();
+
+  const neckwearTag = !singleProductsDetails.childNodesN
+    ? ""
+    : singleProductsDetails.childNodesN.trim();
+
+  const finger = !FingerTag ? "" : "Only_FINGER_RING";
+  const harm = !haramTag ? "" : "Only_HARAM";
+  const Tikka = !tikkaTag ? "" : "Only_TIKKA";
+  const other = !otherTag ? "" : "Only_OTHER";
+  const bangle = !bangleTag ? "" : "Only_BANGLE";
+  const earing = !earingTag ? "" : "Only_EARRING";
+  const neckwear = !neckwearTag ? "" : "Only_NECKWEAR";
+
+  const optionForOtherAllSet = [
+    "Single_Tag",
+    "Separate_Tag",
+    earing,
+    neckwear,
+    harm,
+    Tikka,
+    other,
+    finger,
+    bangle,
+  ];
+  const tagsOptions = optionForOtherAllSet.filter((item) => !item === false);
+  const optionForSet0 = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_CHAIN_WITH_PENDANT",
+  ];
+  const optionForSet1 = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_NECKWEAR_OR_PENDANT",
+  ];
+  const tagsTCategory = [
+    "Single_Tag",
+    "Separate_Tag",
+    "Only_EARRING",
+    "Only_MANGALSUTRA",
+  ];
+  useEffect(() => {
+    if (digit === "0") {
+      setOption(optionForSet0);
+    }
+    if (digit === "1") {
+      setOption(optionForSet1);
+    }
+    if (digit === "T") {
+      setOption(tagsTCategory);
+    }
+    if (
+      digit === "2" ||
+      digit === "3" ||
+      digit === "4" ||
+      digit === "5" ||
+      digit === "6" ||
+      digit === "7"
+    ) {
+      setOption(tagsOptions);
+    }
+  }, [digit]);
+
   const setType2option = ["Chain", "Dori"];
   useEffect(() => {
     if (optionsList)
@@ -37,7 +129,7 @@ const ChooseDynamicTag = (props) => {
   }, [optionsList]);
 
   const childNodeV = !singleProductsDetails
-    ? reportRowTable.childNodeV
+    ? singleProductsDetails.childNodeV
     : singleProductsDetails.childNodeV;
   useEffect(() => {
     axios
@@ -57,7 +149,7 @@ const ChooseDynamicTag = (props) => {
   }, [childNodeV]);
 
   const childNodeN = !singleProductsDetails
-    ? reportRowTable.childNodesN
+    ? singleProductsDetails.childNodesN
     : singleProductsDetails.childNodesN;
   useEffect(() => {
     axios
@@ -76,7 +168,7 @@ const ChooseDynamicTag = (props) => {
   }, [childNodeN]);
 
   const childNodeF = !singleProductsDetails
-    ? reportRowTable.childNodeF
+    ? singleProductsDetails.childNodeF
     : singleProductsDetails.childNodeF;
   useEffect(() => {
     axios
@@ -94,7 +186,7 @@ const ChooseDynamicTag = (props) => {
       .catch((error) => console.log(""));
   }, [childNodeF]);
 
-  const options = optionsList.map((element) => {
+  const options = option.map((element) => {
     return {
       valueData: element,
       labelValue: element,
@@ -244,11 +336,11 @@ const ChooseDynamicTag = (props) => {
             >
               <td className="w-100">
                 {!singleProductsDetails
-                  ? reportRowTable.findings
+                  ? singleProductsDetails.findings
                   : singleProductsDetails.findings && (
                       <FindingDropdown
-                        optionsList={findingsOptions}
                         GetFindingData={GetFindingData}
+                        singleProductsDetails={singleProductsDetails}
                       />
                     )}
               </td>

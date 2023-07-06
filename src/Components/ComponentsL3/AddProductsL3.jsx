@@ -18,7 +18,6 @@ import FindingDropdown from "../../Common/FindingDropdown";
 
 const AddProductsL3 = (props) => {
   const [loading, setLoading] = useState(false);
-  const [option, setOption] = useState([]);
   const [SizeState, setSizeState] = useState([]);
   const [CoupleGentsSize, setCoupleGentsSize] = useState([]);
   const [CoupleLadiesSize, setCoupleLadiesSize] = useState([]);
@@ -33,7 +32,7 @@ const AddProductsL3 = (props) => {
   const [typeSet2, setTypeSet2Res] = useState("");
   const [coupleBandValue, setCoupleBandValue] = useState("");
   const { singleProductsDetails } = props;
-  const { itemCode, videoLink } = singleProductsDetails;
+  const { itemCode, videoLink, category } = singleProductsDetails;
   const digit = !itemCode ? "" : itemCode[6];
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
   const imageURL = `${IMAGE_URL}${imageCode}`;
@@ -46,98 +45,6 @@ const AddProductsL3 = (props) => {
   const SI2_IJ = singleProductsDetails.si2Ij;
   const stoneTableData = [SI_2GH, VS_GH, VVS1, I2_GH, SI2_IJ];
   const stoneDropdown = stoneTableData.filter((item) => !item === false);
-
-  // FINDINGS OPTIONS
-  const findings = singleProductsDetails.findings;
-  const findingsOptions = !findings ? [""] : findings.split(",");
-  // DYNAMIC TAG
-  const FingerTag = !singleProductsDetails.childNodeF
-    ? ""
-    : singleProductsDetails.childNodeF.trim();
-
-  const haramTag = !singleProductsDetails.childNodeH
-    ? ""
-    : singleProductsDetails.childNodeH.trim();
-
-  const tikkaTag = !singleProductsDetails.childNodeK
-    ? ""
-    : singleProductsDetails.childNodeK.trim();
-
-  const otherTag = !singleProductsDetails.childNodeO
-    ? ""
-    : singleProductsDetails.childNodeO.trim();
-
-  const bangleTag = !singleProductsDetails.childNodeV
-    ? ""
-    : singleProductsDetails.childNodeV.trim();
-
-  const earingTag = !singleProductsDetails.childNodesE
-    ? ""
-    : singleProductsDetails.childNodesE.trim();
-
-  const neckwearTag = !singleProductsDetails.childNodesN
-    ? ""
-    : singleProductsDetails.childNodesN.trim();
-
-  const finger = !FingerTag ? "" : "Only_FINGER_RING";
-  const harm = !haramTag ? "" : "Only_HARAM";
-  const Tikka = !tikkaTag ? "" : "Only_TIKKA";
-  const other = !otherTag ? "" : "Only_OTHER";
-  const bangle = !bangleTag ? "" : "Only_BANGLE";
-  const earing = !earingTag ? "" : "Only_EARRING";
-  const neckwear = !neckwearTag ? "" : "Only_NECKWEAR";
-
-  const optionForOtherAllSet = [
-    "Single_Tag",
-    "Separate_Tag",
-    earing,
-    neckwear,
-    harm,
-    Tikka,
-    other,
-    finger,
-    bangle,
-  ];
-  const tagsOptions = optionForOtherAllSet.filter((item) => !item === false);
-  const optionForSet0 = [
-    "Single_Tag",
-    "Separate_Tag",
-    "Only_EARRING",
-    "Only_CHAIN_WITH_PENDANT",
-  ];
-  const optionForSet1 = [
-    "Single_Tag",
-    "Separate_Tag",
-    "Only_EARRING",
-    "Only_NECKWEAR_OR_PENDANT",
-  ];
-  const tagsTCategory = [
-    "Single_Tag",
-    "Separate_Tag",
-    "Only_EARRING",
-    "Only_MANGALSUTRA",
-  ];
-  useEffect(() => {
-    if (digit === "0") {
-      setOption(optionForSet0);
-    }
-    if (digit === "1") {
-      setOption(optionForSet1);
-    }
-    if (digit === "T") {
-      setOption(tagsTCategory);
-    }
-    if (
-      digit === "2" ||
-      digit === "3" ||
-      digit === "4" ||
-      digit === "5" ||
-      digit === "6" ||
-      digit === "7"
-    ) {
-      setOption(tagsOptions);
-    }
-  }, [digit]);
 
   // DROPDOWN SIZE FOR NORMAL
   useEffect(() => {
@@ -375,14 +282,12 @@ const AddProductsL3 = (props) => {
                   digit === "6" ||
                   digit === "7" ? (
                   <ChooseDynamicTag
-                    optionsList={option}
                     singleProductsDetails={singleProductsDetails}
                     GetTagFiledValues={GetTagFiledValues}
                     GetUomSizeQuantity={GetUomSizeQuantity}
                     GetFindingData={GetFindingData}
                     SizeState={SizeState}
                     GetSet2TypeData={GetSet2TypeData}
-                    findingsOptions={findingsOptions}
                   />
                 ) : (
                   ""
@@ -394,9 +299,9 @@ const AddProductsL3 = (props) => {
                   />
                 )}
                 {/* <-------------------------------------SIZEABLE CATEGORY-------------------------> */}
-                {!singleProductsDetails.category ? (
+                {!category ? (
                   ""
-                ) : singleProductsDetails.category
+                ) : category
                     .toUpperCase()
                     .replace(/\s{2,}/g, " ")
                     .trim() === "FINGER RING" ||
@@ -413,9 +318,9 @@ const AddProductsL3 = (props) => {
                   ""
                 )}
                 {/* <-------------------------------TOE RING------------------------------------> */}
-                {!singleProductsDetails.category ? (
+                {!category ? (
                   ""
-                ) : singleProductsDetails.category
+                ) : category
                     .toUpperCase()
                     .replace(/\s{2,}/g, " ")
                     .trim() === "TOE RING" ? (
@@ -446,16 +351,21 @@ const AddProductsL3 = (props) => {
                 {digit === "N" ||
                 digit === "O" ||
                 digit === "D" ||
-                digit === "X" ||
-                digit === "H" ||
-                digit === "J" ||
-                digit === "S" ||
-                digit === "W" ||
-                digit === "E" ||
-                digit === "P" ||
-                digit === "K" ||
-                digit === "A" ||
-                digit === "G" ? (
+                !category ? (
+                  ""
+                ) : category
+                    .toUpperCase()
+                    .replace(/\s{2,}/g, " ")
+                    .trim() === "OTHER" ||
+                  digit === "H" ||
+                  digit === "J" ||
+                  digit === "S" ||
+                  digit === "W" ||
+                  digit === "E" ||
+                  digit === "P" ||
+                  digit === "K" ||
+                  digit === "A" ||
+                  digit === "G" ? (
                   <IndentQuantityFiled
                     GetIndentQuantityValue={GetIndentQuantityValue}
                     indentQuantity={indentQuantity}
@@ -464,9 +374,9 @@ const AddProductsL3 = (props) => {
                   ""
                 )}
                 {/* <---------------------------COUPLE BAND -------------------------------> */}
-                {!singleProductsDetails.category
+                {!category
                   ? ""
-                  : singleProductsDetails.category
+                  : category
                       .toUpperCase()
                       .replace(/\s{2,}/g, " ")
                       .trim() === "COUPLE BAND" && (
@@ -522,7 +432,6 @@ const AddProductsL3 = (props) => {
                   <FindingDropdown
                     singleProductsDetails={singleProductsDetails}
                     GetFindingData={GetFindingData}
-                    optionsList={findingsOptions}
                   />
                 )}
               </div>

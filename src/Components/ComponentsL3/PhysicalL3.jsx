@@ -28,7 +28,6 @@ import StoneQualityTable from "./StoneQualityTable";
 const PhysicalL3 = () => {
   const storeCode = localStorage.getItem("indent-expressId");
   const YourCart = localStorage.getItem("your-cart");
-  const [option, setOption] = useState([]);
   const [SizeState, setSizeState] = useState([]);
   const [searchItemCode, setSearchItemCode] = useState("");
   const [productsDetails, setProductsDetails] = useState({});
@@ -106,99 +105,6 @@ const PhysicalL3 = () => {
     ? ""
     : productsDetails.itemCode.substring(2, 9);
   const imageURL = `${IMAGE_URL}${imageCode}`;
-
-  // FINDINGS OPTIONS
-  const findings = productsDetails.findings;
-  const findingsOptions = !findings ? [""] : findings.split(",");
-
-  // DYNAMIC TAG
-  const FingerTag = !productsDetails.childNodeF
-    ? ""
-    : productsDetails.childNodeF.trim();
-
-  const haramTag = !productsDetails.childNodeH
-    ? ""
-    : productsDetails.childNodeH.trim();
-
-  const tikkaTag = !productsDetails.childNodeK
-    ? ""
-    : productsDetails.childNodeK.trim();
-
-  const otherTag = !productsDetails.childNodeO
-    ? ""
-    : productsDetails.childNodeO.trim();
-
-  const bangleTag = !productsDetails.childNodeV
-    ? ""
-    : productsDetails.childNodeV.trim();
-
-  const earingTag = !productsDetails.childNodesE
-    ? ""
-    : productsDetails.childNodesE.trim();
-
-  const neckwearTag = !productsDetails.childNodesN
-    ? ""
-    : productsDetails.childNodesN.trim();
-
-  const finger = !FingerTag ? "" : "Only_FINGER_RING";
-  const harm = !haramTag ? "" : "Only_HARAM";
-  const Tikka = !tikkaTag ? "" : "Only_TIKKA";
-  const other = !otherTag ? "" : "Only_OTHER";
-  const bangle = !bangleTag ? "" : "Only_BANGLE";
-  const earing = !earingTag ? "" : "Only_EARRING";
-  const neckwear = !neckwearTag ? "" : "Only_NECKWEAR";
-
-  const optionForOtherAllSet = [
-    "Single_Tag",
-    "Separate_Tag",
-    earing,
-    neckwear,
-    harm,
-    Tikka,
-    other,
-    finger,
-    bangle,
-  ];
-  const tagsOptions = optionForOtherAllSet.filter((item) => !item === false);
-  const optionForSet0 = [
-    "Single_Tag",
-    "Separate_Tag",
-    "Only_EARRING",
-    "Only_CHAIN_WITH_PENDANT",
-  ];
-  const optionForSet1 = [
-    "Single_Tag",
-    "Separate_Tag",
-    "Only_EARRING",
-    "Only_NECKWEAR_OR_PENDANT",
-  ];
-  const tagsTCategory = [
-    "Single_Tag",
-    "Separate_Tag",
-    "Only_EARRING",
-    "Only_MANGALSUTRA",
-  ];
-  useEffect(() => {
-    if (digit === "0") {
-      setOption(optionForSet0);
-    }
-    if (digit === "1") {
-      setOption(optionForSet1);
-    }
-    if (digit === "T") {
-      setOption(tagsTCategory);
-    }
-    if (
-      digit === "2" ||
-      digit === "3" ||
-      digit === "4" ||
-      digit === "5" ||
-      digit === "6" ||
-      digit === "7"
-    ) {
-      setOption(tagsOptions);
-    }
-  }, [digit]);
 
   // DROPDOWN SIZE FOR NORMAL
   useEffect(() => {
@@ -331,6 +237,7 @@ const PhysicalL3 = () => {
           });
         }
         setLoading(false);
+        setProductsDetails({});
       })
       .catch((error) => {
         console.log("");
@@ -488,14 +395,12 @@ const PhysicalL3 = () => {
                     digit === "6" ||
                     digit === "7" ? (
                     <ChooseDynamicTag
-                      optionsList={option}
                       singleProductsDetails={productsDetails}
                       GetTagFiledValues={GetTagFiledValues}
                       GetUomSizeQuantity={GetUomSizeQuantity}
                       GetFindingData={GetFindingData}
                       SizeState={SizeState}
                       GetSet2TypeData={GetSet2TypeData}
-                      findingsOptions={findingsOptions}
                     />
                   ) : (
                     ""
