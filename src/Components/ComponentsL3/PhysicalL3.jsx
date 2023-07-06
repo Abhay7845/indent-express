@@ -560,7 +560,7 @@ const PhysicalL3 = () => {
                   {digit === "N" ||
                   digit === "O" ||
                   digit === "D" ||
-                  digit === "X" ||
+                  productsDetails.category.toUpperCase() === "OTHER" ||
                   digit === "H" ||
                   digit === "J" ||
                   digit === "S" ||
@@ -638,8 +638,8 @@ const PhysicalL3 = () => {
                   <StoneQualityTable tableRowData={productsDetails} />
                 )}
               </div>
-              <div className="d-flex justify-content-center mx-0">
-                <button className="mx-2 CButton" onClick={AddProductsToCard}>
+              <div className="d-flex justify-content-center">
+                <button className="CButton" onClick={AddProductsToCard}>
                   {loading ? (
                     <span
                       className="spinner-border spinner-border-sm"
@@ -647,7 +647,7 @@ const PhysicalL3 = () => {
                       aria-hidden="true"
                     />
                   ) : (
-                    <span className="sr-only">AAD TO CART</span>
+                    <span className="sr-only">ADD TO CART</span>
                   )}
                 </button>
               </div>
