@@ -2,6 +2,35 @@ import React from "react";
 
 const singleProductsDetailsDetails = (props) => {
   const { singleProductsDetails } = props;
+
+  const Finger = !singleProductsDetails.childNodeF
+    ? ""
+    : singleProductsDetails.childNodeF.trim();
+
+  const Harm = !singleProductsDetails.childNodeH
+    ? ""
+    : singleProductsDetails.childNodeH.trim();
+
+  const tikka = !singleProductsDetails.childNodeK
+    ? ""
+    : singleProductsDetails.childNodeK.trim();
+
+  const other = !singleProductsDetails.childNodeO
+    ? ""
+    : singleProductsDetails.childNodeO.trim();
+
+  const bangle = !singleProductsDetails.childNodeV
+    ? ""
+    : singleProductsDetails.childNodeV.trim();
+
+  const earing = !singleProductsDetails.childNodesE
+    ? ""
+    : singleProductsDetails.childNodesE.trim();
+
+  const neckwear = !singleProductsDetails.childNodesN
+    ? ""
+    : singleProductsDetails.childNodesN.trim();
+
   return (
     <>
       <table className="table table-bordered mt-4">
@@ -17,7 +46,7 @@ const singleProductsDetailsDetails = (props) => {
           </thead>
         )}
         <tbody>
-          {singleProductsDetails.childNodeF === "" ? (
+          {Finger === "" ? (
             ""
           ) : (
             <tr>
@@ -26,7 +55,7 @@ const singleProductsDetailsDetails = (props) => {
               <td>{singleProductsDetails.stdUcpF}</td>
             </tr>
           )}
-          {singleProductsDetails.childNodesE === "" ? (
+          {earing === "" ? (
             ""
           ) : (
             <tr>
@@ -35,7 +64,7 @@ const singleProductsDetailsDetails = (props) => {
               <td>{singleProductsDetails.stdUcpE}</td>
             </tr>
           )}
-          {singleProductsDetails.childNodesN === "" ? (
+          {neckwear === "" ? (
             ""
           ) : (
             <tr>
@@ -44,7 +73,7 @@ const singleProductsDetailsDetails = (props) => {
               <td>{singleProductsDetails.stdUcpN}</td>
             </tr>
           )}
-          {singleProductsDetails.childNodeH === "" ? (
+          {Harm === "" ? (
             ""
           ) : (
             <tr>
@@ -53,7 +82,7 @@ const singleProductsDetailsDetails = (props) => {
               <td>{singleProductsDetails.stdUcpH}</td>
             </tr>
           )}
-          {singleProductsDetails.childNodeK === "" ? (
+          {tikka === "" ? (
             ""
           ) : (
             <tr>
@@ -62,7 +91,7 @@ const singleProductsDetailsDetails = (props) => {
               <td>{singleProductsDetails.stdUcpK}</td>
             </tr>
           )}
-          {singleProductsDetails.childNodeV === "" ? (
+          {bangle === "" ? (
             ""
           ) : (
             <tr>
@@ -71,7 +100,7 @@ const singleProductsDetailsDetails = (props) => {
               <td>{singleProductsDetails.stdUcpV}</td>
             </tr>
           )}
-          {singleProductsDetails.childNodeO === "" ? (
+          {other === "" ? (
             ""
           ) : (
             <tr>

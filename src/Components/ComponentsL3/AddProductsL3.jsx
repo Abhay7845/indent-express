@@ -51,13 +51,41 @@ const AddProductsL3 = (props) => {
   const findings = singleProductsDetails.findings;
   const findingsOptions = !findings ? [""] : findings.split(",");
   // DYNAMIC TAG
-  const finger = !singleProductsDetails.childNodeF ? "" : "Only_FINGER_RING";
-  const harm = !singleProductsDetails.childNodeH ? "" : "Only_HARAM";
-  const Tikka = !singleProductsDetails.childNodeK ? "" : "Only_TIKKA";
-  const other = !singleProductsDetails.childNodeO ? "" : "Only_OTHER";
-  const bangle = !singleProductsDetails.childNodeV ? "" : "Only_BANGLE";
-  const earing = !singleProductsDetails.childNodesE ? "" : "Only_EARRING";
-  const neckwear = !singleProductsDetails.childNodesN ? "" : "Only_NECKWEAR";
+  const FingerTag = !singleProductsDetails.childNodeF
+    ? ""
+    : singleProductsDetails.childNodeF.trim();
+
+  const haramTag = !singleProductsDetails.childNodeH
+    ? ""
+    : singleProductsDetails.childNodeH.trim();
+
+  const tikkaTag = !singleProductsDetails.childNodeK
+    ? ""
+    : singleProductsDetails.childNodeK.trim();
+
+  const otherTag = !singleProductsDetails.childNodeO
+    ? ""
+    : singleProductsDetails.childNodeO.trim();
+
+  const bangleTag = !singleProductsDetails.childNodeV
+    ? ""
+    : singleProductsDetails.childNodeV.trim();
+
+  const earingTag = !singleProductsDetails.childNodesE
+    ? ""
+    : singleProductsDetails.childNodesE.trim();
+
+  const neckwearTag = !singleProductsDetails.childNodesN
+    ? ""
+    : singleProductsDetails.childNodesN.trim();
+
+  const finger = !FingerTag ? "" : "Only_FINGER_RING";
+  const harm = !haramTag ? "" : "Only_HARAM";
+  const Tikka = !tikkaTag ? "" : "Only_TIKKA";
+  const other = !otherTag ? "" : "Only_OTHER";
+  const bangle = !bangleTag ? "" : "Only_BANGLE";
+  const earing = !earingTag ? "" : "Only_EARRING";
+  const neckwear = !neckwearTag ? "" : "Only_NECKWEAR";
 
   const optionForOtherAllSet = [
     "Single_Tag",

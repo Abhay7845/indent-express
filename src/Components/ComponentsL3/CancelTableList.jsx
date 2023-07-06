@@ -58,13 +58,42 @@ const CancelTableList = (props) => {
   const stoneTableData = [SI_2GH, VS_GH, VVS1, I2_GH, SI2_IJ];
   const stoneDropdown = stoneTableData.filter((item) => !item === false);
 
-  const finger = !reportRowTable.childNodeF ? "" : "Only_FINGER_RING";
-  const harm = !reportRowTable.childNodeH ? "" : "Only_HARAM";
-  const Tikka = !reportRowTable.childNodeK ? "" : "Only_TIKKA";
-  const other = !reportRowTable.childNodeO ? "" : "Only_OTHER";
-  const bangle = !reportRowTable.childNodeV ? "" : "Only_BANGLE";
-  const earing = !reportRowTable.childNodesE ? "" : "Only_EARRING";
-  const neckwear = !reportRowTable.childNodesN ? "" : "Only_NECKWEAR";
+  // DYNAMIC TAG
+  const FingerTag = !reportRowTable.childNodeF
+    ? ""
+    : reportRowTable.childNodeF.trim();
+
+  const haramTag = !reportRowTable.childNodeH
+    ? ""
+    : reportRowTable.childNodeH.trim();
+
+  const tikkaTag = !reportRowTable.childNodeK
+    ? ""
+    : reportRowTable.childNodeK.trim();
+
+  const otherTag = !reportRowTable.childNodeO
+    ? ""
+    : reportRowTable.childNodeO.trim();
+
+  const bangleTag = !reportRowTable.childNodeV
+    ? ""
+    : reportRowTable.childNodeV.trim();
+
+  const earingTag = !reportRowTable.childNodesE
+    ? ""
+    : reportRowTable.childNodesE.trim();
+
+  const neckwearTag = !reportRowTable.childNodesN
+    ? ""
+    : reportRowTable.childNodesN.trim();
+
+  const finger = !FingerTag ? "" : "Only_FINGER_RING";
+  const harm = !haramTag ? "" : "Only_HARAM";
+  const Tikka = !tikkaTag ? "" : "Only_TIKKA";
+  const other = !otherTag ? "" : "Only_OTHER";
+  const bangle = !bangleTag ? "" : "Only_BANGLE";
+  const earing = !earingTag ? "" : "Only_EARRING";
+  const neckwear = !neckwearTag ? "" : "Only_NECKWEAR";
 
   const optionForOtherAllSet = [
     "Single_Tag",

@@ -1,22 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import TableDataDownload from "./TableDataDownload";
+import TableDataDownload from "../../Common/TableDataDownload";
 import * as Icon from "react-bootstrap-icons";
-import "../Style/TableForAll.css";
+import "../../Style/TableForAll.css";
 import axios from "axios";
 import swal from "sweetalert";
-import ChooseDynamicTag from "../Components/ComponentsL3/ChooseDynamicTag";
-import BangleMultiUOMSize from "../Components/ComponentsL3/BangleMultiUOMSize";
-import { HostManager } from "../APIList/HotMaster";
-import IndentQuantityFiled from "../Components/ComponentsL3/IndentQuantityFiled";
-import ChooseMultiSize from "../Components/ComponentsL3/ChooseMultiSize";
-import StoneQualityTable from "../Components/ComponentsL3/StoneQualityTable";
-import StoneQualityDropdown from "./StoneQualityDropdown";
-import CommonImage from "./CommonImage";
-import { IMAGE_URL } from "../Data/DataList";
-import ShowImage from "../Components/ComponentsL3/ShowImage";
-import Loader from "./Loader";
+import ChooseDynamicTag from "./ChooseDynamicTag";
+import BangleMultiUOMSize from "./BangleMultiUOMSize";
+import { HostManager } from "../../APIList/HotMaster";
+import IndentQuantityFiled from "./IndentQuantityFiled";
+import ChooseMultiSize from "./ChooseMultiSize";
+import StoneQualityTable from "./StoneQualityTable";
+import StoneQualityDropdown from "../../Common/StoneQualityDropdown";
+import CommonImage from "../../Common/CommonImage";
+import { IMAGE_URL } from "../../Data/DataList";
+import ShowImage from "./ShowImage";
+import Loader from "../../Common/Loader";
 
 const CardTableList = (props) => {
   const { reportsName } = props;
@@ -54,13 +54,42 @@ const CardTableList = (props) => {
   const stoneTableData = [SI_2GH, VS_GH, VVS1, I2_GH, SI2_IJ];
   const stoneDropdown = stoneTableData.filter((item) => !item === false);
 
-  const finger = !reportRowTable.childNodeF ? "" : "Only_FINGER_RING";
-  const harm = !reportRowTable.childNodeH ? "" : "Only_HARAM";
-  const Tikka = !reportRowTable.childNodeK ? "" : "Only_TIKKA";
-  const other = !reportRowTable.childNodeO ? "" : "Only_OTHER";
-  const bangle = !reportRowTable.childNodeV ? "" : "Only_BANGLE";
-  const earing = !reportRowTable.childNodesE ? "" : "Only_EARRING";
-  const neckwear = !reportRowTable.childNodesN ? "" : "Only_NECKWEAR";
+  // DYNAMIC TAG
+  const FingerTag = !reportRowTable.childNodeF
+    ? ""
+    : reportRowTable.childNodeF.trim();
+
+  const haramTag = !reportRowTable.childNodeH
+    ? ""
+    : reportRowTable.childNodeH.trim();
+
+  const tikkaTag = !reportRowTable.childNodeK
+    ? ""
+    : reportRowTable.childNodeK.trim();
+
+  const otherTag = !reportRowTable.childNodeO
+    ? ""
+    : reportRowTable.childNodeO.trim();
+
+  const bangleTag = !reportRowTable.childNodeV
+    ? ""
+    : reportRowTable.childNodeV.trim();
+
+  const earingTag = !reportRowTable.childNodesE
+    ? ""
+    : reportRowTable.childNodesE.trim();
+
+  const neckwearTag = !reportRowTable.childNodesN
+    ? ""
+    : reportRowTable.childNodesN.trim();
+
+  const finger = !FingerTag ? "" : "Only_FINGER_RING";
+  const harm = !haramTag ? "" : "Only_HARAM";
+  const Tikka = !tikkaTag ? "" : "Only_TIKKA";
+  const other = !otherTag ? "" : "Only_OTHER";
+  const bangle = !bangleTag ? "" : "Only_BANGLE";
+  const earing = !earingTag ? "" : "Only_EARRING";
+  const neckwear = !neckwearTag ? "" : "Only_NECKWEAR";
 
   const optionForOtherAllSet = [
     "Single_Tag",

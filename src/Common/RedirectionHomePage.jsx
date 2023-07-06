@@ -39,7 +39,7 @@ const RedirectionHomePage = () => {
               </Link>
               <Link
                 className="col-md-6 redirectionTab"
-                to="Indent-express/L3/digital/home"
+                to="/Indent-express/L3/digital/home"
               >
                 DIGITAL
               </Link>

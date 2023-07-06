@@ -46,7 +46,7 @@ const PhysicalL3 = () => {
   const [coupleBandValue, setCoupleBandValue] = useState("");
   const { itemCode, videoLink } = productsDetails;
   const digit = !itemCode ? "" : itemCode[6];
-  console.log("digit==>", digit);
+  console.log("productsDetails==>", productsDetails);
 
   // STONE QUANTITY DATA
   const SI_2GH = productsDetails.si2Gh;
@@ -112,13 +112,41 @@ const PhysicalL3 = () => {
   const findingsOptions = !findings ? [""] : findings.split(",");
 
   // DYNAMIC TAG
-  const finger = !productsDetails.childNodeF ? "" : "Only_FINGER_RING";
-  const harm = !productsDetails.childNodeH ? "" : "Only_HARAM";
-  const Tikka = !productsDetails.childNodeK ? "" : "Only_TIKKA";
-  const other = !productsDetails.childNodeO ? "" : "Only_OTHER";
-  const bangle = !productsDetails.childNodeV ? "" : "Only_BANGLE";
-  const earing = !productsDetails.childNodesE ? "" : "Only_EARRING";
-  const neckwear = !productsDetails.childNodesN ? "" : "Only_NECKWEAR";
+  const FingerTag = !productsDetails.childNodeF
+    ? ""
+    : productsDetails.childNodeF.trim();
+
+  const haramTag = !productsDetails.childNodeH
+    ? ""
+    : productsDetails.childNodeH.trim();
+
+  const tikkaTag = !productsDetails.childNodeK
+    ? ""
+    : productsDetails.childNodeK.trim();
+
+  const otherTag = !productsDetails.childNodeO
+    ? ""
+    : productsDetails.childNodeO.trim();
+
+  const bangleTag = !productsDetails.childNodeV
+    ? ""
+    : productsDetails.childNodeV.trim();
+
+  const earingTag = !productsDetails.childNodesE
+    ? ""
+    : productsDetails.childNodesE.trim();
+
+  const neckwearTag = !productsDetails.childNodesN
+    ? ""
+    : productsDetails.childNodesN.trim();
+
+  const finger = !FingerTag ? "" : "Only_FINGER_RING";
+  const harm = !haramTag ? "" : "Only_HARAM";
+  const Tikka = !tikkaTag ? "" : "Only_TIKKA";
+  const other = !otherTag ? "" : "Only_OTHER";
+  const bangle = !bangleTag ? "" : "Only_BANGLE";
+  const earing = !earingTag ? "" : "Only_EARRING";
+  const neckwear = !neckwearTag ? "" : "Only_NECKWEAR";
 
   const optionForOtherAllSet = [
     "Single_Tag",
@@ -132,8 +160,6 @@ const PhysicalL3 = () => {
     bangle,
   ];
   const tagsOptions = optionForOtherAllSet.filter((item) => !item === false);
-  console.log("tagsOptions==>", tagsOptions);
-  console.log("option==>", option);
   const optionForSet0 = [
     "Single_Tag",
     "Separate_Tag",
@@ -595,7 +621,7 @@ const PhysicalL3 = () => {
                               />
                             </div>
                           )}
-                          {/* <----------------------STONE QUALITY DROPDOWN--------------------------> */}
+                          {/* <----------------------STONE QUALITY DROPDOWN-----------------------> */}
                           {stoneDropdown.length > 0 && (
                             <StoneQualityDropdown
                               optionsList={stoneDropdown}

@@ -12,7 +12,7 @@ import TopHeader from "../../Common/TopHeader";
 import "../../Style/YourCard.css";
 import Loader from "../../Common/Loader";
 import { HostManager } from "../../APIList/HotMaster";
-import CardTableList from "../../Common/CardTableList";
+import CardTableList from "./CardTableListL3";
 
 const YourProductsCart = () => {
   const storeCode = localStorage.getItem("indent-expressId");
