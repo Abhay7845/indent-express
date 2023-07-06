@@ -16,12 +16,13 @@ import {
 import { HostManager } from "../../APIList/HotMaster";
 import AddProductsL3 from "./AddProductsL3";
 import ShowImageCart from "./ShowImageCart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IMAGE_URL, ItemWiseReportsDropdown } from "../../Data/DataList";
 import { Select } from "antd";
 
 const ComponentL3 = (props) => {
   const { showAlert } = props;
+  const navigate = useNavigate();
   const storeCode = localStorage.getItem("indent-expressId");
   const YourCart = localStorage.getItem("your-cart");
   const [loading, setLoading] = useState(false);
@@ -31,8 +32,6 @@ const ComponentL3 = (props) => {
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
   const [searchItemCode, setSearchItemCode] = useState("");
   const [statusCode, setStatusCode] = useState("");
-  const [categoryType, setCategoryType] = useState("");
-  console.log("categoryType==>", categoryType);
 
   useEffect(() => {
     const productDataBySearch = productsData.filter(
@@ -40,6 +39,10 @@ const ComponentL3 = (props) => {
     );
     setProductsData(productDataBySearch);
   }, [searchItemCode]);
+
+  const HandelChangeChangeCategory = (categoryType) => {
+    navigate(`/Indent-express/L3/digital/${categoryType}`);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -176,7 +179,7 @@ const ComponentL3 = (props) => {
           <Select
             className="w-100"
             placeholder="Select"
-            onChange={(value) => setCategoryType(value)}
+            onChange={HandelChangeChangeCategory}
           >
             {ItemWiseReportsDropdown.map((item, i) => {
               return (

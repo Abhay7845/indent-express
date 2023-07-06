@@ -85,7 +85,7 @@ const App = () => {
               element={<PhysicalL3 showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/L3/digital/categoryType"
+              path="/Indent-express/L3/digital/:categoryType"
               element={<CategoryTypeL3 showAlert={showAlert} />}
             />
             {/* ADMIN COMPONENTS */}
