@@ -12,7 +12,7 @@ const RedirectionHomePage = () => {
       <div className="DropDownFormStyle">
         <div className="row w-100">
           {ROLE === "L1" || ROLE === "L2" ? (
-            <div className="d-flex w-100 mx-3">
+            <div className="d-flex w-100 mx-3 w-100">
               <Link
                 className="col-md-6 redirectionTab"
                 to="/Indent-express/L1/L2/physical/home"
