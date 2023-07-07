@@ -66,6 +66,7 @@ const ReportsL1L2 = (props) => {
           setReportsTable(response.data.value);
         } else if (response.data.code === "1001") {
           showAlert("Data Not Found", "danger");
+          setReports({});
         }
         setLoading(false);
       })
