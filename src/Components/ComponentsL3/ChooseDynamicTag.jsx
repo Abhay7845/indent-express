@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useStyles } from "../../Style/StyleJsx/ChooseDynamicTag";
 import Multiselect from "multiselect-react-dropdown";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import BangleMultiUOMSize from "./BangleMultiUOMSize";
 import FindingDropdown from "../../Common/FindingDropdown";
 import Set2TypeDropdown from "../../Common/Set2TypeDropdown";
@@ -133,9 +133,7 @@ const ChooseDynamicTag = (props) => {
     : singleProductsDetails.childNodeV;
   useEffect(() => {
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${childNodeV}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/size/dropdown/${childNodeV}`)
       .then((res) => res)
       .then((result) => {
         if (result.data.code === "1000") {
@@ -153,9 +151,7 @@ const ChooseDynamicTag = (props) => {
     : singleProductsDetails.childNodesN;
   useEffect(() => {
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${childNodeN}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/size/dropdown/${childNodeN}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -172,9 +168,7 @@ const ChooseDynamicTag = (props) => {
     : singleProductsDetails.childNodeF;
   useEffect(() => {
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${childNodeF}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/size/dropdown/${childNodeF}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {

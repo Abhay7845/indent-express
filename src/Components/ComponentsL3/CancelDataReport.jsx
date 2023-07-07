@@ -11,7 +11,7 @@ import Tippy from "@tippyjs/react";
 import TopHeader from "../../Common/TopHeader";
 import "../../Style/YourCard.css";
 import Loader from "../../Common/Loader";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import CancelTableList from "./CancelTableList";
 
 const CancelDataReport = () => {
@@ -24,9 +24,7 @@ const CancelDataReport = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/get/item/cancel/list/${storeCode}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/get/item/cancel/list/${storeCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {

@@ -7,7 +7,7 @@ import { LoginInitialValue, LoginSchema } from "../../Schema/LoginSchema";
 import ShowError from "../../Schema/ShowError";
 import image from "../../Asset/Img/Tanishq_Logo1.png";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 
 const Login = (props) => {
   const { showAlert } = props;
@@ -24,7 +24,7 @@ const Login = (props) => {
     };
     const inputData = { ...payload, ...LoginData };
     axios
-      .post(`${HostManager.reportsL1L2}/INDENT/express/user/login`, inputData)
+      .post(`${HOST_URL}/INDENT/express/user/login`, inputData)
       .then((response) => {
         if (
           response.data.value.role === "L1" ||

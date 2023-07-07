@@ -11,7 +11,7 @@ import Tippy from "@tippyjs/react";
 import TopHeader from "../../Common/TopHeader";
 import "../../Style/YourCard.css";
 import Loader from "../../Common/Loader";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import CardTableList from "./CardTableListL3";
 
 const YourProductsCart = () => {
@@ -23,9 +23,7 @@ const YourProductsCart = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/item/wise/rpt/L3/${storeCode}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/item/wise/rpt/L3/${storeCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {

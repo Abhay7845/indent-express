@@ -5,7 +5,7 @@ import * as Icon from "react-bootstrap-icons";
 import { DataGrid } from "@mui/x-data-grid";
 import CommonImage from "../../Common/CommonImage";
 import { IMAGE_URL } from "../../Data/DataList";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import axios from "axios";
 import swal from "sweetalert";
 import Loader from "../../Common/Loader";
@@ -63,9 +63,7 @@ const CancelTableList = (props) => {
   // DROPDOWN SIZE FOR NORMAL
   useEffect(() => {
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${itemCode}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/size/dropdown/${itemCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -80,7 +78,7 @@ const CancelTableList = (props) => {
   useEffect(() => {
     axios
       .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20GENTS`
+        `${HOST_URL}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20GENTS`
       )
       .then((res) => res)
       .then((result) => {
@@ -95,7 +93,7 @@ const CancelTableList = (props) => {
   useEffect(() => {
     axios
       .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20LADIES`
+        `${HOST_URL}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20LADIES`
       )
       .then((res) => res)
       .then((result) => {
@@ -208,7 +206,7 @@ const CancelTableList = (props) => {
     };
     axios
       .post(
-        `${HostManager.reportsL1L2}/INDENTL3/express/update/responses/from/L3`,
+        `${HOST_URL}/INDENTL3/express/update/responses/from/L3`,
         UpdateInputData
       )
       .then((res) => res)

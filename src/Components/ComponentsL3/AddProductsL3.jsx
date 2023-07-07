@@ -7,7 +7,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import ChooseDynamicTag from "./ChooseDynamicTag";
 import BangleMultiUOMSize from "./BangleMultiUOMSize";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import ChooseMultiSize from "./ChooseMultiSize";
 import TableDataDetails from "./TableDataDetails";
 import IndentQuantityFiled from "./IndentQuantityFiled";
@@ -52,9 +52,7 @@ const AddProductsL3 = (props) => {
   // DROPDOWN SIZE FOR NORMAL
   useEffect(() => {
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${itemCode}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/size/dropdown/${itemCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -69,7 +67,7 @@ const AddProductsL3 = (props) => {
   useEffect(() => {
     axios
       .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20GENTS`
+        `${HOST_URL}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20GENTS`
       )
       .then((res) => res)
       .then((result) => {
@@ -84,7 +82,7 @@ const AddProductsL3 = (props) => {
   useEffect(() => {
     axios
       .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20LADIES`
+        `${HOST_URL}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20LADIES`
       )
       .then((res) => res)
       .then((result) => {
@@ -159,7 +157,7 @@ const AddProductsL3 = (props) => {
     };
     axios
       .post(
-        `${HostManager.reportsL1L2}/INDENTL3/express/insert/responses/from/L3`,
+        `${HOST_URL}/INDENTL3/express/insert/responses/from/L3`,
         AddToCardProduct
       )
       .then((res) => res)

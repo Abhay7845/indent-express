@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import axios from "axios";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import Loader from "../../Common/Loader";
 import Tippy from "@tippyjs/react";
 import { IMAGE_URL, NoReasonOption } from "../../Data/DataList";
@@ -54,7 +54,7 @@ export const FeedBackFormL1L2 = (props) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${HostManager.reportsL1L2}/INDENT/express/dropdown/ALL/ALL/ALL/ALL`)
+      .get(`${HOST_URL}/INDENT/express/dropdown/ALL/ALL/ALL/ALL`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -104,9 +104,7 @@ export const FeedBackFormL1L2 = (props) => {
     });
     if (name === "collection") {
       axios
-        .get(
-          `${HostManager.reportsL1L2}/INDENT/express/dropdown/${value}/ALL/ALL/ALL`
-        )
+        .get(`${HOST_URL}/INDENT/express/dropdown/${value}/ALL/ALL/ALL`)
         .then((response) => {
           if (response.data.code === "1000") {
             setNeedState(response.data.value);
@@ -125,7 +123,7 @@ export const FeedBackFormL1L2 = (props) => {
       setLoading(true);
       axios
         .get(
-          `${HostManager.reportsL1L2}/INDENT/express/dropdown/${dropState.collection}/${value}/ALL/ALL`
+          `${HOST_URL}/INDENT/express/dropdown/${dropState.collection}/${value}/ALL/ALL`
         )
         .then((response) => {
           if (response.data.code === "1000") {
@@ -143,7 +141,7 @@ export const FeedBackFormL1L2 = (props) => {
       setLoading(true);
       axios
         .get(
-          `${HostManager.reportsL1L2}/INDENT/express/dropdown/${dropState.collection}/${dropState.consumerBase}/${value}/ALL`
+          `${HOST_URL}/INDENT/express/dropdown/${dropState.collection}/${dropState.consumerBase}/${value}/ALL`
         )
         .then((response) => {
           if (response.data.code === "1000") {
@@ -163,10 +161,7 @@ export const FeedBackFormL1L2 = (props) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .post(
-        `${HostManager.reportsL1L2}/INDENT/express/get/product/details`,
-        GetProductsValues
-      )
+      .post(`${HOST_URL}/INDENT/express/get/product/details`, GetProductsValues)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -184,10 +179,7 @@ export const FeedBackFormL1L2 = (props) => {
   const GetProductsDetails = () => {
     setLoading(true);
     axios
-      .post(
-        `${HostManager.reportsL1L2}/INDENT/express/get/product/details`,
-        GetProductsValues
-      )
+      .post(`${HOST_URL}/INDENT/express/get/product/details`, GetProductsValues)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -291,7 +283,7 @@ export const FeedBackFormL1L2 = (props) => {
 
       axios
         .post(
-          `${HostManager.reportsL1L2}/INDENT/express/insert/responses`,
+          `${HOST_URL}/INDENT/express/insert/responses`,
           getProductInputData
         )
         .then((res) => res)
@@ -343,7 +335,7 @@ export const FeedBackFormL1L2 = (props) => {
     };
     axios
       .post(
-        `${HostManager.reportsL1L2}/INDENT/express/get/product/details/PreNex`,
+        `${HOST_URL}/INDENT/express/get/product/details/PreNex`,
         getPreviousProductDetails
       )
       .then((res) => res)
@@ -377,7 +369,7 @@ export const FeedBackFormL1L2 = (props) => {
     };
     axios
       .post(
-        `${HostManager.reportsL1L2}/INDENT/express/get/product/details/PreNex`,
+        `${HOST_URL}/INDENT/express/get/product/details/PreNex`,
         getNextProductDetails
       )
       .then((res) => res)

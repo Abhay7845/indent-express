@@ -4,7 +4,7 @@ import TopHeader from "../../Common/TopHeader";
 import "../../Style/TopHeader.css";
 import axios from "axios";
 import Tippy from "@tippyjs/react";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import { L1L2StatusHeading } from "../../Data/DataList";
 import Loader from "../../Common/Loader";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ const StatusReportsL1L2 = (props) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${HostManager.reportsL1L2}/INDENT/express/status/L1/${storeCode}`)
+      .get(`${HOST_URL}/INDENT/express/status/L1/${storeCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {

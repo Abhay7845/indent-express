@@ -13,7 +13,7 @@ import {
   BsFillBarChartFill,
   BsFillHouseDoorFill,
 } from "react-icons/bs";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import AddProductsL3 from "./AddProductsL3";
 import ShowImageCart from "./ShowImageCart";
 import { Link, useNavigate } from "react-router-dom";
@@ -47,7 +47,7 @@ const DigitalL3 = (props) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${HostManager.reportsL1L2}/INDENT/express/get/itemcode/list`)
+      .get(`${HOST_URL}/INDENT/express/get/itemcode/list`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -67,7 +67,7 @@ const DigitalL3 = (props) => {
   const SearchProductByItemCode = () => {
     setLoading(true);
     axios
-      .get(`${HostManager.reportsL1L2}/INDENT/express/get/itemcode/list`)
+      .get(`${HOST_URL}/INDENT/express/get/itemcode/list`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -103,7 +103,7 @@ const DigitalL3 = (props) => {
     };
     axios
       .post(
-        `${HostManager.reportsL1L2}/INDENT/express/get/product/details`,
+        `${HOST_URL}/INDENT/express/get/product/details`,
         GetProductsDetails
       )
       .then((res) => res)

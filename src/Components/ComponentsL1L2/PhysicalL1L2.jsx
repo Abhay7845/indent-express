@@ -12,7 +12,7 @@ import axios from "axios";
 import Tippy from "@tippyjs/react";
 import swal from "sweetalert";
 import { Select } from "antd";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import { FormControlLabel, Switch } from "@material-ui/core";
 import { IMAGE_URL, NoReasonOption } from "../../Data/DataList";
@@ -39,10 +39,7 @@ const PhysicalL1L2 = () => {
         itemCode: searchItemCode,
       };
       axios
-        .post(
-          `${HostManager.reportsL1L2}/INDENT/express/get/product/details`,
-          SearchByItemCoe
-        )
+        .post(`${HOST_URL}/INDENT/express/get/product/details`, SearchByItemCoe)
         .then((res) => res)
         .then((response) => {
           if (response.data.code === "1000") {
@@ -165,7 +162,7 @@ const PhysicalL1L2 = () => {
 
       axios
         .post(
-          `${HostManager.reportsL1L2}/INDENT/express/insert/responses`,
+          `${HOST_URL}/INDENT/express/insert/responses`,
           getProductInputData
         )
         .then((res) => res)

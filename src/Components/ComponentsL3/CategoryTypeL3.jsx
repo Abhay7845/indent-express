@@ -7,7 +7,7 @@ import TablePagination from "@mui/material/TablePagination";
 import { BsCardList, BsCartFill, BsFillBarChartFill } from "react-icons/bs";
 import Loader from "../../Common/Loader";
 import axios from "axios";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import { IMAGE_URL } from "../../Data/DataList";
 import ShowImageCart from "./ShowImageCart";
 import swal from "sweetalert";
@@ -34,7 +34,7 @@ const CategoryTypeL3 = (props) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${HostManager.reportsL1L2}/INDENT/express/get/itemcode/list`)
+      .get(`${HOST_URL}/INDENT/express/get/itemcode/list`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -61,7 +61,7 @@ const CategoryTypeL3 = (props) => {
   const SearchProductByItemCode = () => {
     setLoading(true);
     axios
-      .get(`${HostManager.reportsL1L2}/INDENT/express/get/itemcode/list`)
+      .get(`${HOST_URL}/INDENT/express/get/itemcode/list`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -88,7 +88,7 @@ const CategoryTypeL3 = (props) => {
     };
     axios
       .post(
-        `${HostManager.reportsL1L2}/INDENT/express/get/product/details`,
+        `${HOST_URL}/INDENT/express/get/product/details`,
         GetProductsDetails
       )
       .then((res) => res)

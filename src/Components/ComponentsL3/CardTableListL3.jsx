@@ -8,7 +8,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import ChooseDynamicTag from "./ChooseDynamicTag";
 import BangleMultiUOMSize from "./BangleMultiUOMSize";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import IndentQuantityFiled from "./IndentQuantityFiled";
 import ChooseMultiSize from "./ChooseMultiSize";
 import StoneQualityTable from "./StoneQualityTable";
@@ -59,9 +59,7 @@ const CardTableList = (props) => {
   const ReloadTableRows = () => {
     setLoading(true);
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/item/wise/rpt/L3/${storeCode}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/item/wise/rpt/L3/${storeCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -83,9 +81,7 @@ const CardTableList = (props) => {
   const ErrorOnConfirmMail = () => {
     setLoading(true);
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/L3/store/status/update/${storeCode}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/L3/store/status/update/${storeCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -117,7 +113,7 @@ const CardTableList = (props) => {
     setLoading(true);
     axios
       .post(
-        `${HostManager.reportsL1L2}/INDENTL3/express/item/wise/rpt/edr/L3/${storeCode}`,
+        `${HOST_URL}/INDENTL3/express/item/wise/rpt/edr/L3/${storeCode}`,
         ConfirmMailData
       )
       .then((res) => res)
@@ -144,9 +140,7 @@ const CardTableList = (props) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/item/wise/rpt/L3/${storeCode}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/item/wise/rpt/L3/${storeCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -168,9 +162,7 @@ const CardTableList = (props) => {
   // DROPDOWN SIZE FOR NORMAL
   useEffect(() => {
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/size/dropdown/${itemCode}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/size/dropdown/${itemCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -185,7 +177,7 @@ const CardTableList = (props) => {
   useEffect(() => {
     axios
       .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20GENTS`
+        `${HOST_URL}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20GENTS`
       )
       .then((res) => res)
       .then((result) => {
@@ -200,7 +192,7 @@ const CardTableList = (props) => {
   useEffect(() => {
     axios
       .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20LADIES`
+        `${HOST_URL}/INDENTL3/express/L3/dropdown/couple/band/${itemCode}/COUPLE%20LADIES`
       )
       .then((res) => res)
       .then((result) => {
@@ -244,7 +236,7 @@ const CardTableList = (props) => {
     console.log("DeleRowInputData==>", DeleRowInputData);
     axios
       .post(
-        `${HostManager.reportsL1L2}/INDENTL3/express/update/responses/from/L3`,
+        `${HOST_URL}/INDENTL3/express/update/responses/from/L3`,
         DeleRowInputData
       )
       .then((res) => res)
@@ -339,7 +331,7 @@ const CardTableList = (props) => {
     console.log("CancelIndentInputsData==>", CancelIndentInputsData);
     axios
       .post(
-        `${HostManager.reportsL1L2}/INDENTL3/express/update/responses/from/L3`,
+        `${HOST_URL}/INDENTL3/express/update/responses/from/L3`,
         CancelIndentInputsData
       )
       .then((res) => res)
@@ -400,7 +392,7 @@ const CardTableList = (props) => {
     };
     axios
       .post(
-        `${HostManager.reportsL1L2}/INDENTL3/express/update/responses/from/L3`,
+        `${HOST_URL}/INDENTL3/express/update/responses/from/L3`,
         UpdateInputData
       )
       .then((res) => res)
@@ -433,9 +425,7 @@ const CardTableList = (props) => {
   const SendMail = () => {
     setLoading(true);
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENTL3/express/L3/mail/content/${storeCode}`
-      )
+      .get(`${HOST_URL}/INDENTL3/express/L3/mail/content/${storeCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {

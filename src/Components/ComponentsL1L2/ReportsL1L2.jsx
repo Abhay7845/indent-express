@@ -13,7 +13,7 @@ import * as Icon from "react-bootstrap-icons";
 import TablePagination from "@mui/material/TablePagination";
 import axios from "axios";
 import { Select } from "antd";
-import { HostManager } from "../../APIList/HotMaster";
+import { HOST_URL } from "../../API/HotMaster";
 import swal from "sweetalert";
 import { FormControlLabel, Switch } from "@material-ui/core";
 import {
@@ -59,9 +59,7 @@ const ReportsL1L2 = (props) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(
-        `${HostManager.reportsL1L2}/INDENT/express/${submitted}/report/L1/${storeCode}`
-      )
+      .get(`${HOST_URL}/INDENT/express/${submitted}/report/L1/${storeCode}`)
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -155,7 +153,7 @@ const ReportsL1L2 = (props) => {
       };
       axios
         .post(
-          `${HostManager.reportsL1L2}/INDENTL3/express/update/responses`,
+          `${HOST_URL}/INDENTL3/express/update/responses`,
           getProductInputData
         )
         .then((res) => res)
