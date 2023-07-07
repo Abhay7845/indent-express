@@ -420,6 +420,23 @@ const CardTableList = (props) => {
         setLoading(false);
       });
   };
+  // SEN MAIL ERROR HANDLING
+  const SendMailErrorHandel = () => {
+    setLoading(true);
+    axios
+      .get(`${HOST_URL}/INDENTL3/express/L3/store/status/update/${storeCode}`)
+      .then((res) => res)
+      .then((response) => {
+        if ((response.data.code = "1000")) {
+          console.log("");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("");
+        setLoading(false);
+      });
+  };
 
   // SEND MAIL API CALLING
   const SendMail = () => {
@@ -428,23 +445,31 @@ const CardTableList = (props) => {
       .get(`${HOST_URL}/INDENTL3/express/L3/mail/content/${storeCode}`)
       .then((res) => res)
       .then((response) => {
+        const success =
+          "Thankyou for completing the Indent Confirmation Process successfully";
+        const error = "There was an error in Triggering email Please try Again";
+        const msg =
+          response.data.value.storeNPIMStatus === "LOCKED"
+            ? `${response.data.value.storeNPIMStatus}, And Mail Already Sent`
+            : response.data.mailStatus === "sent successfully"
+            ? success
+            : error;
         if (response.data.code === "1000") {
-          const success =
-            "Thankyou for completing the Indent Confirmation Process successfully";
-          const error =
-            "There was an error in Triggering email Please try Again";
-          const msg =
-            response.data.value.storeNPIMStatus === "LOCKED"
-              ? `${response.data.value.storeNPIMStatus}, And Mail Already Sent`
-              : response.data.mailStatus === "Sent successfully"
-              ? success
-              : error;
           swal({
             title: "Success",
             text: msg,
             icon: "success",
             buttons: "OK",
           });
+        }
+        if (response.data.code === "1002") {
+          swal({
+            title: "Error",
+            text: error,
+            icon: "error",
+            buttons: "OK",
+          });
+          SendMailErrorHandel();
         }
         setLoading(false);
       })
