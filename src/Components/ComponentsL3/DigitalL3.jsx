@@ -20,7 +20,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { IMAGE_URL, ItemWiseReportsDropdown } from "../../Data/DataList";
 import { Select } from "antd";
 
-const ComponentL3 = (props) => {
+const DigitalL3 = (props) => {
   const { showAlert } = props;
   const navigate = useNavigate();
   const storeCode = localStorage.getItem("indent-expressId");
@@ -274,4 +274,4 @@ const ComponentL3 = (props) => {
   );
 };
 
-export default ComponentL3;
+export default DigitalL3;

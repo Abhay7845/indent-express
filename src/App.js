@@ -8,7 +8,6 @@ import { FeedBackFormL1L2 } from "./Components/ComponentsL1L2/FeedBackFormL1L2";
 import Alert from "./Common/Alert";
 import ReportsL1L2 from "./Components/ComponentsL1L2/ReportsL1L2";
 import Admin from "./Components/Admin/Admin";
-import ComponentL3 from "./Components/ComponentsL3/ComponentL3";
 import StatusReportsL1L2 from "./Components/ComponentsL1L2/StatusReportsL1L2";
 import AlertModal from "./Common/AlertModal";
 import StatusReportsL3 from "./Components/ComponentsL3/StatusReportsL3";
@@ -18,6 +17,7 @@ import PhysicalL1L2 from "./Components/ComponentsL1L2/PhysicalL1L2";
 import PhysicalL3 from "./Components/ComponentsL3/PhysicalL3";
 import CancelDataReport from "./Components/ComponentsL3/CancelDataReport";
 import CategoryTypeL3 from "./Components/ComponentsL3/CategoryTypeL3";
+import DigitalL3 from "./Components/ComponentsL3/DigitalL3";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -66,7 +66,7 @@ const App = () => {
             {/* L3 COMPONENTS */}
             <Route
               path="/Indent-express/L3/digital/home"
-              element={<ComponentL3 showAlert={showAlert} />}
+              element={<DigitalL3 showAlert={showAlert} />}
             />
             <Route
               path="/Indent-express/L3/status/reports"
