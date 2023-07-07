@@ -160,9 +160,8 @@ const ComponentL3 = (props) => {
           </Link>
         </div>
       </div>
-
-      <div className="d-flex row mx-1 mt-4">
-        <div className="d-flex col-4">
+      <div className="row g-2 mx-2 mt-4">
+        <div className="col-md-4">
           <input
             type="text"
             className="GInput"
@@ -170,12 +169,12 @@ const ComponentL3 = (props) => {
             onChange={(e) => setSearchItemCode(e.target.value)}
           />
         </div>
-        <div className="col-4">
+        <div className="col-md-4">
           <b className="mx-2 text-danger">
             {productsData.length <= 0 ? "DATA NOT FOUND" : ""}
           </b>
         </div>
-        <div className="col-4">
+        <div className="col-md-4">
           <Select
             className="w-100"
             placeholder="Select"
