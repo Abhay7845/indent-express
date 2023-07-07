@@ -768,23 +768,26 @@ const CardTableList = (props) => {
           </div>
         </div>
       )}
-      <div className="row d-flex justify-content-between mx-0 my-3">
-        <div className="col-md-3">
+
+      <div class="row g-2 my-2">
+        <div class="col-md-4">
           <input
             type="text"
             value={searchItemCode}
-            className="SearchRowByItem"
+            className="SearchRowByItem w-100"
             placeholder="Search by Item Code"
             onChange={(e) => setSearchItemCode(e.target.value)}
           />
         </div>
-        <div className="col-md-4 text-center mt-2">
+        <div class="col-md-4 d-flex justify-content-between">
+          <b className="text-primary">TOTAL COUNT- {DataRows.length}</b>
+          <b className="text-primary">||</b>
           <b className="text-primary">
-            TOTAL COUNT- {DataRows.length} || SUCCESSFUL COUNT-
+            SUCCESSFUL COUNT-
             {SuccessCount.length}
           </b>
         </div>
-        <div className="col-md-4 confirmButtons">
+        <div class="col-md-4 d-flex confirmButtons">
           <button className="confirmSendmail mx-2" onClick={ConfirmMail}>
             CONFIRM
           </button>
