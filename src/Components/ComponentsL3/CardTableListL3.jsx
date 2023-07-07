@@ -769,8 +769,8 @@ const CardTableList = (props) => {
         </div>
       )}
 
-      <div class="row g-2 my-2">
-        <div class="col-md-4">
+      <div className="row g-2 my-2 ConfirmCollumreverse">
+        <div className="col-md-4">
           <input
             type="text"
             value={searchItemCode}
@@ -779,7 +779,7 @@ const CardTableList = (props) => {
             onChange={(e) => setSearchItemCode(e.target.value)}
           />
         </div>
-        <div class="col-md-4 text-danger">
+        <div className="col-md-4 text-danger">
           <div className="mt-3 d-flex justify-content-between mx-2">
             <b>TOTAL COUNT- {DataRows.length}</b>
             <b>||</b>
@@ -789,7 +789,7 @@ const CardTableList = (props) => {
             </b>
           </div>
         </div>
-        <div class="col-md-4 d-flex confirmButtons">
+        <div className="col-md-4 d-flex confirmButtons">
           <button className="confirmSendmail mx-2" onClick={ConfirmMail}>
             CONFIRM
           </button>
