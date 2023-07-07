@@ -16,6 +16,7 @@ import ChooseMultiSize from "./ChooseMultiSize";
 import IndentQuantityFiled from "./IndentQuantityFiled";
 import StoneQualityDropdown from "../../Common/StoneQualityDropdown";
 import StoneQualityTable from "./StoneQualityTable";
+import ChooseMultiSizeForLadies from "./ChooseMultiSizeForLadies";
 
 const CancelTableList = (props) => {
   const { col, rows } = props;
@@ -31,6 +32,7 @@ const CancelTableList = (props) => {
   const [tagQuantity, SetTagQuantity] = useState([]);
   const [sizeUomQuantity, SetSizeUomQuantity] = useState([]);
   const [sizeQuantity, setSizeQuantity] = useState([]);
+  const [getLadiesSizeValue, setGetLadiesSizeValue] = useState([]);
   const [findingsRes, setFindings] = useState("");
   const [stoneQuality, setStoneQuality] = useState("");
   const [indentQuantity, setIndentQuantity] = useState("");
@@ -39,6 +41,7 @@ const CancelTableList = (props) => {
   const digit = !itemCode ? "" : itemCode[6];
   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
   const imageURL = `${IMAGE_URL}${imageCode}`;
+  const sizeQuantities = [...sizeQuantity, ...getLadiesSizeValue];
 
   const DataRows = rows.filter((eachRow) =>
     eachRow.itemCode.includes(searchItemCode.toUpperCase())
@@ -114,6 +117,9 @@ const CancelTableList = (props) => {
   };
   const GetChooseSizeData = (getSizeData) => {
     setSizeQuantity(getSizeData);
+  };
+  const GetLadiesSizeValue = (getSizeData) => {
+    setGetLadiesSizeValue(getSizeData);
   };
   const GetFindingData = (findingValue) => {
     setFindings(findingValue.target.value);
@@ -197,7 +203,7 @@ const CancelTableList = (props) => {
       exStonequality: reportRowTable.stoneQuality,
       findings: findingsRes,
       sizeUomQuantitys: sizeUomQuantity,
-      sizeQuantitys: sizeQuantity,
+      sizeQuantitys: sizeQuantities,
       tagQuantitys: tagQuantity,
     };
     axios
@@ -412,9 +418,9 @@ const CancelTableList = (props) => {
                               <span className="text-primary mt-2">
                                 FOR LADIES
                               </span>
-                              <ChooseMultiSize
+                              <ChooseMultiSizeForLadies
                                 optionsList={CoupleLadiesSize}
-                                GetChooseSizeData={GetChooseSizeData}
+                                GetLadiesSizeValue={GetLadiesSizeValue}
                               />
                             </div>
                           )}

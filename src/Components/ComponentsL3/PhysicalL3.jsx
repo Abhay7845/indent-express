@@ -24,6 +24,7 @@ import ChooseMultiSize from "./ChooseMultiSize";
 import IndentQuantityFiled from "./IndentQuantityFiled";
 import StoneQualityDropdown from "../../Common/StoneQualityDropdown";
 import StoneQualityTable from "./StoneQualityTable";
+import ChooseMultiSizeForLadies from "./ChooseMultiSizeForLadies";
 
 const PhysicalL3 = () => {
   const storeCode = localStorage.getItem("indent-expressId");
@@ -38,6 +39,7 @@ const PhysicalL3 = () => {
   const [tagQuantity, SetTagQuantity] = useState([]);
   const [sizeUomQuantity, SetSizeUomQuantityRes] = useState([]);
   const [sizeQuantity, setSizeQuantityRes] = useState([]);
+  const [getLadiesSizeValue, setGetLadiesSizeValue] = useState([]);
   const [findingsRes, setFindings] = useState("");
   const [stoneQuality, setStoneQualityRes] = useState("");
   const [indentQuantity, setIndentQuantityRes] = useState("");
@@ -45,7 +47,7 @@ const PhysicalL3 = () => {
   const [coupleBandValue, setCoupleBandValue] = useState("");
   const { itemCode, videoLink } = productsDetails;
   const digit = !itemCode ? "" : itemCode[6];
-  console.log("productsDetails==>", productsDetails);
+  const sizeQuantities = [...sizeQuantity, ...getLadiesSizeValue];
 
   // STONE QUANTITY DATA
   const SI_2GH = productsDetails.si2Gh;
@@ -164,6 +166,9 @@ const PhysicalL3 = () => {
   const GetChooseSizeData = (getSizeData) => {
     setSizeQuantityRes(getSizeData);
   };
+  const GetLadiesSizeValue = (getSizeData) => {
+    setGetLadiesSizeValue(getSizeData);
+  };
   const GetFindingData = (findingValue) => {
     setFindings(findingValue.target.value);
   };
@@ -204,7 +209,7 @@ const PhysicalL3 = () => {
       stoneQualityVal: productsDetails.stoneQualityVal,
       set2Type: typeSet2,
       indQty: indentQuantity,
-      sizeQuantitys: sizeQuantity,
+      sizeQuantitys: sizeQuantities,
       sizeUomQuantitys: sizeUomQuantity,
       findings: findingsRes,
       stoneQuality: stoneQuality,
@@ -513,16 +518,14 @@ const PhysicalL3 = () => {
                               <span className="text-primary">FOR GENTS</span>
                               <ChooseMultiSize
                                 optionsList={CoupleGentsSize}
-                                singleProductsDetails={productsDetails}
                                 GetChooseSizeData={GetChooseSizeData}
                               />
                               <span className="text-primary mt-2">
                                 FOR LADIES
                               </span>
-                              <ChooseMultiSize
+                              <ChooseMultiSizeForLadies
                                 optionsList={CoupleLadiesSize}
-                                singleProductsDetails={productsDetails}
-                                GetChooseSizeData={GetChooseSizeData}
+                                GetLadiesSizeValue={GetLadiesSizeValue}
                               />
                             </div>
                           )}
