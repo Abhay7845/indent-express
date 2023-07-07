@@ -779,10 +779,10 @@ const CardTableList = (props) => {
             onChange={(e) => setSearchItemCode(e.target.value)}
           />
         </div>
-        <div class="col-md-4 d-flex justify-content-between">
-          <b className="text-primary">TOTAL COUNT- {DataRows.length}</b>
-          <b className="text-primary">||</b>
-          <b className="text-primary">
+        <div class="col-md-4 d-flex justify-content-between text-danger">
+          <b>TOTAL COUNT- {DataRows.length}</b>
+          <b>||</b>
+          <b>
             SUCCESSFUL COUNT-
             {SuccessCount.length}
           </b>
