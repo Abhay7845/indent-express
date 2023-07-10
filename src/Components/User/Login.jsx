@@ -8,6 +8,7 @@ import ShowError from "../../Schema/ShowError";
 import image from "../../Asset/Img/Tanishq_Logo1.png";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { HOST_URL } from "../../API/HotMaster";
+import { useEffect } from "react";
 
 const Login = (props) => {
   const { showAlert } = props;
@@ -53,6 +54,22 @@ const Login = (props) => {
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
+
+  // come from PAI
+  const ResponseDate = Date();
+  const loginTime = new Date(ResponseDate).getTime();
+
+  ////Login time
+  const currentDate = Date();
+  const currentTime = new Date(currentDate).getTime();
+  useEffect(() => {
+    if (loginTime < currentTime) {
+      //REdirect on home page
+    } else {
+      // PLEASE LOGIN AGAIN
+    }
+  }, [currentTime, loginTime]);
+
   return (
     <>
       <div className="col RegisterLeftRight">
