@@ -87,7 +87,7 @@ const Login = (props) => {
                 <b>
                   Password <span className="text-danger"> *</span>
                 </b>
-                <div className="d-flex ">
+                <div className="d-flex">
                   <Field
                     type={passwordShown ? "text" : "password"}
                     placeholder="Password"
