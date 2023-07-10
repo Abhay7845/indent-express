@@ -70,6 +70,10 @@ const Login = (props) => {
     }
   }, [currentTime, loginTime]);
 
+  useEffect(() => {
+    localStorage.removeItem("indent-expressId");
+  }, []);
+
   return (
     <>
       <div className="col RegisterLeftRight">
