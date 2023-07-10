@@ -55,21 +55,6 @@ const Login = (props) => {
     setPasswordShown(!passwordShown);
   };
 
-  // come from PAI
-  const ResponseDate = Date();
-  const loginTime = new Date(ResponseDate).getTime();
-
-  ////Login time
-  const currentDate = Date();
-  const currentTime = new Date(currentDate).getTime();
-  useEffect(() => {
-    if (loginTime < currentTime) {
-      //REdirect on home page
-    } else {
-      // PLEASE LOGIN AGAIN
-    }
-  }, [currentTime, loginTime]);
-
   useEffect(() => {
     localStorage.removeItem("indent-expressId");
   }, []);
