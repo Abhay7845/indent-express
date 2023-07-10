@@ -211,27 +211,7 @@ const CardTableList = (props) => {
     const DeleRowInputData = {
       itemCode: DeleteRow.itemCode,
       strCode: storeCode,
-      saleable: "",
-      exIndCategory: !DeleteRow.indCategory ? "" : DeleteRow.indCategory,
-      exStonequality: "stdUCP",
-      indCategory: "0",
-      indQty: "0",
-      size: "0",
-      uom: "0",
-      stoneQuality: !DeleteRow.stoneQuality ? "0-0" : DeleteRow.stoneQuality,
-      npimEventNo: "1",
-      exUOM: !DeleteRow.uom ? "" : DeleteRow.uom,
-      exSize: !DeleteRow.size ? "" : DeleteRow.size,
-      findings: "",
-      reasons: "",
-      rsoName: "",
-      set2Type: "",
-      IndentLevelType: "L3",
-      stoneQualityVal: "0",
-      submitStatus: "report",
-      sizeUomQuantitys: [],
-      sizeQuantitys: [],
-      tagQuantitys: [],
+      size: DeleteRow.size,
     };
     console.log("DeleRowInputData==>", DeleRowInputData);
     axios
@@ -260,7 +240,6 @@ const CardTableList = (props) => {
   const UpdateRowData = (UpdateRow) => {
     window.scrollTo({ top: "0", behavior: "smooth" });
     setReportRowTable(UpdateRow);
-    console.log("UpdateRow==>", UpdateRow);
   };
 
   const DataRows = rows.filter((eachRow) =>
