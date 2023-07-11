@@ -15,10 +15,56 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url("../Asset/Img/LoginBg.jpg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: 100% 100%;
+    animation: changeImage 30s linear infinite;
+}
+
+@keyframes changeImage {
+    0% {
+        background-image: url("../Asset//Img/SliderImage/Bengali.JPG");
+    }
+
+    10% {
+        background-image: url("../Asset//Img/SliderImage/Bihari.JPG");
+    }
+
+    20% {
+        background-image: url("../Asset//Img/SliderImage/Gujrathi.JPG");
+    }
+
+    30% {
+        background-image: url("../Asset//Img/SliderImage/Kannadiga.JPG");
+    }
+
+    40% {
+        background-image: url("../Asset//Img/SliderImage/Malyali.JPG");
+    }
+
+    50% {
+        background-image: url("../Asset//Img/SliderImage/Marathi.JPG");
+    }
+
+    60% {
+        background-image: url("../Asset//Img/SliderImage/Muslim.JPG");
+    }
+
+    70% {
+        background-image: url("../Asset//Img/SliderImage/Odia.JPG");
+    }
+
+    80% {
+        background-image: url("../Asset//Img/SliderImage/Punjabi.JPG");
+    }
+
+    90% {
+        background-image: url("../Asset//Img/SliderImage/Rajasthani.JPG");
+    }
+
+    100% {
+        background-image: url("../Asset//Img/SliderImage/Tamilian.JPG");
+    }
 }
 
 .Form_style {
