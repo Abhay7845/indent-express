@@ -15,6 +15,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-image: url("../Asset//Img/L1L2Background.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
