@@ -352,15 +352,15 @@ const AddProductsL3 = (props) => {
                   ""
                 )}
                 {/*<-----------------------INDENT QUANTITY BOX-----------------------------------> */}
-                {digit === "N" ||
-                digit === "O" ||
-                digit === "D" ||
-                !category ? (
+                {!category ? (
                   ""
                 ) : category
                     .toUpperCase()
                     .replace(/\s{2,}/g, " ")
                     .trim() === "OTHER" ||
+                  digit === "N" ||
+                  digit === "O" ||
+                  digit === "D" ||
                   digit === "H" ||
                   digit === "J" ||
                   digit === "S" ||
