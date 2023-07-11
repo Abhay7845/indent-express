@@ -77,7 +77,9 @@
     }
 }
 
-
+.loginPageStyle {
+    background-color: #f9f7f7;
+}
 
 .Form_style {
     display: flex;
