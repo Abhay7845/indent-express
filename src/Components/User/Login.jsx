@@ -61,8 +61,9 @@ const Login = (props) => {
 
   return (
     <>
-      <div className="col RegisterLeftRight">
-        <div className="Form_style">
+      <div className="row mx-0">
+        <div className="col-8 RegisterLeftRight"></div>
+        <div className="col-4 Form_style">
           <div className="text-center" style={{ color: "#832729" }}>
             <img src={image} alt="tanishq" height="60" width="70" />
           </div>
@@ -71,74 +72,91 @@ const Login = (props) => {
             validationSchema={LoginSchema}
             onSubmit={(payload) => onLogin(payload)}
           >
-            <Form>
-              <div className="my-1">
-                <b>
-                  Username <span className="text-danger"> *</span>
-                </b>
-                <Field
-                  placeholder="Username"
-                  name="userID"
-                  className="GInput"
-                />
-                <ShowError name="userID" />
+            <>
+              <div className="wrapper">
+                <div className="box">
+                  <div>TANISHQ</div>
+                  <div>TANISHQ</div>
+                  <div>TANISHQ</div>
+                  <div>TANISHQ</div>
+                  <div>TANISHQ</div>
+                  <div>TANISHQ</div>
+                  <div>TANISHQ</div>
+                  <div>TANISHQ</div>
+                  <div>TANISHQ</div>
+                  <div>TANISHQ</div>
+                </div>
               </div>
-              <div className="my-2">
-                <b>
-                  Password <span className="text-danger"> *</span>
-                </b>
-                <div className="d-flex">
+              <Form className="w-100">
+                <div className="my-1">
+                  <b>
+                    Username <span className="text-danger"> *</span>
+                  </b>
                   <Field
-                    type={passwordShown ? "text" : "password"}
-                    placeholder="Password"
+                    placeholder="Username"
+                    name="userID"
                     className="GInput"
-                    name="password"
+                    type="text"
                   />
-                  <span className="border-bottom">
-                    {passwordShown ? (
-                      <FaRegEye
-                        size={20}
-                        cursor="pointer"
-                        onClick={togglePassword}
-                        style={{ marginTop: 15 }}
+                  <ShowError name="userID" />
+                </div>
+                <div className="my-2">
+                  <b>
+                    Password <span className="text-danger"> *</span>
+                  </b>
+                  <div className="d-flex">
+                    <Field
+                      type={passwordShown ? "text" : "password"}
+                      placeholder="Password"
+                      className="GInput"
+                      name="password"
+                    />
+                    <span className="border-bottom">
+                      {passwordShown ? (
+                        <FaRegEye
+                          size={20}
+                          cursor="pointer"
+                          onClick={togglePassword}
+                          style={{ marginTop: 15 }}
+                        />
+                      ) : (
+                        <FaRegEyeSlash
+                          size={20}
+                          cursor="pointer"
+                          onClick={togglePassword}
+                          style={{ marginTop: 15 }}
+                        />
+                      )}
+                    </span>
+                  </div>
+                  <ShowError name="password" />
+                </div>
+                <div className="my-2">
+                  <b>
+                    RSO Name <span className="text-danger"> *</span>
+                  </b>
+                  <Field
+                    placeholder="RSO Name"
+                    className="GInput"
+                    name="region"
+                  />
+                  <ShowError name="region" />
+                </div>
+                <div className="d-flex justify-content-end">
+                  <button type="submit" className="CButton">
+                    {loading ? (
+                      <span
+                        className="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
                       />
                     ) : (
-                      <FaRegEyeSlash
-                        size={20}
-                        cursor="pointer"
-                        onClick={togglePassword}
-                        style={{ marginTop: 15 }}
-                      />
+                      <span className="sr-only">LOGIN</span>
                     )}
-                  </span>
+                  </button>
                 </div>
-                <ShowError name="password" />
-              </div>
-              <div className="my-2">
-                <b>
-                  RSO Name <span className="text-danger"> *</span>
-                </b>
-                <Field
-                  placeholder="RSO Name"
-                  className="GInput"
-                  name="region"
-                />
-                <ShowError name="region" />
-              </div>
-              <div className="d-flex justify-content-end">
-                <button type="submit" className="CButton">
-                  {loading ? (
-                    <span
-                      className="spinner-border spinner-border-sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <span className="sr-only">LOGIN</span>
-                  )}
-                </button>
-              </div>
-            </Form>
+              </Form>
+            </>
           </Formik>
         </div>
       </div>
