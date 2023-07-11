@@ -18,7 +18,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
-    animation: changeImage 30s linear infinite;
+    animation: changeImage 70s linear infinite;
 }
 
 @keyframes changeImage {
