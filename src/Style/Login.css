@@ -19,7 +19,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
-    animation: changeImage 40s linear infinite;
+    animation: changeImage 140s linear infinite;
 }
 
 @media screen and (max-width:982px) {
@@ -33,44 +33,84 @@
         background-image: url("../Asset//Img/SliderImage/Bengali.JPG");
     }
 
-    10% {
+    5% {
         background-image: url("../Asset//Img/SliderImage/Bihari.JPG");
     }
 
-    20% {
+    10% {
         background-image: url("../Asset//Img/SliderImage/Gujrathi.JPG");
     }
 
-    30% {
+    15% {
         background-image: url("../Asset//Img/SliderImage/Kannadiga.JPG");
     }
 
-    40% {
+    20% {
         background-image: url("../Asset//Img/SliderImage/Malyali.JPG");
     }
 
-    50% {
+    25% {
         background-image: url("../Asset//Img/SliderImage/Marathi.JPG");
     }
 
-    60% {
+    30% {
         background-image: url("../Asset//Img/SliderImage/Muslim.JPG");
     }
 
-    70% {
+    35% {
         background-image: url("../Asset//Img/SliderImage/Odia.JPG");
     }
 
-    80% {
+    40% {
         background-image: url("../Asset//Img/SliderImage/Punjabi.JPG");
     }
 
-    90% {
+    45% {
         background-image: url("../Asset//Img/SliderImage/Rajasthani.JPG");
     }
 
-    100% {
+    50% {
         background-image: url("../Asset//Img/SliderImage/Tamilian.JPG");
+    }
+
+    55% {
+        background-image: url("../Asset//Img/SliderImage/Bengali.JPG");
+    }
+
+    60% {
+        background-image: url("../Asset//Img/SliderImage/Bihari.JPG");
+    }
+
+    65% {
+        background-image: url("../Asset//Img/SliderImage/Gujrathi.JPG");
+    }
+
+    70% {
+        background-image: url("../Asset//Img/SliderImage/Kannadiga.JPG");
+    }
+
+    75% {
+        background-image: url("../Asset//Img/SliderImage/Malyali.JPG");
+    }
+
+    80% {
+        background-image: url("../Asset//Img/SliderImage/Marathi.JPG");
+    }
+
+    85% {
+        background-image: url("../Asset//Img/SliderImage/Muslim.JPG");
+    }
+
+    90% {
+        background-image: url("../Asset//Img/SliderImage/Odia.JPG");
+    }
+
+    95% {
+        background-image: url("../Asset//Img/SliderImage/Punjabi.JPG");
+    }
+
+    100% {
+        background-image: url("../Asset//Img/SliderImage/Rajasthani.JPG");
     }
 }
 
