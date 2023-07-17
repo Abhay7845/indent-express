@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import "./App.css";
 import "tippy.js/dist/tippy.css";
@@ -30,6 +32,10 @@ const App = () => {
       setAlert(null);
     }, 3000);
   };
+
+  document.addEventListener("blockInspect", function (e) {
+    e.preventDefault();
+  });
   return (
     <>
       <BrowserRouter>
@@ -38,59 +44,59 @@ const App = () => {
         <Routes>
           <Route
             index
-            path="/IndentExpress"
+            path='/IndentExpress'
             element={<Login showAlert={showAlert} />}
           />
           <Route element={<PrivateComponent />}>
             {/* L1L2 COMPONENTS */}
             <Route
-              path="/Indent-express/feedback/L1/L2"
+              path='/Indent-express/feedback/L1/L2'
               element={<FeedBackFormL1L2 showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/L1/L2/products/reports"
+              path='/Indent-express/L1/L2/products/reports'
               element={<ReportsL1L2 showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/L1/L2/status/reports"
+              path='/Indent-express/L1/L2/status/reports'
               element={<StatusReportsL1L2 showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/L1/L2/physical/home"
+              path='/Indent-express/L1/L2/physical/home'
               element={<PhysicalL1L2 showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/direction/home"
+              path='/Indent-express/direction/home'
               element={<RedirectionHomePage showAlert={showAlert} />}
             />
             {/* L3 COMPONENTS */}
             <Route
-              path="/Indent-express/L3/digital/home"
+              path='/Indent-express/L3/digital/home'
               element={<DigitalL3 showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/L3/status/reports"
+              path='/Indent-express/L3/status/reports'
               element={<StatusReportsL3 showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/L3/your/cart/reports"
+              path='/Indent-express/L3/your/cart/reports'
               element={<YourProductsCart showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/L3/cancel/item/list"
+              path='/Indent-express/L3/cancel/item/list'
               element={<CancelDataReport showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/L3/physical/home"
+              path='/Indent-express/L3/physical/home'
               element={<PhysicalL3 showAlert={showAlert} />}
             />
             <Route
-              path="/Indent-express/L3/digital/:categoryType"
+              path='/Indent-express/L3/digital/:categoryType'
               element={<CategoryTypeL3 showAlert={showAlert} />}
             />
             {/* ADMIN COMPONENTS */}
             <Route
-              path="/Indent-express/admin"
+              path='/Indent-express/admin'
               element={<Admin showAlert={showAlert} />}
             />
           </Route>
