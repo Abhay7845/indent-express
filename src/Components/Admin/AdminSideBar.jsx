@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import * as Icon from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
@@ -16,111 +18,102 @@ const AdminSideBar = () => {
   };
   const UserRole = localStorage.getItem("indent-expressId").toUpperCase();
   return (
-    <>
+    <div>
       <Icon.TextLeft
         onClick={ToggleSidebar}
         size={30}
-        className="text-dark mt-1 mx-2"
-        cursor="pointer"
+        className='text-dark mt-1 mx-2'
+        cursor='pointer'
       />
       <div
         className={`sidebar light-theme  ${isOpen === true ? "active" : ""}`}
-        style={{ background: "#f5ea84" }}
-      >
-        <div className="d-flex justify-content-between">
-          <img src={logo} alt="logo" className="Logo my-3 mx-4" />
+        style={{ background: "#f5ea84" }}>
+        <div className='d-flex justify-content-between'>
+          <img src={logo} alt='logo' className='Logo my-3 mx-4' />
           <BsXLg
             onClick={ToggleSidebar}
             size={20}
-            className="text-dark mt-3 mx-2"
-            cursor="pointer"
+            className='text-dark mt-3 mx-2'
+            cursor='pointer'
           />
         </div>
-        <div className="sd-body">
-          <ul className="mx-2">
+        <div className='sd-body'>
+          <ul className='mx-2'>
             {UserRole === "ADMIN" ? (
               <>
-                <li className="my-3">
+                <li className='my-3'>
                   <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
+                    className='NavigationStyle'
+                    to='/Indent-express/admin'
+                    onClick={ToggleSidebar}>
                     <Icon.HouseDashFill
                       size={20}
                       style={{ marginTop: "-10px" }}
-                      className="mx-1"
+                      className='mx-1'
                     />
                     HOME
                   </Link>
                   <hr />
                 </li>
-                <li className="my-3">
+                <li className='my-3'>
                   <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
+                    className='NavigationStyle'
+                    to='/Indent-express/admin'
+                    onClick={ToggleSidebar}>
                     COPY STORE INDENTS
                   </Link>
                   <hr />
                 </li>
-                <li className="my-3">
+                <li className='my-3'>
                   <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
+                    className='NavigationStyle'
+                    to='/Indent-express/admin'
+                    onClick={ToggleSidebar}>
                     MASTER FILE UPLOAD
                   </Link>
                   <hr />
                 </li>
-                <li className="my-3">
+                <li className='my-3'>
                   <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
+                    className='NavigationStyle'
+                    to='/Indent-express/admin'
+                    onClick={ToggleSidebar}>
                     UPDATE PORTAL STATUS
                   </Link>
                   <hr />
                 </li>
-                <li className="my-3">
+                <li className='my-3'>
                   <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
+                    className='NavigationStyle'
+                    to='/Indent-express/admin'
+                    onClick={ToggleSidebar}>
                     GET MASTER SKU
                   </Link>
                   <hr />
                 </li>
-                <li className="my-3">
+                <li className='my-3'>
                   <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
+                    className='NavigationStyle'
+                    to='/Indent-express/admin'
+                    onClick={ToggleSidebar}>
                     LOGIN CREDENTIALS
                   </Link>
                   <hr />
                 </li>
-                <li className="my-3">
+                <li className='my-3'>
                   <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
+                    className='NavigationStyle'
+                    to='/Indent-express/admin'
+                    onClick={ToggleSidebar}>
                     DAY END REPORTS
                   </Link>
                   <hr />
                 </li>
-                <li className="my-3">
+                <li className='my-3'>
                   <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/admin"
-                    onClick={ToggleSidebar}
-                  >
+                    className='NavigationStyle'
+                    to='/Indent-express/admin'
+                    onClick={ToggleSidebar}>
                     UPDATE AUTO MAIL
                   </Link>
                   <hr />
@@ -130,44 +123,41 @@ const AdminSideBar = () => {
               <>
                 <li>
                   <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/feedback/L1/L2"
-                    onClick={ToggleSidebar}
-                  >
+                    className='NavigationStyle'
+                    to='/Indent-express/feedback/L1/L2'
+                    onClick={ToggleSidebar}>
                     <Icon.HouseDashFill
                       size={20}
                       style={{ marginTop: "-10px" }}
-                      className="mx-1"
+                      className='mx-1'
                     />
                     HOME
                   </Link>
                 </li>
                 <hr />
-                <li className="my-3">
+                <li className='my-3'>
                   <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/L1/L2/products/reports"
-                    onClick={ToggleSidebar}
-                  >
+                    className='NavigationStyle'
+                    to='/Indent-express/L1/L2/products/reports'
+                    onClick={ToggleSidebar}>
                     <BsFillFileEarmarkPostFill
                       size={20}
                       style={{ marginTop: "-10px" }}
-                      className="mx-1"
+                      className='mx-1'
                     />
                     REPORTS
                   </Link>
                   <hr />
                 </li>
-                <li className="my-3">
+                <li className='my-3'>
                   <Link
-                    className="NavigationStyle"
-                    to="/Indent-express/L1/L2/status/reports"
-                    onClick={ToggleSidebar}
-                  >
+                    className='NavigationStyle'
+                    to='/Indent-express/L1/L2/status/reports'
+                    onClick={ToggleSidebar}>
                     <BsFillBarChartFill
                       size={20}
                       style={{ marginTop: "-10px" }}
-                      className="mx-1"
+                      className='mx-1'
                     />
                     STATUS
                   </Link>
@@ -182,7 +172,7 @@ const AdminSideBar = () => {
         className={`sidebar-overlay ${isOpen === true ? "active" : ""}`}
         onClick={ToggleSidebar}
       /> */}
-    </>
+    </div>
   );
 };
 
