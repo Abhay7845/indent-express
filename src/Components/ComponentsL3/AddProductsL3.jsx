@@ -1,4 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/** @format */
+
 import React, { useState, useEffect } from "react";
 import Loader from "../../Common/Loader";
 import ShowImage from "./ShowImage";
@@ -190,27 +191,26 @@ const AddProductsL3 = (props) => {
   return (
     <>
       {loading === true && <Loader />}
-      <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
-        <div className="col-md-5">
+      <div className='row row-cols-1 row-cols-md-2 mx-1 my-3'>
+        <div className='col-md-5'>
           <ShowImage imageURL={imageURL} videoLink={videoLink} />
         </div>
-        <div className="col-md-7">
-          <div className="card-body">
+        <div className='col-md-7'>
+          <div className='card-body'>
             <h5
-              className="text-center p-1 itemCodeText"
-              style={{ backgroundColor: "#f5ea84" }}
-            >
+              className='text-center p-1 itemCodeText'
+              style={{ backgroundColor: "#f5ea84" }}>
               {singleProductsDetails.itemCode}
             </h5>
-            <div className="row my-3">
-              <div className="col-md-6">
+            <div className='row my-3'>
+              <div className='col-md-6'>
                 <div>
-                  <h6 className="text-center my-2">
+                  <h6 className='text-center my-2'>
                     <b>PRODUCT SPECIFICATION</b>
                   </h6>
                   <br />
-                  <table className="w-100">
-                    <tbody className="productsDetailsStyle">
+                  <table className='w-100'>
+                    <tbody className='productsDetailsStyle'>
                       <tr>
                         <th>COLLECTION</th>
                         <td>- &nbsp;&nbsp;</td>
@@ -265,8 +265,8 @@ const AddProductsL3 = (props) => {
                   </table>
                 </div>
               </div>
-              <div className="col-md-6">
-                <h6 className="text-center my-2 feedBackText">
+              <div className='col-md-6'>
+                <h6 className='text-center my-2 feedBackText'>
                   <b>INDENT DETAILS</b>
                 </h6>
                 <br />
@@ -386,15 +386,14 @@ const AddProductsL3 = (props) => {
                       .trim() === "COUPLE BAND" && (
                       <div>
                         <select
-                          className="L3SelectDropdown"
-                          onChange={(e) => setCoupleBandValue(e.target.value)}
-                        >
-                          <option value="">CHOOSE COUPLE TAG</option>
-                          <option value="Single_Tag">SINGLE TAG</option>
-                          <option value="Separate_Tag">SEPARATE TAG</option>
+                          className='L3SelectDropdown'
+                          onChange={(e) => setCoupleBandValue(e.target.value)}>
+                          <option value=''>CHOOSE COUPLE TAG</option>
+                          <option value='Single_Tag'>SINGLE TAG</option>
+                          <option value='Separate_Tag'>SEPARATE TAG</option>
                         </select>
                         {coupleBandValue === "Single_Tag" && (
-                          <div className="mt-2">
+                          <div className='mt-2'>
                             <ChooseMultiSize
                               optionsList={SizeState}
                               singleProductsDetails={singleProductsDetails}
@@ -403,13 +402,13 @@ const AddProductsL3 = (props) => {
                           </div>
                         )}
                         {coupleBandValue === "Separate_Tag" && (
-                          <div className="my-1">
-                            <span className="text-primary">FOR GENTS</span>
+                          <div className='my-1'>
+                            <span className='text-primary'>FOR GENTS</span>
                             <ChooseMultiSize
                               optionsList={CoupleGentsSize}
                               GetChooseSizeData={GetChooseSizeData}
                             />
-                            <span className="text-primary mt-2">
+                            <span className='text-primary mt-2'>
                               FOR LADIES
                             </span>
                             <ChooseMultiSizeForLadies
@@ -444,20 +443,19 @@ const AddProductsL3 = (props) => {
               <StoneQualityTable tableRowData={singleProductsDetails} />
             )}
 
-            <div className="mt-1">
+            <div className='mt-1'>
               <button
-                className="CButton"
-                data-bs-dismiss="modal"
-                onClick={AddProductsToCard}
-              >
+                className='CButton'
+                data-bs-dismiss='modal'
+                onClick={AddProductsToCard}>
                 {loading ? (
                   <span
-                    className="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
+                    className='spinner-border spinner-border-sm'
+                    role='status'
+                    aria-hidden='true'
                   />
                 ) : (
-                  <span className="sr-only">ADD TO CART</span>
+                  <span className='sr-only'>ADD TO CART</span>
                 )}
               </button>
             </div>

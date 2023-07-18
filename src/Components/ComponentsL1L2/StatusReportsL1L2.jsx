@@ -1,4 +1,6 @@
+/** @format */
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import "../../Style/TopHeader.css";
@@ -57,24 +59,24 @@ const StatusReportsL1L2 = (props) => {
     <>
       {loading === true && <Loader />}
       <TopHeader />
-      <div className="DropDownFormStyle">
-        <div className="d-flex mx-3">
-          <Tippy content="Home">
-            <Link to="/Indent-express/direction/home">
-              <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
+      <div className='DropDownFormStyle'>
+        <div className='d-flex mx-3'>
+          <Tippy content='Home'>
+            <Link to='/Indent-express/direction/home'>
+              <BsFillHouseDoorFill size={25} className='my-2 text-dark' />
             </Link>
           </Tippy>
-          <Tippy content="Report">
-            <Link to="/Indent-express/L1/L2/products/reports">
+          <Tippy content='Report'>
+            <Link to='/Indent-express/L1/L2/products/reports'>
               <BsFillFileEarmarkPostFill
                 size={25}
-                className="my-2 text-dark mx-3"
+                className='my-2 text-dark mx-3'
               />
             </Link>
           </Tippy>
-          <Tippy content="Status Report">
-            <Link to="/Indent-express/L1/L2/status/reports">
-              <BsFillBarChartFill size={25} className="my-2 text-dark" />
+          <Tippy content='Status Report'>
+            <Link to='/Indent-express/L1/L2/status/reports'>
+              <BsFillBarChartFill size={25} className='my-2 text-dark' />
             </Link>
           </Tippy>
         </div>
@@ -82,13 +84,13 @@ const StatusReportsL1L2 = (props) => {
 
       <br />
       {statusData.length > 0 && (
-        <div className="table-responsive mx-4 text-center">
-          <table className="table table-hover table-bordered">
+        <div className='table-responsive mx-4 text-center'>
+          <table className='table table-hover table-bordered'>
             <thead>
               <tr>
                 {L1L2StatusHeading.map((item, i) => {
                   return (
-                    <th key={i} className="StatusTableHeading">
+                    <th key={i} className='StatusTableHeading'>
                       {item.label}
                     </th>
                   );
@@ -98,7 +100,7 @@ const StatusReportsL1L2 = (props) => {
             <tbody>
               {TableData.map((item, i) => {
                 return (
-                  <tr key={i} className="StatusTableRowData">
+                  <tr key={i} className='StatusTableRowData'>
                     <td>{item.id}</td>
                     <td>{item.consumerBase}</td>
                     <td>{item.totalSKU}</td>

@@ -1,3 +1,4 @@
+/** @format */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import TopHeader from "../../Common/TopHeader";
@@ -405,34 +406,33 @@ export const FeedBackFormL1L2 = (props) => {
     <>
       <TopHeader />
       {loading === true && <Loader />}
-      <div className="DropDownFormStyle">
-        <div className="row mx-0 w-100">
-          <div className="d-flex col-md-4">
-            <div className="w-100 py-2">
-              <Tippy content="Home">
-                <Link to="/Indent-express/direction/home">
-                  <BsFillHouseDoorFill size={25} className="text-dark" />
+      <div className='DropDownFormStyle'>
+        <div className='row mx-0 w-100'>
+          <div className='d-flex col-md-4'>
+            <div className='w-100 py-2'>
+              <Tippy content='Home'>
+                <Link to='/Indent-express/direction/home'>
+                  <BsFillHouseDoorFill size={25} className='text-dark' />
                 </Link>
               </Tippy>
-              <Tippy content="Report">
-                <Link to="/Indent-express/L1/L2/products/reports">
+              <Tippy content='Report'>
+                <Link to='/Indent-express/L1/L2/products/reports'>
                   <BsFillFileEarmarkPostFill
                     size={25}
-                    className="text-dark mx-3"
+                    className='text-dark mx-3'
                   />
                 </Link>
               </Tippy>
-              <Tippy content="Status Report">
-                <Link to="/Indent-express/L1/L2/status/reports">
-                  <BsFillBarChartFill size={25} className="text-dark" />
+              <Tippy content='Status Report'>
+                <Link to='/Indent-express/L1/L2/status/reports'>
+                  <BsFillBarChartFill size={25} className='text-dark' />
                 </Link>
               </Tippy>
             </div>
             <select
-              className="SSelect"
+              className='SSelect'
               onChange={onchangeHandler}
-              name="collection"
-            >
+              name='collection'>
               <option>Select Collection</option>
               {colLection.map((item, i) => {
                 return (
@@ -443,12 +443,11 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          <div className="col-md-2">
+          <div className='col-md-2'>
             <select
-              className="SSelect"
+              className='SSelect'
               onChange={onchangeHandler}
-              name="consumerBase"
-            >
+              name='consumerBase'>
               <option>Select NeedState</option>
               {needState.map((item, i) => {
                 return (
@@ -459,12 +458,11 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          <div className="col-md-2">
+          <div className='col-md-2'>
             <select
-              className="SSelect"
+              className='SSelect'
               onChange={onchangeHandler}
-              name="groupData"
-            >
+              name='groupData'>
               <option>Select Group</option>
               {group.map((groupValue, i) => {
                 return (
@@ -475,12 +473,11 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          <div className="col-md-3">
+          <div className='col-md-3'>
             <select
-              className="SSelect"
+              className='SSelect'
               onChange={onchangeHandler}
-              name="category"
-            >
+              name='category'>
               <option>Select Category</option>
               {category.map((categoryValue, i) => {
                 return (
@@ -491,49 +488,48 @@ export const FeedBackFormL1L2 = (props) => {
               })}
             </select>
           </div>
-          <div className="col-md-1 d-flex justify-content-end">
+          <div className='col-md-1 d-flex justify-content-end'>
             <BsSearch
               size={35}
-              className="searchStyle"
+              className='searchStyle'
               onClick={GetProductsDetails}
             />
           </div>
         </div>
       </div>
       {/* FEED BACK FORM */}
-      <div className="row row-cols-1 row-cols-md-2 mx-0 my-3">
-        <div className="col">
+      <div className='row row-cols-1 row-cols-md-2 mx-0 my-3'>
+        <div className='col'>
           {imageCode === "" ? (
             <img
               src={LoadingGif}
-              className="w-100 img-thumbnail catalogImage"
-              alt="No_Image"
+              className='w-100 img-thumbnail catalogImage'
+              alt='No_Image'
             />
           ) : (
             <img
               src={imageURL}
-              className="w-100 img-thumbnail catalogImage"
-              alt="No_Image"
+              className='w-100 img-thumbnail catalogImage'
+              alt='No_Image'
             />
           )}
         </div>
-        <div className="col">
-          <div className="card-body">
+        <div className='col'>
+          <div className='card-body'>
             <h5
-              className="text-center p-1 itemCodeText"
-              style={{ backgroundColor: "#f5ea84" }}
-            >
+              className='text-center p-1 itemCodeText'
+              style={{ backgroundColor: "#f5ea84" }}>
               {productsDetails.itemCode}
             </h5>
-            <div className="row my-3">
-              <div className="col-md-7">
+            <div className='row my-3'>
+              <div className='col-md-7'>
                 <div>
-                  <h6 className="text-center my-2">
+                  <h6 className='text-center my-2'>
                     <b>PRODUCT DETAILS</b>
                   </h6>
                   <br />
-                  <table className="w-100">
-                    <tbody className="productsDetailsStyle">
+                  <table className='w-100'>
+                    <tbody className='productsDetailsStyle'>
                       <tr>
                         <th>COLLECTION</th>
                         <td>- &nbsp;&nbsp;</td>
@@ -588,12 +584,12 @@ export const FeedBackFormL1L2 = (props) => {
                   </table>
                 </div>
               </div>
-              <div className="col-md-5">
-                <h6 className="text-center my-2 feedBackText">
+              <div className='col-md-5'>
+                <h6 className='text-center my-2 feedBackText'>
                   <b>FEEDBACK</b>
                 </h6>
                 <br />
-                <div className="d-flex justify-content-center">
+                <div className='d-flex justify-content-center'>
                   <FormControlLabel
                     control={
                       <Switch checked={switchData} onChange={getTrueFalse} />
@@ -602,13 +598,13 @@ export const FeedBackFormL1L2 = (props) => {
                   />
                 </div>
                 {switchData === false ? (
-                  <div className="my-3">
+                  <div className='my-3'>
                     <label>Choose Reason For NO</label>
                     <Select
-                      className="NoReasonSelect"
-                      mode="multiple"
+                      className='NoReasonSelect'
+                      mode='multiple'
                       value={quality_Reasons}
-                      placeholder="Please select"
+                      placeholder='Please select'
                       options={NoReasonOption}
                       onChange={setQuality_Reasons}
                     />
@@ -620,55 +616,53 @@ export const FeedBackFormL1L2 = (props) => {
             </div>
             <br />
             <br />
-            <div className="d-flex justify-content-center mx-0">
+            <div className='d-flex justify-content-center mx-0'>
               <button
-                className="CButton"
+                className='CButton'
                 onClick={() => {
                   GetPreviousProductDetails("pre");
-                }}
-              >
+                }}>
                 {loadingPre ? (
                   <span
-                    className="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
+                    className='spinner-border spinner-border-sm'
+                    role='status'
+                    aria-hidden='true'
                   />
                 ) : (
-                  <span className="sr-only">
-                    <Icon.ArrowLeft size={20} className="mx-2 hideArrowStyle" />
+                  <span className='sr-only'>
+                    <Icon.ArrowLeft size={20} className='mx-2 hideArrowStyle' />
                     PREVIOUS
                   </span>
                 )}
               </button>
-              <button className="mx-2 CButton" onClick={SubmitProductDetails}>
+              <button className='mx-2 CButton' onClick={SubmitProductDetails}>
                 {loadingSubmit ? (
                   <span
-                    className="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
+                    className='spinner-border spinner-border-sm'
+                    role='status'
+                    aria-hidden='true'
                   />
                 ) : (
-                  <span className="sr-only">SUBMIT</span>
+                  <span className='sr-only'>SUBMIT</span>
                 )}
               </button>
               <button
-                className="CButton"
+                className='CButton'
                 onClick={() => {
                   GetNextProductDetails("next");
-                }}
-              >
+                }}>
                 {loadingNext ? (
                   <span
-                    className="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
+                    className='spinner-border spinner-border-sm'
+                    role='status'
+                    aria-hidden='true'
                   />
                 ) : (
-                  <span className="sr-only">
+                  <span className='sr-only'>
                     NEXT
                     <Icon.ArrowRight
                       size={20}
-                      className="mx-2 hideArrowStyle"
+                      className='mx-2 hideArrowStyle'
                     />
                   </span>
                 )}

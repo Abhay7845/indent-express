@@ -1,4 +1,6 @@
+/** @format */
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import "../../Style/TopHeader.css";
@@ -53,27 +55,27 @@ const StatusReportsL3 = (props) => {
     <>
       <TopHeader />
       {loading === true && <Loader />}
-      <div className="DropDownFormStyle">
-        <Tippy content="Home">
-          <Link to="/Indent-express/direction/home">
-            <BsFillHouseDoorFill size={25} className="mt-2 mx-3 text-dark" />
+      <div className='DropDownFormStyle'>
+        <Tippy content='Home'>
+          <Link to='/Indent-express/direction/home'>
+            <BsFillHouseDoorFill size={25} className='mt-2 mx-3 text-dark' />
           </Link>
         </Tippy>
-        <Tippy content="Status Report">
-          <Link to="/Indent-express/L3/status/reports">
-            <BsFillBarChartFill size={25} className="mt-2 text-dark" />
+        <Tippy content='Status Report'>
+          <Link to='/Indent-express/L3/status/reports'>
+            <BsFillBarChartFill size={25} className='mt-2 text-dark' />
           </Link>
         </Tippy>
       </div>
       <br />
       {statusData.length > 0 && (
-        <div className="table-responsive mx-4 text-center">
-          <table className="table table-hover table-bordered">
+        <div className='table-responsive mx-4 text-center'>
+          <table className='table table-hover table-bordered'>
             <thead>
               <tr>
                 {L1L2StatusHeading.map((item, i) => {
                   return (
-                    <th key={i} className="StatusTableHeading">
+                    <th key={i} className='StatusTableHeading'>
                       {item.label}
                     </th>
                   );
@@ -83,7 +85,7 @@ const StatusReportsL3 = (props) => {
             <tbody>
               {TableData.map((item, i) => {
                 return (
-                  <tr key={i} className="StatusTableRowData">
+                  <tr key={i} className='StatusTableRowData'>
                     <td>{item.id}</td>
                     <td>{item.consumerBase}</td>
                     <td>{item.totalSKU}</td>

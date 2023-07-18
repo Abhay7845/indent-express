@@ -1,4 +1,6 @@
+/** @format */
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useState, useEffect } from "react";
 import TopHeader from "../../Common/TopHeader";
 import Loader from "../../Common/Loader";
@@ -193,35 +195,34 @@ const ReportsL1L2 = (props) => {
     <>
       <TopHeader />
       {loading === true && <Loader />}
-      <div className="DropDownFormStyle">
-        <div className="mx-2 d-flex justify-content-between w-100">
+      <div className='DropDownFormStyle'>
+        <div className='mx-2 d-flex justify-content-between w-100'>
           <div>
-            <Tippy content="Home">
-              <Link to="/Indent-express/direction/home">
-                <BsFillHouseDoorFill size={25} className="my-2 text-dark" />
+            <Tippy content='Home'>
+              <Link to='/Indent-express/direction/home'>
+                <BsFillHouseDoorFill size={25} className='my-2 text-dark' />
               </Link>
             </Tippy>
-            <Tippy content="Report">
-              <Link to="/Indent-express/L1/L2/products/reports">
+            <Tippy content='Report'>
+              <Link to='/Indent-express/L1/L2/products/reports'>
                 <BsFillFileEarmarkPostFill
                   size={25}
-                  className="my-2 text-dark mx-3"
+                  className='my-2 text-dark mx-3'
                 />
               </Link>
             </Tippy>
-            <Tippy content="Status Report">
-              <Link to="/Indent-express/L1/L2/status/reports">
-                <BsFillBarChartFill size={25} className="my-2 text-dark" />
+            <Tippy content='Status Report'>
+              <Link to='/Indent-express/L1/L2/status/reports'>
+                <BsFillBarChartFill size={25} className='my-2 text-dark' />
               </Link>
             </Tippy>
           </div>
-          <div className="col-md-3">
+          <div className='col-md-3'>
             <select
-              className="SSelect"
-              onChange={(e) => setSubmitted(e.target.value)}
-            >
-              <option value="scanned">SUBMITTED</option>
-              <option value="unscanned">YET TO SUBMIT</option>
+              className='SSelect'
+              onChange={(e) => setSubmitted(e.target.value)}>
+              <option value='scanned'>SUBMITTED</option>
+              <option value='unscanned'>YET TO SUBMIT</option>
             </select>
           </div>
         </div>
@@ -230,31 +231,30 @@ const ReportsL1L2 = (props) => {
       {reports.id === undefined ? (
         ""
       ) : (
-        <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
-          <div className="col">
+        <div className='row row-cols-1 row-cols-md-2 mx-1 my-3'>
+          <div className='col'>
             <img
               src={imageURL}
-              className="w-100 img-thumbnail ReportCatalogImage"
-              alt="Image_Unavailable"
+              className='w-100 img-thumbnail ReportCatalogImage'
+              alt='Image_Unavailable'
             />
           </div>
-          <div className="col">
-            <div className="card-body">
+          <div className='col'>
+            <div className='card-body'>
               <h5
-                className="text-center p-1 itemCodeText"
-                style={{ backgroundColor: "#f5ea84" }}
-              >
+                className='text-center p-1 itemCodeText'
+                style={{ backgroundColor: "#f5ea84" }}>
                 {reports.itemCode}
               </h5>
-              <div className="row my-3">
-                <div className="col-md-6">
+              <div className='row my-3'>
+                <div className='col-md-6'>
                   <div>
-                    <h6 className="text-center my-2">
+                    <h6 className='text-center my-2'>
                       <b>PRODUCT DETAILS</b>
                     </h6>
                     <br />
-                    <table className="w-100">
-                      <tbody className="productsDetailsStyle">
+                    <table className='w-100'>
+                      <tbody className='productsDetailsStyle'>
                         <tr>
                           <th>COLLECTION</th>
                           <td>- &nbsp;&nbsp;</td>
@@ -309,12 +309,12 @@ const ReportsL1L2 = (props) => {
                     </table>
                   </div>
                 </div>
-                <div className="col-md-6">
-                  <h6 className="text-center my-2 feedBackText">
+                <div className='col-md-6'>
+                  <h6 className='text-center my-2 feedBackText'>
                     <b>FEEDBACK</b>
                   </h6>
                   <br />
-                  <div className="d-flex justify-content-center">
+                  <div className='d-flex justify-content-center'>
                     <FormControlLabel
                       control={
                         <Switch checked={switchData} onChange={getTrueFalse} />
@@ -325,13 +325,13 @@ const ReportsL1L2 = (props) => {
                     />
                   </div>
                   {switchData === false ? (
-                    <div className="my-3">
+                    <div className='my-3'>
                       <label>Choose Reason For NO</label>
                       <Select
-                        className="NoReasonSelect"
-                        mode="multiple"
+                        className='NoReasonSelect'
+                        mode='multiple'
                         value={quality_Reasons}
-                        placeholder="Please select"
+                        placeholder='Please select'
                         options={NoReasonOption}
                         onChange={setQuality_Reasons}
                       />
@@ -341,16 +341,16 @@ const ReportsL1L2 = (props) => {
                   )}
                 </div>
               </div>
-              <div className="mt-5">
-                <button className="CButton" onClick={UpdateGetProductsDetails}>
+              <div className='mt-5'>
+                <button className='CButton' onClick={UpdateGetProductsDetails}>
                   {loadingSubmit ? (
                     <span
-                      className="spinner-border spinner-border-sm"
-                      role="status"
-                      aria-hidden="true"
+                      className='spinner-border spinner-border-sm'
+                      role='status'
+                      aria-hidden='true'
                     />
                   ) : (
-                    <span className="sr-only">SUBMIT</span>
+                    <span className='sr-only'>SUBMIT</span>
                   )}
                 </button>
               </div>
@@ -360,16 +360,16 @@ const ReportsL1L2 = (props) => {
       )}
       <br />
       {reportsTable.length > 0 && (
-        <div className="table-responsive mx-1">
-          <b className="mx-1 my-3 text-secondary">
+        <div className='table-responsive mx-1'>
+          <b className='mx-1 my-3 text-secondary'>
             {submitted === "scanned" ? "SUBMITTED" : "YET TO SUBMIT"}
           </b>
-          <table className="table table-hover table-bordered">
+          <table className='table table-hover table-bordered'>
             <thead>
               <tr>
                 {L1L2HeadingData.map((item, i) => {
                   return (
-                    <th key={i} className="tableHeading">
+                    <th key={i} className='tableHeading'>
                       {item.label}
                     </th>
                   );
@@ -384,15 +384,15 @@ const ReportsL1L2 = (props) => {
                   const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
                   const imageURL = `${IMAGE_URL}${imageCode}.jpg`;
                   return (
-                    <tr key={i} className="tableRowData">
+                    <tr key={i} className='tableRowData'>
                       <td>{item.id}</td>
-                      <td className="text-center">
+                      <td className='text-center'>
                         <img
                           src={imageURL}
-                          width="70"
-                          height="70"
-                          className="img-thumbnail"
-                          alt="No_Image"
+                          width='70'
+                          height='70'
+                          className='img-thumbnail'
+                          alt='No_Image'
                         />
                       </td>
                       <td>{item.itemCode}</td>
@@ -404,10 +404,10 @@ const ReportsL1L2 = (props) => {
                       <td>{item.stdUCP}</td>
                       <td>{item.saleable}</td>
                       <td>{item.reasons}</td>
-                      <td className="text-center">
+                      <td className='text-center'>
                         <Icon.PencilSquare
                           size={18}
-                          cursor="pointer"
+                          cursor='pointer'
                           onClick={() => EditReport(item)}
                         />
                       </td>
@@ -416,10 +416,10 @@ const ReportsL1L2 = (props) => {
                 })}
             </tbody>
           </table>
-          <div className="d-flex justify-content-end my-2 w-100">
+          <div className='d-flex justify-content-end my-2 w-100'>
             <TablePagination
               rowsPerPageOptions={[50, 100, 150, reportsTable.length]}
-              component="div"
+              component='div'
               count={reportsTable.length}
               rowsPerPage={rowsPerPage}
               page={page}
