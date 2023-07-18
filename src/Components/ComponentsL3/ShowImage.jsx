@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import ReactImageMagnify from "react-image-magnify";
@@ -13,7 +15,7 @@ const ShowImage = (props) => {
     setValue(newValue);
   };
   return (
-    <div className="showImageStyle">
+    <div className='showImageStyle'>
       <ReactImageMagnify
         {...{
           smallImage: {
@@ -39,34 +41,33 @@ const ShowImage = (props) => {
           enlargedImageClassName: "large_img",
         }}
       />
-      <AppBar position="static" color="default">
+      <AppBar position='static' color='default'>
         <Tabs
           value={value}
           onChange={ClickGetNextImage}
-          variant="scrollable"
-          scrollButtons="on"
-          indicatorColor="primary"
-          textColor="primary"
-        >
+          variant='scrollable'
+          scrollButtons='on'
+          indicatorColor='primary'
+          textColor='primary'>
           <Tab
             style={{ minWidth: "1%" }}
-            icon={<Avatar variant="square" src={`${imageURL}.jpg`} />}
+            icon={<Avatar variant='square' src={`${imageURL}.jpg`} />}
           />
           <Tab
             style={{ minWidth: "1%" }}
-            icon={<Avatar variant="square" src={`${imageURL}_2.jpg`} />}
+            icon={<Avatar variant='square' src={`${imageURL}_2.jpg`} />}
           />
           <Tab
             style={{ minWidth: "1%" }}
-            icon={<Avatar variant="square" src={`${imageURL}_3.jpg`} />}
+            icon={<Avatar variant='square' src={`${imageURL}_3.jpg`} />}
           />
           <Tab
             style={{ minWidth: "1%" }}
-            icon={<Avatar variant="square" src={`${imageURL}_4.jpg`} />}
+            icon={<Avatar variant='square' src={`${imageURL}_4.jpg`} />}
           />
           <Tab
             style={{ minWidth: "1%" }}
-            icon={<Avatar variant="square" src={`${imageURL}_5.jpg`} />}
+            icon={<Avatar variant='square' src={`${imageURL}_5.jpg`} />}
           />
         </Tabs>
       </AppBar>

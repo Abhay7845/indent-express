@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import LoadingGif from "../../Asset/Img/Loading_Img.gif";
 import ReactImageMagnify from "react-image-magnify";

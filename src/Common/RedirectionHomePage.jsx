@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import TopHeader from "./TopHeader";
 import "../Style/RedirectionTab.css";
@@ -9,20 +11,18 @@ const RedirectionHomePage = () => {
   return (
     <>
       <TopHeader />
-      <div className="DropDownFormStyle">
-        <div className="row w-100">
+      <div className='DropDownFormStyle'>
+        <div className='row w-100'>
           {ROLE === "L1" || ROLE === "L2" ? (
-            <div className="d-flex w-100 mx-3 w-100">
+            <div className='d-flex w-100 mx-3 w-100'>
               <Link
-                className="col-md-6 redirectionTab"
-                to="/Indent-express/L1/L2/physical/home"
-              >
+                className='col-md-6 redirectionTab'
+                to='/Indent-express/L1/L2/physical/home'>
                 PHYSICAL
               </Link>
               <Link
-                className="col-md-6 redirectionTab"
-                to="/Indent-express/feedback/L1/L2"
-              >
+                className='col-md-6 redirectionTab'
+                to='/Indent-express/feedback/L1/L2'>
                 DIGITAL
               </Link>
             </div>
@@ -30,28 +30,22 @@ const RedirectionHomePage = () => {
             ""
           )}
           {ROLE === "L3" && (
-            <div className="d-flex w-100 mx-3">
+            <div className='d-flex w-100 mx-3'>
               <Link
-                className="col-md-6 redirectionTab"
-                to="/Indent-express/L3/physical/home"
-              >
+                className='col-md-6 redirectionTab'
+                to='/Indent-express/L3/physical/home'>
                 PHYSICAL
               </Link>
               <Link
-                className="col-md-6 redirectionTab"
-                to="/Indent-express/L3/digital/home"
-              >
+                className='col-md-6 redirectionTab'
+                to='/Indent-express/L3/digital/home'>
                 DIGITAL
               </Link>
             </div>
           )}
         </div>
       </div>
-      <img
-        src={BGImage}
-        className="d-block w-100 L1L2BGImage"
-        alt="Image_Not Load"
-      />
+      <img src={BGImage} className='L1L2BGImage' alt='Image_Not Load' />
     </>
   );
 };

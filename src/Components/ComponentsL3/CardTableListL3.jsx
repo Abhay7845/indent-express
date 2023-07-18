@@ -1,4 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/**
+ * eslint-disable react-hooks/exhaustive-deps
+ *
+ * @format
+ */
+
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import TableDataDownload from "../../Common/TableDataDownload";
@@ -31,7 +36,6 @@ const CardTableList = (props) => {
   const [CoupleLadiesSize, setCoupleLadiesSize] = useState([]);
   const [col, setCol] = useState([]);
   const [rows, setRows] = useState([]);
-  const [cardDeletedRows, setCardDeletedRows] = useState({});
   // INPUT FILED VALUE VARIABLE
   const [tagQuantity, SetTagQuantity] = useState([]);
   const [getLadiesSizeValue, setGetLadiesSizeValue] = useState([]);
@@ -157,7 +161,7 @@ const CardTableList = (props) => {
         console.log("");
         setLoading(false);
       });
-  }, [storeCode, cardDeletedRows.id, reportRowTable.id]);
+  }, [storeCode, reportRowTable.id]);
 
   // DROPDOWN SIZE FOR NORMAL
   useEffect(() => {
@@ -207,24 +211,17 @@ const CardTableList = (props) => {
 
   const DeleteRow = (DeleteRow) => {
     setLoading(true);
-    setCardDeletedRows(DeleteRow);
-    const DeleRowInputData = {
-      itemCode: DeleteRow.itemCode,
-      strCode: storeCode,
-      size: DeleteRow.size,
-    };
-    console.log("DeleRowInputData==>", DeleRowInputData);
+    const { itemCode, size } = DeleteRow;
     axios
-      .post(
-        `${HOST_URL}/INDENTL3/express/update/responses/from/L3`,
-        DeleRowInputData
+      .get(
+        `${HOST_URL}/INDENTL3/express/L3/cancel/indent/${itemCode}/${storeCode}/${size}`
       )
       .then((res) => res)
       .then((response) => {
-        if (response.data.code === "1000") {
+        if (response.data.code === "1001") {
           swal({
             title: "Success",
-            text: "Cancel Indent Has been Successful",
+            text: "Cancel Indent Has been Success",
             icon: "success",
             buttons: "OK",
           });
@@ -234,7 +231,7 @@ const CardTableList = (props) => {
       })
       .catch((error) => {
         setLoading(false);
-        console.log("error==>", error);
+        console.log("");
       });
   };
   const UpdateRowData = (UpdateRow) => {
@@ -278,44 +275,14 @@ const CardTableList = (props) => {
   // CANCEL INDENT API CALLING
   const CancelIndent = () => {
     setLoading(true);
-    const CancelIndentInputsData = {
-      itemCode: reportRowTable.itemCode,
-      strCode: storeCode,
-      saleable: "",
-      exIndCategory: !reportRowTable.indCategory
-        ? ""
-        : reportRowTable.indCategory,
-      exStonequality: !reportRowTable.stoneQuality
-        ? "0-0"
-        : reportRowTable.stoneQuality,
-      indCategory: "0",
-      indQty: "0",
-      size: "0",
-      uom: "0",
-      stoneQuality: "0-0",
-      npimEventNo: "1",
-      exUOM: !reportRowTable.uom ? "" : reportRowTable.uom,
-      exSize: !reportRowTable.size ? "" : reportRowTable.size,
-      findings: "",
-      reasons: "",
-      rsoName: "",
-      set2Type: "",
-      IndentLevelType: "L3",
-      stoneQualityVal: "0",
-      submitStatus: "report",
-      sizeUomQuantitys: [],
-      sizeQuantitys: [],
-      tagQuantitys: [],
-    };
-    console.log("CancelIndentInputsData==>", CancelIndentInputsData);
+    const { itemCode, size } = reportRowTable;
     axios
-      .post(
-        `${HOST_URL}/INDENTL3/express/update/responses/from/L3`,
-        CancelIndentInputsData
+      .get(
+        `${HOST_URL}/INDENTL3/express/L3/cancel/indent/${itemCode}/${storeCode}/${size}`
       )
       .then((res) => res)
       .then((response) => {
-        if (response.data.code === "1000") {
+        if (response.data.code === "1001") {
           swal({
             title: "Success",
             text: "Cancel Indent Has been Successful",
@@ -472,18 +439,18 @@ const CardTableList = (props) => {
               {params.row.confirmationStatus === "" && (
                 <div>
                   <Icon.PencilSquare
-                    className="EditButton"
+                    className='EditButton'
                     onClick={() => UpdateRowData(params.row)}
                   />
                   <Icon.Trash
-                    className="DeleteButton"
+                    className='DeleteButton'
                     onClick={() => DeleteRow(params.row)}
                   />
                 </div>
               )}
               {reportsName === "Cancel_Item_List" && (
                 <Icon.PencilSquare
-                  className="EditButton"
+                  className='EditButton'
                   onClick={() => UpdateRowData(params.row)}
                 />
               )}
@@ -509,7 +476,7 @@ const CardTableList = (props) => {
         disableClickEventBubbling: true,
         renderCell: (params) => {
           return (
-            <p className="text-success">
+            <p className='text-success'>
               {params.row.confirmationStatus === "" ? "" : "Success"}
             </p>
           );
@@ -530,27 +497,26 @@ const CardTableList = (props) => {
       {reportRowTable.itemCode === undefined ? (
         ""
       ) : (
-        <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
-          <div className="col-md-5">
+        <div className='row row-cols-1 row-cols-md-2 mx-1 my-3'>
+          <div className='col-md-5'>
             <ShowImage imageURL={imageURL} />
           </div>
-          <div className="col-md-7">
-            <div className="card-body">
+          <div className='col-md-7'>
+            <div className='card-body'>
               <h5
-                className="text-center p-1 itemCodeText"
-                style={{ backgroundColor: "#f5ea84" }}
-              >
+                className='text-center p-1 itemCodeText'
+                style={{ backgroundColor: "#f5ea84" }}>
                 {reportRowTable.itemCode}
               </h5>
-              <div className="row my-3">
-                <div className="col-md-6">
+              <div className='row my-3'>
+                <div className='col-md-6'>
                   <div>
-                    <h6 className="text-center my-2">
+                    <h6 className='text-center my-2'>
                       <b>PRODUCT DESCRIPTION</b>
                     </h6>
                     <br />
-                    <table className="w-100">
-                      <tbody className="productsDetailsStyle">
+                    <table className='w-100'>
+                      <tbody className='productsDetailsStyle'>
                         <tr>
                           <th>GROUP</th>
                           <td>-</td>
@@ -600,8 +566,8 @@ const CardTableList = (props) => {
                     </table>
                   </div>
                 </div>
-                <div className="col-md-6">
-                  <h6 className="text-center my-2 feedBackText">
+                <div className='col-md-6'>
+                  <h6 className='text-center my-2 feedBackText'>
                     <b>INDENT DETAILS</b>
                   </h6>
                   <br />
@@ -647,7 +613,7 @@ const CardTableList = (props) => {
                     digit === "C" ||
                     digit === "Y" ||
                     digit === "B" ? (
-                    <div className="mt-3">
+                    <div className='mt-3'>
                       <ChooseMultiSize
                         optionsList={SizeState}
                         GetChooseSizeData={GetChooseSizeData}
@@ -678,17 +644,18 @@ const CardTableList = (props) => {
                         .toUpperCase()
                         .replace(/\s{2,}/g, " ")
                         .trim() === "COUPLE BAND" && (
-                        <div className="mt-3">
+                        <div className='mt-3'>
                           <select
-                            className="L3SelectDropdown"
-                            onChange={(e) => setCoupleBandValue(e.target.value)}
-                          >
-                            <option value="">CHOOSE COUPLE TAG</option>
-                            <option value="Single_Tag">SINGLE TAG</option>
-                            <option value="Separate_Tag">SEPARATE TAG</option>
+                            className='L3SelectDropdown'
+                            onChange={(e) =>
+                              setCoupleBandValue(e.target.value)
+                            }>
+                            <option value=''>CHOOSE COUPLE TAG</option>
+                            <option value='Single_Tag'>SINGLE TAG</option>
+                            <option value='Separate_Tag'>SEPARATE TAG</option>
                           </select>
                           {coupleBandValue === "Single_Tag" && (
-                            <div className="mt-2">
+                            <div className='mt-2'>
                               <ChooseMultiSize
                                 optionsList={SizeState}
                                 GetChooseSizeData={GetChooseSizeData}
@@ -696,13 +663,13 @@ const CardTableList = (props) => {
                             </div>
                           )}
                           {coupleBandValue === "Separate_Tag" && (
-                            <div className="my-1">
-                              <span className="text-primary">FOR GENTS</span>
+                            <div className='my-1'>
+                              <span className='text-primary'>FOR GENTS</span>
                               <ChooseMultiSize
                                 optionsList={CoupleGentsSize}
                                 GetChooseSizeData={GetChooseSizeData}
                               />
-                              <span className="text-primary mt-2">
+                              <span className='text-primary mt-2'>
                                 FOR LADIES
                               </span>
                               <ChooseMultiSizeForLadies
@@ -727,7 +694,7 @@ const CardTableList = (props) => {
                   digit === "K" ||
                   digit === "A" ||
                   digit === "G" ? (
-                    <div className="mt-3">
+                    <div className='mt-3'>
                       <IndentQuantityFiled
                         GetIndentQuantityValue={GetIndentQuantityValue}
                         indentQuantity={indentQuantity}
@@ -750,11 +717,11 @@ const CardTableList = (props) => {
                 <StoneQualityTable tableRowData={reportRowTable} />
               )}
 
-              <div className="d-flex">
-                <button className="CButton mx-1" onClick={CancelIndent}>
+              <div className='d-flex'>
+                <button className='CButton mx-1' onClick={CancelIndent}>
                   CANCEL INDENT
                 </button>
-                <button className="CButton" onClick={UpdateTableRowData}>
+                <button className='CButton' onClick={UpdateTableRowData}>
                   UPDATE
                 </button>
               </div>
@@ -763,18 +730,18 @@ const CardTableList = (props) => {
         </div>
       )}
 
-      <div className="row g-2 my-2 ConfirmCollumreverse">
-        <div className="col-md-4">
+      <div className='row g-2 my-2 ConfirmCollumreverse'>
+        <div className='col-md-4'>
           <input
-            type="text"
+            type='text'
             value={searchItemCode}
-            className="SearchRowByItem w-100"
-            placeholder="Search by Item Code"
+            className='SearchRowByItem w-100'
+            placeholder='Search by Item Code'
             onChange={(e) => setSearchItemCode(e.target.value)}
           />
         </div>
-        <div className="col-md-4 text-danger">
-          <div className="mt-3 d-flex justify-content-between mx-2">
+        <div className='col-md-4 text-danger'>
+          <div className='mt-3 d-flex justify-content-between mx-2'>
             <b>TOTAL COUNT- {DataRows.length}</b>
             <b>||</b>
             <b>
@@ -783,11 +750,11 @@ const CardTableList = (props) => {
             </b>
           </div>
         </div>
-        <div className="col-md-4 d-flex confirmButtons">
-          <button className="confirmSendmail mx-2" onClick={ConfirmMail}>
+        <div className='col-md-4 d-flex confirmButtons'>
+          <button className='confirmSendmail mx-2' onClick={ConfirmMail}>
             CONFIRM
           </button>
-          <button className="confirmSendmail" onClick={SendMail}>
+          <button className='confirmSendmail' onClick={SendMail}>
             SEND MAIL
           </button>
         </div>

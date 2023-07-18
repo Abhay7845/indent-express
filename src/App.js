@@ -33,9 +33,6 @@ const App = () => {
     }, 3000);
   };
 
-  document.addEventListener("blockInspect", function (e) {
-    e.preventDefault();
-  });
   return (
     <>
       <BrowserRouter>
