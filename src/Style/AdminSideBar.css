@@ -5,6 +5,12 @@
     display: flex;
 }
 
+@media screen and (min-width:685px) {
+    .DropdownForAdmin{
+        display: none;
+    }
+}
+
 @media screen and (max-width:600px) {
     .AdminSideBarStyle {
         display: none;
