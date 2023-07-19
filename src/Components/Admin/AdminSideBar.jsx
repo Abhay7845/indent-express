@@ -12,7 +12,7 @@ const AdminSideBar = () => {
   const ToggleSidebar = () => {
     isOpen === true ? setIsOpen(false) : setIsOpen(true);
   };
-  // const UserRole = localStorage.getItem("indent-expressId").toUpperCase();
+
   return (
     <div>
       <Icon.TextLeft
