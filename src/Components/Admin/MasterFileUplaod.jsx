@@ -4,6 +4,7 @@ import React from "react";
 import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
 import AdiminFileSideBar from "./AdiminFileSideBar";
+import { DatePicker, Input } from "antd";
 
 const MasterFileUplaod = () => {
   return (
@@ -19,33 +20,18 @@ const MasterFileUplaod = () => {
         <h5 className='text-center mt-2'>MASTER FILE UPLOAD</h5>
         <div className='row g-2 mt-2 mx-1'>
           <div className='col-md-4'>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='First name'
-              aria-label='First name'
-            />
+            <DatePicker className='DateSelect' />
           </div>
           <div className='col-md-4'>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Last name'
-              aria-label='Last name'
-            />
+            <Input className='AInpute' placeholder='From Store Code' />
           </div>
           <div className='col-md-4'>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Last name'
-              aria-label='Last name'
-            />
+            <Input className='AInpute' placeholder='To Store Code' />
           </div>
         </div>
         <div className='d-flex justify-content-end mt-3 mx-2'>
-          <button type='submit' className='btn btn-primary'>
-            Submit
+          <button type='submit' className='ACommonBTN'>
+            UPLOAD
           </button>
         </div>
       </div>
