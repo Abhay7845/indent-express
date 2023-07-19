@@ -27,10 +27,10 @@
 .DateSelect {
     width: 100%;
     outline: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
     border: 1px solid #c1c4c5;
     background: transparent;
+    padding: 10px;
+    border-radius: 7px;
 }
 
 .DateSelect:hover {
@@ -39,12 +39,12 @@
 }
 
 .AInpute {
-    width: 100%;
-    outline: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 1px solid #c1c4c5;
-    background: transparent;
+width: 100%;
+outline: none;
+border: 1px solid #c1c4c5;
+background: transparent;
+padding: 10px;
+border-radius: 7px;
 }
 
 .AInpute:hover {
