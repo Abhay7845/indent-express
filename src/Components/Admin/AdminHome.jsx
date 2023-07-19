@@ -17,7 +17,7 @@ const AdminHome = () => {
       </div>
       <div className='AdminSidebarStyle'>
         <ul className='text-center mt-4'>
-          <Link to='/Indent-express/admin' className='NavigationStyle'>
+          <Link to='/Indent-express/admin/home' className='NavigationStyle'>
             COPY STORE INDENTS
           </Link>
           <hr />

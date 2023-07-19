@@ -93,7 +93,7 @@ const App = () => {
             />
             {/* ADMIN COMPONENTS */}
             <Route
-              path='/Indent-express/admin'
+              path='/Indent-express/admin/home'
               element={<AdminHome showAlert={showAlert} />}
             />
           </Route>
