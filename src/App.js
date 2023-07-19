@@ -23,6 +23,9 @@ import AdminHome from "./Components/Admin/AdminHome";
 import MasterFileUplaod from "./Components/Admin/MasterFileUplaod";
 import UpdatePortalStatus from "./Components/Admin/UpdatePortalStatus";
 import GetMasterSKU from "./Components/Admin/GetMasterSKU";
+import LoginCredentials from "./Components/Admin/LoginCredentials";
+import DayEndReport from "./Components/Admin/DayEndReport";
+import UpdateAutomail from "./Components/Admin/UpdateAutomail";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -110,6 +113,18 @@ const App = () => {
             <Route
               path='/Indent-express/admin/get/master/sku'
               element={<GetMasterSKU showAlert={showAlert} />}
+            />
+            <Route
+              path='/Indent-express/admin/login/credentials'
+              element={<LoginCredentials showAlert={showAlert} />}
+            />
+            <Route
+              path='/Indent-express/admin/day/end/report'
+              element={<DayEndReport showAlert={showAlert} />}
+            />
+            <Route
+              path='/Indent-express/admin/update/automail'
+              element={<UpdateAutomail showAlert={showAlert} />}
             />
           </Route>
         </Routes>

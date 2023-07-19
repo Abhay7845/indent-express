@@ -29,6 +29,24 @@ const AdiminFileSideBar = () => {
             GET MASTER SKU
           </Link>
           <hr />
+          <Link
+            to='/Indent-express/admin/login/credentials'
+            className='NavigationStyle'>
+            LOGIN CREDENTIALS
+          </Link>
+          <hr />
+          <Link
+            to='/Indent-express/admin/day/end/report'
+            className='NavigationStyle'>
+            DAY END REPORTS
+          </Link>
+          <hr />
+          <Link
+            to='/Indent-express/admin/update/automail'
+            className='NavigationStyle'>
+            UPDATE AUTOMAIL
+          </Link>
+          <hr />
         </ul>
       </div>
     </div>
