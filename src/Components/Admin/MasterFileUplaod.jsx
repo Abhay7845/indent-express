@@ -18,6 +18,7 @@ const MasterFileUplaod = () => {
         <h5 className='text-center mt-2'>MASTER FILE UPLOAD</h5>
         <div className='row g-3 mt-2 mx-1'>
           <div className='col-md-4'>
+            <b className='p-1'>To Store Code</b>
             <input
               type='date'
               className='DateSelect'
@@ -25,9 +26,11 @@ const MasterFileUplaod = () => {
             />
           </div>
           <div className='col-md-4'>
+            <b className='p-1'>To Store Code</b>
             <input className='AInpute' placeholder='From Store Code' />
           </div>
           <div className='col-md-4'>
+            <b className='p-1'>To Store Code</b>
             <input className='AInpute' placeholder='To Store Code' />
           </div>
         </div>
