@@ -18,8 +18,8 @@ const AdminHome = () => {
       <AdiminFileSideBar />
       <div className='main'>
         <h5 className='text-center mt-2'>COPY STORE INDENTS</h5>
-        <div className='row g-2 mt-2'>
-          <div className='col'>
+        <div className='row g-2 mt-2 mx-1'>
+          <div className='col-md-4'>
             <input
               type='text'
               className='form-control'
@@ -27,7 +27,7 @@ const AdminHome = () => {
               aria-label='First name'
             />
           </div>
-          <div className='col'>
+          <div className='col-md-4'>
             <input
               type='text'
               className='form-control'
@@ -35,7 +35,7 @@ const AdminHome = () => {
               aria-label='Last name'
             />
           </div>
-          <div className='col'>
+          <div className='col-md-4'>
             <input
               type='text'
               className='form-control'
