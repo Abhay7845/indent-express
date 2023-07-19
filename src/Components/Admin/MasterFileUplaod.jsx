@@ -43,7 +43,7 @@ const MasterFileUplaod = () => {
             />
           </div>
         </div>
-        <div className='d-flex justify-content-end mt-3'>
+        <div className='d-flex justify-content-end mt-3 mx-2'>
           <button type='submit' className='btn btn-primary'>
             Submit
           </button>

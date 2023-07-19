@@ -17,6 +17,12 @@ const AdiminFileSideBar = () => {
             MASTER FILE UPLOAD
           </Link>
           <hr />
+          <Link
+            to='/Indent-express/admin/update/tortal/status'
+            className='NavigationStyle'>
+            UPDATE PORTAL STATUS
+          </Link>
+          <hr />
         </ul>
       </div>
     </div>

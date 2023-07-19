@@ -21,6 +21,7 @@ import CategoryTypeL3 from "./Components/ComponentsL3/CategoryTypeL3";
 import DigitalL3 from "./Components/ComponentsL3/DigitalL3";
 import AdminHome from "./Components/Admin/AdminHome";
 import MasterFileUplaod from "./Components/Admin/MasterFileUplaod";
+import UpdatePortalStatus from "./Components/Admin/UpdatePortalStatus";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -100,6 +101,10 @@ const App = () => {
             <Route
               path='/Indent-express/admin/master/file/upload'
               element={<MasterFileUplaod showAlert={showAlert} />}
+            />
+            <Route
+              path='/Indent-express/admin/update/tortal/status'
+              element={<UpdatePortalStatus showAlert={showAlert} />}
             />
           </Route>
         </Routes>

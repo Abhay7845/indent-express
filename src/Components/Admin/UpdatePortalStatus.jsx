@@ -3,19 +3,20 @@
 import React from "react";
 import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
-import "../../Style/AdminHome.css";
 import AdiminFileSideBar from "./AdiminFileSideBar";
 
-const AdminHome = () => {
+const UpdatePortalStatus = () => {
   return (
     <div>
       <TopHeader />
       <div className='DropdownForAdmin'>
-        <AdminSideBar />
+        <div className='AdminSideBarStyle'>
+          <AdminSideBar />
+        </div>
       </div>
       <AdiminFileSideBar />
       <div className='main'>
-        <h5 className='text-center mt-2'>COPY STORE INDENTS</h5>
+        <h5 className='text-center mt-2'>UPDATE PORTAL STATUS</h5>
         <div className='row g-2 mt-2 mx-1'>
           <div className='col-md-4'>
             <input
@@ -52,4 +53,4 @@ const AdminHome = () => {
   );
 };
 
-export default AdminHome;
+export default UpdatePortalStatus;
