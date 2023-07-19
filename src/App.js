@@ -22,6 +22,7 @@ import DigitalL3 from "./Components/ComponentsL3/DigitalL3";
 import AdminHome from "./Components/Admin/AdminHome";
 import MasterFileUplaod from "./Components/Admin/MasterFileUplaod";
 import UpdatePortalStatus from "./Components/Admin/UpdatePortalStatus";
+import GetMasterSKU from "./Components/Admin/GetMasterSKU";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -105,6 +106,10 @@ const App = () => {
             <Route
               path='/Indent-express/admin/update/tortal/status'
               element={<UpdatePortalStatus showAlert={showAlert} />}
+            />
+            <Route
+              path='/Indent-express/admin/get/master/sku'
+              element={<GetMasterSKU showAlert={showAlert} />}
             />
           </Route>
         </Routes>
