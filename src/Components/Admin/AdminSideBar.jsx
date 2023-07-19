@@ -65,7 +65,7 @@ const AdminSideBar = () => {
             <li className='my-3'>
               <Link
                 className='NavigationStyle'
-                to='/Indent-express/admin'
+                to='/Indent-express/admin/get/master/sku'
                 onClick={ToggleSidebar}>
                 GET MASTER SKU
               </Link>
@@ -74,7 +74,7 @@ const AdminSideBar = () => {
             <li className='my-3'>
               <Link
                 className='NavigationStyle'
-                to='/Indent-express/admin'
+                to='/Indent-express/admin/login/credentials'
                 onClick={ToggleSidebar}>
                 LOGIN CREDENTIALS
               </Link>
@@ -83,7 +83,7 @@ const AdminSideBar = () => {
             <li className='my-3'>
               <Link
                 className='NavigationStyle'
-                to='/Indent-express/admin'
+                to='/Indent-express/admin/day/end/report'
                 onClick={ToggleSidebar}>
                 DAY END REPORTS
               </Link>
@@ -92,7 +92,7 @@ const AdminSideBar = () => {
             <li className='my-3'>
               <Link
                 className='NavigationStyle'
-                to='/Indent-express/admin'
+                to='/Indent-express/admin/update/automail'
                 onClick={ToggleSidebar}>
                 UPDATE AUTO MAIL
               </Link>
