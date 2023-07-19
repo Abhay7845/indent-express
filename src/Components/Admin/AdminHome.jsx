@@ -11,9 +11,7 @@ const AdminHome = () => {
     <div>
       <TopHeader />
       <div className='DropdownForAdmin'>
-        <div className='AdminSideBarStyle'>
-          <AdminSideBar />
-        </div>
+        <AdminSideBar />
       </div>
       <AdiminFileSideBar />
       <div className='main'>
