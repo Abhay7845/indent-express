@@ -20,6 +20,7 @@ import CancelDataReport from "./Components/ComponentsL3/CancelDataReport";
 import CategoryTypeL3 from "./Components/ComponentsL3/CategoryTypeL3";
 import DigitalL3 from "./Components/ComponentsL3/DigitalL3";
 import AdminHome from "./Components/Admin/AdminHome";
+import MasterFileUplaod from "./Components/Admin/MasterFileUplaod";
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -95,6 +96,10 @@ const App = () => {
             <Route
               path='/Indent-express/admin/home'
               element={<AdminHome showAlert={showAlert} />}
+            />
+            <Route
+              path='/Indent-express/admin/master/file/upload'
+              element={<MasterFileUplaod showAlert={showAlert} />}
             />
           </Route>
         </Routes>

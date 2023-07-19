@@ -3,10 +3,9 @@
 import React from "react";
 import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
-import "../../Style/AdminHome.css";
 import AdiminFileSideBar from "./AdiminFileSideBar";
 
-const AdminHome = () => {
+const MasterFileUplaod = () => {
   return (
     <div>
       <TopHeader />
@@ -17,7 +16,7 @@ const AdminHome = () => {
       </div>
       <AdiminFileSideBar />
       <div className='main'>
-        <h5 className='text-center mt-2'>COPY STORE INDENTS</h5>
+        <h5 className='text-center mt-2'>MASTER FILE UPLOAD</h5>
         <div className='row g-2 mt-2'>
           <div className='col'>
             <input
@@ -54,4 +53,4 @@ const AdminHome = () => {
   );
 };
 
-export default AdminHome;
+export default MasterFileUplaod;
