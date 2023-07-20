@@ -38,3 +38,13 @@ export const FileInitialValue = {
 export const masterSchema = yup.object({
   masterFile: yup.string().required("File is required"),
 });
+
+export const updatePortsalInitialValue = {
+  level: "",
+  status: "",
+};
+
+export const updatePortsalSchema = yup.object({
+  level: yup.string().required("Level is required"),
+  status: yup.string().required("Staus is required"),
+});
