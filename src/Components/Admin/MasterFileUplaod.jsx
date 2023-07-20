@@ -3,6 +3,7 @@ import React from "react";
 import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
 import AdiminFileSideBar from "./AdiminFileSideBar";
+import { excelsheetURL } from "../../API/HotMaster";
 
 const MasterFileUplaod = () => {
   return (
@@ -43,10 +44,7 @@ const MasterFileUplaod = () => {
           <div className='mx-1'>
             <p>
               If you want to master SKU template then please click &nbsp;
-              <a
-                href='https://docs.google.com/spreadsheets/d/1AoThWIV-h0xRdn1ONW_qABM_CvIsVicBx2JiehwODeA/edit#gid=0'
-                target='_blank'
-                rel='noreferrer'>
+              <a href={excelsheetURL} target='_blank' rel='noreferrer'>
                 Master Template
               </a>
             </p>
