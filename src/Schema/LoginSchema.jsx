@@ -1,4 +1,9 @@
-/* eslint-disable no-useless-escape */
+/**
+ * eslint-disable no-useless-escape
+ *
+ * @format
+ */
+
 import * as yup from "yup";
 
 export const LoginInitialValue = {
@@ -11,4 +16,17 @@ export const LoginSchema = yup.object({
   userID: yup.string().required("Username is required"),
   password: yup.string().required("Password is required"),
   region: yup.string().required("RSO Name Is required"),
+});
+
+// ADMIN VALIDATION SCHEMA
+export const CopyStoreInitialValue = {
+  date: "",
+  fromStoreCode: "",
+  toStoreCode: "",
+};
+
+export const CopyStoreSchema = yup.object({
+  date: yup.string().required("From Date is required"),
+  fromStoreCode: yup.string().required("From Store Code is required"),
+  toStoreCode: yup.string().required("To Store Code required"),
 });

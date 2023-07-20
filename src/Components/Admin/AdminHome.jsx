@@ -5,9 +5,17 @@ import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
 import "../../Style/AdminHome.css";
 import AdiminFileSideBar from "./AdiminFileSideBar";
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
+import {
+  CopyStoreInitialValue,
+  CopyStoreSchema,
+} from "../../Schema/LoginSchema";
+import ShowError from "../../Schema/ShowError";
 
 const AdminHome = () => {
+  const CopyStorCode = (payload) => {
+    console.log("payload==>", payload);
+  };
   return (
     <div>
       <TopHeader />
@@ -16,40 +24,47 @@ const AdminHome = () => {
       </div>
       <AdiminFileSideBar />
       <div className='main'>
-        <h5 className='text-center mt-2'>COPY STORE INDENTS</h5>
-        <div className='row g-3 mt-2 mx-1'>
-          <div className='col-md-4'>
-            <b className='p-1'>Choose Date</b>
-            <input
-              type='date'
-              className='DateSelect'
-              placeholder='select date'
-            />
-          </div>
-          <div className='col-md-4'>
-            <b className='p-1'>From Store Code</b>
-            <select className='DateSelect' placeholder='From Store Code'>
-              <option>Selct From Store Code</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </select>
-          </div>
-          <div className='col-md-4'>
-            <b className='p-1'>To Store Code</b>
-            <select className='DateSelect' placeholder='To Store Code'>
-              <option>Selct To Store Code</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </select>
-          </div>
-        </div>
-        <div className='d-flex justify-content-end mt-3 mx-2'>
-          <button type='submit' className='ACommonBTN'>
-            COPY
-          </button>
-        </div>
+        <Formik
+          initialValues={CopyStoreInitialValue}
+          validationSchema={CopyStoreSchema}
+          onSubmit={(payload) => CopyStorCode(payload)}>
+          <Form className='row g-3 mt-2 mx-1'>
+            <h5 className='text-center mt-2'>COPY STORE INDENTS</h5>
+            <div className='col-md-4'>
+              <b className='p-1'>From Date</b>
+              <Field
+                type='date'
+                className='DateSelect'
+                placeholder='select date'
+                name='date'
+              />
+              <ShowError name='date' />
+            </div>
+            <div className='col-md-4'>
+              <b className='p-1'>From Store Code</b>
+              <Field className='DateSelect' as='select' name='fromStoreCode'>
+                <option>Select From Store Code</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+              </Field>
+              <ShowError name='fromStoreCode' />
+            </div>
+            <div className='col-md-4'>
+              <b className='p-1'>To Store Code</b>
+              <Field className='DateSelect' as='select' name='toStoreCode'>
+                <option>Select To Store Code</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+              </Field>
+              <ShowError name='toStoreCode' />
+            </div>
+            <div className='d-flex justify-content-end mt-3'>
+              <button type='submit' className='ACommonBTN'>
+                COPY
+              </button>
+            </div>
+          </Form>
+        </Formik>
       </div>
     </div>
   );
