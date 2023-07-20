@@ -30,3 +30,11 @@ export const CopyStoreSchema = yup.object({
   fromStoreCode: yup.string().required("From Store Code is required"),
   toStoreCode: yup.string().required("To Store Code required"),
 });
+
+export const FileInitialValue = {
+  masterFile: "",
+};
+
+export const masterSchema = yup.object({
+  masterFile: yup.string().required("File is required"),
+});

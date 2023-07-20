@@ -4,8 +4,14 @@ import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
 import AdiminFileSideBar from "./AdiminFileSideBar";
 import { excelsheetURL } from "../../API/HotMaster";
+import { Field, Form, Formik } from "formik";
+import { FileInitialValue, masterSchema } from "../../Schema/LoginSchema";
+import ShowError from "../../Schema/ShowError";
 
 const MasterFileUplaod = () => {
+  const UploadMasterFile = (payload) => {
+    console.log("payload==>", payload);
+  };
   return (
     <div>
       <TopHeader />
@@ -41,25 +47,27 @@ const MasterFileUplaod = () => {
           <hr />
         </div>
         <div className='d-flex mt-2 mx-1 justify-content-center'>
-          <div className='mx-1'>
-            <p>
-              If you want to master SKU template then please click &nbsp;
-              <a href={excelsheetURL} target='_blank' rel='noreferrer'>
-                Master Template
-              </a>
-            </p>
-            <b className='p-1'>Master File</b>
-            <input
-              type='file'
-              className='DateSelect'
-              placeholder='select date'
-            />
-            <div className='d-flex justify-content-end mt-3'>
-              <button type='submit' className='ACommonBTN'>
-                UPLOAD
-              </button>
-            </div>
-          </div>
+          <Formik
+            initialValues={FileInitialValue}
+            validationSchema={masterSchema}
+            onSubmit={(payload) => UploadMasterFile(payload)}>
+            <Form className='mx-1'>
+              <p>
+                If you want to master SKU template then please click &nbsp;
+                <a href={excelsheetURL} target='_blank' rel='noreferrer'>
+                  Master Template
+                </a>
+              </p>
+              <b className='p-1'>Master File</b>
+              <Field type='file' className='DateSelect' name='masterFile' />
+              <ShowError name='masterFile' />
+              <div className='d-flex justify-content-end mt-3'>
+                <button type='submit' className='ACommonBTN'>
+                  UPLOAD
+                </button>
+              </div>
+            </Form>
+          </Formik>
         </div>
       </div>
     </div>

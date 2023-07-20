@@ -32,12 +32,7 @@ const AdminHome = () => {
             <h5 className='text-center mt-2'>COPY STORE INDENTS</h5>
             <div className='col-md-4'>
               <b className='p-1'>From Date</b>
-              <Field
-                type='date'
-                className='DateSelect'
-                placeholder='select date'
-                name='date'
-              />
+              <Field type='date' className='DateSelect' name='date' />
               <ShowError name='date' />
             </div>
             <div className='col-md-4'>
