@@ -29,20 +29,21 @@ const LoginCredentials = () => {
           onSubmit={(payload) => GetLoginCredential(payload)}>
           <Form>
             <h5 className='text-center mt-2'>LOGIN CREDENTIALS</h5>
-            <div className='row d-flex mt-2 mx-1 justify-content-center'>
-              <div className='col-md-6 mx-1'>
+            <div className='row d-flex mt-2 mx-1'>
+              <div className='col-md-9'>
                 <b className='p-1'>Level</b>
                 <Field as='select' className='DateSelect' name='level'>
-                  <option>Select Level</option>
+                  <option value=''>Select Level</option>
                   <option value='L1'>L1</option>
                   <option value='L2'>L2</option>
                   <option value='L3'>L3</option>
                 </Field>
                 <ShowError name='level' />
-
+              </div>
+              <div className='col-md-3'>
                 <div className='d-flex justify-content-end mt-3'>
                   <button type='submit' className='ACommonBTN'>
-                    FECH CREDENTIALS
+                    FETCH CREDENTIALS
                   </button>
                 </div>
               </div>

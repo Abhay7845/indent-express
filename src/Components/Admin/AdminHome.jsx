@@ -38,7 +38,7 @@ const AdminHome = () => {
             <div className='col-md-4'>
               <b className='p-1'>From Store Code</b>
               <Field className='DateSelect' as='select' name='fromStoreCode'>
-                <option>Select From Store Code</option>
+                <option value=''>Select From Store Code</option>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
               </Field>
@@ -47,7 +47,7 @@ const AdminHome = () => {
             <div className='col-md-4'>
               <b className='p-1'>To Store Code</b>
               <Field className='DateSelect' as='select' name='toStoreCode'>
-                <option>Select To Store Code</option>
+                <option value=''>Select To Store Code</option>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
               </Field>

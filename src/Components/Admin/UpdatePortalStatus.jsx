@@ -35,7 +35,7 @@ const UpdatePortalStatus = () => {
               <div className='col-md-6'>
                 <b className='p-1'>Level</b>
                 <Field as='select' className='DateSelect' name='level'>
-                  <option>Select Level</option>
+                  <option value=''>Select Level</option>
                   <option value='L1'>L1</option>
                   <option value='L2'>L2</option>
                   <option value='L3'>L3</option>
@@ -44,9 +44,8 @@ const UpdatePortalStatus = () => {
               </div>
               <div className='col-md-6'>
                 <b className='p-1'>Status</b>
-
                 <Field as='select' className='DateSelect' name='status'>
-                  <option>Select Status</option>
+                  <option value=''>Select Status</option>
                   <option value='open'>Open</option>
                   <option value='close'>Close</option>
                 </Field>
