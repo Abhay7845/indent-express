@@ -18,26 +18,27 @@ const UpdatePortalStatus = () => {
       <div className='main'>
         <h5 className='text-center mt-2'>UPDATE PORTAL STATUS</h5>
         <div className='row g-3 mt-2 mx-1'>
-          <div className='col-md-4'>
-            <b className='p-1'>To Store Code</b>
-            <input
-              type='date'
-              className='DateSelect'
-              placeholder='select date'
-            />
+          <div className='col-md-6'>
+            <b className='p-1'>Level</b>
+            <select className='DateSelect'>
+              <option>Select Level</option>
+              <option>L1</option>
+              <option>L2</option>
+              <option>L3</option>
+            </select>
           </div>
-          <div className='col-md-4'>
-            <b className='p-1'>To Store Code</b>
-            <input className='AInpute' placeholder='From Store Code' />
-          </div>
-          <div className='col-md-4'>
-            <b className='p-1'>To Store Code</b>
-            <input className='AInpute' placeholder='To Store Code' />
+          <div className='col-md-6'>
+            <b className='p-1'>Status</b>
+            <select className='DateSelect'>
+              <option>Select Status</option>
+              <option>Open</option>
+              <option>Close</option>
+            </select>
           </div>
         </div>
         <div className='d-flex justify-content-end mt-3 mx-2'>
           <button type='submit' className='ACommonBTN'>
-            UPLOAD
+            UPDATE STATUS
           </button>
         </div>
       </div>

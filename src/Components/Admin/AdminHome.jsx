@@ -27,16 +27,24 @@ const AdminHome = () => {
           </div>
           <div className='col-md-4'>
             <b className='p-1'>From Store Code</b>
-            <input className='AInpute' placeholder='From Store Code' />
+            <select className='DateSelect' placeholder='From Store Code'>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
           </div>
           <div className='col-md-4'>
             <b className='p-1'>To Store Code</b>
-            <input className='AInpute' placeholder='To Store Code' />
+            <select className='DateSelect' placeholder='To Store Code'>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
           </div>
         </div>
         <div className='d-flex justify-content-end mt-3 mx-2'>
           <button type='submit' className='ACommonBTN'>
-            SUBMIT
+            COPY
           </button>
         </div>
       </div>
