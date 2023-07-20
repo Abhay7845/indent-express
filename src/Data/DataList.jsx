@@ -1,3 +1,5 @@
+/** @format */
+
 const ChooseReasonForNo = [
   " Not Relevant To Market",
   "Price is High",
@@ -100,5 +102,30 @@ export const ItemWiseReportsDropdown = [
   {
     value: "attributes",
     label: "Attributes",
+  },
+];
+
+export const LevelOptions = [
+  {
+    value: "L1",
+    lebel: "L1",
+  },
+  {
+    value: "L2",
+    lebel: "L2",
+  },
+  {
+    value: "L3",
+    lebel: "L3",
+  },
+];
+export const stausOptions = [
+  {
+    value: "Open",
+    lebel: "Open",
+  },
+  {
+    value: "Cloce",
+    lebel: "Close",
   },
 ];

@@ -1,6 +1,5 @@
 /** @format */
-
-import React from "react";
+import React, { useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
 import AdiminFileSideBar from "./AdiminFileSideBar";
@@ -10,13 +9,34 @@ import {
   updatePortsalSchema,
 } from "../../Schema/LoginSchema";
 import ShowError from "../../Schema/ShowError";
+import { LevelOptions, stausOptions } from "../../Data/DataList";
+import axios from "axios";
+import { HOST_URL } from "../../API/HotMaster";
+import Loader from "../../Common/Loader";
 
 const UpdatePortalStatus = () => {
+  const [loading, setLoading] = useState(false);
+
   const UpdatePortalStaus = (payload) => {
+    setLoading(true);
     console.log("payload==>", payload);
+    axios
+      .post(`${HOST_URL}/INDENTADMIN/express/open/portal`, payload)
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          console.log("response==>", response);
+        }
+        setLoading(false);
+      })
+      .then((error) => {
+        console.log("");
+        setLoading(false);
+      });
   };
   return (
     <div>
+      {loading === true && <Loader />}
       <TopHeader />
       <div className='DropdownForAdmin'>
         <div className='AdminSideBarStyle'>
@@ -36,9 +56,13 @@ const UpdatePortalStatus = () => {
                 <b className='p-1'>Level</b>
                 <Field as='select' className='DateSelect' name='level'>
                   <option value=''>Select Level</option>
-                  <option value='L1'>L1</option>
-                  <option value='L2'>L2</option>
-                  <option value='L3'>L3</option>
+                  {LevelOptions.map((item, i) => {
+                    return (
+                      <option key={i} value={item.value}>
+                        {item.lebel}
+                      </option>
+                    );
+                  })}
                 </Field>
                 <ShowError name='level' />
               </div>
@@ -46,8 +70,13 @@ const UpdatePortalStatus = () => {
                 <b className='p-1'>Status</b>
                 <Field as='select' className='DateSelect' name='status'>
                   <option value=''>Select Status</option>
-                  <option value='open'>Open</option>
-                  <option value='close'>Close</option>
+                  {stausOptions.map((item, i) => {
+                    return (
+                      <option key={i} value={item.value}>
+                        {item.lebel}
+                      </option>
+                    );
+                  })}
                 </Field>
                 <ShowError name='status' />
               </div>
