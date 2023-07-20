@@ -62,7 +62,7 @@ const Login = (props) => {
   }, []);
 
   return (
-    <>
+    <div>
       <div className='row mx-0 loginPageStyle'>
         <div className='col-8 RegisterLeftRight'></div>
         <div className='col-4 Form_style'>
@@ -73,7 +73,7 @@ const Login = (props) => {
             initialValues={LoginInitialValue}
             validationSchema={LoginSchema}
             onSubmit={(payload) => onLogin(payload)}>
-            <>
+            <div className='w-100'>
               <div className='wrapper'>
                 <div className='box'>
                   <div>TANISHQ</div>
@@ -157,11 +157,11 @@ const Login = (props) => {
                   </button>
                 </div>
               </Form>
-            </>
+            </div>
           </Formik>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

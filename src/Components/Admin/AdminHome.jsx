@@ -5,6 +5,7 @@ import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
 import "../../Style/AdminHome.css";
 import AdiminFileSideBar from "./AdiminFileSideBar";
+import { Formik, Form } from "formik";
 
 const AdminHome = () => {
   return (
@@ -28,6 +29,7 @@ const AdminHome = () => {
           <div className='col-md-4'>
             <b className='p-1'>From Store Code</b>
             <select className='DateSelect' placeholder='From Store Code'>
+              <option>Selct From Store Code</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -36,6 +38,7 @@ const AdminHome = () => {
           <div className='col-md-4'>
             <b className='p-1'>To Store Code</b>
             <select className='DateSelect' placeholder='To Store Code'>
+              <option>Selct To Store Code</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
