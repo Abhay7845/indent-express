@@ -17,13 +17,13 @@ import { HOST_URL } from "../../API/HotMaster";
 const AdminHome = () => {
   const [fromDate, setFromDate] = useState("");
   const [fromStoreCode, setFromStoreCode] = useState([]);
+  const [toStoreCode, setToStoreCode] = useState([]);
   useEffect(() => {
     if (fromDate) {
       axios
         .get(`${HOST_URL}/INDENTADMIN/express/from/store/list/${fromDate}`)
         .then((res) => res)
         .then((response) => {
-          console.log("response==>", response.data.value);
           if (response.data.code === "1000") {
             setFromStoreCode(response.data.value);
           }
@@ -31,6 +31,18 @@ const AdminHome = () => {
         .catch((error) => console.log("error==>", error));
     }
   }, [fromDate]);
+
+  useEffect(() => {
+    axios
+      .get(`${HOST_URL}/INDENTADMIN/express/to/store/list`)
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setToStoreCode(response.data.value);
+        }
+      })
+      .catch((error) => console.log("error==>", error));
+  }, []);
 
   const CopyStorCode = (payload) => {
     console.log("fromDate==>", payload);
@@ -76,8 +88,13 @@ const AdminHome = () => {
               <b className='p-1'>To Store Code</b>
               <Field className='DateSelect' as='select' name='toStoreCode'>
                 <option value=''>Select To Store Code</option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
+                {toStoreCode.map((item, i) => {
+                  return (
+                    <option key={i} value={item}>
+                      {item}
+                    </option>
+                  );
+                })}
               </Field>
               <ShowError name='toStoreCode' />
             </div>
