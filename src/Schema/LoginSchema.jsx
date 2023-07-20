@@ -20,13 +20,11 @@ export const LoginSchema = yup.object({
 
 // ADMIN VALIDATION SCHEMA
 export const CopyStoreInitialValue = {
-  fromDate: "",
   fromStoreCode: "",
   toStoreCode: "",
 };
 
 export const CopyStoreSchema = yup.object({
-  fromDate: yup.string().required("From Date is required"),
   fromStoreCode: yup.string().required("From Store Code is required"),
   toStoreCode: yup.string().required("To Store Code required"),
 });

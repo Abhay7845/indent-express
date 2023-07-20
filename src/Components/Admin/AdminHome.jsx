@@ -13,23 +13,28 @@ import {
 import ShowError from "../../Schema/ShowError";
 import axios from "axios";
 import { HOST_URL } from "../../API/HotMaster";
-import moment from "moment/moment";
 
 const AdminHome = () => {
   const [fromDate, setFromDate] = useState("");
-  console.log("fromDate==>", fromDate);
+  const [fromStoreCode, setFromStoreCode] = useState([]);
   useEffect(() => {
-    axios
-      .get(`${HOST_URL}/INDENTADMIN/express/from/store/list/${fromDate}`)
-      .then((res) => res)
-      .then((response) => console.log("response==>", response.data))
-      .catch((error) => console.log("error==>", error));
+    if (fromDate) {
+      axios
+        .get(`${HOST_URL}/INDENTADMIN/express/from/store/list/${fromDate}`)
+        .then((res) => res)
+        .then((response) => {
+          console.log("response==>", response.data.value);
+          if (response.data.code === "1000") {
+            setFromStoreCode(response.data.value);
+          }
+        })
+        .catch((error) => console.log("error==>", error));
+    }
   }, [fromDate]);
 
   const CopyStorCode = (payload) => {
     console.log("fromDate==>", payload);
   };
-  // console.log("data==>", moment(fromDate).format("mm/dd/yyyy"));
   return (
     <div>
       <TopHeader />
@@ -46,21 +51,24 @@ const AdminHome = () => {
             <h5 className='text-center mt-2'>COPY STORE INDENTS</h5>
             <div className='col-md-4'>
               <b className='p-1'>From Date</b>
-              <Field
+              <input
                 type='date'
                 className='DateSelect'
-                name='fromDate'
-                value={moment(fromDate).format("YYYY-MM-DD")}
+                value={fromDate}
                 onChange={(e) => setFromDate(e.target.value)}
               />
-              <ShowError name='fromDate' />
             </div>
             <div className='col-md-4'>
               <b className='p-1'>From Store Code</b>
               <Field className='DateSelect' as='select' name='fromStoreCode'>
                 <option value=''>Select From Store Code</option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
+                {fromStoreCode.map((item, i) => {
+                  return (
+                    <option key={i} value={item.strCode}>
+                      {item.strCode}
+                    </option>
+                  );
+                })}
               </Field>
               <ShowError name='fromStoreCode' />
             </div>
