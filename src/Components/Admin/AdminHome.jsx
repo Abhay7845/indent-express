@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
 import "../../Style/AdminHome.css";
@@ -11,11 +11,25 @@ import {
   CopyStoreSchema,
 } from "../../Schema/LoginSchema";
 import ShowError from "../../Schema/ShowError";
+import axios from "axios";
+import { HOST_URL } from "../../API/HotMaster";
+import moment from "moment/moment";
 
 const AdminHome = () => {
+  const [fromDate, setFromDate] = useState("");
+  console.log("fromDate==>", fromDate);
+  useEffect(() => {
+    axios
+      .get(`${HOST_URL}/INDENTADMIN/express/from/store/list/${fromDate}`)
+      .then((res) => res)
+      .then((response) => console.log("response==>", response.data))
+      .catch((error) => console.log("error==>", error));
+  }, [fromDate]);
+
   const CopyStorCode = (payload) => {
-    console.log("payload==>", payload);
+    console.log("fromDate==>", payload);
   };
+  // console.log("data==>", moment(fromDate).format("mm/dd/yyyy"));
   return (
     <div>
       <TopHeader />
@@ -32,8 +46,14 @@ const AdminHome = () => {
             <h5 className='text-center mt-2'>COPY STORE INDENTS</h5>
             <div className='col-md-4'>
               <b className='p-1'>From Date</b>
-              <Field type='date' className='DateSelect' name='date' />
-              <ShowError name='date' />
+              <Field
+                type='date'
+                className='DateSelect'
+                name='fromDate'
+                value={moment(fromDate).format("YYYY-MM-DD")}
+                onChange={(e) => setFromDate(e.target.value)}
+              />
+              <ShowError name='fromDate' />
             </div>
             <div className='col-md-4'>
               <b className='p-1'>From Store Code</b>
