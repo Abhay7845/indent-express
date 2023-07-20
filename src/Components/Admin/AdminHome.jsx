@@ -13,13 +13,17 @@ import {
 import ShowError from "../../Schema/ShowError";
 import axios from "axios";
 import { HOST_URL } from "../../API/HotMaster";
+import Loader from "../../Common/Loader";
+import swal from "sweetalert";
 
 const AdminHome = () => {
   const [fromDate, setFromDate] = useState("");
+  const [loading, setLoading] = useState(false);
   const [fromStoreCode, setFromStoreCode] = useState([]);
   const [toStoreCode, setToStoreCode] = useState([]);
   useEffect(() => {
     if (fromDate) {
+      setLoading(true);
       axios
         .get(`${HOST_URL}/INDENTADMIN/express/from/store/list/${fromDate}`)
         .then((res) => res)
@@ -27,12 +31,17 @@ const AdminHome = () => {
           if (response.data.code === "1000") {
             setFromStoreCode(response.data.value);
           }
+          setLoading(false);
         })
-        .catch((error) => console.log("error==>", error));
+        .catch((error) => {
+          console.log("");
+          setLoading(false);
+        });
     }
   }, [fromDate]);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${HOST_URL}/INDENTADMIN/express/to/store/list`)
       .then((res) => res)
@@ -40,15 +49,40 @@ const AdminHome = () => {
         if (response.data.code === "1000") {
           setToStoreCode(response.data.value);
         }
+        setLoading(false);
       })
-      .catch((error) => console.log("error==>", error));
+      .catch((error) => {
+        console.log("");
+        setLoading(false);
+      });
   }, []);
 
   const CopyStorCode = (payload) => {
-    console.log("fromDate==>", payload);
+    setLoading(true);
+    const { fromStoreCode, toStoreCode } = payload;
+    axios
+      .get(
+        `${HOST_URL}/INDENTADMIN/express/store/response/copy/${fromStoreCode}/${toStoreCode}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          swal({
+            title: "COPIED",
+            text: response.data.value,
+            icon: "success",
+            buttons: "OK",
+          });
+        }
+      })
+      .then((error) => {
+        console.log("");
+        setLoading(false);
+      });
   };
   return (
     <div>
+      {loading === true && <Loader />}
       <TopHeader />
       <div className='DropdownForAdmin'>
         <AdminSideBar />
