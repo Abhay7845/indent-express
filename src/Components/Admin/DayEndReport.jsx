@@ -11,7 +11,8 @@ import axios from "axios";
 // import { HitrateCol } from "../../Data/DataList";
 import TableDataDownload from "../../Common/TableDataDownload";
 
-const DayEndReport = () => {
+const DayEndReport = (props) => {
+  const { showAlert } = props;
   const [levelvalue, setLevelvalue] = useState("");
   const [loading, setLoading] = useState(false);
   const [parameter, setParameter] = useState("");
@@ -19,8 +20,6 @@ const DayEndReport = () => {
   const [toDate, setToDate] = useState("");
   const [rows, setRows] = useState([]);
   const [cols, setCols] = useState([]);
-  console.log("rows==>", rows);
-  console.log("cols==>", cols);
 
   const GetEndDayReports = () => {
     const endDayReports = `?fromDate=${fromDate}&level=${levelvalue}&toDate=${toDate}`;
@@ -33,6 +32,9 @@ const DayEndReport = () => {
           if (response.data.code === "1000") {
             setCols(response.data.coloum);
             setRows(response.data.value);
+          }
+          if (response.data.code === "1001") {
+            showAlert("Data Not Available for Selected Date", "danger");
           }
           setLoading(false);
         })
@@ -70,49 +72,12 @@ const DayEndReport = () => {
     }
   };
 
-  const columns = [
-    { field: "id", headerName: "ID", width: 90 },
-    {
-      field: "firstName",
-      headerName: "First name",
-      width: 150,
-      editable: true,
-    },
-    {
-      field: "lastName",
-      headerName: "Last name",
-      width: 150,
-      editable: true,
-    },
-    {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      width: 110,
-      editable: true,
-    },
-    {
-      field: "fullName",
-      headerName: "Full name",
-      description: "This column has a value getter and is not sortable.",
-      sortable: false,
-      width: 160,
-      valueGetter: (params) =>
-        `${params.row.firstName || ""} ${params.row.lastName || ""}`,
-    },
-  ];
-
-  const Rows = [
-    { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-    { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-    { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-    { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-    { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-    { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-    { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-    { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-    { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-  ];
+  const columns = cols.map((element) => {
+    return {
+      field: element,
+      flex: 1,
+    };
+  });
 
   return (
     <div>
@@ -191,17 +156,19 @@ const DayEndReport = () => {
             )}
           </div>
         </div>
-        <div className='mx-1 my-3'>
-          <DataGrid
-            rows={Rows}
-            columns={columns}
-            autoHeight={true}
-            pageSize={[50]}
-            components={{
-              Toolbar: TableDataDownload,
-            }}
-          />
-        </div>
+        {rows.length > 0 && (
+          <div className='mx-2 my-4'>
+            <DataGrid
+              columns={columns}
+              rows={rows}
+              autoHeight={true}
+              pageSize={50}
+              components={{
+                Toolbar: TableDataDownload,
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
