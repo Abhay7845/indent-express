@@ -129,3 +129,28 @@ export const stausOptions = [
     lebel: "Close",
   },
 ];
+export const endDayReportLevel = [
+  {
+    value: "L1/L2",
+    lebel: "L1/L2",
+  },
+  {
+    value: "L3",
+    lebel: "L3",
+  },
+  {
+    value: "HitRate Report",
+    lebel: "HitRate Report",
+  },
+];
+
+export const parametreOptions = [
+  {
+    value: "ItemCode",
+    lebel: "ItemCode",
+  },
+  {
+    value: "Region",
+    lebel: "Region",
+  },
+];
