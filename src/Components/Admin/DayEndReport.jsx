@@ -21,6 +21,11 @@ const DayEndReport = (props) => {
   const [rows, setRows] = useState([]);
   const [cols, setCols] = useState([]);
 
+  const OnchageLevel = (e) => {
+    setLevelvalue(e.target.value);
+    setRows([]);
+  };
+
   const GetEndDayReports = () => {
     const endDayReports = `?fromDate=${fromDate}&level=${levelvalue}&toDate=${toDate}`;
     if (levelvalue && fromDate && toDate) {
@@ -61,6 +66,9 @@ const DayEndReport = (props) => {
             setCols(response.data.coloum);
             setRows(response.data.value);
           }
+          if (response.data.code === "1001") {
+            showAlert(`Data Not Available For ${parameter}`, "danger");
+          }
           setLoading(false);
         })
         .catch((error) => {
@@ -95,10 +103,7 @@ const DayEndReport = (props) => {
               levelvalue === "HitRate Report" ? "col-md-6" : "col-md-4"
             }>
             <b className='p-1'>Level</b>
-            <select
-              type='text'
-              className='DateSelect'
-              onChange={(e) => setLevelvalue(e.target.value)}>
+            <select type='text' className='DateSelect' onChange={OnchageLevel}>
               <option value=''>Select Level</option>
               {endDayReportLevel.map((item, i) => {
                 return <option key={item.value}>{item.lebel}</option>;

@@ -1,11 +1,15 @@
 /** @format */
 import React from "react";
 import { Link } from "react-router-dom";
+import SideBarImage from "../../Asset/Img/Tanishq_Logo1.png";
 
 const AdiminFileSideBar = () => {
   return (
     <div>
       <div className='AdminSidebarStyle'>
+        <div className='text-center mt-2'>
+          <img src={SideBarImage} alt='Logo' height='40' width='85' />
+        </div>
         <ul className='mt-4'>
           <Link to='/Indent-express/admin/home' className='NavigationStyle'>
             COPY STORE INDENTS
