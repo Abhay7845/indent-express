@@ -9,7 +9,13 @@ import { endDayReportLevel, parametreOptions } from "../../Data/DataList";
 const DayEndReport = () => {
   const [levelvalue, setLevelvalue] = useState("");
   console.log("levelvalue==>", levelvalue);
+  const GetEndDayReports = () => {
+    console.log("GetEndDayReports==>");
+  };
 
+  const GetParameterReports = () => {
+    console.log("GetParameterReports==>");
+  };
   return (
     <div>
       <TopHeader />
@@ -58,9 +64,21 @@ const DayEndReport = () => {
             </>
           )}
           <div className='d-flex justify-content-end mt-3'>
-            <button type='submit' className='ACommonBTN'>
-              GENERATE REPORTS
-            </button>
+            {levelvalue === "HitRate Report" ? (
+              <button
+                type='submit'
+                className='ACommonBTN'
+                onClick={GetParameterReports}>
+                GENERATE
+              </button>
+            ) : (
+              <button
+                type='submit'
+                className='ACommonBTN'
+                onClick={GetEndDayReports}>
+                GENERATE REPORTS
+              </button>
+            )}
           </div>
         </div>
       </div>
