@@ -4,40 +4,119 @@ import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
 import AdiminFileSideBar from "./AdiminFileSideBar";
 import { endDayReportLevel, parametreOptions } from "../../Data/DataList";
-import axios from "axios";
 import { HOST_URL } from "../../API/HotMaster";
+import Loader from "../../Common/Loader";
+import { DataGrid } from "@mui/x-data-grid";
+import axios from "axios";
+// import { HitrateCol } from "../../Data/DataList";
+import TableDataDownload from "../../Common/TableDataDownload";
 
 const DayEndReport = () => {
   const [levelvalue, setLevelvalue] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [parameter, setParameter] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [parameter, setParameter] = useState("");
+  const [rows, setRows] = useState([]);
+  const [cols, setCols] = useState([]);
+  console.log("rows==>", rows);
+  console.log("cols==>", cols);
 
   const GetEndDayReports = () => {
     const endDayReports = `?fromDate=${fromDate}&level=${levelvalue}&toDate=${toDate}`;
-    console.log("endDayReports==>", endDayReports);
-    console.log("URL==>", `${HOST_URL}/${endDayReports}`);
     if (levelvalue && fromDate && toDate) {
+      setLoading(true);
       axios
-        .get(`${HOST_URL}/${endDayReports}`)
+        .get(`${HOST_URL}/INDENTADMIN/end/day/report/${endDayReports}`)
         .then((res) => res)
-        .then((response) => console.log("response==>", response.data))
-        .catch((error) => console.log("error=>", error));
+        .then((response) => {
+          if (response.data.code === "1000") {
+            setCols(response.data.coloum);
+            setRows(response.data.value);
+          }
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log("error=>", error);
+          setLoading(false);
+        });
     } else {
-      alert("Please Select Valide Level & Date");
+      alert("Please Select Valid Level & Date");
     }
   };
 
   const GetParameterReports = () => {
     if (levelvalue && parameter) {
-      console.log("levelvalue==>", levelvalue);
-      console.log("parameter==>", parameter);
+      setLoading(true);
+      axios
+        .get(
+          `${HOST_URL}/INDENT/express/scanned/report/L1/hit/rates/${parameter}`
+        )
+        .then((res) => res)
+        .then((response) => {
+          console.log("response==>", response.data);
+          if (response.data.code === "1000") {
+            setCols(response.data.coloum);
+            setRows(response.data.value);
+          }
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log("error=>", error);
+          setLoading(false);
+        });
     } else {
-      alert("Please Select Valide Level & Parametere");
+      alert("Please Select Valid Level & Parametere");
     }
   };
+
+  const columns = [
+    { field: "id", headerName: "ID", width: 90 },
+    {
+      field: "firstName",
+      headerName: "First name",
+      width: 150,
+      editable: true,
+    },
+    {
+      field: "lastName",
+      headerName: "Last name",
+      width: 150,
+      editable: true,
+    },
+    {
+      field: "age",
+      headerName: "Age",
+      type: "number",
+      width: 110,
+      editable: true,
+    },
+    {
+      field: "fullName",
+      headerName: "Full name",
+      description: "This column has a value getter and is not sortable.",
+      sortable: false,
+      width: 160,
+      valueGetter: (params) =>
+        `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+    },
+  ];
+
+  const Rows = [
+    { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
+    { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
+    { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
+    { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
+    { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
+    { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
+    { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
+    { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
+    { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  ];
+
   return (
     <div>
+      {loading === true && <Loader />}
       <TopHeader />
       <div className='DropdownForAdmin'>
         <AdminSideBar />
@@ -111,6 +190,17 @@ const DayEndReport = () => {
               </button>
             )}
           </div>
+        </div>
+        <div className='mx-1 my-3'>
+          <DataGrid
+            rows={Rows}
+            columns={columns}
+            autoHeight={true}
+            pageSize={[50]}
+            components={{
+              Toolbar: TableDataDownload,
+            }}
+          />
         </div>
       </div>
     </div>

@@ -154,3 +154,12 @@ export const parametreOptions = [
     lebel: "Region",
   },
 ];
+
+export const HitrateCol = [
+  "hitRate",
+  "itemCode",
+  "notSealable",
+  "region",
+  "sealable",
+  "totalCount",
+];
