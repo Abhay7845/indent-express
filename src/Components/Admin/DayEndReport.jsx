@@ -8,13 +8,27 @@ import { endDayReportLevel, parametreOptions } from "../../Data/DataList";
 
 const DayEndReport = () => {
   const [levelvalue, setLevelvalue] = useState("");
-  console.log("levelvalue==>", levelvalue);
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [parameter, setParameter] = useState("");
+
   const GetEndDayReports = () => {
-    console.log("GetEndDayReports==>");
+    if (levelvalue && fromDate && toDate) {
+      console.log("levelvalue==>", levelvalue);
+      console.log("fromDate==>", fromDate);
+      console.log("toDate==>", toDate);
+    } else {
+      alert("Please Select Valide Level & Date");
+    }
   };
 
   const GetParameterReports = () => {
-    console.log("GetParameterReports==>");
+    if (levelvalue && parameter) {
+      console.log("levelvalue==>", levelvalue);
+      console.log("parameter==>", parameter);
+    } else {
+      alert("Please Select Valide Level & Parametere");
+    }
   };
   return (
     <div>
@@ -35,7 +49,7 @@ const DayEndReport = () => {
               type='text'
               className='DateSelect'
               onChange={(e) => setLevelvalue(e.target.value)}>
-              <option value=''>Selct Level</option>
+              <option value=''>Select Level</option>
               {endDayReportLevel.map((item, i) => {
                 return <option key={item.value}>{item.lebel}</option>;
               })}
@@ -44,8 +58,11 @@ const DayEndReport = () => {
           {levelvalue === "HitRate Report" ? (
             <div className='col-md-6'>
               <b className='p-1'>Parameter</b>
-              <select type='text' className='DateSelect'>
-                <option value=''>Selct Parameter</option>
+              <select
+                type='text'
+                className='DateSelect'
+                onChange={(e) => setParameter(e.target.value)}>
+                <option value=''>Select Parameter</option>
                 {parametreOptions.map((item, i) => {
                   return <option key={item.value}>{item.lebel}</option>;
                 })}
@@ -55,11 +72,19 @@ const DayEndReport = () => {
             <>
               <div className='col-md-4'>
                 <b className='p-1'>From Date</b>
-                <input type='date' className='DateSelect' />
+                <input
+                  type='date'
+                  className='DateSelect'
+                  onChange={(e) => setFromDate(e.target.value)}
+                />
               </div>
               <div className='col-md-4'>
                 <b className='p-1'>To Date</b>
-                <input type='date' className='DateSelect' />
+                <input
+                  type='date'
+                  className='DateSelect'
+                  onChange={(e) => setToDate(e.target.value)}
+                />
               </div>
             </>
           )}
