@@ -149,7 +149,7 @@ const DayEndReport = (props) => {
                 type='submit'
                 className='ACommonBTN'
                 onClick={GetParameterReports}>
-                GENERATE
+                GENERATE REPORTS
               </button>
             ) : (
               <button
