@@ -13,20 +13,24 @@ import { LevelOptions, stausOptions } from "../../Data/DataList";
 import axios from "axios";
 import { HOST_URL } from "../../API/HotMaster";
 import Loader from "../../Common/Loader";
+import swal from "sweetalert";
 
 const UpdatePortalStatus = () => {
   const [loading, setLoading] = useState(false);
 
   const UpdatePortalStaus = (payload) => {
     setLoading(true);
-    console.log("payload==>", payload);
     axios
       .post(`${HOST_URL}/INDENTADMIN/express/open/portal`, payload)
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response);
         if (response.data.code === "1000") {
-          console.log("response==>", response);
+          swal({
+            title: "UPDATED",
+            text: response.data.value,
+            icon: "success",
+            buttons: "OK",
+          });
         }
         setLoading(false);
       })
@@ -35,6 +39,7 @@ const UpdatePortalStatus = () => {
         setLoading(false);
       });
   };
+
   return (
     <div>
       {loading === true && <Loader />}
@@ -69,7 +74,7 @@ const UpdatePortalStatus = () => {
               </div>
               <div className='col-md-6'>
                 <b className='p-1'>Status</b>
-                <Field as='select' className='DateSelect' name='status'>
+                <Field as='select' className='DateSelect' name='mode'>
                   <option value=''>Select Status</option>
                   {stausOptions.map((item, i) => {
                     return (
@@ -79,7 +84,7 @@ const UpdatePortalStatus = () => {
                     );
                   })}
                 </Field>
-                <ShowError name='status' />
+                <ShowError name='mode' />
               </div>
             </div>
             <div className='d-flex justify-content-end mt-3 mx-2'>

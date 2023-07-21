@@ -1,10 +1,11 @@
 /** @format */
-
 import React, { useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
 import AdiminFileSideBar from "./AdiminFileSideBar";
 import { endDayReportLevel, parametreOptions } from "../../Data/DataList";
+import axios from "axios";
+import { HOST_URL } from "../../API/HotMaster";
 
 const DayEndReport = () => {
   const [levelvalue, setLevelvalue] = useState("");
@@ -13,10 +14,15 @@ const DayEndReport = () => {
   const [parameter, setParameter] = useState("");
 
   const GetEndDayReports = () => {
+    const endDayReports = `?fromDate=${fromDate}&level=${levelvalue}&toDate=${toDate}`;
+    console.log("endDayReports==>", endDayReports);
+    console.log("URL==>", `${HOST_URL}/${endDayReports}`);
     if (levelvalue && fromDate && toDate) {
-      console.log("levelvalue==>", levelvalue);
-      console.log("fromDate==>", fromDate);
-      console.log("toDate==>", toDate);
+      axios
+        .get(`${HOST_URL}/${endDayReports}`)
+        .then((res) => res)
+        .then((response) => console.log("response==>", response.data))
+        .catch((error) => console.log("error=>", error));
     } else {
       alert("Please Select Valide Level & Date");
     }
