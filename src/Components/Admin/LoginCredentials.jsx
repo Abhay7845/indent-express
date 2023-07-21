@@ -10,10 +10,14 @@ import {
   loginCredentialsSchema,
 } from "../../Schema/LoginSchema";
 import ShowError from "../../Schema/ShowError";
+// import axios from "axios";
+// import { HOST_URL } from "../../API/HotMaster";
 
 const LoginCredentials = () => {
   const GetLoginCredential = (payload) => {
     console.log("payload===>", payload);
+    // const { level } = payload;
+    // axios.get(`${HOST_URL}/`);
   };
   return (
     <div>
