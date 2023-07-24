@@ -22,31 +22,34 @@ const LoginCredentials = () => {
   return (
     <div>
       <TopHeader />
-      <div className='DropdownForAdmin'>
+      <div className="DropdownForAdmin">
         <AdminSideBar />
       </div>
       <AdiminFileSideBar />
-      <div className='main'>
+      <div className="main">
         <Formik
           initialValues={loginCredentialsInitialValue}
           validationSchema={loginCredentialsSchema}
-          onSubmit={(payload) => GetLoginCredential(payload)}>
+          onSubmit={(payload) => GetLoginCredential(payload)}
+        >
           <Form>
-            <h5 className='text-center mt-2'>LOGIN CREDENTIALS</h5>
-            <div className='row d-flex mt-2 mx-1'>
-              <div className='col-md-9'>
-                <b className='p-1'>Level</b>
-                <Field as='select' className='DateSelect' name='level'>
-                  <option value=''>Select Level</option>
-                  <option value='L1'>L1</option>
-                  <option value='L2'>L2</option>
-                  <option value='L3'>L3</option>
+            <h5 className="text-center mt-2">LOGIN CREDENTIALS</h5>
+            <div className="row d-flex mt-2 mx-1">
+              <div className="col-md-9">
+                <b className="p-1">
+                  Level <span className="text-danger">*</span>
+                </b>
+                <Field as="select" className="DateSelect" name="level">
+                  <option value="">Select Level</option>
+                  <option value="L1">L1</option>
+                  <option value="L2">L2</option>
+                  <option value="L3">L3</option>
                 </Field>
-                <ShowError name='level' />
+                <ShowError name="level" />
               </div>
-              <div className='col-md-3'>
-                <div className='d-flex justify-content-end mt-3'>
-                  <button type='submit' className='ACommonBTN'>
+              <div className="col-md-3">
+                <div className="d-flex justify-content-end mt-3">
+                  <button type="submit" className="ACommonBTN">
                     FETCH CREDENTIALS
                   </button>
                 </div>

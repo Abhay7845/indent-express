@@ -84,30 +84,35 @@ const AdminHome = () => {
     <div>
       {loading === true && <Loader />}
       <TopHeader />
-      <div className='DropdownForAdmin'>
+      <div className="DropdownForAdmin">
         <AdminSideBar />
       </div>
       <AdiminFileSideBar />
-      <div className='main'>
+      <div className="main">
         <Formik
           initialValues={CopyStoreInitialValue}
           validationSchema={CopyStoreSchema}
-          onSubmit={(payload) => CopyStorCode(payload)}>
-          <Form className='row g-3 mt-2 mx-1'>
-            <h5 className='text-center mt-2'>COPY STORE INDENTS</h5>
-            <div className='col-md-4'>
-              <b className='p-1'>From Date</b>
+          onSubmit={(payload) => CopyStorCode(payload)}
+        >
+          <Form className="row g-3 mt-2 mx-1">
+            <h5 className="text-center mt-2">COPY STORE INDENTS</h5>
+            <div className="col-md-4">
+              <b className="p-1">
+                From Date<span className="text-danger">*</span>
+              </b>
               <input
-                type='date'
-                className='DateSelect'
+                type="date"
+                className="DateSelect"
                 value={fromDate}
                 onChange={(e) => setFromDate(e.target.value)}
               />
             </div>
-            <div className='col-md-4'>
-              <b className='p-1'>From Store Code</b>
-              <Field className='DateSelect' as='select' name='fromStoreCode'>
-                <option value=''>Select From Store Code</option>
+            <div className="col-md-4">
+              <b className="p-1">
+                From Store Code<span className="text-danger">*</span>
+              </b>
+              <Field className="DateSelect" as="select" name="fromStoreCode">
+                <option value="">Select From Store Code </option>
                 {fromStoreCode.map((item, i) => {
                   return (
                     <option key={i} value={item.strCode}>
@@ -116,12 +121,14 @@ const AdminHome = () => {
                   );
                 })}
               </Field>
-              <ShowError name='fromStoreCode' />
+              <ShowError name="fromStoreCode" />
             </div>
-            <div className='col-md-4'>
-              <b className='p-1'>To Store Code</b>
-              <Field className='DateSelect' as='select' name='toStoreCode'>
-                <option value=''>Select To Store Code</option>
+            <div className="col-md-4">
+              <b className="p-1">
+                To Store Code<span className="text-danger">*</span>
+              </b>
+              <Field className="DateSelect" as="select" name="toStoreCode">
+                <option value="">Select To Store Code</option>
                 {toStoreCode.map((item, i) => {
                   return (
                     <option key={i} value={item}>
@@ -130,10 +137,10 @@ const AdminHome = () => {
                   );
                 })}
               </Field>
-              <ShowError name='toStoreCode' />
+              <ShowError name="toStoreCode" />
             </div>
-            <div className='d-flex justify-content-end mt-3'>
-              <button type='submit' className='ACommonBTN'>
+            <div className="d-flex justify-content-end mt-3">
+              <button type="submit" className="ACommonBTN">
                 COPY
               </button>
             </div>

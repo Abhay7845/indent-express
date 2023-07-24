@@ -8,7 +8,6 @@ import { HOST_URL } from "../../API/HotMaster";
 import Loader from "../../Common/Loader";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
-// import { HitrateCol } from "../../Data/DataList";
 import TableDataDownload from "../../Common/TableDataDownload";
 
 const DayEndReport = (props) => {
@@ -23,6 +22,10 @@ const DayEndReport = (props) => {
 
   const OnchageLevel = (e) => {
     setLevelvalue(e.target.value);
+    setRows([]);
+  };
+  const GetParameter = (e) => {
+    setParameter(e.target.value);
     setRows([]);
   };
 
@@ -61,9 +64,8 @@ const DayEndReport = (props) => {
         )
         .then((res) => res)
         .then((response) => {
-          console.log("response==>", response.data);
           if (response.data.code === "1000") {
-            setCols(response.data.coloum);
+            setCols(response.data.column);
             setRows(response.data.value);
           }
           if (response.data.code === "1001") {
@@ -91,33 +93,35 @@ const DayEndReport = (props) => {
     <div>
       {loading === true && <Loader />}
       <TopHeader />
-      <div className='DropdownForAdmin'>
+      <div className="DropdownForAdmin">
         <AdminSideBar />
       </div>
       <AdiminFileSideBar />
-      <div className='main'>
-        <h5 className='text-center mt-2'>DAY END REPORTS</h5>
-        <div className='row g-3 mt-2 mx-1'>
+      <div className="main">
+        <h5 className="text-center mt-2">DAY END REPORTS</h5>
+        <div className="row g-3 mt-2 mx-1">
           <div
             className={
               levelvalue === "HitRate Report" ? "col-md-6" : "col-md-4"
-            }>
-            <b className='p-1'>Level</b>
-            <select type='text' className='DateSelect' onChange={OnchageLevel}>
-              <option value=''>Select Level</option>
+            }
+          >
+            <b className="p-1">Level</b>
+            <select type="text" className="DateSelect" onChange={OnchageLevel}>
+              <option value="">Select Level</option>
               {endDayReportLevel.map((item, i) => {
                 return <option key={item.value}>{item.lebel}</option>;
               })}
             </select>
           </div>
           {levelvalue === "HitRate Report" ? (
-            <div className='col-md-6'>
-              <b className='p-1'>Parameter</b>
+            <div className="col-md-6">
+              <b className="p-1">Parameter</b>
               <select
-                type='text'
-                className='DateSelect'
-                onChange={(e) => setParameter(e.target.value)}>
-                <option value=''>Select Parameter</option>
+                type="text"
+                className="DateSelect"
+                onChange={GetParameter}
+              >
+                <option value="">Select Parameter</option>
                 {parametreOptions.map((item, i) => {
                   return <option key={item.value}>{item.lebel}</option>;
                 })}
@@ -125,44 +129,46 @@ const DayEndReport = (props) => {
             </div>
           ) : (
             <>
-              <div className='col-md-4'>
-                <b className='p-1'>From Date</b>
+              <div className="col-md-4">
+                <b className="p-1">From Date</b>
                 <input
-                  type='date'
-                  className='DateSelect'
+                  type="date"
+                  className="DateSelect"
                   onChange={(e) => setFromDate(e.target.value)}
                 />
               </div>
-              <div className='col-md-4'>
-                <b className='p-1'>To Date</b>
+              <div className="col-md-4">
+                <b className="p-1">To Date</b>
                 <input
-                  type='date'
-                  className='DateSelect'
+                  type="date"
+                  className="DateSelect"
                   onChange={(e) => setToDate(e.target.value)}
                 />
               </div>
             </>
           )}
-          <div className='d-flex justify-content-end mt-3'>
+          <div className="d-flex justify-content-end mt-3">
             {levelvalue === "HitRate Report" ? (
               <button
-                type='submit'
-                className='ACommonBTN'
-                onClick={GetParameterReports}>
+                type="submit"
+                className="ACommonBTN"
+                onClick={GetParameterReports}
+              >
                 GENERATE REPORTS
               </button>
             ) : (
               <button
-                type='submit'
-                className='ACommonBTN'
-                onClick={GetEndDayReports}>
+                type="submit"
+                className="ACommonBTN"
+                onClick={GetEndDayReports}
+              >
                 GENERATE REPORTS
               </button>
             )}
           </div>
         </div>
         {rows.length > 0 && (
-          <div className='mx-2 my-4'>
+          <div className="mx-2 my-4">
             <DataGrid
               columns={columns}
               rows={rows}

@@ -44,24 +44,27 @@ const UpdatePortalStatus = () => {
     <div>
       {loading === true && <Loader />}
       <TopHeader />
-      <div className='DropdownForAdmin'>
-        <div className='AdminSideBarStyle'>
+      <div className="DropdownForAdmin">
+        <div className="AdminSideBarStyle">
           <AdminSideBar />
         </div>
       </div>
       <AdiminFileSideBar />
-      <div className='main'>
-        <h5 className='text-center mt-2'>UPDATE PORTAL STATUS</h5>
+      <div className="main">
+        <h5 className="text-center mt-2">UPDATE PORTAL STATUS</h5>
         <Formik
           initialValues={updatePortsalInitialValue}
           validationSchema={updatePortsalSchema}
-          onSubmit={(payload) => UpdatePortalStaus(payload)}>
+          onSubmit={(payload) => UpdatePortalStaus(payload)}
+        >
           <Form>
-            <div className='row g-3 mt-2 mx-1'>
-              <div className='col-md-6'>
-                <b className='p-1'>Level</b>
-                <Field as='select' className='DateSelect' name='level'>
-                  <option value=''>Select Level</option>
+            <div className="row g-3 mt-2 mx-1">
+              <div className="col-md-6">
+                <b className="p-1">
+                  Level<span className="text-danger">*</span>
+                </b>
+                <Field as="select" className="DateSelect" name="level">
+                  <option value="">Select Level</option>
                   {LevelOptions.map((item, i) => {
                     return (
                       <option key={i} value={item.value}>
@@ -70,12 +73,14 @@ const UpdatePortalStatus = () => {
                     );
                   })}
                 </Field>
-                <ShowError name='level' />
+                <ShowError name="level" />
               </div>
-              <div className='col-md-6'>
-                <b className='p-1'>Status</b>
-                <Field as='select' className='DateSelect' name='mode'>
-                  <option value=''>Select Status</option>
+              <div className="col-md-6">
+                <b className="p-1">
+                  Status<span className="text-danger">*</span>
+                </b>
+                <Field as="select" className="DateSelect" name="mode">
+                  <option value="">Select Status</option>
                   {stausOptions.map((item, i) => {
                     return (
                       <option key={i} value={item.value}>
@@ -84,11 +89,11 @@ const UpdatePortalStatus = () => {
                     );
                   })}
                 </Field>
-                <ShowError name='mode' />
+                <ShowError name="mode" />
               </div>
             </div>
-            <div className='d-flex justify-content-end mt-3 mx-2'>
-              <button type='submit' className='ACommonBTN'>
+            <div className="d-flex justify-content-end mt-3 mx-2">
+              <button type="submit" className="ACommonBTN">
                 UPDATE STATUS
               </button>
             </div>
