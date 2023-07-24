@@ -26,6 +26,7 @@ const Login = (props) => {
       validInvalid: "",
     };
     const inputData = { ...payload, ...LoginData };
+    console.log("inputData==>", inputData);
     axios
       .post(`${HOST_URL}/INDENT/express/user/login`, inputData)
       .then((response) => {
@@ -63,19 +64,20 @@ const Login = (props) => {
 
   return (
     <div>
-      <div className='row mx-0 loginPageStyle'>
-        <div className='col-8 RegisterLeftRight'></div>
-        <div className='col-4 Form_style'>
-          <div className='text-center' style={{ color: "#832729" }}>
-            <img src={image} alt='tanishq' height='60' width='70' />
+      <div className="row mx-0 loginPageStyle">
+        <div className="col-8 RegisterLeftRight"></div>
+        <div className="col-4 Form_style">
+          <div className="text-center" style={{ color: "#832729" }}>
+            <img src={image} alt="tanishq" height="60" width="70" />
           </div>
           <Formik
             initialValues={LoginInitialValue}
             validationSchema={LoginSchema}
-            onSubmit={(payload) => onLogin(payload)}>
-            <div className='w-100'>
-              <div className='wrapper'>
-                <div className='box'>
+            onSubmit={(payload) => onLogin(payload)}
+          >
+            <div className="w-100">
+              <div className="wrapper">
+                <div className="box">
                   <div>TANISHQ</div>
                   <div>TANISHQ</div>
                   <div>TANISHQ</div>
@@ -88,71 +90,71 @@ const Login = (props) => {
                   <div>TANISHQ</div>
                 </div>
               </div>
-              <Form className='w-100'>
-                <div className='my-1'>
+              <Form className="w-100">
+                <div className="my-1">
                   <b>
-                    Username <span className='text-danger'> *</span>
+                    Username <span className="text-danger"> *</span>
                   </b>
                   <Field
-                    placeholder='Username'
-                    name='userID'
-                    className='GInput'
-                    type='text'
+                    placeholder="Username"
+                    name="userID"
+                    className="GInput"
+                    type="text"
                   />
-                  <ShowError name='userID' />
+                  <ShowError name="userID" />
                 </div>
-                <div className='my-2'>
+                <div className="my-2">
                   <b>
-                    Password <span className='text-danger'> *</span>
+                    Password <span className="text-danger"> *</span>
                   </b>
-                  <div className='d-flex'>
+                  <div className="d-flex">
                     <Field
                       type={passwordShown ? "text" : "password"}
-                      placeholder='Password'
-                      className='GInput'
-                      name='password'
+                      placeholder="Password"
+                      className="GInput"
+                      name="password"
                     />
-                    <span className='border-bottom'>
+                    <span className="border-bottom">
                       {passwordShown ? (
                         <FaRegEye
                           size={20}
-                          cursor='pointer'
+                          cursor="pointer"
                           onClick={togglePassword}
                           style={{ marginTop: 15 }}
                         />
                       ) : (
                         <FaRegEyeSlash
                           size={20}
-                          cursor='pointer'
+                          cursor="pointer"
                           onClick={togglePassword}
                           style={{ marginTop: 15 }}
                         />
                       )}
                     </span>
                   </div>
-                  <ShowError name='password' />
+                  <ShowError name="password" />
                 </div>
-                <div className='my-2'>
+                <div className="my-2">
                   <b>
-                    RSO Name <span className='text-danger'> *</span>
+                    RSO Name <span className="text-danger"> *</span>
                   </b>
                   <Field
-                    placeholder='RSO Name'
-                    className='GInput'
-                    name='region'
+                    placeholder="RSO Name"
+                    className="GInput"
+                    name="region"
                   />
-                  <ShowError name='region' />
+                  <ShowError name="region" />
                 </div>
-                <div className='d-flex justify-content-end'>
-                  <button type='submit' className='CButton'>
+                <div className="d-flex justify-content-end">
+                  <button type="submit" className="CButton">
                     {loading ? (
                       <span
-                        className='spinner-border spinner-border-sm'
-                        role='status'
-                        aria-hidden='true'
+                        className="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
                       />
                     ) : (
-                      <span className='sr-only'>LOGIN</span>
+                      <span className="sr-only">LOGIN</span>
                     )}
                   </button>
                 </div>

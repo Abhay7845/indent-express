@@ -42,6 +42,12 @@
     padding: 7px;
     width: 100%;
 }
+.SearchInputLogin {
+    outline: none;
+    border: 1px solid #37b7ee;
+    padding: 7px;
+    border-radius: 5px;
+}
 
 /* CART PAGE STYLE */
 

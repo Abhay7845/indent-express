@@ -155,11 +155,10 @@ export const parametreOptions = [
   },
 ];
 
-export const HitrateCol = [
-  "hitRate",
-  "itemCode",
-  "notSealable",
-  "region",
-  "sealable",
-  "totalCount",
-];
+const loginCredintialCols = ["loginId", "password", "role"];
+export const columns = loginCredintialCols.map((element) => {
+  return {
+    field: element,
+    flex: 1,
+  };
+});
