@@ -105,7 +105,9 @@ const DayEndReport = (props) => {
               levelvalue === "HitRate Report" ? "col-md-6" : "col-md-4"
             }
           >
-            <b className="p-1">Level</b>
+            <b className="p-1">
+              Level<span className="text-danger">*</span>
+            </b>
             <select type="text" className="DateSelect" onChange={OnchageLevel}>
               <option value="">Select Level</option>
               {endDayReportLevel.map((item, i) => {
@@ -130,7 +132,9 @@ const DayEndReport = (props) => {
           ) : (
             <>
               <div className="col-md-4">
-                <b className="p-1">From Date</b>
+                <b className="p-1">
+                  From Date<span className="text-danger">*</span>
+                </b>
                 <input
                   type="date"
                   className="DateSelect"
@@ -138,7 +142,9 @@ const DayEndReport = (props) => {
                 />
               </div>
               <div className="col-md-4">
-                <b className="p-1">To Date</b>
+                <b className="p-1">
+                  To Date<span className="text-danger">*</span>
+                </b>
                 <input
                   type="date"
                   className="DateSelect"
