@@ -7,30 +7,81 @@ import AdiminFileSideBar from "./AdiminFileSideBar";
 import axios from "axios";
 import { HOST_URL } from "../../API/HotMaster";
 import Loader from "../../Common/Loader";
+import { DataGrid } from "@mui/x-data-grid";
+import TableDataDownload from "../../Common/TableDataDownload";
 
 const GetMasterSKU = () => {
   const [loading, setLoading] = useState(false);
-
+  const [loginValue, SetLoginValue] = useState("");
+  const [rows, setRows] = useState([]);
+  const [cols, setCols] = useState([]);
   useEffect(() => {
     setLoading(true);
     axios
       .get(`${HOST_URL}/INDENTADMIN/express/get/sku/master`)
       .then((res) => res)
-      .then((response) => console.log("response==>", response))
-      .then((error) => console.log("error==>", error));
-    setLoading(true);
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setCols(response.data.col);
+          setRows(response.data.value);
+          setLoading(false);
+        }
+      })
+      .then((error) => {
+        console.log("");
+        setLoading(false);
+      });
   }, []);
+
+  const columns = cols.map((element) => {
+    return {
+      field: element,
+      flex: 1,
+    };
+  });
+  const DataRows = rows.filter((eachRow) =>
+    eachRow.itemCode.includes(loginValue.toUpperCase())
+  );
 
   return (
     <div>
       {loading === true && <Loader />}
       <TopHeader />
-      <div className='DropdownForAdmin'>
+      <div className="DropdownForAdmin">
         <AdminSideBar />
       </div>
       <AdiminFileSideBar />
-      <div className='main'>
-        <h5 className='text-center mt-2'>GET MASTER SKU</h5>
+      <div className="main">
+        <h5 className="text-center mt-2">GET MASTER SKU</h5>
+        {rows.length > 0 && (
+          <div className="mx-2 my-4">
+            <div className="d-flex justify-content-between mb-3 mx-1">
+              <input
+                type="text"
+                className="SearchInputLogin"
+                placeholder="Search By Item Code"
+                onChange={(e) => SetLoginValue(e.target.value)}
+              />
+              <b>
+                COUNT:-
+                {DataRows.length === 0 ? (
+                  <b className="text-danger">DATA NOT FOUND</b>
+                ) : (
+                  <b className="text-success"> {DataRows.length}</b>
+                )}
+              </b>
+            </div>
+            <DataGrid
+              columns={columns}
+              rows={DataRows}
+              autoHeight={true}
+              pageSize={50}
+              components={{
+                Toolbar: TableDataDownload,
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

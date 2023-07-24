@@ -14,7 +14,7 @@ const TopHeader = () => {
   };
   useEffect(() => {}, [UserRole]);
   return (
-    <>
+    <div>
       <nav className="navbar navbarStyle">
         <div className="container-fluid">
           <span className="navbar-brand mb-0 h1">
@@ -39,7 +39,7 @@ const TopHeader = () => {
           </Tippy>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 
