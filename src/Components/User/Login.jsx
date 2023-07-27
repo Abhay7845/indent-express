@@ -65,7 +65,7 @@ const Login = (props) => {
   return (
     <div>
       <div className="row mx-0 loginPageStyle">
-        <div className="col-8 RegisterLeftRight"></div>
+        <div className="col-8 RegisterLeftRight" />
         <div className="col-4 Form_style">
           <div className="text-center" style={{ color: "#832729" }}>
             <img src={image} alt="tanishq" height="60" width="70" />

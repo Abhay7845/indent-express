@@ -1,9 +1,3 @@
-/**
- * eslint-disable no-useless-escape
- *
- * @format
- */
-
 import * as yup from "yup";
 
 export const LoginInitialValue = {
