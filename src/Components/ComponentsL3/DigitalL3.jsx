@@ -100,7 +100,7 @@ const DigitalL3 = (props) => {
       consumerBase: "ALL",
       group: "ALL",
       category: "ALL",
-      itemCode: Details.itemcode,
+      itemCode: Details.itemCode,
     };
     axios
       .post(
