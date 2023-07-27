@@ -33,6 +33,9 @@ const DigitalL3 = (props) => {
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
   const [searchItemCode, setSearchItemCode] = useState("");
   const [statusCode, setStatusCode] = useState("");
+  const [categoryType, setCategoryType] = useState("");
+  const [CategoryDropwond, setCategoryDropwond] = useState([]);
+  console.log("CategoryDropwond==>", CategoryDropwond);
 
   useEffect(() => {
     const productDataBySearch = productsData.filter(
@@ -41,8 +44,18 @@ const DigitalL3 = (props) => {
     setProductsData(productDataBySearch);
   }, [searchItemCode]);
 
-  const HandelChangeChangeCategory = (categoryType) => {
-    navigate(`/Indent-express/L3/digital/${categoryType}`);
+  const GetCateogyDropdown = () => {
+    // navigate(`/Indent-express/L3/digital/${categoryType}`);
+    axios
+      .get(
+        `${HOST_URL}/INDENT/express/store/category/list/${storeCode}/${categoryType}`
+      )
+      .then((res) => res)
+      .then((response) => {
+        if (response.data.code === "1000") {
+          setCategoryDropwond(response.data.value);
+        }
+      });
   };
 
   useEffect(() => {
@@ -161,8 +174,8 @@ const DigitalL3 = (props) => {
           </Link>
         </div>
       </div>
-      <div className="row g-2 mx-2 mt-4">
-        <div className="col-md-4">
+      <div className="row g-2 mx-2 mt-4 border">
+        <div className="col-md-3">
           <input
             type="text"
             className="GInput"
@@ -170,16 +183,31 @@ const DigitalL3 = (props) => {
             onChange={(e) => setSearchItemCode(e.target.value)}
           />
         </div>
-        <div className="col-md-4">
+        <div className="col-md-3">
           <b className="mx-2 text-danger">
             {productsData.length <= 0 ? "DATA NOT FOUND" : ""}
           </b>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-3">
           <Select
             className="w-100"
             placeholder="Select"
-            onChange={HandelChangeChangeCategory}
+            onChange={(value) => setCategoryType(value)}
+          >
+            {ItemWiseReportsDropdown.map((item, i) => {
+              return (
+                <Select.Option key={i} value={item.value}>
+                  {item.label}
+                </Select.Option>
+              );
+            })}
+          </Select>
+        </div>
+        <div className="col-md-3">
+          <Select
+            className="w-100"
+            placeholder="Select Category"
+            onChange={GetCateogyDropdown}
           >
             {ItemWiseReportsDropdown.map((item, i) => {
               return (
