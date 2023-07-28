@@ -33,7 +33,6 @@ const DigitalL3 = (props) => {
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
   const [searchItemCode, setSearchItemCode] = useState("");
   const [statusCode, setStatusCode] = useState("");
-  // const [categoryType, setCategoryType] = useState("");
   const [CategoryDropwond, setCategoryDropwond] = useState([]);
 
   useEffect(() => {
@@ -45,6 +44,8 @@ const DigitalL3 = (props) => {
 
   const GetCateogyDropdown = (categoryType) => {
     localStorage.setItem("categoryType", categoryType);
+    setLoading(true);
+
     axios
       .get(
         `${HOST_URL}/INDENT/express/store/category/list/${storeCode}/${categoryType}`
@@ -57,9 +58,11 @@ const DigitalL3 = (props) => {
         if (response.data.code === "1001") {
           setCategoryDropwond([]);
         }
+        setLoading(false);
       })
       .catch((error) => {
         console.log("error==>", error);
+        setLoading(false);
       });
   };
   const GetCateogyWiseData = (category) => {
@@ -183,7 +186,7 @@ const DigitalL3 = (props) => {
           </Link>
         </div>
       </div>
-      <div className="row g-2 mx-2 mt-4 border">
+      <div className="row g-2 mx-2 mt-4">
         <div className="col-md-3">
           <input
             type="text"
