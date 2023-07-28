@@ -33,9 +33,8 @@ const DigitalL3 = (props) => {
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
   const [searchItemCode, setSearchItemCode] = useState("");
   const [statusCode, setStatusCode] = useState("");
-  const [categoryType, setCategoryType] = useState("");
+  // const [categoryType, setCategoryType] = useState("");
   const [CategoryDropwond, setCategoryDropwond] = useState([]);
-  console.log("CategoryDropwond==>", CategoryDropwond);
 
   useEffect(() => {
     const productDataBySearch = productsData.filter(
@@ -44,8 +43,7 @@ const DigitalL3 = (props) => {
     setProductsData(productDataBySearch);
   }, [searchItemCode]);
 
-  const GetCateogyDropdown = () => {
-    // navigate(`/Indent-express/L3/digital/${categoryType}`);
+  const GetCateogyDropdown = (categoryType) => {
     axios
       .get(
         `${HOST_URL}/INDENT/express/store/category/list/${storeCode}/${categoryType}`
@@ -55,7 +53,17 @@ const DigitalL3 = (props) => {
         if (response.data.code === "1000") {
           setCategoryDropwond(response.data.value);
         }
+        if (response.data.code === "1001") {
+          setCategoryDropwond([]);
+        }
+      })
+      .catch((error) => {
+        console.log("error==>", error);
       });
+  };
+  const GetCateogyWiseData = (category) => {
+    console.log("GetCateogyWiseData==>", category);
+    // navigate(`/Indent-express/L3/digital/${category}`);
   };
 
   useEffect(() => {
@@ -191,8 +199,8 @@ const DigitalL3 = (props) => {
         <div className="col-md-3">
           <Select
             className="w-100"
-            placeholder="Select"
-            onChange={(value) => setCategoryType(value)}
+            placeholder="Select Category Type"
+            onChange={GetCateogyDropdown}
           >
             {ItemWiseReportsDropdown.map((item, i) => {
               return (
@@ -207,12 +215,12 @@ const DigitalL3 = (props) => {
           <Select
             className="w-100"
             placeholder="Select Category"
-            onChange={GetCateogyDropdown}
+            onChange={GetCateogyWiseData}
           >
-            {ItemWiseReportsDropdown.map((item, i) => {
+            {CategoryDropwond.map((item, i) => {
               return (
-                <Select.Option key={i} value={item.value}>
-                  {item.label}
+                <Select.Option key={i} value={item}>
+                  {item}
                 </Select.Option>
               );
             })}
