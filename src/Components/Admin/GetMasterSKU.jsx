@@ -79,7 +79,7 @@ const GetMasterSKU = () => {
               columns={columns}
               rows={DataRows}
               autoHeight={true}
-              pageSize={50}
+              pageSize={[50]}
               components={{
                 Toolbar: TableDataDownload,
               }}

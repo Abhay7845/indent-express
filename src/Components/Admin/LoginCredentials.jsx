@@ -82,21 +82,25 @@ const LoginCredentials = () => {
         </Formik>
         {rows.length > 0 && (
           <div className="mx-2 my-4">
-            <div className="d-flex justify-content-between mb-3 mx-1">
-              <input
-                type="text"
-                className="SearchInputLogin"
-                placeholder="Search By Login ID"
-                onChange={(e) => SetLoginValue(e.target.value)}
-              />
-              <b>
-                COUNT:-
-                {DataRows.length === 0 ? (
-                  <b className="text-danger">DATA NOT FOUND</b>
-                ) : (
-                  <b className="text-success"> {DataRows.length}</b>
-                )}
-              </b>
+            <div className="row d-flex justify-content-between mb-3 mx-1">
+              <div className="col">
+                <input
+                  type="text"
+                  className="SearchInputLogin"
+                  placeholder="Search By Login ID"
+                  onChange={(e) => SetLoginValue(e.target.value)}
+                />
+              </div>
+              <div className="col d-flex justify-content-end">
+                <b>
+                  COUNT:-
+                  {DataRows.length === 0 ? (
+                    <b className="text-danger">DATA NOT FOUND</b>
+                  ) : (
+                    <b className="text-success"> {DataRows.length}</b>
+                  )}
+                </b>
+              </div>
             </div>
             <DataGrid
               columns={columns}
