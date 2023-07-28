@@ -63,7 +63,7 @@ const DigitalL3 = (props) => {
   };
   const GetCateogyWiseData = (category) => {
     console.log("GetCateogyWiseData==>", category);
-    // navigate(`/Indent-express/L3/digital/${category}`);
+    navigate(`/Indent-express/L3/digital/${category}`);
   };
 
   useEffect(() => {

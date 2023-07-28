@@ -2,13 +2,7 @@ import React from "react";
 import "../Style/Loader.css";
 
 const Loader = () => {
-  return (
-    <div className="loaderContainer">
-      <div className="loaderStyle">
-        <div className="loader" />
-      </div>
-    </div>
-  );
+  return <div className="loading">Loading&#8230;</div>;
 };
 
 export default Loader;
