@@ -26,6 +26,11 @@ const CategoryTypeL3 = (props) => {
   const [singleProductsDetails, setSingleProductsDetails] = useState({});
   const [searchItemCode, setSearchItemCode] = useState("");
 
+  const categoryType = localStorage.getItem("categoryType");
+  const category = localStorage.getItem("category");
+  console.log("categoryType==>", categoryType);
+  console.log("category==>", category);
+
   useEffect(() => {
     const productDataBySearch = productsData.filter(
       (data) => data.itemcode === searchItemCode
@@ -36,9 +41,12 @@ const CategoryTypeL3 = (props) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${HOST_URL}/INDENT/express/get/itemcode/list`)
+      .get(
+        `${HOST_URL}/INDENT/express/category/list/homepage/${storeCode}/${categoryType}/${category}`
+      )
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response.data.value);
         if (response.data.code === "1000") {
           setProductsData(response.data.value);
         }
@@ -51,7 +59,7 @@ const CategoryTypeL3 = (props) => {
         console.log("");
         setLoading(false);
       });
-  }, [storeCode]);
+  }, [storeCode, categoryType, category]);
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
@@ -86,7 +94,7 @@ const CategoryTypeL3 = (props) => {
       consumerBase: "ALL",
       group: "ALL",
       category: "ALL",
-      itemCode: Details.itemcode,
+      itemCode: Details.itemCode,
     };
     axios
       .post(
@@ -114,75 +122,80 @@ const CategoryTypeL3 = (props) => {
   };
 
   return (
-    <>
+    <div>
       {loading === true && <Loader />}
       <TopHeader />
-      <div className='ComponentL3LowerHeader'>
-        <div className='d-flex'>
-          <Link to='/Indent-express/L3/digital/home'>
-            <button type='button' className='btn btn-dark btn-sm'>
+      <div className="ComponentL3LowerHeader">
+        <div className="d-flex">
+          <Link to="/Indent-express/L3/digital/home">
+            <button type="button" className="btn btn-dark btn-sm">
               BACK
             </button>
           </Link>
-          <Tippy content='Status Report'>
-            <Link to='/Indent-express/L3/status/reports'>
-              <BsFillBarChartFill size={28} className='mx-2 text-dark' />
+          <Tippy content="Status Report">
+            <Link to="/Indent-express/L3/status/reports">
+              <BsFillBarChartFill size={28} className="mx-2 text-dark" />
             </Link>
           </Tippy>
         </div>
-        <div className='d-flex'>
-          <Tippy content='Cancel Item List'>
-            <Link to='/Indent-express/L3/cancel/item/list'>
-              <BsCardList size={25} className='mt-2 mx-2 text-dark' />
+        <div className="d-flex">
+          <Tippy content="Cancel Item List">
+            <Link to="/Indent-express/L3/cancel/item/list">
+              <BsCardList size={25} className="mt-2 mx-2 text-dark" />
             </Link>
           </Tippy>
           <Link
-            to='/Indent-express/L3/your/cart/reports'
-            className='notification'>
-            <BsCartFill size={25} className='mt-2 mx-2 text-dark' />
-            <span className='badge'>{YourCart}</span>
+            to="/Indent-express/L3/your/cart/reports"
+            className="notification"
+          >
+            <BsCartFill size={25} className="mt-2 mx-2 text-dark" />
+            <span className="badge">{YourCart}</span>
           </Link>
         </div>
       </div>
 
-      <div className='row g-2 mx-2 mt-4'>
-        <div className='col-md-4'>
+      <div className="row g-2 mx-2 mt-4 text-center">
+        <div className="col-md-4">
           <input
-            type='text'
-            className='GInput'
-            placeholder='Search by Item Code'
+            type="text"
+            className="GInput"
+            placeholder="Search by Item Code"
             onChange={(e) => setSearchItemCode(e.target.value)}
           />
         </div>
-        <div className='col-md-4'>
-          <b className='mx-2 text-danger'>
+        <div className="col-md-2">
+          <b className="mx-2 text-danger">
             {productsData.length <= 0 ? "DATA NOT FOUND" : ""}
           </b>
+        </div>
+        <div className="col-md-6 text-center">
+          <b>{categoryType.toUpperCase()}-</b>
+          <b className="mx-2">{category}</b>
         </div>
       </div>
 
       {/* <---------------CART DATA DETAILS =----------------------->*/}
       {productsData.length > 0 && (
-        <div className='row mx-0'>
+        <div className="row mx-0">
           {productsData
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((productsDetails, i) => {
-              const { itemcode } = productsDetails;
-              const imageCode = !itemcode ? "" : itemcode.substring(2, 9);
+              const { itemCode } = productsDetails;
+              const imageCode = !itemCode ? "" : itemCode.substring(2, 9);
               const imageURL = `${IMAGE_URL}${imageCode}`;
               return (
-                <div key={i} className='col-md-3 mt-5'>
-                  <div className='cardStyle'>
+                <div key={i} className="col-md-3 mt-5">
+                  <div className="cardStyle">
                     <ShowImageCart imageURL={imageURL} />
-                    <div className='cardBodyStyle'>
-                      <div className='innerBodyStyle'>
-                        <b>{itemcode}</b>
+                    <div className="cardBodyStyle">
+                      <div className="innerBodyStyle">
+                        <b>{itemCode}</b>
                         <BsCartFill
                           size={20}
                           onClick={() => GetProductsDetails(productsDetails)}
-                          data-bs-toggle='modal'
-                          data-bs-target='#staticBackdrop'
-                          className='trolleyStyle'
+                          data-bs-toggle="modal"
+                          data-bs-target="#staticBackdrop"
+                          className="trolleyStyle"
                         />
                       </div>
                     </div>
@@ -190,10 +203,10 @@ const CategoryTypeL3 = (props) => {
                 </div>
               );
             })}
-          <div className='d-flex justify-content-end my-2 w-100'>
+          <div className="d-flex justify-content-end my-2 w-100">
             <TablePagination
               rowsPerPageOptions={[12, 24, 36, productsData.length]}
-              component='div'
+              component="div"
               count={productsData.length}
               rowsPerPage={rowsPerPage}
               page={page}
@@ -203,43 +216,45 @@ const CategoryTypeL3 = (props) => {
           </div>
         </div>
       )}
-      <div className='my-4 mx-3'>
+      <div className="my-4 mx-3">
         {productsData.length <= 0 && (
-          <button onClick={SearchProductByItemCode} className='SButton'>
+          <button onClick={SearchProductByItemCode} className="SButton">
             HOME
           </button>
         )}
       </div>
       <div
-        className='modal fade'
-        id='staticBackdrop'
-        data-bs-backdrop='static'
-        data-bs-keyboard='false'
+        className="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
         tabIndex={-1}
-        aria-labelledby='staticBackdropLabel'
-        aria-hidden='true'>
-        <div className='modal-dialog modal-fullscreen'>
-          <div className='modal-content'>
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-fullscreen">
+          <div className="modal-content">
             <div
-              className='modal-header'
-              style={{ backgroundColor: "#f5ea84" }}>
-              <h5 className='modal-title' id='staticBackdropLabel'>
+              className="modal-header"
+              style={{ backgroundColor: "#f5ea84" }}
+            >
+              <h5 className="modal-title" id="staticBackdropLabel">
                 ADD TO CART
               </h5>
               <button
-                type='button'
-                className='btn-close'
-                data-bs-dismiss='modal'
-                aria-label='Close'
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
               />
             </div>
-            <div className='modal-body'>
+            <div className="modal-body">
               <AddProductsL3 singleProductsDetails={singleProductsDetails} />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

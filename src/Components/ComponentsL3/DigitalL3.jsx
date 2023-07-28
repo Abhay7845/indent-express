@@ -44,6 +44,7 @@ const DigitalL3 = (props) => {
   }, [searchItemCode]);
 
   const GetCateogyDropdown = (categoryType) => {
+    localStorage.setItem("categoryType", categoryType);
     axios
       .get(
         `${HOST_URL}/INDENT/express/store/category/list/${storeCode}/${categoryType}`
@@ -62,7 +63,7 @@ const DigitalL3 = (props) => {
       });
   };
   const GetCateogyWiseData = (category) => {
-    console.log("GetCateogyWiseData==>", category);
+    localStorage.setItem("category", category);
     navigate(`/Indent-express/L3/digital/${category}`);
   };
 
