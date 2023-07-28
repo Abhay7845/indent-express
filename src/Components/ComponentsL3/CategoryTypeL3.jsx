@@ -28,8 +28,6 @@ const CategoryTypeL3 = (props) => {
 
   const categoryType = localStorage.getItem("categoryType");
   const category = localStorage.getItem("category");
-  console.log("categoryType==>", categoryType);
-  console.log("category==>", category);
 
   useEffect(() => {
     const productDataBySearch = productsData.filter(

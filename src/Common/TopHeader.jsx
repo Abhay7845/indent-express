@@ -9,7 +9,7 @@ const TopHeader = () => {
   let navigate = useNavigate();
   const UserRole = localStorage.getItem("indent-expressId").toUpperCase();
   const removeUserRole = () => {
-    localStorage.removeItem("indent-expressId");
+    localStorage.clear();
     navigate("/IndentExpress");
   };
   useEffect(() => {}, [UserRole]);

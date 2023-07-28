@@ -1,6 +1,4 @@
-/** @format */
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../Style/Login.css";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +8,7 @@ import ShowError from "../../Schema/ShowError";
 import image from "../../Asset/Img/Tanishq_Logo1.png";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { HOST_URL } from "../../API/HotMaster";
-import { useEffect } from "react";
+import swal from "sweetalert";
 
 const Login = (props) => {
   const { showAlert } = props;
@@ -26,24 +24,44 @@ const Login = (props) => {
       validInvalid: "",
     };
     const inputData = { ...payload, ...LoginData };
-    console.log("inputData==>", inputData);
     axios
       .post(`${HOST_URL}/INDENT/express/user/login`, inputData)
       .then((response) => {
-        if (
-          response.data.value.role === "L1" ||
-          response.data.value.role === "L2" ||
-          response.data.value.role === "L3"
-        ) {
-          localStorage.setItem("indent-expressId", response.data.value.userID);
-          localStorage.setItem("indent-expressRole", response.data.value.role);
-          navigate("/Indent-express/direction/home");
-        }
-        if (response.data.value.role === "Admin") {
-          localStorage.setItem("indent-expressId", response.data.value.role);
-          navigate("/Indent-express/admin/home");
-        }
-        if (response.data.code === "1001") {
+        if (response.data.code === "1000") {
+          if (response.data.value.status === "open") {
+            if (
+              response.data.value.role === "L1" ||
+              response.data.value.role === "L2" ||
+              response.data.value.role === "L3"
+            ) {
+              localStorage.setItem(
+                "indent-expressId",
+                response.data.value.userID
+              );
+              localStorage.setItem(
+                "indent-expressRole",
+                response.data.value.role
+              );
+              navigate("/Indent-express/direction/home");
+            }
+            if (response.data.value.role === "Admin") {
+              localStorage.setItem(
+                "indent-expressId",
+                response.data.value.role
+              );
+              navigate("/Indent-express/admin/home");
+            }
+          } else if (response.data.value.status === "close") {
+            if (response.data.value.status === "close") {
+              swal({
+                title: "Closed",
+                text: "Portal Is Closed",
+                icon: "error",
+                buttons: "OK",
+              });
+            }
+          }
+        } else if (response.data.code === "1001") {
           showAlert("Please enter valid Username and Password!", "danger");
         }
         setLoading(false);
@@ -59,7 +77,7 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    localStorage.removeItem("indent-expressId");
+    localStorage.clear();
   }, []);
 
   return (
