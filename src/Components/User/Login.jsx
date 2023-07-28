@@ -27,7 +27,6 @@ const Login = (props) => {
     axios
       .post(`${HOST_URL}/INDENT/express/user/login`, inputData)
       .then((response) => {
-        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           if (response.data.value.status === "open") {
             if (
