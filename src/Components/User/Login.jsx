@@ -27,6 +27,7 @@ const Login = (props) => {
     axios
       .post(`${HOST_URL}/INDENT/express/user/login`, inputData)
       .then((response) => {
+        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           if (response.data.value.status === "open") {
             if (
@@ -52,14 +53,12 @@ const Login = (props) => {
               navigate("/Indent-express/admin/home");
             }
           } else if (response.data.value.status === "close") {
-            if (response.data.value.status === "close") {
-              swal({
-                title: "Closed",
-                text: "Portal Is Closed",
-                icon: "error",
-                buttons: "OK",
-              });
-            }
+            swal({
+              title: "Closed",
+              text: "Portal Is Closed",
+              icon: "error",
+              buttons: "OK",
+            });
           }
         } else if (response.data.code === "1001") {
           showAlert("Please enter valid Username and Password!", "danger");
