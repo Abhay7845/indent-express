@@ -41,7 +41,7 @@ const UpdateAutomail = () => {
         setLoading(false);
       })
       .then((error) => {
-        console.log("errro=>", error);
+        console.log("");
         setLoading(false);
       });
   };
