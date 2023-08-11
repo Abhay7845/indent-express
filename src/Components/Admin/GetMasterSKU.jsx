@@ -55,8 +55,8 @@ const GetMasterSKU = () => {
         <h5 className="text-center mt-2">GET MASTER SKU</h5>
         {rows.length > 0 && (
           <div className="mx-2 my-4">
-            <div class="row mb-3 g-3">
-              <div class="col-md-4">
+            <div className="row mb-3 g-3">
+              <div className="col-md-4">
                 <input
                   type="text"
                   className="SearchInputLogin"
@@ -64,7 +64,7 @@ const GetMasterSKU = () => {
                   onChange={(e) => SetLoginValue(e.target.value)}
                 />
               </div>
-              <div class="col-md-8 d-flex justify-content-end">
+              <div className="col-md-8 d-flex justify-content-end">
                 <b>
                   COUNT:-
                   {DataRows.length === 0 ? (
