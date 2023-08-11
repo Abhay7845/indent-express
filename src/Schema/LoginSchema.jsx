@@ -48,3 +48,16 @@ export const loginCredentialsInitialValue = {
 export const loginCredentialsSchema = yup.object({
   level: yup.string().required("Level is required"),
 });
+
+// UPDTAE AUTO MAIL INITILA VALUES
+export const updateAutomail = {
+  fromMailId: "",
+  mailSubject: "",
+  mailBody: "",
+};
+
+export const updateAutomailSchema = yup.object({
+  fromMailId: yup.string().required("Email is required"),
+  mailSubject: yup.string().required("Subject is required"),
+  mailBody: yup.string().required("Mail Body is required"),
+});
