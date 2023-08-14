@@ -203,7 +203,7 @@ const DigitalL3 = (props) => {
         <div className="col-md-3">
           <Select
             className="w-100"
-            placeholder="Select Category Type"
+            placeholder="Select Parameter Type"
             onChange={GetCateogyDropdown}
           >
             {ItemWiseReportsDropdown.map((item, i) => {
@@ -218,7 +218,7 @@ const DigitalL3 = (props) => {
         <div className="col-md-3">
           <Select
             className="w-100"
-            placeholder="Select Category"
+            placeholder="Select Value"
             onChange={GetCateogyWiseData}
           >
             {CategoryDropwond.map((item, i) => {

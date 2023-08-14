@@ -96,13 +96,13 @@ export const ItemWiseReportsDropdown = [
     label: "Collection",
   },
   {
-    value: "group",
-    label: "Group",
+    value: "ItGroup",
+    label: "ItGroup",
   },
-  {
-    value: "attributes",
-    label: "Attributes",
-  },
+  // {
+  //   value: "attributes",
+  //   label: "Attributes",
+  // },
 ];
 
 export const LevelOptions = [
