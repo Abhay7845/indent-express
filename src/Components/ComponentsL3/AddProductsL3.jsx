@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useState, useEffect } from "react";
 import Loader from "../../Common/Loader";
 import ShowImage from "./ShowImage";

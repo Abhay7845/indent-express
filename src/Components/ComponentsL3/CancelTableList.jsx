@@ -1,4 +1,3 @@
-/** @format */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import TableDataDownload from "../../Common/TableDataDownload";
@@ -145,7 +144,7 @@ const CancelTableList = (props) => {
         renderCell: (params) => {
           return (
             <Icon.PencilSquare
-              className='EditButton'
+              className="EditButton"
               onClick={() => UpdateCancelRow(params.row)}
             />
           );
@@ -242,26 +241,27 @@ const CancelTableList = (props) => {
       {reportRowTable.itemCode === undefined ? (
         ""
       ) : (
-        <div className='row row-cols-1 row-cols-md-2 mx-1 my-3'>
-          <div className='col-md-5'>
+        <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
+          <div className="col-md-5">
             <ShowImage imageURL={imageURL} />
           </div>
-          <div className='col-md-7'>
-            <div className='card-body'>
+          <div className="col-md-7">
+            <div className="card-body">
               <h5
-                className='text-center p-1 itemCodeText'
-                style={{ backgroundColor: "#f5ea84" }}>
+                className="text-center p-1 itemCodeText"
+                style={{ backgroundColor: "#f5ea84" }}
+              >
                 {reportRowTable.itemCode}
               </h5>
-              <div className='row my-3'>
-                <div className='col-md-6'>
+              <div className="row my-3">
+                <div className="col-md-6">
                   <div>
-                    <h6 className='text-center my-2'>
+                    <h6 className="text-center my-2">
                       <b>PRODUCT DESCRIPTION</b>
                     </h6>
                     <br />
-                    <table className='w-100'>
-                      <tbody className='productsDetailsStyle'>
+                    <table className="w-100">
+                      <tbody className="productsDetailsStyle">
                         <tr>
                           <th>GROUP</th>
                           <td>-</td>
@@ -311,8 +311,8 @@ const CancelTableList = (props) => {
                     </table>
                   </div>
                 </div>
-                <div className='col-md-6'>
-                  <h6 className='text-center my-2 feedBackText'>
+                <div className="col-md-6">
+                  <h6 className="text-center my-2 feedBackText">
                     <b>INDENT DETAILS</b>
                   </h6>
                   <br />
@@ -358,7 +358,7 @@ const CancelTableList = (props) => {
                     digit === "C" ||
                     digit === "Y" ||
                     digit === "B" ? (
-                    <div className='mt-3'>
+                    <div className="mt-3">
                       <ChooseMultiSize
                         optionsList={SizeState}
                         GetChooseSizeData={GetChooseSizeData}
@@ -389,18 +389,17 @@ const CancelTableList = (props) => {
                         .toUpperCase()
                         .replace(/\s{2,}/g, " ")
                         .trim() === "COUPLE BAND" && (
-                        <div className='mt-3'>
+                        <div className="mt-3">
                           <select
-                            className='L3SelectDropdown'
-                            onChange={(e) =>
-                              setCoupleBandValue(e.target.value)
-                            }>
-                            <option value=''>CHOOSE COUPLE TAG</option>
-                            <option value='Single_Tag'>SINGLE TAG</option>
-                            <option value='Separate_Tag'>SEPARATE TAG</option>
+                            className="L3SelectDropdown"
+                            onChange={(e) => setCoupleBandValue(e.target.value)}
+                          >
+                            <option value="">CHOOSE COUPLE TAG</option>
+                            <option value="Single_Tag">SINGLE TAG</option>
+                            <option value="Separate_Tag">SEPARATE TAG</option>
                           </select>
                           {coupleBandValue === "Single_Tag" && (
-                            <div className='mt-2'>
+                            <div className="mt-2">
                               <ChooseMultiSize
                                 optionsList={SizeState}
                                 GetChooseSizeData={GetChooseSizeData}
@@ -408,13 +407,13 @@ const CancelTableList = (props) => {
                             </div>
                           )}
                           {coupleBandValue === "Separate_Tag" && (
-                            <div className='my-1'>
-                              <span className='text-primary'>FOR GENTS</span>
+                            <div className="my-1">
+                              <span className="text-primary">FOR GENTS</span>
                               <ChooseMultiSize
                                 optionsList={CoupleGentsSize}
                                 GetChooseSizeData={GetChooseSizeData}
                               />
-                              <span className='text-primary mt-2'>
+                              <span className="text-primary mt-2">
                                 FOR LADIES
                               </span>
                               <ChooseMultiSizeForLadies
@@ -439,7 +438,7 @@ const CancelTableList = (props) => {
                   digit === "K" ||
                   digit === "A" ||
                   digit === "G" ? (
-                    <div className='mt-3'>
+                    <div className="mt-3">
                       <IndentQuantityFiled
                         GetIndentQuantityValue={GetIndentQuantityValue}
                         indentQuantity={indentQuantity}
@@ -462,8 +461,8 @@ const CancelTableList = (props) => {
                 <StoneQualityTable tableRowData={reportRowTable} />
               )}
 
-              <div className='d-flex'>
-                <button className='CButton' onClick={UpdateCancelTableRow}>
+              <div className="d-flex">
+                <button className="CButton" onClick={UpdateCancelTableRow}>
                   UPDATE
                 </button>
               </div>
@@ -471,15 +470,15 @@ const CancelTableList = (props) => {
           </div>
         </div>
       )}
-      <div className='d-flex justify-content-between mx-0 my-3'>
+      <div className="d-flex justify-content-between mx-0 my-3">
         <input
-          type='text'
+          type="text"
           value={searchItemCode}
-          className='SearchRowByItem'
-          placeholder='Search by Item Code'
+          className="SearchRowByItem"
+          placeholder="Search by Item Code"
           onChange={(e) => setSearchItemCode(e.target.value)}
         />
-        <b className='text-primary mt-2 mx-2'>COUNT- {DataRows.length}</b>
+        <b className="text-primary mt-2 mx-2">COUNT- {DataRows.length}</b>
       </div>
       <DataGrid
         rows={DataRows}
