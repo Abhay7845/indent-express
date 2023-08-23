@@ -1,4 +1,3 @@
-/** @format */
 import React, { useState } from "react";
 import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";

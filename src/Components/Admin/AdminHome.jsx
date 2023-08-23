@@ -1,5 +1,4 @@
-/** @format */
-
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import TopHeader from "../../Common/TopHeader";
 import AdminSideBar from "./AdminSideBar";
@@ -28,8 +27,12 @@ const AdminHome = () => {
         .get(`${HOST_URL}/INDENTADMIN/express/from/store/list/${fromDate}`)
         .then((res) => res)
         .then((response) => {
+          console.log("response==>", response.data);
           if (response.data.code === "1000") {
             setFromStoreCode(response.data.value);
+          }
+          if (response.data.code === "1001") {
+            alert("Please Select Valid Date");
           }
           setLoading(false);
         })
@@ -46,8 +49,12 @@ const AdminHome = () => {
       .get(`${HOST_URL}/INDENTADMIN/express/to/store/list`)
       .then((res) => res)
       .then((response) => {
+        console.log("response==>", response.data);
         if (response.data.code === "1000") {
           setToStoreCode(response.data.value);
+        }
+        if (response.data.code === "1001") {
+          setToStoreCode([]);
         }
         setLoading(false);
       })
