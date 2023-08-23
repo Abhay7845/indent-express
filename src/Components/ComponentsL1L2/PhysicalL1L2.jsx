@@ -28,6 +28,7 @@ const PhysicalL1L2 = () => {
   const [quality_Reasons, setQuality_Reasons] = useState([]);
 
   const GetProductsDetails = () => {
+    setLoading(true);
     if (searchItemCode) {
       setLoading(true);
       const SearchByItemCoe = {
@@ -63,7 +64,10 @@ const PhysicalL1L2 = () => {
           setSearchItemCode("");
           setLoading(false);
         })
-        .catch((error) => console.log(""));
+        .catch((error) => {
+          console.log("");
+          setLoading(false);
+        });
     } else {
       alert("Please Enter Item Code");
     }

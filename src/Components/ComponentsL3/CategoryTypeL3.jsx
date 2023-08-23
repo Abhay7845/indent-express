@@ -1,6 +1,4 @@
-/** @format */
 /* eslint-disable react-hooks/exhaustive-deps */
-
 import React, { useState, useEffect } from "react";
 import TopHeader from "../../Common/TopHeader";
 import { Link } from "react-router-dom";
@@ -44,7 +42,6 @@ const CategoryTypeL3 = (props) => {
       )
       .then((res) => res)
       .then((response) => {
-        console.log("response==>", response.data.value);
         if (response.data.code === "1000") {
           setProductsData(response.data.value);
         }
@@ -59,17 +56,12 @@ const CategoryTypeL3 = (props) => {
       });
   }, [storeCode, categoryType, category]);
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-  const SearchProductByItemCode = () => {
+  const GetCateogyWiseProducts = () => {
     setLoading(true);
     axios
-      .get(`${HOST_URL}/INDENT/express/get/itemcode/list`)
+      .get(
+        `${HOST_URL}/INDENT/express/category/list/homepage/${storeCode}/${categoryType}/${category}`
+      )
       .then((res) => res)
       .then((response) => {
         if (response.data.code === "1000") {
@@ -85,6 +77,15 @@ const CategoryTypeL3 = (props) => {
         setLoading(false);
       });
   };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
   const GetProductsDetails = (Details) => {
     const GetProductsDetails = {
       storeCode: storeCode,
@@ -216,7 +217,7 @@ const CategoryTypeL3 = (props) => {
       )}
       <div className="my-4 mx-3">
         {productsData.length <= 0 && (
-          <button onClick={SearchProductByItemCode} className="SButton">
+          <button onClick={GetCateogyWiseProducts} className="SButton">
             HOME
           </button>
         )}
