@@ -6,15 +6,7 @@ const CommonImage = (props) => {
   const imageCode = itemCode.substring(2, 9);
   const imageURL = `${IMAGE_URL}${imageCode}.jpg`;
 
-  return (
-    <img
-      src={imageURL}
-      alt="Image_Not Found"
-      width="70"
-      height="70"
-      className="img-thumbnail"
-    />
-  );
+  return <img src={imageURL} alt="Image_Not" width="100%" height="100%" />;
 };
 
 export default CommonImage;

@@ -243,6 +243,8 @@ const CardTableList = (props) => {
     eachRow.itemCode.includes(searchItemCode.toUpperCase())
   );
 
+  console.log("DataRows==>", DataRows);
+
   //GET INPUT VALUES
   const GetTagFiledValues = (getTagSize) => {
     SetTagQuantity(getTagSize);
@@ -435,26 +437,26 @@ const CardTableList = (props) => {
         disableClickEventBubbling: true,
         renderCell: (params) => {
           return (
-            <>
+            <div>
               {params.row.confirmationStatus === "" && (
                 <div>
                   <Icon.PencilSquare
-                    className='EditButton'
+                    className="EditButton"
                     onClick={() => UpdateRowData(params.row)}
                   />
                   <Icon.Trash
-                    className='DeleteButton'
+                    className="DeleteButton"
                     onClick={() => DeleteRow(params.row)}
                   />
                 </div>
               )}
               {reportsName === "Cancel_Item_List" && (
                 <Icon.PencilSquare
-                  className='EditButton'
+                  className="EditButton"
                   onClick={() => UpdateRowData(params.row)}
                 />
               )}
-            </>
+            </div>
           );
         },
       };
@@ -472,11 +474,10 @@ const CardTableList = (props) => {
         field: "confirmationStatus",
         headerName: "confirmationStatus",
         sortable: false,
-        flex: 1,
         disableClickEventBubbling: true,
         renderCell: (params) => {
           return (
-            <p className='text-success'>
+            <p className="text-success">
               {params.row.confirmationStatus === "" ? "" : "Success"}
             </p>
           );
@@ -486,37 +487,37 @@ const CardTableList = (props) => {
       fieldRes = {
         field: element,
         sortable: false,
-        flex: 1,
       };
     }
     return fieldRes;
   });
   return (
-    <>
+    <div>
       {loading === true && <Loader />}
       {reportRowTable.itemCode === undefined ? (
         ""
       ) : (
-        <div className='row row-cols-1 row-cols-md-2 mx-1 my-3'>
-          <div className='col-md-5'>
+        <div className="row row-cols-1 row-cols-md-2 mx-1 my-3">
+          <div className="col-md-5">
             <ShowImage imageURL={imageURL} />
           </div>
-          <div className='col-md-7'>
-            <div className='card-body'>
+          <div className="col-md-7">
+            <div className="card-body">
               <h5
-                className='text-center p-1 itemCodeText'
-                style={{ backgroundColor: "#f5ea84" }}>
+                className="text-center p-1 itemCodeText"
+                style={{ backgroundColor: "#f5ea84" }}
+              >
                 {reportRowTable.itemCode}
               </h5>
-              <div className='row my-3'>
-                <div className='col-md-6'>
+              <div className="row my-3">
+                <div className="col-md-6">
                   <div>
-                    <h6 className='text-center my-2'>
+                    <h6 className="text-center my-2">
                       <b>PRODUCT DESCRIPTION</b>
                     </h6>
                     <br />
-                    <table className='w-100'>
-                      <tbody className='productsDetailsStyle'>
+                    <table className="w-100">
+                      <tbody className="productsDetailsStyle">
                         <tr>
                           <th>GROUP</th>
                           <td>-</td>
@@ -566,8 +567,8 @@ const CardTableList = (props) => {
                     </table>
                   </div>
                 </div>
-                <div className='col-md-6'>
-                  <h6 className='text-center my-2 feedBackText'>
+                <div className="col-md-6">
+                  <h6 className="text-center my-2 feedBackText">
                     <b>INDENT DETAILS</b>
                   </h6>
                   <br />
@@ -613,7 +614,7 @@ const CardTableList = (props) => {
                     digit === "C" ||
                     digit === "Y" ||
                     digit === "B" ? (
-                    <div className='mt-3'>
+                    <div className="mt-3">
                       <ChooseMultiSize
                         optionsList={SizeState}
                         GetChooseSizeData={GetChooseSizeData}
@@ -644,18 +645,17 @@ const CardTableList = (props) => {
                         .toUpperCase()
                         .replace(/\s{2,}/g, " ")
                         .trim() === "COUPLE BAND" && (
-                        <div className='mt-3'>
+                        <div className="mt-3">
                           <select
-                            className='L3SelectDropdown'
-                            onChange={(e) =>
-                              setCoupleBandValue(e.target.value)
-                            }>
-                            <option value=''>CHOOSE COUPLE TAG</option>
-                            <option value='Single_Tag'>SINGLE TAG</option>
-                            <option value='Separate_Tag'>SEPARATE TAG</option>
+                            className="L3SelectDropdown"
+                            onChange={(e) => setCoupleBandValue(e.target.value)}
+                          >
+                            <option value="">CHOOSE COUPLE TAG</option>
+                            <option value="Single_Tag">SINGLE TAG</option>
+                            <option value="Separate_Tag">SEPARATE TAG</option>
                           </select>
                           {coupleBandValue === "Single_Tag" && (
-                            <div className='mt-2'>
+                            <div className="mt-2">
                               <ChooseMultiSize
                                 optionsList={SizeState}
                                 GetChooseSizeData={GetChooseSizeData}
@@ -663,13 +663,13 @@ const CardTableList = (props) => {
                             </div>
                           )}
                           {coupleBandValue === "Separate_Tag" && (
-                            <div className='my-1'>
-                              <span className='text-primary'>FOR GENTS</span>
+                            <div className="my-1">
+                              <span className="text-primary">FOR GENTS</span>
                               <ChooseMultiSize
                                 optionsList={CoupleGentsSize}
                                 GetChooseSizeData={GetChooseSizeData}
                               />
-                              <span className='text-primary mt-2'>
+                              <span className="text-primary mt-2">
                                 FOR LADIES
                               </span>
                               <ChooseMultiSizeForLadies
@@ -694,7 +694,7 @@ const CardTableList = (props) => {
                   digit === "K" ||
                   digit === "A" ||
                   digit === "G" ? (
-                    <div className='mt-3'>
+                    <div className="mt-3">
                       <IndentQuantityFiled
                         GetIndentQuantityValue={GetIndentQuantityValue}
                         indentQuantity={indentQuantity}
@@ -717,11 +717,11 @@ const CardTableList = (props) => {
                 <StoneQualityTable tableRowData={reportRowTable} />
               )}
 
-              <div className='d-flex'>
-                <button className='CButton mx-1' onClick={CancelIndent}>
+              <div className="d-flex">
+                <button className="CButton mx-1" onClick={CancelIndent}>
                   CANCEL INDENT
                 </button>
-                <button className='CButton' onClick={UpdateTableRowData}>
+                <button className="CButton" onClick={UpdateTableRowData}>
                   UPDATE
                 </button>
               </div>
@@ -730,18 +730,18 @@ const CardTableList = (props) => {
         </div>
       )}
 
-      <div className='row g-2 my-2 ConfirmCollumreverse'>
-        <div className='col-md-4'>
+      <div className="row g-2 my-2 ConfirmCollumreverse">
+        <div className="col-md-4">
           <input
-            type='text'
+            type="text"
             value={searchItemCode}
-            className='SearchRowByItem w-100'
-            placeholder='Search by Item Code'
+            className="SearchRowByItem w-100"
+            placeholder="Search by Item Code"
             onChange={(e) => setSearchItemCode(e.target.value)}
           />
         </div>
-        <div className='col-md-4 text-danger'>
-          <div className='mt-3 d-flex justify-content-between mx-2'>
+        <div className="col-md-4 text-danger">
+          <div className="mt-3 d-flex justify-content-between mx-2">
             <b>TOTAL COUNT- {DataRows.length}</b>
             <b>||</b>
             <b>
@@ -750,11 +750,11 @@ const CardTableList = (props) => {
             </b>
           </div>
         </div>
-        <div className='col-md-4 d-flex confirmButtons'>
-          <button className='confirmSendmail mx-2' onClick={ConfirmMail}>
+        <div className="col-md-4 d-flex confirmButtons">
+          <button className="confirmSendmail mx-2" onClick={ConfirmMail}>
             CONFIRM
           </button>
-          <button className='confirmSendmail' onClick={SendMail}>
+          <button className="confirmSendmail" onClick={SendMail}>
             SEND MAIL
           </button>
         </div>
@@ -768,7 +768,7 @@ const CardTableList = (props) => {
           Toolbar: TableDataDownload,
         }}
       />
-    </>
+    </div>
   );
 };
 export default CardTableList;
