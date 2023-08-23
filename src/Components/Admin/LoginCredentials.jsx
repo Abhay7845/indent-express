@@ -58,7 +58,7 @@ const LoginCredentials = () => {
           <Form>
             <h5 className="text-center mt-2">LOGIN CREDENTIALS</h5>
             <div className="row d-flex mt-2 mx-1">
-              <div className="col-md-9">
+              <div className="col-md-10">
                 <b className="p-1">
                   Level <span className="text-danger">*</span>
                 </b>
@@ -70,10 +70,10 @@ const LoginCredentials = () => {
                 </Field>
                 <ShowError name="level" />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-2">
                 <div className="d-flex justify-content-end mt-3">
                   <button type="submit" className="ACommonBTN">
-                    FETCH CREDENTIALS
+                    GET DATA
                   </button>
                 </div>
               </div>

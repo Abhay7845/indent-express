@@ -63,7 +63,7 @@ const UpdateAutomail = () => {
           }}
         >
           <Form className="row g-3 mt-2 mx-1">
-            <h5 className="text-center mt-2">COPY STORE INDENTS</h5>
+            <h5 className="text-center mt-2">UPDATE AUTO MAIL</h5>
             <div className="col-md-6">
               <b className="p-1">
                 Email<span className="text-danger">*</span>
@@ -101,7 +101,7 @@ const UpdateAutomail = () => {
             </div>
             <div className="d-flex justify-content-end mt-3">
               <button type="submit" className="ACommonBTN">
-                SAVE
+                SEND
               </button>
             </div>
           </Form>

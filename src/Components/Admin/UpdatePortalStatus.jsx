@@ -94,7 +94,7 @@ const UpdatePortalStatus = () => {
             </div>
             <div className="d-flex justify-content-end mt-3 mx-2">
               <button type="submit" className="ACommonBTN">
-                UPDATE STATUS
+                UPDATE
               </button>
             </div>
           </Form>
