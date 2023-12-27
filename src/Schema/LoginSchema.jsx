@@ -23,13 +23,7 @@ export const CopyStoreSchema = yup.object({
   toStoreCode: yup.string().required("To Store Code required"),
 });
 
-export const FileInitialValue = {
-  masterFile: "",
-};
 
-export const masterSchema = yup.object({
-  masterFile: yup.string().required("File is required"),
-});
 
 export const updatePortsalInitialValue = {
   level: "",

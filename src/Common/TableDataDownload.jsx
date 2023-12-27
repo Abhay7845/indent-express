@@ -4,7 +4,7 @@ import { GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
 const TableDataDownload = () => {
   return (
     <GridToolbarContainer>
-      <GridToolbarExport csvOptions={{ fileName: "Table Data" }} />
+      <GridToolbarExport csvOptions={{ fileName: "TableData" }} />
     </GridToolbarContainer>
   );
 };
