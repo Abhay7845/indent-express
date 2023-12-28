@@ -6,6 +6,7 @@ import { excelsheetURL } from "../../API/HotMaster";
 import { HOST_URL } from "../../API/HotMaster";
 import axios from "axios";
 import Loader from "../../Common/Loader";
+import swal from "sweetalert";
 
 const MasterFileUplaod = () => {
   const [loading, setLoading] = useState(false);
@@ -26,10 +27,19 @@ const MasterFileUplaod = () => {
       })
         .then((res) => res)
         .then((response) => {
-          console.log("responseUplod==>", response.data)
           if (response.data.code === "1000") {
-            alert("Success")
+            setResError("");
+            swal({
+              title: "Success",
+              text: "Master File Uploaded Successuly!",
+              icon: "success",
+              buttons: "OK",
+            });
           } else if (response.data.code === "1001") {
+            setResError(response.data.value)
+          } else if (response.data.code === "1002") {
+            setResError(response.data.value)
+          } else if (response.data.code === "1002") {
             setResError(response.data.value)
           }
           setLoading(false);
