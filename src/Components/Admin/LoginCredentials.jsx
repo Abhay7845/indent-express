@@ -33,7 +33,6 @@ const LoginCredentials = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   };

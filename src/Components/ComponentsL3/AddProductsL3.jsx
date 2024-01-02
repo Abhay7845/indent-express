@@ -60,7 +60,7 @@ const AddProductsL3 = (props) => {
           setSizeState([]);
         }
       })
-      .catch((error) => console.log(""));
+      .catch((error) => { });
   }, [itemCode]);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const AddProductsL3 = (props) => {
           setCoupleGentsSize([]);
         }
       })
-      .catch((error) => console.log(""));
+      .catch((error) => { });
   }, [itemCode]);
   useEffect(() => {
     axios
@@ -181,7 +181,6 @@ const AddProductsL3 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   };
@@ -272,9 +271,9 @@ const AddProductsL3 = (props) => {
                 {!singleProductsDetails.category ? (
                   ""
                 ) : singleProductsDetails.category
-                    .toUpperCase()
-                    .replace(/\s{2,}/g, " ")
-                    .trim() === "T CATEGORY" ||
+                  .toUpperCase()
+                  .replace(/\s{2,}/g, " ")
+                  .trim() === "T CATEGORY" ||
                   digit === "0" ||
                   digit === "1" ||
                   digit === "2" ||
@@ -304,9 +303,9 @@ const AddProductsL3 = (props) => {
                 {!category ? (
                   ""
                 ) : category
-                    .toUpperCase()
-                    .replace(/\s{2,}/g, " ")
-                    .trim() === "FINGER RING" ||
+                  .toUpperCase()
+                  .replace(/\s{2,}/g, " ")
+                  .trim() === "FINGER RING" ||
                   digit === "L" ||
                   digit === "C" ||
                   digit === "Y" ||
@@ -323,9 +322,9 @@ const AddProductsL3 = (props) => {
                 {!category ? (
                   ""
                 ) : category
-                    .toUpperCase()
-                    .replace(/\s{2,}/g, " ")
-                    .trim() === "TOE RING" ? (
+                  .toUpperCase()
+                  .replace(/\s{2,}/g, " ")
+                  .trim() === "TOE RING" ? (
                   <ChooseMultiSize
                     optionsList={SizeState}
                     singleProductsDetails={singleProductsDetails}
@@ -336,13 +335,13 @@ const AddProductsL3 = (props) => {
                 )}
                 {/* <---------------------------TAGS TABLE DATA-------------------------------> */}
                 {digit === "0" ||
-                digit === "1" ||
-                digit === "2" ||
-                digit === "3" ||
-                digit === "4" ||
-                digit === "5" ||
-                digit === "6" ||
-                digit === "7" ? (
+                  digit === "1" ||
+                  digit === "2" ||
+                  digit === "3" ||
+                  digit === "4" ||
+                  digit === "5" ||
+                  digit === "6" ||
+                  digit === "7" ? (
                   <TableDataDetails
                     singleProductsDetails={singleProductsDetails}
                   />
@@ -353,9 +352,9 @@ const AddProductsL3 = (props) => {
                 {!category ? (
                   ""
                 ) : category
-                    .toUpperCase()
-                    .replace(/\s{2,}/g, " ")
-                    .trim() === "OTHER" ||
+                  .toUpperCase()
+                  .replace(/\s{2,}/g, " ")
+                  .trim() === "OTHER" ||
                   digit === "N" ||
                   digit === "O" ||
                   digit === "D" ||
@@ -379,44 +378,44 @@ const AddProductsL3 = (props) => {
                 {!category
                   ? ""
                   : category
-                      .toUpperCase()
-                      .replace(/\s{2,}/g, " ")
-                      .trim() === "COUPLE BAND" && (
-                      <div>
-                        <select
-                          className='L3SelectDropdown'
-                          onChange={(e) => setCoupleBandValue(e.target.value)}>
-                          <option value=''>CHOOSE COUPLE TAG</option>
-                          <option value='Single_Tag'>SINGLE TAG</option>
-                          <option value='Separate_Tag'>SEPARATE TAG</option>
-                        </select>
-                        {coupleBandValue === "Single_Tag" && (
-                          <div className='mt-2'>
-                            <ChooseMultiSize
-                              optionsList={SizeState}
-                              singleProductsDetails={singleProductsDetails}
-                              GetChooseSizeData={GetChooseSizeData}
-                            />
-                          </div>
-                        )}
-                        {coupleBandValue === "Separate_Tag" && (
-                          <div className='my-1'>
-                            <span className='text-primary'>FOR GENTS</span>
-                            <ChooseMultiSize
-                              optionsList={CoupleGentsSize}
-                              GetChooseSizeData={GetChooseSizeData}
-                            />
-                            <span className='text-primary mt-2'>
-                              FOR LADIES
-                            </span>
-                            <ChooseMultiSizeForLadies
-                              optionsList={CoupleLadiesSize}
-                              GetLadiesSizeValue={GetLadiesSizeValue}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    )}
+                    .toUpperCase()
+                    .replace(/\s{2,}/g, " ")
+                    .trim() === "COUPLE BAND" && (
+                    <div>
+                      <select
+                        className='L3SelectDropdown'
+                        onChange={(e) => setCoupleBandValue(e.target.value)}>
+                        <option value=''>CHOOSE COUPLE TAG</option>
+                        <option value='Single_Tag'>SINGLE TAG</option>
+                        <option value='Separate_Tag'>SEPARATE TAG</option>
+                      </select>
+                      {coupleBandValue === "Single_Tag" && (
+                        <div className='mt-2'>
+                          <ChooseMultiSize
+                            optionsList={SizeState}
+                            singleProductsDetails={singleProductsDetails}
+                            GetChooseSizeData={GetChooseSizeData}
+                          />
+                        </div>
+                      )}
+                      {coupleBandValue === "Separate_Tag" && (
+                        <div className='my-1'>
+                          <span className='text-primary'>FOR GENTS</span>
+                          <ChooseMultiSize
+                            optionsList={CoupleGentsSize}
+                            GetChooseSizeData={GetChooseSizeData}
+                          />
+                          <span className='text-primary mt-2'>
+                            FOR LADIES
+                          </span>
+                          <ChooseMultiSizeForLadies
+                            optionsList={CoupleLadiesSize}
+                            GetLadiesSizeValue={GetLadiesSizeValue}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                 {/* <----------------------STONE QUALITY DROPDOWN--------------------------> */}
                 {stoneDropdown.length > 0 && (

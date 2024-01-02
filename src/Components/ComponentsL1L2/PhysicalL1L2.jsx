@@ -65,7 +65,6 @@ const PhysicalL1L2 = () => {
           setLoading(false);
         })
         .catch((error) => {
-          console.log("");
           setLoading(false);
         });
     } else {

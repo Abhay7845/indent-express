@@ -46,7 +46,6 @@ const DayEndReport = (props) => {
           setLoading(false);
         })
         .catch((error) => {
-          console.log("");
           setLoading(false);
         });
     } else {
@@ -73,7 +72,6 @@ const DayEndReport = (props) => {
           setLoading(false);
         })
         .catch((error) => {
-          console.log("");
           setLoading(false);
         });
     } else {

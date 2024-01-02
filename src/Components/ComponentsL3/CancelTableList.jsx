@@ -231,7 +231,6 @@ const CancelTableList = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   };
@@ -319,9 +318,9 @@ const CancelTableList = (props) => {
                   {!reportRowTable.category ? (
                     ""
                   ) : reportRowTable.category
-                      .toUpperCase()
-                      .replace(/\s{2,}/g, " ")
-                      .trim() === "T CATEGORY" ||
+                    .toUpperCase()
+                    .replace(/\s{2,}/g, " ")
+                    .trim() === "T CATEGORY" ||
                     digit === "0" ||
                     digit === "1" ||
                     digit === "2" ||
@@ -351,9 +350,9 @@ const CancelTableList = (props) => {
                   {!reportRowTable.category ? (
                     ""
                   ) : reportRowTable.category
-                      .toUpperCase()
-                      .replace(/\s{2,}/g, " ")
-                      .trim() === "FINGER RING" ||
+                    .toUpperCase()
+                    .replace(/\s{2,}/g, " ")
+                    .trim() === "FINGER RING" ||
                     digit === "L" ||
                     digit === "C" ||
                     digit === "Y" ||
@@ -372,9 +371,9 @@ const CancelTableList = (props) => {
                   {!reportRowTable.category ? (
                     ""
                   ) : reportRowTable.category
-                      .toUpperCase()
-                      .replace(/\s{2,}/g, " ")
-                      .trim() === "TOE RING" ? (
+                    .toUpperCase()
+                    .replace(/\s{2,}/g, " ")
+                    .trim() === "TOE RING" ? (
                     <ChooseMultiSize
                       optionsList={SizeState}
                       GetChooseSizeData={GetChooseSizeData}
@@ -386,58 +385,58 @@ const CancelTableList = (props) => {
                   {!reportRowTable.category
                     ? ""
                     : reportRowTable.category
-                        .toUpperCase()
-                        .replace(/\s{2,}/g, " ")
-                        .trim() === "COUPLE BAND" && (
-                        <div className="mt-3">
-                          <select
-                            className="L3SelectDropdown"
-                            onChange={(e) => setCoupleBandValue(e.target.value)}
-                          >
-                            <option value="">CHOOSE COUPLE TAG</option>
-                            <option value="Single_Tag">SINGLE TAG</option>
-                            <option value="Separate_Tag">SEPARATE TAG</option>
-                          </select>
-                          {coupleBandValue === "Single_Tag" && (
-                            <div className="mt-2">
-                              <ChooseMultiSize
-                                optionsList={SizeState}
-                                GetChooseSizeData={GetChooseSizeData}
-                              />
-                            </div>
-                          )}
-                          {coupleBandValue === "Separate_Tag" && (
-                            <div className="my-1">
-                              <span className="text-primary">FOR GENTS</span>
-                              <ChooseMultiSize
-                                optionsList={CoupleGentsSize}
-                                GetChooseSizeData={GetChooseSizeData}
-                              />
-                              <span className="text-primary mt-2">
-                                FOR LADIES
-                              </span>
-                              <ChooseMultiSizeForLadies
-                                optionsList={CoupleLadiesSize}
-                                GetLadiesSizeValue={GetLadiesSizeValue}
-                              />
-                            </div>
-                          )}
-                        </div>
-                      )}
+                      .toUpperCase()
+                      .replace(/\s{2,}/g, " ")
+                      .trim() === "COUPLE BAND" && (
+                      <div className="mt-3">
+                        <select
+                          className="L3SelectDropdown"
+                          onChange={(e) => setCoupleBandValue(e.target.value)}
+                        >
+                          <option value="">CHOOSE COUPLE TAG</option>
+                          <option value="Single_Tag">SINGLE TAG</option>
+                          <option value="Separate_Tag">SEPARATE TAG</option>
+                        </select>
+                        {coupleBandValue === "Single_Tag" && (
+                          <div className="mt-2">
+                            <ChooseMultiSize
+                              optionsList={SizeState}
+                              GetChooseSizeData={GetChooseSizeData}
+                            />
+                          </div>
+                        )}
+                        {coupleBandValue === "Separate_Tag" && (
+                          <div className="my-1">
+                            <span className="text-primary">FOR GENTS</span>
+                            <ChooseMultiSize
+                              optionsList={CoupleGentsSize}
+                              GetChooseSizeData={GetChooseSizeData}
+                            />
+                            <span className="text-primary mt-2">
+                              FOR LADIES
+                            </span>
+                            <ChooseMultiSizeForLadies
+                              optionsList={CoupleLadiesSize}
+                              GetLadiesSizeValue={GetLadiesSizeValue}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    )}
 
                   {digit === "N" ||
-                  digit === "O" ||
-                  digit === "D" ||
-                  digit === "X" ||
-                  digit === "H" ||
-                  digit === "J" ||
-                  digit === "S" ||
-                  digit === "W" ||
-                  digit === "E" ||
-                  digit === "P" ||
-                  digit === "K" ||
-                  digit === "A" ||
-                  digit === "G" ? (
+                    digit === "O" ||
+                    digit === "D" ||
+                    digit === "X" ||
+                    digit === "H" ||
+                    digit === "J" ||
+                    digit === "S" ||
+                    digit === "W" ||
+                    digit === "E" ||
+                    digit === "P" ||
+                    digit === "K" ||
+                    digit === "A" ||
+                    digit === "G" ? (
                     <div className="mt-3">
                       <IndentQuantityFiled
                         GetIndentQuantityValue={GetIndentQuantityValue}

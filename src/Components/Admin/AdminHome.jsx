@@ -36,7 +36,6 @@ const AdminHome = () => {
           setLoading(false);
         })
         .catch((error) => {
-          console.log("");
           setLoading(false);
         });
     }
@@ -57,7 +56,6 @@ const AdminHome = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   }, []);
@@ -81,7 +79,6 @@ const AdminHome = () => {
         }
       })
       .then((error) => {
-        console.log("");
         setLoading(false);
       });
   };

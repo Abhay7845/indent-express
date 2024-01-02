@@ -38,7 +38,6 @@ const CancelDataReport = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   }, [storeCode]);

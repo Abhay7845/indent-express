@@ -143,7 +143,7 @@ const ChooseDynamicTag = (props) => {
           setChildNodeV([]);
         }
       })
-      .catch((error) => console.log(""));
+      .catch((error) => { });
   }, [childNodeV]);
 
   const childNodeN = !singleProductsDetails
@@ -160,7 +160,7 @@ const ChooseDynamicTag = (props) => {
           setChildNodesN([]);
         }
       })
-      .catch((error) => console.log(""));
+      .catch((error) => { });
   }, [childNodeN]);
 
   const childNodeF = !singleProductsDetails
@@ -177,7 +177,7 @@ const ChooseDynamicTag = (props) => {
           setChildNodeF([]);
         }
       })
-      .catch((error) => console.log(""));
+      .catch((error) => { });
   }, [childNodeF]);
 
   const options = option.map((element) => {
@@ -305,8 +305,8 @@ const ChooseDynamicTag = (props) => {
                   name={`${row.labelValue}sq`}
                   className={
                     row.labelValue === "Only_BANGLE" ||
-                    row.labelValue === "Only_FINGER_RING" ||
-                    row.labelValue === "Only_MANGALSUTRA"
+                      row.labelValue === "Only_FINGER_RING" ||
+                      row.labelValue === "Only_MANGALSUTRA"
                       ? classes.hide
                       : classes.inputField
                   }
@@ -332,11 +332,11 @@ const ChooseDynamicTag = (props) => {
                 {!singleProductsDetails
                   ? singleProductsDetails.findings
                   : singleProductsDetails.findings && (
-                      <FindingDropdown
-                        GetFindingData={GetFindingData}
-                        singleProductsDetails={singleProductsDetails}
-                      />
-                    )}
+                    <FindingDropdown
+                      GetFindingData={GetFindingData}
+                      singleProductsDetails={singleProductsDetails}
+                    />
+                  )}
               </td>
             </tr>
           ))}

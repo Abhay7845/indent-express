@@ -28,7 +28,6 @@ const GetMasterSKU = () => {
         }
       })
       .then((error) => {
-        console.log("");
         setLoading(false);
       });
   }, []);

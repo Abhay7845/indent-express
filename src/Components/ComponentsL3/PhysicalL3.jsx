@@ -241,7 +241,6 @@ const PhysicalL3 = () => {
         setProductsDetails({});
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   };
@@ -382,9 +381,9 @@ const PhysicalL3 = () => {
                   {!productsDetails.category ? (
                     ""
                   ) : productsDetails.category
-                      .toUpperCase()
-                      .replace(/\s{2,}/g, " ")
-                      .trim() === "T CATEGORY" ||
+                    .toUpperCase()
+                    .replace(/\s{2,}/g, " ")
+                    .trim() === "T CATEGORY" ||
                     digit === "0" ||
                     digit === "1" ||
                     digit === "2" ||
@@ -416,9 +415,9 @@ const PhysicalL3 = () => {
                   {!productsDetails.category ? (
                     ""
                   ) : productsDetails.category
-                      .toUpperCase()
-                      .replace(/\s{2,}/g, " ")
-                      .trim() === "FINGER RING" ||
+                    .toUpperCase()
+                    .replace(/\s{2,}/g, " ")
+                    .trim() === "FINGER RING" ||
                     digit === "L" ||
                     digit === "C" ||
                     digit === "Y" ||
@@ -436,9 +435,9 @@ const PhysicalL3 = () => {
                   {!productsDetails.category ? (
                     ""
                   ) : productsDetails.category
-                      .toUpperCase()
-                      .replace(/\s{2,}/g, " ")
-                      .trim() === "TOE RING" ? (
+                    .toUpperCase()
+                    .replace(/\s{2,}/g, " ")
+                    .trim() === "TOE RING" ? (
                     <ChooseMultiSize
                       optionsList={SizeState}
                       singleProductsDetails={productsDetails}
@@ -449,31 +448,31 @@ const PhysicalL3 = () => {
                   )}
                   {/* <----------------------TABLE DATA--------------------------> */}
                   {digit === "0" ||
-                  digit === "1" ||
-                  digit === "2" ||
-                  digit === "3" ||
-                  digit === "4" ||
-                  digit === "5" ||
-                  digit === "6" ||
-                  digit === "7" ? (
+                    digit === "1" ||
+                    digit === "2" ||
+                    digit === "3" ||
+                    digit === "4" ||
+                    digit === "5" ||
+                    digit === "6" ||
+                    digit === "7" ? (
                     <TableDataDetails singleProductsDetails={productsDetails} />
                   ) : (
                     ""
                   )}
                   {/*<-----------------------INDENT QUANTITY BOX-----------------------------------> */}
                   {digit === "N" ||
-                  digit === "O" ||
-                  digit === "D" ||
-                  productsDetails.category.toUpperCase() === "OTHER" ||
-                  digit === "H" ||
-                  digit === "J" ||
-                  digit === "S" ||
-                  digit === "W" ||
-                  digit === "E" ||
-                  digit === "P" ||
-                  digit === "K" ||
-                  digit === "A" ||
-                  digit === "G" ? (
+                    digit === "O" ||
+                    digit === "D" ||
+                    productsDetails.category.toUpperCase() === "OTHER" ||
+                    digit === "H" ||
+                    digit === "J" ||
+                    digit === "S" ||
+                    digit === "W" ||
+                    digit === "E" ||
+                    digit === "P" ||
+                    digit === "K" ||
+                    digit === "A" ||
+                    digit === "G" ? (
                     <IndentQuantityFiled
                       GetIndentQuantityValue={GetIndentQuantityValue}
                       indentQuantity={indentQuantity}
@@ -486,54 +485,54 @@ const PhysicalL3 = () => {
                   {!productsDetails.category
                     ? ""
                     : productsDetails.category
-                        .toUpperCase()
-                        .replace(/\s{2,}/g, " ")
-                        .trim() === "COUPLE BAND" && (
-                        <div>
-                          <select
-                            className='L3SelectDropdown'
-                            onChange={(e) =>
-                              setCoupleBandValue(e.target.value)
-                            }>
-                            <option value=''>CHOOSE COUPLE TAG</option>
-                            <option value='Single_Tag'>SINGLE TAG</option>
-                            <option value='Separate_Tag'>SEPARATE TAG</option>
-                          </select>
-                          {coupleBandValue === "Single_Tag" && (
-                            <div className='mt-2'>
-                              <ChooseMultiSize
-                                optionsList={SizeState}
-                                singleProductsDetails={productsDetails}
-                                GetChooseSizeData={GetChooseSizeData}
-                              />
-                            </div>
-                          )}
-                          {coupleBandValue === "Separate_Tag" && (
-                            <div className='my-1'>
-                              <span className='text-primary'>FOR GENTS</span>
-                              <ChooseMultiSize
-                                optionsList={CoupleGentsSize}
-                                GetChooseSizeData={GetChooseSizeData}
-                              />
-                              <span className='text-primary mt-2'>
-                                FOR LADIES
-                              </span>
-                              <ChooseMultiSizeForLadies
-                                optionsList={CoupleLadiesSize}
-                                GetLadiesSizeValue={GetLadiesSizeValue}
-                              />
-                            </div>
-                          )}
-                          {/* <----------------------STONE QUALITY DROPDOWN-----------------------> */}
-                          {stoneDropdown.length > 0 && (
-                            <StoneQualityDropdown
-                              optionsList={stoneDropdown}
-                              GetStoneData={GetStoneData}
+                      .toUpperCase()
+                      .replace(/\s{2,}/g, " ")
+                      .trim() === "COUPLE BAND" && (
+                      <div>
+                        <select
+                          className='L3SelectDropdown'
+                          onChange={(e) =>
+                            setCoupleBandValue(e.target.value)
+                          }>
+                          <option value=''>CHOOSE COUPLE TAG</option>
+                          <option value='Single_Tag'>SINGLE TAG</option>
+                          <option value='Separate_Tag'>SEPARATE TAG</option>
+                        </select>
+                        {coupleBandValue === "Single_Tag" && (
+                          <div className='mt-2'>
+                            <ChooseMultiSize
+                              optionsList={SizeState}
                               singleProductsDetails={productsDetails}
+                              GetChooseSizeData={GetChooseSizeData}
                             />
-                          )}
-                        </div>
-                      )}
+                          </div>
+                        )}
+                        {coupleBandValue === "Separate_Tag" && (
+                          <div className='my-1'>
+                            <span className='text-primary'>FOR GENTS</span>
+                            <ChooseMultiSize
+                              optionsList={CoupleGentsSize}
+                              GetChooseSizeData={GetChooseSizeData}
+                            />
+                            <span className='text-primary mt-2'>
+                              FOR LADIES
+                            </span>
+                            <ChooseMultiSizeForLadies
+                              optionsList={CoupleLadiesSize}
+                              GetLadiesSizeValue={GetLadiesSizeValue}
+                            />
+                          </div>
+                        )}
+                        {/* <----------------------STONE QUALITY DROPDOWN-----------------------> */}
+                        {stoneDropdown.length > 0 && (
+                          <StoneQualityDropdown
+                            optionsList={stoneDropdown}
+                            GetStoneData={GetStoneData}
+                            singleProductsDetails={productsDetails}
+                          />
+                        )}
+                      </div>
+                    )}
                 </div>
 
                 {/* <----------------------STONE QUALITY TABLE--------------------------> */}

@@ -51,7 +51,6 @@ const CategoryTypeL3 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   }, [storeCode, categoryType, category]);
@@ -73,7 +72,6 @@ const CategoryTypeL3 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   };
@@ -117,7 +115,7 @@ const CategoryTypeL3 = (props) => {
           });
         }
       })
-      .catch((error) => console.log(""));
+      .catch((error) => { });
   };
 
   return (

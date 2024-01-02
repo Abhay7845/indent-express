@@ -61,7 +61,6 @@ const DigitalL3 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   };
@@ -85,7 +84,6 @@ const DigitalL3 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   }, [storeCode]);
@@ -105,7 +103,6 @@ const DigitalL3 = (props) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("");
         setLoading(false);
       });
   };
@@ -151,7 +148,7 @@ const DigitalL3 = (props) => {
           setStatusCode("1003");
         }
       })
-      .catch((error) => console.log(""));
+      .catch((error) => { });
   };
 
   return (
