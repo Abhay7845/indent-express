@@ -27,7 +27,7 @@ const MasterFileUplaod = () => {
       })
         .then((res) => res)
         .then((response) => {
-          console.log("response=>", response.data)
+          console.log("response2=>", response.data)
           if (response.data.code === "1000") {
             setResError("");
             swal({
@@ -36,11 +36,7 @@ const MasterFileUplaod = () => {
               icon: "success",
               buttons: "OK",
             });
-          } else if (response.data.code === "1001") {
-            setResError(response.data.value)
-          } else if (response.data.code === "1002") {
-            setResError(response.data.value)
-          } else if (response.data.code === "1002") {
+          } else {
             setResError(response.data.value)
           }
           setLoading(false);
